@@ -25,13 +25,14 @@ tailwind.config = {
 </script>
 
 <style>
+
 :root {
     --bg: #050505;
     --bg2: #0a0a0a;
+
     --card: rgba(18,18,18,.72);
     --card2: rgba(255,255,255,.035);
 
-    /* تغییر رنگ‌ها به طلایی نسخه اول */
     --yellow: #ffd21f;
     --yellow2: #ffb800;
     --yellow-soft: rgba(255,210,31,.12);
@@ -63,12 +64,30 @@ html {
 body {
     margin: 0;
     min-height: 100vh;
+
     background:
-        /* افکت‌های طلایی مشابه نسخه اول */
-        radial-gradient(circle at 10% 5%, rgba(255,210,31,.12), transparent 30%),
-        radial-gradient(circle at 90% 80%, rgba(255,184,0,.08), transparent 28%),
-        radial-gradient(circle at 50% 100%, rgba(255,210,31,.05), transparent 30%),
-        linear-gradient(135deg,#030303,#090909 45%,#050505);
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(255,210,31,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255,184,0,.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255,210,31,.05),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #030303,
+            #090909 45%,
+            #050505
+        );
+
     color: var(--text);
     font-family: 'Inter','Vazirmatn',sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -79,134 +98,223 @@ body {
     font-family: 'Vazirmatn',sans-serif;
 }
 
-/* Background with grid animation similar to first version */
+
+/* =========================
+   GRID BACKGROUND
+========================= */
+
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
+
     pointer-events: none;
+
     background-image:
-        linear-gradient(rgba(255,210,31,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,210,31,.035) 1px, transparent 1px);
+        linear-gradient(
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        );
+
     background-size: 45px 45px;
-    mask-image: radial-gradient(ellipse 90% 80% at center, black 20%, transparent 85%);
+
+    mask-image:
+        radial-gradient(
+            ellipse 90% 80% at center,
+            black 20%,
+            transparent 85%
+        );
+
     z-index: -2;
-    animation: gridMove 35s linear infinite;
+
+    animation:
+        gridMove 35s linear infinite;
 }
 
 @keyframes gridMove {
+
     from {
         background-position: 0 0;
     }
+
     to {
         background-position: 45px 45px;
     }
+
 }
 
-/* Ambient orbs similar to first version */
+
+/* =========================
+   AMBIENT
+========================= */
+
 .ambient {
     position: fixed;
+
     border-radius: 50%;
+
     filter: blur(90px);
+
     pointer-events: none;
+
     z-index: -1;
-    animation: floatOrb 18s ease-in-out infinite alternate;
+
+    animation:
+        floatOrb 18s ease-in-out infinite alternate;
 }
 
 .ambient.one {
+
     width: 420px;
     height: 420px;
+
     top: -170px;
     left: -100px;
+
     background: #ffd21f;
+
     opacity: .08;
 }
 
 .ambient.two {
+
     width: 350px;
     height: 350px;
+
     bottom: -150px;
     right: -100px;
+
     background: #ffb800;
+
     opacity: .07;
+
     animation-delay: -5s;
 }
 
 .ambient.three {
+
     width: 260px;
     height: 260px;
+
     top: 45%;
     left: 50%;
+
     background: #fff06a;
+
     opacity: .035;
+
     animation-delay: -9s;
-    position: fixed;
-    border-radius: 50%;
-    filter: blur(90px);
-    pointer-events: none;
-    z-index: -1;
 }
 
 @keyframes floatOrb {
+
     from {
-        transform: translate(0,0) scale(1);
+        transform:
+            translate(0,0)
+            scale(1);
     }
+
     50% {
-        transform: translate(35px,-30px) scale(1.12);
+        transform:
+            translate(35px,-30px)
+            scale(1.12);
     }
+
     to {
-        transform: translate(-25px,35px) scale(1.05);
+        transform:
+            translate(-25px,35px)
+            scale(1.05);
     }
+
 }
 
-/* Scrollbar */
+
+/* =========================
+   SCROLLBAR
+========================= */
+
 ::-webkit-scrollbar {
     width: 6px;
 }
+
 ::-webkit-scrollbar-track {
     background: #050505;
 }
+
 ::-webkit-scrollbar-thumb {
     background: var(--yellow);
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(255,210,31,.3);
+
+    box-shadow:
+        0 0 10px
+        rgba(255,210,31,.3);
 }
 
-/* Glass - improved with gold border on hover */
+
+/* =========================
+   GLASS
+========================= */
+
 .glass {
+
     background:
         linear-gradient(
             145deg,
             rgba(255,255,255,.055),
             rgba(255,255,255,.018)
         );
+
     border: 1px solid var(--border);
+
     box-shadow: var(--shadow);
+
     backdrop-filter: blur(22px);
     -webkit-backdrop-filter: blur(22px);
-    transition: transform .35s cubic-bezier(.22,1,.36,1),
-                border-color .35s ease,
-                box-shadow .35s ease;
+
+    transition:
+        transform .35s cubic-bezier(.22,1,.36,1),
+        border-color .35s ease,
+        box-shadow .35s ease;
 }
 
 .glass:hover {
-    transform: translateY(-3px);
-    border-color: rgba(255,210,31,.22);
-    box-shadow: 0 20px 60px rgba(0,0,0,.7),
-                0 0 30px rgba(255,210,31,.045);
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        rgba(255,210,31,.22);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.7),
+        0 0 30px rgba(255,210,31,.045);
 }
 
 .card {
+
     border-radius: 26px;
+
     position: relative;
+
     overflow: hidden;
 }
 
 .card::before {
+
     content: "";
+
     position: absolute;
+
     inset: 0;
+
     pointer-events: none;
+
     background:
         radial-gradient(
             circle at 100% 0%,
@@ -216,243 +324,523 @@ body::before {
 }
 
 .card:hover {
-    border-color: rgba(255,210,31,.18);
+
+    border-color:
+        rgba(255,210,31,.18);
 }
 
-/* Topbar */
+
+/* =========================
+   TOPBAR
+========================= */
+
 .topbar {
+
     width: 100%;
     max-width: 1180px;
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     margin-bottom: 22px;
+
     gap: 15px;
 }
 
 .brand {
+
     display: flex;
+
     align-items: center;
+
     gap: 12px;
 }
 
 .brand-logo {
+
     width: 44px;
     height: 44px;
+
     border-radius: 14px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    background: linear-gradient(145deg,#ffd21f,#ffb800);
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd21f,
+            #ffb800
+        );
+
     color: #080808;
+
     font-weight: 900;
+
     font-size: 14px;
+
     letter-spacing: -1px;
+
     box-shadow:
-        0 0 35px rgba(255,210,31,.25),
-        inset 0 1px rgba(255,255,255,.6);
-    animation: pulseGold 3s infinite;
+        0 0 35px
+        rgba(255,210,31,.25),
+        inset 0 1px
+        rgba(255,255,255,.6);
+
+    animation:
+        pulseGold 3s infinite;
 }
 
 @keyframes pulseGold {
+
     0%,100% {
-        box-shadow: 0 0 20px rgba(255,210,31,.15);
+
+        box-shadow:
+            0 0 20px
+            rgba(255,210,31,.15);
     }
+
     50% {
-        box-shadow: 0 0 35px rgba(255,210,31,.28);
+
+        box-shadow:
+            0 0 35px
+            rgba(255,210,31,.28);
     }
+
 }
 
 .brand-name {
+
     font-size: 18px;
+
     font-weight: 900;
+
     letter-spacing: 2px;
 }
 
 .brand-name span {
+
     color: var(--yellow);
 }
 
 .brand-sub {
+
     font-size: 9px;
+
     color: var(--muted);
+
     letter-spacing: 2px;
+
     margin-top: 2px;
 }
 
-/* Buttons */
+
+/* =========================
+   BUTTONS
+========================= */
+
 .btn {
-    border: 1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius: 13px;
+
     padding: 10px 15px;
+
     font-weight: 800;
+
     font-size: 11px;
+
     cursor: pointer;
+
     transition: .2s ease;
 }
+
 .btn:hover {
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
 .btn-secondary {
-    background: rgba(255,255,255,.045);
+
+    background:
+        rgba(255,255,255,.045);
+
     color: var(--text);
 }
+
 .btn-secondary:hover {
-    border-color: var(--yellow-border);
-    color: var(--yellow);
-    background: var(--yellow-soft);
+
+    border-color:
+        var(--yellow-border);
+
+    color:
+        var(--yellow);
+
+    background:
+        var(--yellow-soft);
 }
 
 .btn-primary {
-    background: linear-gradient(110deg,#ffb800,#ffd21f,#fff06a,#ffd21f,#ffb800);
-    background-size: 250% 100%;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a,
+            #ffd21f,
+            #ffb800
+        );
+
+    background-size:
+        250% 100%;
+
     color: #090909;
+
     border: 0;
+
     font-weight: 900;
-    box-shadow: 0 8px 30px rgba(255,210,31,.18);
-    animation: buttonShimmer 4s linear infinite;
+
+    box-shadow:
+        0 8px 30px
+        rgba(255,210,31,.18);
+
+    animation:
+        buttonShimmer 4s linear infinite;
 }
 
 @keyframes buttonShimmer {
+
     0% {
-        background-position: -200% 0;
+        background-position:
+            -200% 0;
     }
+
     100% {
-        background-position: 200% 0;
+        background-position:
+            200% 0;
     }
+
 }
 
 .btn-primary:hover {
-    background: linear-gradient(110deg,#ffd21f,#ffb800,#fff06a,#ffd21f,#ffb800);
-    background-size: 250% 100%;
-    box-shadow: 0 10px 40px rgba(255,210,31,.28);
+
+    box-shadow:
+        0 10px 40px
+        rgba(255,210,31,.28);
 }
 
-/* Profile */
+
+/* =========================
+   PROFILE
+========================= */
+
 .profile {
+
     text-align: center;
+
     padding: 30px 24px;
 }
 
 .profile-logo {
+
     width: 82px;
     height: 82px;
-    margin: 0 auto 17px;
+
+    margin:
+        0 auto 17px;
+
     border-radius: 24px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     font-size: 20px;
+
     font-weight: 900;
+
     letter-spacing: 1px;
+
     color: #050505;
-    background: linear-gradient(145deg,#ffd21f,#ffb800);
-    box-shadow: 0 0 45px rgba(255,210,31,.25);
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd21f,
+            #ffb800
+        );
+
+    box-shadow:
+        0 0 45px
+        rgba(255,210,31,.25);
 }
 
 .profile h1 {
+
     margin: 0;
+
     font-size: 25px;
+
     font-weight: 900;
 }
 
 .user-id {
+
     margin-top: 6px;
-    color: var(--muted);
+
+    color:
+        var(--muted);
+
     font-size: 10px;
+
     font-family: monospace;
 }
 
 .status {
+
     margin-top: 20px;
+
     width: 100%;
+
     padding: 11px;
+
     border-radius: 13px;
+
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 1.5px;
 }
 
-/* Status dot */
 .status-dot {
+
     display: inline-block;
+
     width: 9px;
     height: 9px;
+
     border-radius: 50%;
-    background: var(--yellow);
-    box-shadow: 0 0 8px var(--yellow), 0 0 20px rgba(255,210,31,.55);
-    animation: pulse 2s ease-in-out infinite;
+
+    background:
+        var(--yellow);
+
+    box-shadow:
+        0 0 8px var(--yellow),
+        0 0 20px
+        rgba(255,210,31,.55);
+
+    animation:
+        pulse 2s ease-in-out infinite;
+
     margin-left: 6px;
 }
 
 @keyframes pulse {
+
     0%,100% {
-        box-shadow: 0 0 7px var(--yellow), 0 0 15px rgba(255,210,31,.4);
+
+        box-shadow:
+            0 0 7px var(--yellow),
+            0 0 15px
+            rgba(255,210,31,.4);
     }
+
     50% {
-        box-shadow: 0 0 12px var(--yellow), 0 0 28px rgba(255,210,31,.65);
+
+        box-shadow:
+            0 0 12px var(--yellow),
+            0 0 28px
+            rgba(255,210,31,.65);
     }
+
 }
 
-/* Section title */
+
+/* =========================
+   SECTION TITLE
+========================= */
+
 .section-title {
+
     display: flex;
+
     align-items: center;
+
     gap: 9px;
+
     font-size: 11px;
+
     font-weight: 900;
-    color: var(--text2);
+
+    color:
+        var(--text2);
+
     text-transform: uppercase;
+
     letter-spacing: 1.6px;
+
     margin-bottom: 17px;
 }
+
 .section-title svg {
-    color: var(--yellow);
+
+    color:
+        var(--yellow);
 }
 
-/* Info */
+
+/* =========================
+   INFO
+========================= */
+
 .info {
+
     padding: 25px;
 }
 
 .expiry {
+
     font-size: 25px;
+
     font-weight: 900;
-    margin-bottom: 5px;
-    color: var(--yellow);
-    text-shadow: 0 0 7px rgba(255,210,31,.5), 0 0 18px rgba(255,184,0,.25);
+
+    margin-bottom: 4px;
+
+    color:
+        var(--yellow);
+
+    text-shadow:
+        0 0 7px
+        rgba(255,210,31,.5),
+        0 0 18px
+        rgba(255,184,0,.25);
+}
+
+
+/* Remaining Days */
+
+.remaining-days {
+
+    margin-top: 9px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    width: fit-content;
+
+    padding: 7px 11px;
+
+    border-radius: 9px;
+
+    background:
+        rgba(255,210,31,.09);
+
+    border:
+        1px solid
+        rgba(255,210,31,.18);
+
+    color:
+        var(--yellow);
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: .2px;
+}
+
+.remaining-days.expired {
+
+    background:
+        rgba(239,68,68,.10);
+
+    border-color:
+        rgba(239,68,68,.25);
+
+    color:
+        #f87171;
+}
+
+.remaining-days.today {
+
+    background:
+        rgba(245,158,11,.10);
+
+    border-color:
+        rgba(245,158,11,.25);
+
+    color:
+        #fbbf24;
 }
 
 .muted {
-    color: var(--muted);
+
+    color:
+        var(--muted);
 }
+
 .secondary {
-    color: var(--text2);
+
+    color:
+        var(--text2);
 }
 
 .divider {
+
     height: 1px;
-    background: var(--border);
-    margin: 22px 0;
+
+    background:
+        var(--border);
+
+    margin:
+        22px 0;
 }
 
 .ip-row {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 10px;
 }
+
 .ip {
-    color: var(--yellow);
-    font-family: monospace;
+
+    color:
+        var(--yellow);
+
+    font-family:
+        monospace;
+
     font-size: 11px;
+
     font-weight: 800;
 }
 
-/* Support */
+
+/* =========================
+   SUPPORT / SEP NET LINKS
+========================= */
+
 .support {
+
     padding: 24px;
+
     background:
         radial-gradient(
             circle at 100% 0%,
@@ -461,99 +849,205 @@ body::before {
         ),
         rgba(255,255,255,.025);
 }
+
 .support p {
+
     font-size: 11px;
+
     line-height: 1.9;
-    color: var(--text2);
+
+    color:
+        var(--text2);
+
+    margin-bottom: 0;
 }
+
 .support-btn {
+
     width: 100%;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 8px;
+
     text-decoration: none;
-    margin-top: 16px;
+
+    margin-top: 12px;
+
     padding: 12px;
+
     border-radius: 13px;
 }
 
-/* Metrics */
+
+/* =========================
+   METRICS
+========================= */
+
 .metric {
+
     padding: 25px;
 }
+
 .metric-top {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     margin-bottom: 20px;
 }
+
 .metric-icon {
+
     width: 39px;
     height: 39px;
+
     border-radius: 12px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    color: var(--yellow);
-    background: var(--yellow-soft);
-    border: 1px solid var(--yellow-border);
+
+    color:
+        var(--yellow);
+
+    background:
+        var(--yellow-soft);
+
+    border:
+        1px solid
+        var(--yellow-border);
 }
+
 .metric-title {
-    color: var(--text2);
+
+    color:
+        var(--text2);
+
     font-size: 10px;
+
     font-weight: 900;
+
     letter-spacing: 1.5px;
+
     text-transform: uppercase;
 }
+
 .metric-number {
+
     font-size: 32px;
+
     font-weight: 900;
+
     letter-spacing: -1px;
 }
+
 .metric-limit {
-    color: var(--text2);
+
+    color:
+        var(--text2);
+
     font-size: 12px;
 }
 
-/* Progress - gold */
+
+/* =========================
+   PROGRESS
+========================= */
+
 .progress {
+
     width: 100%;
+
     height: 8px;
+
     border-radius: 20px;
+
     overflow: hidden;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.05);
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
 }
+
 .progress > * {
-    background: linear-gradient(90deg,#ffb800,#ffd21f,#fff06a) !important;
-    box-shadow: 0 0 15px rgba(255,210,31,.45);
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a
+        ) !important;
+
+    box-shadow:
+        0 0 15px
+        rgba(255,210,31,.45);
+
     border-radius: 20px;
 }
 
-/* Main */
+
+/* =========================
+   MAIN
+========================= */
+
 .main-card {
+
     padding: 30px;
 }
+
 .main-heading {
+
     font-size: 19px;
+
     font-weight: 900;
+
     margin-bottom: 5px;
 }
+
 .main-heading span {
-    color: var(--yellow);
+
+    color:
+        var(--yellow);
 }
+
 .main-desc {
-    color: var(--text2);
+
+    color:
+        var(--text2);
+
     font-size: 11px;
 }
 
-/* Universal */
+
+/* =========================
+   UNIVERSAL
+========================= */
+
 .universal {
+
     margin-top: 25px;
+
     padding: 23px;
+
     border-radius: 21px;
-    border: 1px solid var(--yellow-border);
+
+    border:
+        1px solid
+        var(--yellow-border);
+
     background:
         radial-gradient(
             circle at 100% 0%,
@@ -561,295 +1055,596 @@ body::before {
             transparent 45%
         ),
         rgba(255,210,31,.025);
+
     position: relative;
+
     overflow: hidden;
 }
+
 .recommended {
+
     display: inline-block;
+
     margin-left: 5px;
+
     padding: 4px 8px;
+
     border-radius: 7px;
-    background: var(--yellow);
-    color: #050505;
+
+    background:
+        var(--yellow);
+
+    color:
+        #050505;
+
     font-size: 8px;
+
     font-weight: 900;
+
     letter-spacing: 1px;
 }
 
-/* Input */
+
+/* =========================
+   INPUT
+========================= */
+
 .input {
+
     width: 100%;
+
     min-width: 0;
-    background: rgba(0,0,0,.45);
-    color: var(--text);
-    border: 1px solid var(--border);
+
+    background:
+        rgba(0,0,0,.45);
+
+    color:
+        var(--text);
+
+    border:
+        1px solid
+        var(--border);
+
     outline: none;
+
     border-radius: 13px;
+
     padding: 13px 14px;
+
     font-size: 11px;
+
     font-family: monospace;
 }
+
 .input:focus {
-    border-color: var(--yellow);
-    box-shadow: 0 0 0 3px rgba(255,210,31,.07);
+
+    border-color:
+        var(--yellow);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,210,31,.07);
 }
 
-/* Formats */
+
+/* =========================
+   FORMATS
+========================= */
+
 .formats {
+
     margin-top: 20px;
+
     padding: 22px;
+
     border-radius: 21px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.018);
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.018);
 }
+
 .format-grid {
+
     display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
     gap: 13px;
+
     margin-top: 18px;
 }
+
 .format {
+
     padding: 16px;
+
     border-radius: 17px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.025);
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+
     transition: .2s ease;
 }
+
 .format:hover {
-    border-color: var(--yellow-border);
-    transform: translateY(-2px);
-    background: rgba(255,210,31,.035);
+
+    border-color:
+        var(--yellow-border);
+
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(255,210,31,.035);
 }
+
 .format-head {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 10px;
+
     margin-bottom: 11px;
 }
+
 .format-name {
+
     font-size: 10px;
+
     font-weight: 900;
-}
-.tag {
-    padding: 4px 7px;
-    border-radius: 6px;
-    background: var(--yellow-soft);
-    color: var(--yellow);
-    font-size: 8px;
-    font-weight: 900;
-}
-.format-row {
-    display: flex;
-    gap: 7px;
-}
-.format-row .input {
-    padding: 10px;
-    font-size: 9px;
-}
-.small-btn {
-    border: 0;
-    background: linear-gradient(110deg,#ffb800,#ffd21f);
-    color: #050505;
-    border-radius: 10px;
-    padding: 0 12px;
-    font-size: 9px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: .2s;
-}
-.small-btn:hover {
-    background: linear-gradient(110deg,#ffd21f,#ffb800);
-    transform: translateY(-1px);
-}
-.qr-btn {
-    width: 38px;
-    min-width: 38px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.04);
-    color: var(--text2);
-    border-radius: 10px;
-    cursor: pointer;
-}
-.qr-btn:hover {
-    color: var(--yellow);
-    border-color: var(--yellow-border);
 }
 
-/* Apps */
+.tag {
+
+    padding: 4px 7px;
+
+    border-radius: 6px;
+
+    background:
+        var(--yellow-soft);
+
+    color:
+        var(--yellow);
+
+    font-size: 8px;
+
+    font-weight: 900;
+}
+
+.format-row {
+
+    display: flex;
+
+    gap: 7px;
+}
+
+.format-row .input {
+
+    padding: 10px;
+
+    font-size: 9px;
+}
+
+.small-btn {
+
+    border: 0;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffb800,
+            #ffd21f
+        );
+
+    color:
+        #050505;
+
+    border-radius: 10px;
+
+    padding:
+        0 12px;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    cursor: pointer;
+
+    transition: .2s;
+}
+
+.small-btn:hover {
+
+    transform:
+        translateY(-1px);
+}
+
+.qr-btn {
+
+    width: 38px;
+
+    min-width: 38px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:
+        var(--text2);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+.qr-btn:hover {
+
+    color:
+        var(--yellow);
+
+    border-color:
+        var(--yellow-border);
+}
+
+
+/* =========================
+   APPS
+========================= */
+
 .apps {
+
     margin-top: 28px;
 }
+
 .apps-grid {
+
     display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
     gap: 10px;
 }
+
 .app {
+
     text-decoration: none;
-    color: var(--text);
-    padding: 14px 10px;
+
+    color:
+        var(--text);
+
+    padding:
+        14px 10px;
+
     border-radius: 14px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        var(--border);
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 7px;
+
     font-size: 11px;
+
     font-weight: 800;
+
     transition: .2s;
 }
+
 .app:hover {
-    color: var(--yellow);
-    border-color: var(--yellow-border);
-    background: var(--yellow-soft);
-    transform: translateY(-3px);
+
+    color:
+        var(--yellow);
+
+    border-color:
+        var(--yellow-border);
+
+    background:
+        var(--yellow-soft);
+
+    transform:
+        translateY(-3px);
 }
 
-/* Bottom */
+
+/* =========================
+   BOTTOM
+========================= */
+
 .bottom {
+
     margin-top: 25px;
+
     padding-top: 20px;
-    border-top: 1px solid var(--border);
+
+    border-top:
+        1px solid
+        var(--border);
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
+
     gap: 15px;
 }
+
 .raw-btn {
+
     white-space: nowrap;
 }
 
-/* Modal */
+
+/* =========================
+   MODAL
+========================= */
+
 .modal-overlay {
-    background: rgba(0,0,0,.82);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-}
-.modal-card {
+
     background:
-        linear-gradient(145deg,
+        rgba(0,0,0,.82);
+
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
+}
+
+.modal-card {
+
+    background:
+        linear-gradient(
+            145deg,
             rgba(28,28,28,.95),
             rgba(10,10,10,.97)
         );
-    border: 1px solid var(--yellow-border);
+
+    border:
+        1px solid
+        var(--yellow-border);
+
     box-shadow:
-        0 30px 100px rgba(0,0,0,.8),
-        0 0 50px rgba(255,210,31,.08);
+        0 30px 100px
+        rgba(0,0,0,.8),
+        0 0 50px
+        rgba(255,210,31,.08);
 }
 
-/* Toast */
+
+/* =========================
+   TOAST
+========================= */
+
 #toast {
-    background: rgba(20,20,20,.92) !important;
-    border: 1px solid var(--yellow-border);
-    color: white !important;
-    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+
+    background:
+        rgba(20,20,20,.92) !important;
+
+    border:
+        1px solid
+        var(--yellow-border);
+
+    color:
+        white !important;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.6);
 }
 
-/* Animations */
+
+/* =========================
+   ANIMATION
+========================= */
+
 @keyframes enter {
+
     from {
+
         opacity: 0;
-        transform: translateY(20px);
+
+        transform:
+            translateY(20px);
     }
+
     to {
+
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+            translateY(0);
     }
-}
-.fade-in {
-    animation: enter .65s ease-out;
 }
 
-/* Mobile */
+.fade-in {
+
+    animation:
+        enter .65s ease-out;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:768px) {
+
     body {
-        padding: 14px !important;
+
+        padding:
+            14px !important;
     }
+
     .topbar {
+
         margin-bottom: 16px;
     }
+
     .brand-name {
+
         font-size: 15px;
     }
+
     .brand-sub {
+
         font-size: 8px;
     }
+
     .brand-logo {
+
         width: 40px;
         height: 40px;
     }
+
     .format-grid {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+            1fr;
     }
+
     .apps-grid {
-        grid-template-columns: repeat(2,1fr);
+
+        grid-template-columns:
+            repeat(2,1fr);
     }
+
     .main-card {
+
         padding: 19px;
     }
+
     .universal,
     .formats {
+
         padding: 16px;
     }
+
     .bottom {
+
         flex-direction: column;
+
         align-items: stretch;
     }
+
     .raw-btn {
+
         width: 100%;
     }
+
     .ambient.three {
+
         display: none;
     }
 }
 
+
 @media(max-width:480px) {
+
     .topbar > div:last-child {
+
         gap: 5px;
     }
+
     .topbar .btn {
-        padding: 9px 10px;
+
+        padding:
+            9px 10px;
     }
+
     .metric-number {
+
         font-size: 28px;
     }
+
     .expiry {
+
         font-size: 22px;
     }
+
     .format-row {
+
         flex-wrap: wrap;
     }
+
     .format-row .input {
+
         width: 100%;
+
         flex-basis: 100%;
     }
+
     .small-btn,
     .qr-btn {
+
         height: 38px;
     }
 }
+
 </style>
 </head>
 
+
 <body class="min-h-screen px-4 py-5 fade-in">
+
 
 <div class="ambient one"></div>
 <div class="ambient two"></div>
 <div class="ambient three"></div>
 
-<!-- TOP BAR -->
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
 <div class="topbar">
 
     <div class="brand">
-        <div class="brand-logo">SN</div>
+
+        <div class="brand-logo">
+            SN
+        </div>
 
         <div>
-            <div class="brand-name">SEP <span>NET</span></div>
-            <div class="brand-sub">SECURE NETWORK</div>
+
+            <div class="brand-name">
+                SEP <span>NET</span>
+            </div>
+
+            <div class="brand-sub">
+                SECURE NETWORK
+            </div>
+
         </div>
+
     </div>
+
 
     <div class="flex gap-2">
 
@@ -858,80 +1653,140 @@ body::before {
             id="theme-toggle"
             class="btn btn-secondary flex items-center gap-2"
         >
-            <span id="theme-icon">☀️</span>
-            <span id="theme-label">Light</span>
+
+            <span id="theme-icon">
+                ☀️
+            </span>
+
+            <span id="theme-label">
+                Light
+            </span>
+
         </button>
+
 
         <button
             onclick="toggleLang()"
             id="lang-toggle"
             class="btn btn-secondary flex items-center gap-2"
         >
-            <span id="lang-icon">🇺🇸</span>
-            <span id="lang-label">EN</span>
+
+            <span id="lang-icon">
+                🇺🇸
+            </span>
+
+            <span id="lang-label">
+                EN
+            </span>
+
         </button>
 
     </div>
+
 </div>
 
 
-<!-- MAIN GRID -->
+<!-- =========================
+     MAIN GRID
+========================= -->
+
 <div class="w-full max-w-[1180px] grid grid-cols-1 md:grid-cols-12 gap-5 relative z-10">
 
 
-<!-- LEFT -->
+<!-- =========================
+     LEFT
+========================= -->
+
 <div class="md:col-span-4 flex flex-col gap-5">
 
 
 <!-- PROFILE -->
+
 <div class="glass card profile">
 
     <div class="profile-logo">
         SEP
     </div>
 
-    <h1>__USER_NAME__</h1>
+    <h1>
+        __USER_NAME__
+    </h1>
 
     <div class="user-id">
         ID: __USER_ID__
     </div>
 
     <div class="flex items-center justify-center gap-2 mt-4">
+
         <span class="status-dot"></span>
+
         <div
             id="status-badge"
             class="status"
             style="margin-top:0;"
         ></div>
+
     </div>
 
 </div>
 
 
-<!-- INFO -->
+<!-- =========================
+     INFO
+========================= -->
+
 <div class="glass card info">
 
     <div class="section-title">
 
-        <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        <svg
+            width="17"
+            height="17"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5v12a2 2 0 002 2z"
+            />
         </svg>
 
-        <span data-i18n="expDate">
+        <span>
             Expiration Date
         </span>
 
     </div>
 
-    <div class="expiry">
+
+    <!-- Persian Expiration Date -->
+
+    <div
+        id="expiry-date"
+        class="expiry"
+        data-expiry="__EXPIRY_DATE__"
+    >
         __EXPIRY_DATE__
     </div>
 
-    <div class="muted text-xs" data-i18n="calendarLocal">
-        Calendar Local
+
+    <!-- Remaining Days -->
+
+    <div
+        id="remaining-days"
+        class="remaining-days"
+    >
+        Calculating...
     </div>
 
+
+    <div class="muted text-xs mt-2">
+        Persian Calendar
+    </div>
+
+
     <div class="divider"></div>
+
 
     <div class="ip-row">
 
@@ -951,37 +1806,92 @@ body::before {
 </div>
 
 
-<!-- SUPPORT -->
+<!-- =========================
+     SEP NET LINKS
+========================= -->
+
 <div class="glass card support">
 
     <div class="section-title">
 
-        <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        <svg
+            width="19"
+            height="19"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
         </svg>
 
         <span>
-            SEP NET SUPPORT
+            SEP NET
         </span>
 
     </div>
 
+
     <p>
-        Having trouble connecting?
-        Keep your configuration updated or contact
-        SEP NET support for assistance.
+        Stay connected with SEP NET.
+        Access our official channel,
+        purchase bot, and support team
+        using the links below.
     </p>
+
+
+    <!-- CHANNEL -->
 
     <a
         href="https://t.me/sepnet_conf"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-secondary support-btn"
+    >
+
+        <span>
+            📢
+        </span>
+
+        Official Channel
+
+    </a>
+
+
+    <!-- PURCHASE BOT -->
+
+    <a
+        href="https://t.me/sepnet_irbot"
+        target="_blank"
+        rel="noopener noreferrer"
         class="btn btn-primary support-btn"
     >
 
-        <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.98 1.26-5.59 3.7-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.49-.42-1.44-.88.03-.24.36-.48.98-.74 3.84-1.67 6.4-2.78 7.68-3.32 3.64-1.52 4.4-1.79 4.9-1.8.11 0 .36.03.49.14.11.09.14.22.15.34-.01.07-.01.16-.02.26z"/>
-        </svg>
+        <span>
+            🛒
+        </span>
 
-        Telegram Support
+        Purchase Subscription
+
+    </a>
+
+
+    <!-- SUPPORT -->
+
+    <a
+        href="https://t.me/sepnet_supportbot"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-secondary support-btn"
+    >
+
+        <span>
+            🎧
+        </span>
+
+        SEP NET Support Team
 
     </a>
 
@@ -990,32 +1900,52 @@ body::before {
 </div>
 
 
-<!-- RIGHT -->
+<!-- =========================
+     RIGHT
+========================= -->
+
 <div class="md:col-span-8 flex flex-col gap-5">
 
 
-<!-- METRICS -->
+<!-- =========================
+     METRICS
+========================= -->
+
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
 
 <!-- TOTAL -->
+
 <div class="glass card metric">
 
     <div class="metric-top">
 
-        <div class="metric-title" data-i18n="totalUsage">
+        <div
+            class="metric-title"
+            data-i18n="totalUsage"
+        >
             Total Usage
         </div>
 
         <div class="metric-icon">
 
-            <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+            <svg
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-width="2"
+                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+                />
             </svg>
 
         </div>
 
     </div>
+
 
     <div class="flex items-baseline gap-2 mb-5">
 
@@ -1029,6 +1959,7 @@ body::before {
 
     </div>
 
+
     <div class="progress">
         __TOTAL_PROGRESS__
     </div>
@@ -1037,23 +1968,37 @@ body::before {
 
 
 <!-- DAILY -->
+
 <div class="glass card metric">
 
     <div class="metric-top">
 
-        <div class="metric-title" data-i18n="dailyUsage">
+        <div
+            class="metric-title"
+            data-i18n="dailyUsage"
+        >
             Daily Usage
         </div>
 
         <div class="metric-icon">
 
-            <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            <svg
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
             </svg>
 
         </div>
 
     </div>
+
 
     <div class="flex items-baseline gap-2 mb-5">
 
@@ -1067,6 +2012,7 @@ body::before {
 
     </div>
 
+
     <div class="progress">
         __DAILY_PROGRESS__
     </div>
@@ -1076,28 +2022,35 @@ body::before {
 </div>
 
 
-<!-- MAIN SUBSCRIPTION CARD -->
+<!-- =========================
+     MAIN SUBSCRIPTION
+========================= -->
+
 <div class="glass card main-card">
 
-    <div>
 
-        <div class="main-heading">
-            <span data-i18n="integrationTitle">
-                Integration Connections
-            </span>
-        </div>
+<div>
 
-        <div
-            class="main-desc"
-            data-i18n="integrationDesc"
-        >
-            Add the correct configuration link based on your preferred format below.
-        </div>
+    <div class="main-heading">
+
+        <span data-i18n="integrationTitle">
+            Integration Connections
+        </span>
 
     </div>
 
+    <div
+        class="main-desc"
+        data-i18n="integrationDesc"
+    >
+        Add the correct configuration link based on your preferred format below.
+    </div>
+
+</div>
+
 
 <!-- UNIVERSAL -->
+
 <div class="universal">
 
     <div class="font-black text-sm mb-2">
@@ -1112,12 +2065,14 @@ body::before {
 
     </div>
 
+
     <div
         class="secondary text-xs leading-6 mb-4"
         data-i18n="universalDesc"
     >
         This URL automatically detects your client and delivers the optimal format.
     </div>
+
 
     <div
         class="flex flex-col sm:flex-row gap-2"
@@ -1132,14 +2087,18 @@ body::before {
             class="input flex-1"
         >
 
+
         <div class="flex gap-2">
 
             <button
                 onclick="copyLink('link-normal')"
                 class="btn btn-primary flex-1"
             >
-                <span data-i18n="copy">Copy</span>
+                <span data-i18n="copy">
+                    Copy
+                </span>
             </button>
+
 
             <button
                 onclick="showQRModal('__SYNC_NORMAL__')"
@@ -1157,13 +2116,17 @@ body::before {
 
 
 <!-- FORMATS -->
+
 <div class="formats">
 
     <div class="font-black text-sm">
+
         <span data-i18n="availableFormats">
             Available Subscription Formats
         </span>
+
     </div>
+
 
     <div
         class="secondary text-xs leading-6 mt-2"
@@ -1173,10 +2136,11 @@ body::before {
     </div>
 
 
-<div class="format-grid">
+    <div class="format-grid">
 
 
 <!-- RAW -->
+
 <div class="format">
 
     <div class="format-head">
@@ -1191,7 +2155,11 @@ body::before {
 
     </div>
 
-    <div class="format-row" dir="ltr">
+
+    <div
+        class="format-row"
+        dir="ltr"
+    >
 
         <input
             id="link-raw-fmt"
@@ -1199,12 +2167,14 @@ body::before {
             class="input"
         >
 
+
         <button
             onclick="copyLink('link-raw-fmt')"
             class="small-btn"
         >
             Copy
         </button>
+
 
         <button
             onclick="showQRModal(document.getElementById('link-raw-fmt').value)"
@@ -1219,6 +2189,7 @@ body::before {
 
 
 <!-- BASE64 -->
+
 <div class="format">
 
     <div class="format-head">
@@ -1233,7 +2204,11 @@ body::before {
 
     </div>
 
-    <div class="format-row" dir="ltr">
+
+    <div
+        class="format-row"
+        dir="ltr"
+    >
 
         <input
             id="link-base64-fmt"
@@ -1241,12 +2216,14 @@ body::before {
             class="input"
         >
 
+
         <button
             onclick="copyLink('link-base64-fmt')"
             class="small-btn"
         >
             Copy
         </button>
+
 
         <button
             onclick="showQRModal(document.getElementById('link-base64-fmt').value)"
@@ -1261,6 +2238,7 @@ body::before {
 
 
 <!-- SINGBOX -->
+
 <div class="format">
 
     <div class="format-head">
@@ -1275,7 +2253,11 @@ body::before {
 
     </div>
 
-    <div class="format-row" dir="ltr">
+
+    <div
+        class="format-row"
+        dir="ltr"
+    >
 
         <input
             id="link-singbox-fmt"
@@ -1283,12 +2265,14 @@ body::before {
             class="input"
         >
 
+
         <button
             onclick="copyLink('link-singbox-fmt')"
             class="small-btn"
         >
             Copy
         </button>
+
 
         <button
             onclick="showQRModal(document.getElementById('link-singbox-fmt').value)"
@@ -1303,6 +2287,7 @@ body::before {
 
 
 <!-- CLASH -->
+
 <div class="format">
 
     <div class="format-head">
@@ -1317,7 +2302,11 @@ body::before {
 
     </div>
 
-    <div class="format-row" dir="ltr">
+
+    <div
+        class="format-row"
+        dir="ltr"
+    >
 
         <input
             id="link-clash-fmt"
@@ -1325,12 +2314,14 @@ body::before {
             class="input"
         >
 
+
         <button
             onclick="copyLink('link-clash-fmt')"
             class="small-btn"
         >
             Copy
         </button>
+
 
         <button
             onclick="showQRModal(document.getElementById('link-clash-fmt').value)"
@@ -1345,6 +2336,7 @@ body::before {
 
 
 <!-- V2RAYN -->
+
 <div class="format">
 
     <div class="format-head">
@@ -1359,7 +2351,11 @@ body::before {
 
     </div>
 
-    <div class="format-row" dir="ltr">
+
+    <div
+        class="format-row"
+        dir="ltr"
+    >
 
         <input
             id="link-v2rayn-fmt"
@@ -1367,12 +2363,14 @@ body::before {
             class="input"
         >
 
+
         <button
             onclick="copyLink('link-v2rayn-fmt')"
             class="small-btn"
         >
             Copy
         </button>
+
 
         <button
             onclick="showQRModal(document.getElementById('link-v2rayn-fmt').value)"
@@ -1386,17 +2384,30 @@ body::before {
 </div>
 
 
-</div>
+    </div>
+
 </div>
 
 
-<!-- ONE CLICK -->
+<!-- =========================
+     ONE CLICK
+========================= -->
+
 <div class="apps">
 
     <div class="section-title">
 
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        <svg
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
         </svg>
 
         <span data-i18n="oneClickImport">
@@ -1406,47 +2417,56 @@ body::before {
     </div>
 
 
-<div class="apps-grid">
+    <div class="apps-grid">
 
-<a
-    id="v2rayng-link"
-    href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
-    class="app"
->
-    v2rayNG
-</a>
 
-<a
-    href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
-    class="app"
->
-    v2rayN
-</a>
+        <a
+            id="v2rayng-link"
+            href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+            class="app"
+        >
+            v2rayNG
+        </a>
 
-<a
-    href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__"
-    class="app"
->
-    Shadowrocket
-</a>
 
-<a
-    href="streisand://import/__SYNC_NORMAL__"
-    class="app"
->
-    Streisand
-</a>
+        <a
+            href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+            class="app"
+        >
+            v2rayN
+        </a>
+
+
+        <a
+            href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__"
+            class="app"
+        >
+            Shadowrocket
+        </a>
+
+
+        <a
+            href="streisand://import/__SYNC_NORMAL__"
+            class="app"
+        >
+            Streisand
+        </a>
+
+    </div>
 
 </div>
-</div>
 
 
-<!-- RAW CONTENT -->
+<!-- =========================
+     RAW CONTENT
+========================= -->
+
 <div class="bottom">
 
     <div class="secondary text-xs">
         Advanced users can retrieve raw configuration content manually.
     </div>
+
 
     <div class="flex gap-2 w-full sm:w-auto">
 
@@ -1454,10 +2474,13 @@ body::before {
             onclick="fetchDecodedRawContent()"
             class="btn btn-secondary raw-btn"
         >
+
             <span data-i18n="parsedContent">
                 Retrieve Raw Content
             </span>
+
         </button>
+
 
         <input
             type="text"
@@ -1470,21 +2493,28 @@ body::before {
 
 </div>
 
+
 </div>
 
 </div>
+
 </div>
 
 
-<!-- QR MODAL -->
+<!-- =========================
+     QR MODAL
+========================= -->
+
 <div
     id="qr-modal"
     class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300"
 >
 
+
 <div
     class="modal-card max-w-sm w-full rounded-3xl p-7 relative"
 >
+
 
 <button
     onclick="closeQRModal()"
@@ -1493,6 +2523,7 @@ body::before {
     ✕
 </button>
 
+
 <h3
     id="qr-title"
     class="text-xl font-black text-center mb-6"
@@ -1500,16 +2531,18 @@ body::before {
     Scan QR Code
 </h3>
 
+
 <div class="bg-white p-4 rounded-2xl mx-auto w-fit mb-5">
 
-<img
-    id="qr-img"
-    src=""
-    alt="QR Code"
-    class="w-52 h-52"
->
+    <img
+        id="qr-img"
+        src=""
+        alt="QR Code"
+        class="w-52 h-52"
+    >
 
 </div>
+
 
 <p
     id="qr-text"
@@ -1521,28 +2554,36 @@ body::before {
     "
 ></p>
 
+
 <button
     onclick="closeQRModal()"
     class="btn btn-primary w-full"
-    data-i18n="close"
 >
     Close
 </button>
 
+
 </div>
+
 </div>
 
 
-<!-- TOAST -->
+<!-- =========================
+     TOAST
+========================= -->
+
 <div
     id="toast"
     class="fixed top-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full font-bold text-sm z-50 transition-all opacity-0 pointer-events-none"
 >
-    <span>Notification</span>
+    <span>
+        Notification
+    </span>
 </div>
 
 
 <script>
+
 
 /* =========================
    TRANSLATIONS
@@ -1551,70 +2592,186 @@ body::before {
 const I18N = {
 
 en: {
-    totalUsage: 'Total Usage',
-    dailyUsage: 'Daily Usage',
-    expDate: 'Expiration Date',
-    calendarLocal: 'Calendar Local',
-    unlimitedPlan: 'Unlimited Plan',
-    noDailyLimit: 'No Daily Limit',
-    integrationTitle: 'Integration Connections',
-    integrationDesc: 'Add the correct configuration link based on your preferred format below.',
-    universalLink: 'Universal Auto-Detecting Link',
-    universalDesc: 'This URL automatically detects your client and delivers the optimal format.',
-    oneClickImport: 'One-Click Import',
-    copy: 'Copy',
-    copyRaw: 'Copy Raw URL',
-    qr: 'QR',
-    parsedContent: 'Retrieve Raw Content',
-    close: 'Close',
-    qrTitle: 'Scan QR Code',
-    copied: 'Copied to clipboard!',
-    decodedCopied: 'Decoded links copied!',
-    decodedError: 'Error fetching content',
-    used: '% Used',
-    active: 'Active',
-    paused: 'Paused',
-    expired: 'Expired',
-    limitExceeded: 'Limit Exceeded',
-    dailyLimitExceeded: 'Daily Limit Exceeded',
-    availableFormats: 'Available Subscription Formats',
-    formatsDesc: 'Use these links to explicitly request specific configuration formats.'
+
+    totalUsage:
+        'Total Usage',
+
+    dailyUsage:
+        'Daily Usage',
+
+    expDate:
+        'Expiration Date',
+
+    calendarLocal:
+        'Persian Calendar',
+
+    unlimitedPlan:
+        'Unlimited Plan',
+
+    noDailyLimit:
+        'No Daily Limit',
+
+    integrationTitle:
+        'Integration Connections',
+
+    integrationDesc:
+        'Add the correct configuration link based on your preferred format below.',
+
+    universalLink:
+        'Universal Auto-Detecting Link',
+
+    universalDesc:
+        'This URL automatically detects your client and delivers the optimal format.',
+
+    oneClickImport:
+        'One-Click Import',
+
+    copy:
+        'Copy',
+
+    copyRaw:
+        'Copy Raw URL',
+
+    qr:
+        'QR',
+
+    parsedContent:
+        'Retrieve Raw Content',
+
+    close:
+        'Close',
+
+    qrTitle:
+        'Scan QR Code',
+
+    copied:
+        'Copied to clipboard!',
+
+    decodedCopied:
+        'Decoded links copied!',
+
+    decodedError:
+        'Error fetching content',
+
+    used:
+        '% Used',
+
+    active:
+        'Active',
+
+    paused:
+        'Paused',
+
+    expired:
+        'Expired',
+
+    limitExceeded:
+        'Limit Exceeded',
+
+    dailyLimitExceeded:
+        'Daily Limit Exceeded',
+
+    availableFormats:
+        'Available Subscription Formats',
+
+    formatsDesc:
+        'Use these links to explicitly request specific configuration formats.'
+
 },
 
 fa: {
-    totalUsage: 'مصرف کل',
-    dailyUsage: 'مصرف روزانه',
-    expDate: 'تاریخ انقضا',
-    calendarLocal: 'زمان محلی',
-    unlimitedPlan: 'طرح نامحدود',
-    noDailyLimit: 'بدون محدودیت روزانه',
-    integrationTitle: 'لینک‌های اتصال',
-    integrationDesc: 'لینک پیکربندی مورد نظر خود را انتخاب کنید.',
-    universalLink: 'لینک خودکار',
-    universalDesc: 'این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.',
-    oneClickImport: 'وارد کردن با یک کلیک',
-    copy: 'کپی',
-    copyRaw: 'کپی لینک خام',
-    qr: 'QR',
-    parsedContent: 'دریافت متن خام',
-    close: 'بستن',
-    qrTitle: 'اسکن کد QR',
-    copied: 'کپی شد!',
-    decodedCopied: 'لینک‌ها کپی شد!',
-    decodedError: 'خطا در دریافت',
-    used: '% مصرف',
-    active: 'فعال',
-    paused: 'متوقف',
-    expired: 'منقضی',
-    limitExceeded: 'از حد مجاز رد شده',
-    dailyLimitExceeded: 'از حد روزانه رد شده',
-    availableFormats: 'فرمت‌های اشتراک',
-    formatsDesc: 'از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.'
+
+    totalUsage:
+        'مصرف کل',
+
+    dailyUsage:
+        'مصرف روزانه',
+
+    expDate:
+        'تاریخ انقضا',
+
+    calendarLocal:
+        'تقویم شمسی',
+
+    unlimitedPlan:
+        'طرح نامحدود',
+
+    noDailyLimit:
+        'بدون محدودیت روزانه',
+
+    integrationTitle:
+        'لینک‌های اتصال',
+
+    integrationDesc:
+        'لینک پیکربندی مورد نظر خود را انتخاب کنید.',
+
+    universalLink:
+        'لینک خودکار',
+
+    universalDesc:
+        'این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.',
+
+    oneClickImport:
+        'وارد کردن با یک کلیک',
+
+    copy:
+        'کپی',
+
+    copyRaw:
+        'کپی لینک خام',
+
+    qr:
+        'QR',
+
+    parsedContent:
+        'دریافت متن خام',
+
+    close:
+        'بستن',
+
+    qrTitle:
+        'اسکن کد QR',
+
+    copied:
+        'کپی شد!',
+
+    decodedCopied:
+        'لینک‌ها کپی شد!',
+
+    decodedError:
+        'خطا در دریافت',
+
+    used:
+        '% مصرف',
+
+    active:
+        'فعال',
+
+    paused:
+        'متوقف',
+
+    expired:
+        'منقضی',
+
+    limitExceeded:
+        'از حد مجاز رد شده',
+
+    dailyLimitExceeded:
+        'از حد روزانه رد شده',
+
+    availableFormats:
+        'فرمت‌های اشتراک',
+
+    formatsDesc:
+        'از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.'
+
 }
 
 };
 
+
 let currentLang = 'en';
+
 let isDark = true;
 
 
@@ -1624,39 +2781,61 @@ let isDark = true;
 
 function applyTheme() {
 
-    const root = document.documentElement;
-    const label = document.getElementById('theme-label');
+    const root =
+        document.documentElement;
+
+    const label =
+        document.getElementById(
+            'theme-label'
+        );
+
 
     if (isDark) {
 
         root.classList.add('dark');
 
-        document.getElementById('theme-icon').textContent = '☀️';
+        document.getElementById(
+            'theme-icon'
+        ).textContent = '☀️';
 
-        if (label)
+
+        if (label) {
+
             label.textContent =
                 currentLang === 'fa'
-                ? 'روشن'
-                : 'Light';
+                    ? 'روشن'
+                    : 'Light';
+
+        }
 
     } else {
 
         root.classList.remove('dark');
 
-        document.getElementById('theme-icon').textContent = '🌙';
+        document.getElementById(
+            'theme-icon'
+        ).textContent = '🌙';
 
-        if (label)
+
+        if (label) {
+
             label.textContent =
                 currentLang === 'fa'
-                ? 'تاریک'
-                : 'Dark';
+                    ? 'تاریک'
+                    : 'Dark';
+
+        }
+
     }
+
 
     try {
 
         localStorage.setItem(
             'sub-theme',
-            isDark ? 'dark' : 'light'
+            isDark
+                ? 'dark'
+                : 'light'
         );
 
     } catch(e) {}
@@ -1670,45 +2849,77 @@ function applyTheme() {
 
 function applyLang() {
 
-    const t = I18N[currentLang];
+    const t =
+        I18N[currentLang];
+
 
     document
         .querySelectorAll('[data-i18n]')
         .forEach(el => {
 
-            const key = el.getAttribute('data-i18n');
+            const key =
+                el.getAttribute(
+                    'data-i18n'
+                );
 
             if (t[key])
-                el.textContent = t[key];
+                el.textContent =
+                    t[key];
 
         });
 
 
     if (currentLang === 'fa') {
 
-        document.documentElement.setAttribute('dir','rtl');
+        document.documentElement
+            .setAttribute(
+                'dir',
+                'rtl'
+            );
 
-        document.documentElement.setAttribute('lang','fa');
+        document.documentElement
+            .setAttribute(
+                'lang',
+                'fa'
+            );
 
-        document.getElementById('lang-icon').textContent = '🇮🇷';
+        document.getElementById(
+            'lang-icon'
+        ).textContent = '🇮🇷';
 
-        document.getElementById('lang-label').textContent = 'FA';
+        document.getElementById(
+            'lang-label'
+        ).textContent = 'FA';
 
     } else {
 
-        document.documentElement.setAttribute('dir','ltr');
+        document.documentElement
+            .setAttribute(
+                'dir',
+                'ltr'
+            );
 
-        document.documentElement.setAttribute('lang','en');
+        document.documentElement
+            .setAttribute(
+                'lang',
+                'en'
+            );
 
-        document.getElementById('lang-icon').textContent = '🇺🇸';
+        document.getElementById(
+            'lang-icon'
+        ).textContent = '🇺🇸';
 
-        document.getElementById('lang-label').textContent = 'EN';
+        document.getElementById(
+            'lang-label'
+        ).textContent = 'EN';
 
     }
+
 
     initStatusBadge();
 
     applyTheme();
+
 
     try {
 
@@ -1724,7 +2935,8 @@ function applyLang() {
 
 function toggleTheme() {
 
-    isDark = !isDark;
+    isDark =
+        !isDark;
 
     applyTheme();
 
@@ -1735,8 +2947,8 @@ function toggleLang() {
 
     currentLang =
         currentLang === 'en'
-        ? 'fa'
-        : 'en';
+            ? 'fa'
+            : 'en';
 
     applyLang();
 
@@ -1750,59 +2962,108 @@ function toggleLang() {
 function initStatusBadge() {
 
     const badge =
-        document.getElementById('status-badge');
+        document.getElementById(
+            'status-badge'
+        );
 
-    const t = I18N[currentLang];
+    if (!badge)
+        return;
+
+
+    const t =
+        I18N[currentLang];
+
 
     const map = {
 
         active: {
+
             text: t.active,
-            bg: 'rgba(34,197,94,.12)',
-            border: 'rgba(34,197,94,.3)',
-            color: '#4ade80'
+
+            bg:
+                'rgba(34,197,94,.12)',
+
+            border:
+                'rgba(34,197,94,.3)',
+
+            color:
+                '#4ade80'
         },
 
         paused: {
+
             text: t.paused,
-            bg: 'rgba(245,158,11,.12)',
-            border: 'rgba(245,158,11,.3)',
-            color: '#fbbf24'
+
+            bg:
+                'rgba(245,158,11,.12)',
+
+            border:
+                'rgba(245,158,11,.3)',
+
+            color:
+                '#fbbf24'
         },
 
         expired: {
+
             text: t.expired,
-            bg: 'rgba(239,68,68,.12)',
-            border: 'rgba(239,68,68,.3)',
-            color: '#f87171'
+
+            bg:
+                'rgba(239,68,68,.12)',
+
+            border:
+                'rgba(239,68,68,.3)',
+
+            color:
+                '#f87171'
         },
 
         limit: {
+
             text: t.limitExceeded,
-            bg: 'rgba(239,68,68,.12)',
-            border: 'rgba(239,68,68,.3)',
-            color: '#f87171'
+
+            bg:
+                'rgba(239,68,68,.12)',
+
+            border:
+                'rgba(239,68,68,.3)',
+
+            color:
+                '#f87171'
         },
 
         dailyLimit: {
-            text: t.dailyLimitExceeded,
-            bg: 'rgba(239,68,68,.12)',
-            border: 'rgba(239,68,68,.3)',
-            color: '#f87171'
+
+            text:
+                t.dailyLimitExceeded,
+
+            bg:
+                'rgba(239,68,68,.12)',
+
+            border:
+                'rgba(239,68,68,.3)',
+
+            color:
+                '#f87171'
         }
 
     };
+
 
     const status =
         map['__STATUS_CODE__']
         || map.active;
 
-    badge.textContent = status.text;
 
-    badge.style.background = status.bg;
+    badge.textContent =
+        status.text;
+
+    badge.style.background =
+        status.bg;
 
     badge.style.border =
-        '1px solid ' + status.border;
+        '1px solid ' +
+        status.border;
 
     badge.style.borderColor =
         status.border;
@@ -1821,7 +3082,9 @@ function copyLink(id) {
     const el =
         document.getElementById(id);
 
-    if (!el) return;
+    if (!el)
+        return;
+
 
     el.select();
 
@@ -1830,8 +3093,10 @@ function copyLink(id) {
         999999
     );
 
+
     navigator.clipboard
         .writeText(el.value)
+
         .then(() => {
 
             showToast(
@@ -1839,9 +3104,12 @@ function copyLink(id) {
             );
 
         })
+
         .catch(() => {
 
-            document.execCommand('copy');
+            document.execCommand(
+                'copy'
+            );
 
             showToast(
                 I18N[currentLang].copied
@@ -1861,28 +3129,45 @@ async function fetchDecodedRawContent() {
     try {
 
         const res =
-            await fetch('__SYNC_RAW__');
+            await fetch(
+                '__SYNC_RAW__'
+            );
+
 
         if (!res.ok)
-            throw new Error('Failed');
+            throw new Error(
+                'Failed'
+            );
+
 
         const base64Str =
             await res.text();
 
+
         const decodedText =
-            atob(base64Str.trim());
+            atob(
+                base64Str.trim()
+            );
+
 
         await navigator.clipboard
-            .writeText(decodedText);
+            .writeText(
+                decodedText
+            );
+
 
         showToast(
-            I18N[currentLang].decodedCopied
+            I18N[currentLang]
+                .decodedCopied
         );
 
-    } catch(e) {
+    }
+
+    catch(e) {
 
         alert(
-            I18N[currentLang].decodedError
+            I18N[currentLang]
+                .decodedError
             + ': '
             + e.message
         );
@@ -1901,33 +3186,48 @@ function showQRModal(url) {
     const t =
         I18N[currentLang];
 
+
     document.getElementById(
         'qr-title'
-    ).innerText = t.qrTitle;
+    ).innerText =
+        t.qrTitle;
+
 
     document.getElementById(
         'qr-text'
-    ).innerText = url;
+    ).innerText =
+        url;
+
 
     document.getElementById(
         'qr-img'
     ).src =
         'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
-        + encodeURIComponent(url);
+        +
+        encodeURIComponent(url);
 
 
     const modal =
-        document.getElementById('qr-modal');
+        document.getElementById(
+            'qr-modal'
+        );
 
-    modal.classList.remove('hidden');
 
-    modal.classList.add('flex');
+    modal.classList.remove(
+        'hidden'
+    );
+
+    modal.classList.add(
+        'flex'
+    );
+
 
     setTimeout(() => {
 
-        modal.style.opacity = '1';
+        modal.style.opacity =
+            '1';
 
-    },10);
+    }, 10);
 
 }
 
@@ -1935,17 +3235,26 @@ function showQRModal(url) {
 function closeQRModal() {
 
     const modal =
-        document.getElementById('qr-modal');
+        document.getElementById(
+            'qr-modal'
+        );
 
-    modal.style.opacity = '0';
+
+    modal.style.opacity =
+        '0';
+
 
     setTimeout(() => {
 
-        modal.classList.add('hidden');
+        modal.classList.add(
+            'hidden'
+        );
 
-        modal.classList.remove('flex');
+        modal.classList.remove(
+            'flex'
+        );
 
-    },300);
+    }, 300);
 
 }
 
@@ -1957,23 +3266,32 @@ function closeQRModal() {
 function showToast(msg) {
 
     const toast =
-        document.getElementById('toast');
+        document.getElementById(
+            'toast'
+        );
 
-    toast.innerText = msg;
 
-    toast.style.opacity = '1';
+    toast.innerText =
+        msg;
+
+
+    toast.style.opacity =
+        '1';
+
 
     toast.style.transform =
         'translate(-50%,0)';
 
+
     setTimeout(() => {
 
-        toast.style.opacity = '0';
+        toast.style.opacity =
+            '0';
 
         toast.style.transform =
             'translate(-50%,-15px)';
 
-    },2500);
+    }, 2500);
 
 }
 
@@ -1985,25 +3303,490 @@ function showToast(msg) {
 fetch(
     'https://api.ipify.org?format=json'
 )
+
 .then(r => r.json())
+
 .then(data => {
 
     const ip =
-        document.getElementById('client-ip');
+        document.getElementById(
+            'client-ip'
+        );
+
 
     if (ip)
-        ip.textContent = data.ip;
+        ip.textContent =
+            data.ip;
 
 })
+
 .catch(() => {
 
     const ip =
-        document.getElementById('client-ip');
+        document.getElementById(
+            'client-ip'
+        );
+
 
     if (ip)
-        ip.textContent = 'Unknown';
+        ip.textContent =
+            'Unknown';
 
 });
+
+
+/* =========================
+   PERSIAN DATE CONVERTER
+========================= */
+
+function persianToGregorian(
+    jy,
+    jm,
+    jd
+) {
+
+    jy = Number(jy);
+    jm = Number(jm);
+    jd = Number(jd);
+
+
+    let gy;
+
+
+    if (jy > 979) {
+
+        gy = 1600;
+
+        jy -= 979;
+
+    } else {
+
+        gy = 621;
+
+    }
+
+
+    let days =
+        (365 * jy)
+        +
+        Math.floor(jy / 33) * 8
+        +
+        Math.floor(
+            ((jy % 33) + 3) / 4
+        )
+        +
+        78
+        +
+        jd
+        +
+        (
+            jm < 7
+                ? (jm - 1) * 31
+                : ((jm - 7) * 30) + 186
+        );
+
+
+    gy +=
+        400 *
+        Math.floor(
+            days / 146097
+        );
+
+
+    days %=
+        146097;
+
+
+    if (days > 36524) {
+
+        gy +=
+            100 *
+            Math.floor(
+                --days / 36524
+            );
+
+        days %=
+            36524;
+
+
+        if (days >= 365)
+            days++;
+
+    }
+
+
+    gy +=
+        4 *
+        Math.floor(
+            days / 1461
+        );
+
+
+    days %=
+        1461;
+
+
+    if (days > 365) {
+
+        gy +=
+            Math.floor(
+                (days - 1) / 365
+            );
+
+        days =
+            (days - 1) % 365;
+
+    }
+
+
+    let gd =
+        days + 1;
+
+
+    const leap =
+        (
+            gy % 4 === 0 &&
+            gy % 100 !== 0
+        )
+        ||
+        gy % 400 === 0;
+
+
+    const monthDays = [
+
+        31,
+
+        leap
+            ? 29
+            : 28,
+
+        31,
+
+        30,
+
+        31,
+
+        30,
+
+        31,
+
+        31,
+
+        30,
+
+        31,
+
+        30,
+
+        31
+
+    ];
+
+
+    let gm = 0;
+
+
+    while (
+        gd >
+        monthDays[gm]
+    ) {
+
+        gd -=
+            monthDays[gm];
+
+        gm++;
+
+    }
+
+
+    return {
+
+        year:
+            gy,
+
+        month:
+            gm + 1,
+
+        day:
+            gd
+
+    };
+
+}
+
+
+/* =========================
+   PARSE PERSIAN DATE
+========================= */
+
+function parsePersianDate(value) {
+
+    if (!value)
+        return null;
+
+
+    value =
+        value.trim();
+
+
+    const match =
+        value.match(
+            /(\d{4})\s*[\/\-]\s*(\d{1,2})\s*[\/\-]\s*(\d{1,2})/
+        );
+
+
+    if (!match)
+        return null;
+
+
+    const jy =
+        Number(match[1]);
+
+    const jm =
+        Number(match[2]);
+
+    const jd =
+        Number(match[3]);
+
+
+    if (
+        jm < 1 ||
+        jm > 12 ||
+        jd < 1 ||
+        jd > 31
+    ) {
+        return null;
+    }
+
+
+    return persianToGregorian(
+        jy,
+        jm,
+        jd
+    );
+
+}
+
+
+/* =========================
+   PERSIAN NUMBERS
+========================= */
+
+function toPersianDigits(value) {
+
+    return String(value)
+        .replace(
+            /\d/g,
+            d =>
+                '۰۱۲۳۴۵۶۷۸۹'[d]
+        );
+
+}
+
+
+/* =========================
+   FORMAT EXPIRY DATE
+========================= */
+
+function formatPersianDate(value) {
+
+    if (!value)
+        return value;
+
+
+    const match =
+        value.match(
+            /(\d{4})\s*[\/\-]\s*(\d{1,2})\s*[\/\-]\s*(\d{1,2})/
+        );
+
+
+    if (!match)
+        return value;
+
+
+    const y =
+        match[1];
+
+    const m =
+        String(
+            match[2]
+        ).padStart(
+            2,
+            '0'
+        );
+
+    const d =
+        String(
+            match[3]
+        ).padStart(
+            2,
+            '0'
+        );
+
+
+    return (
+        toPersianDigits(y)
+        +
+        '/'
+        +
+        toPersianDigits(m)
+        +
+        '/'
+        +
+        toPersianDigits(d)
+    );
+
+}
+
+
+/* =========================
+   REMAINING DAYS
+========================= */
+
+function updateRemainingDays() {
+
+    const expiry =
+        document.getElementById(
+            'expiry-date'
+        );
+
+
+    const remaining =
+        document.getElementById(
+            'remaining-days'
+        );
+
+
+    if (
+        !expiry ||
+        !remaining
+    )
+        return;
+
+
+    const expiryText =
+        expiry.getAttribute(
+            'data-expiry'
+        );
+
+
+    const date =
+        parsePersianDate(
+            expiryText
+        );
+
+
+    /*
+       Always display Persian date
+    */
+
+    const formattedDate =
+        formatPersianDate(
+            expiryText
+        );
+
+
+    if (formattedDate) {
+
+        expiry.textContent =
+            formattedDate;
+
+    }
+
+
+    if (!date) {
+
+        remaining.textContent =
+            'Validity date unavailable';
+
+        return;
+
+    }
+
+
+    /*
+       Expiration is valid
+       until the end of the selected day.
+    */
+
+    const expiryDate =
+        new Date(
+            date.year,
+            date.month - 1,
+            date.day,
+            23,
+            59,
+            59,
+            999
+        );
+
+
+    const now =
+        new Date();
+
+
+    const diff =
+        expiryDate.getTime()
+        -
+        now.getTime();
+
+
+    const days =
+        Math.ceil(
+            diff /
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
+        );
+
+
+    remaining.classList.remove(
+        'expired',
+        'today'
+    );
+
+
+    if (days < 0) {
+
+        remaining.textContent =
+            'Subscription Expired';
+
+        remaining.classList.add(
+            'expired'
+        );
+
+        return;
+
+    }
+
+
+    if (days === 0) {
+
+        remaining.textContent =
+            'Expires Today';
+
+        remaining.classList.add(
+            'today'
+        );
+
+        return;
+
+    }
+
+
+    remaining.textContent =
+        toPersianDigits(days)
+        +
+        (
+            days === 1
+                ? ' Day Remaining'
+                : ' Days Remaining'
+        );
+
+}
 
 
 /* =========================
@@ -2012,14 +3795,21 @@ fetch(
 
 (function init() {
 
+
     try {
 
         const savedTheme =
-            localStorage.getItem('sub-theme');
+            localStorage.getItem(
+                'sub-theme'
+            );
 
-        if (savedTheme)
+
+        if (savedTheme) {
+
             isDark =
                 savedTheme === 'dark';
+
+        }
 
     } catch(e) {}
 
@@ -2027,7 +3817,10 @@ fetch(
     try {
 
         const savedLang =
-            localStorage.getItem('sub-lang');
+            localStorage.getItem(
+                'sub-lang'
+            );
+
 
         if (
             savedLang &&
@@ -2047,10 +3840,31 @@ fetch(
     applyLang();
 
 
-    /* Shadowrocket */
+    /*
+       Update Persian date
+       and remaining days
+    */
+
+    updateRemainingDays();
+
+
+    /*
+       Update every minute
+    */
+
+    setInterval(
+        updateRemainingDays,
+        60000
+    );
+
+
+    /* =========================
+       SHADOWROCKET
+    ========================= */
 
     const normalLink =
         '__SYNC_NORMAL__';
+
 
     document
         .querySelectorAll('a')
@@ -2073,12 +3887,15 @@ fetch(
         });
 
 
-    /* v2rayNG */
+    /* =========================
+       V2RAYNG
+    ========================= */
 
     const v2rayngLink =
         document.getElementById(
             'v2rayng-link'
         );
+
 
     if (v2rayngLink) {
 
@@ -2087,14 +3904,17 @@ fetch(
             +
             (
                 normalLink.includes('?')
-                ? '&flag=base64'
-                : '?flag=base64'
+                    ? '&flag=base64'
+                    : '?flag=base64'
             );
+
 
         v2rayngLink.href =
             'v2rayng://install-sub?url='
             +
-            encodeURIComponent(base64Url)
+            encodeURIComponent(
+                base64Url
+            )
             +
             '&name='
             +
@@ -2105,27 +3925,33 @@ fetch(
     }
 
 
-    /* Format links */
+    /* =========================
+       FORMAT LINKS
+    ========================= */
 
     const rawInput =
         document.getElementById(
             'link-raw-fmt'
         );
 
+
     const base64Input =
         document.getElementById(
             'link-base64-fmt'
         );
+
 
     const singboxInput =
         document.getElementById(
             'link-singbox-fmt'
         );
 
+
     const clashInput =
         document.getElementById(
             'link-clash-fmt'
         );
+
 
     const v2raynInput =
         document.getElementById(
@@ -2134,57 +3960,62 @@ fetch(
 
 
     if (rawInput)
+
         rawInput.value =
             normalLink
             +
             (
                 normalLink.includes('?')
-                ? '&flag=raw'
-                : '?flag=raw'
+                    ? '&flag=raw'
+                    : '?flag=raw'
             );
 
 
     if (base64Input)
+
         base64Input.value =
             normalLink
             +
             (
                 normalLink.includes('?')
-                ? '&flag=base64'
-                : '?flag=base64'
+                    ? '&flag=base64'
+                    : '?flag=base64'
             );
 
 
     if (singboxInput)
+
         singboxInput.value =
             normalLink
             +
             (
                 normalLink.includes('?')
-                ? '&flag=singbox'
-                : '?flag=singbox'
+                    ? '&flag=singbox'
+                    : '?flag=singbox'
             );
 
 
     if (clashInput)
+
         clashInput.value =
             normalLink
             +
             (
                 normalLink.includes('?')
-                ? '&flag=clash'
-                : '?flag=clash'
+                    ? '&flag=clash'
+                    : '?flag=clash'
             );
 
 
     if (v2raynInput)
+
         v2raynInput.value =
             normalLink
             +
             (
                 normalLink.includes('?')
-                ? '&flag=vjson'
-                : '?flag=vjson'
+                    ? '&flag=vjson'
+                    : '?flag=vjson'
             );
 
 })();
