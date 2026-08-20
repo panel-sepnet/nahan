@@ -2,15 +2,13 @@
 <html class="dark" dir="rtl" lang="fa">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>SEP NET | Subscription</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
@@ -25,9 +23,9 @@ tailwind.config = {
                 gold3: "#fff06a"
             },
             fontFamily: {
-                fa: ["Vazirmatn", "Tahoma", "Arial", "sans-serif"],
-                mono: ["JetBrains Mono", "monospace"],
-                inter: ["Inter", "sans-serif"]
+                fa: ["Vazirmatn","Tahoma","Arial","sans-serif"],
+                mono: ["JetBrains Mono","monospace"],
+                inter: ["Inter","sans-serif"]
             }
         }
     }
@@ -84,10 +82,17 @@ button{
     position:fixed;
     inset:0;
     z-index:-9;
-    opacity:.22;
+    opacity:.25;
     background-image:
-        linear-gradient(rgba(255,210,31,.035) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(255,210,31,.035) 1px,transparent 1px);
+        linear-gradient(
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        );
     background-size:50px 50px;
     mask-image:radial-gradient(
         ellipse 90% 80% at center,
@@ -98,8 +103,12 @@ button{
 }
 
 @keyframes gridMove{
-    from{background-position:0 0}
-    to{background-position:50px 50px}
+    from{
+        background-position:0 0;
+    }
+    to{
+        background-position:50px 50px;
+    }
 }
 
 .orb{
@@ -141,9 +150,15 @@ button{
 }
 
 @keyframes floatOrb{
-    from{transform:translate(0,0) scale(1)}
-    50%{transform:translate(35px,-30px) scale(1.12)}
-    to{transform:translate(-25px,35px) scale(1.05)}
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    50%{
+        transform:translate(35px,-30px) scale(1.12);
+    }
+    to{
+        transform:translate(-25px,35px) scale(1.05);
+    }
 }
 
 .mouse-glow{
@@ -154,12 +169,13 @@ button{
     border-radius:50%;
     pointer-events:none;
     z-index:-7;
-    background:radial-gradient(
-        circle,
-        rgba(255,210,31,.13),
-        rgba(255,184,0,.05) 35%,
-        transparent 70%
-    );
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,210,31,.13),
+            rgba(255,184,0,.05) 35%,
+            transparent 70%
+        );
     filter:blur(15px);
     opacity:0;
     transition:opacity .3s ease;
@@ -184,8 +200,8 @@ button{
 }
 
 .glass:hover{
-    transform:translateY(-2px);
-    border-color:rgba(255,210,31,.18);
+    transform:translateY(-3px);
+    border-color:rgba(255,210,31,.22);
     box-shadow:
         0 20px 60px rgba(0,0,0,.7),
         0 0 30px rgba(255,210,31,.045);
@@ -210,28 +226,28 @@ button{
 }
 
 .gold-button{
-    background:linear-gradient(
-        110deg,
-        #ffb800,
-        #ffd21f,
-        #fff06a,
-        #ffd21f,
-        #ffb800
-    );
+    background:
+        linear-gradient(
+            110deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a,
+            #ffd21f,
+            #ffb800
+        );
     background-size:250% 100%;
     color:#080808;
     animation:buttonShimmer 4s linear infinite;
     font-weight:800;
 }
 
-.gold-button:hover{
-    filter:brightness(1.08);
-    transform:translateY(-1px);
-}
-
 @keyframes buttonShimmer{
-    0%{background-position:-200% 0}
-    100%{background-position:200% 0}
+    0%{
+        background-position:-200% 0;
+    }
+    100%{
+        background-position:200% 0;
+    }
 }
 
 .progress-ring{
@@ -250,12 +266,11 @@ button{
     animation:pulse 2s ease-in-out infinite;
 }
 
-.status-dot.off{
+.status-dot.offline{
     background:#ef4444;
     box-shadow:
         0 0 8px #ef4444,
         0 0 20px rgba(239,68,68,.35);
-    animation:none;
 }
 
 @keyframes pulse{
@@ -288,6 +303,19 @@ button{
         opacity:1;
         transform:translateY(0);
     }
+}
+
+::-webkit-scrollbar{
+    width:5px;
+}
+
+::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.025);
+}
+
+::-webkit-scrollbar-thumb{
+    background:rgba(255,210,31,.25);
+    border-radius:10px;
 }
 
 .cfg{
@@ -341,8 +369,12 @@ button{
 }
 
 @keyframes musicPulse{
-    0%,100%{box-shadow:0 0 10px rgba(255,210,31,.15)}
-    50%{box-shadow:0 0 25px rgba(255,210,31,.35)}
+    0%,100%{
+        box-shadow:0 0 10px rgba(255,210,31,.15);
+    }
+    50%{
+        box-shadow:0 0 25px rgba(255,210,31,.35);
+    }
 }
 
 #toast{
@@ -356,11 +388,10 @@ button{
     color:#080808;
     padding:10px 20px;
     border-radius:999px;
-    font-weight:800;
+    font-weight:700;
     font-size:13px;
     transition:.3s ease;
     z-index:300;
-    white-space:nowrap;
 }
 
 #toast.show{
@@ -379,11 +410,8 @@ button{
     pointer-events:auto;
 }
 
-.light-mode body{
-    background:#f5f5f5;
-}
-
 @media(max-width:768px){
+
     .glass{
         border-radius:22px;
     }
@@ -392,20 +420,6 @@ button{
         display:none;
     }
 
-    .music-btn{
-        left:14px;
-        bottom:14px;
-    }
-}
-
-@media(prefers-reduced-motion:reduce){
-    *,
-    *::before,
-    *::after{
-        animation-duration:.01ms!important;
-        animation-iteration-count:1!important;
-        scroll-behavior:auto!important;
-    }
 }
 </style>
 </head>
@@ -414,12 +428,10 @@ button{
 
 <div class="bg"></div>
 <div class="grid-bg"></div>
-
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
-
-<div class="mouse-glow" id="mouseGlow"></div>
+<div id="mouseGlow" class="mouse-glow"></div>
 
 <main class="w-full max-w-[1440px] mx-auto px-4 md:px-6 py-7 min-h-screen flex flex-col">
 
@@ -428,27 +440,21 @@ button{
     <div class="flex items-center gap-3">
 
         <div class="w-11 h-11 rounded-2xl glass gold-border flex items-center justify-center">
-
             <span
                 class="material-symbols-outlined gold"
-                style="font-variation-settings:'FILL' 1;">
+                style="font-variation-settings:'FILL' 1">
                 cloud
             </span>
-
         </div>
 
         <div>
-
             <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">
                 SEP<span class="gold">NET</span>
             </h1>
 
-            <div
-                id="headerSubtitle"
-                class="text-[10px] text-zinc-500 tracking-[.2em] uppercase">
+            <div class="text-[10px] text-zinc-500 tracking-[.2em] uppercase">
                 Subscription
             </div>
-
         </div>
 
     </div>
@@ -457,8 +463,7 @@ button{
 
         <button
             onclick="toggleLanguage()"
-            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f] transition"
-            title="تغییر زبان">
+            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f] transition">
 
             <span class="material-symbols-outlined text-[20px]">
                 translate
@@ -468,12 +473,9 @@ button{
 
         <button
             onclick="toggleDarkMode()"
-            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f] transition"
-            title="تغییر حالت">
+            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f] transition">
 
-            <span
-                id="themeIcon"
-                class="material-symbols-outlined text-[20px]">
+            <span class="material-symbols-outlined text-[20px]">
                 dark_mode
             </span>
 
@@ -483,23 +485,19 @@ button{
 
 </header>
 
-
 <div id="app" class="flex-1">
 
     <div class="glass rounded-3xl p-10 text-center">
 
         <div class="inline-block w-10 h-10 border-2 border-white/10 border-t-[#ffd21f] rounded-full animate-spin"></div>
 
-        <p
-            id="loadingText"
-            class="mt-4 text-sm text-zinc-500">
+        <p class="mt-4 text-sm text-zinc-500">
             در حال دریافت اطلاعات اشتراک...
         </p>
 
     </div>
 
 </div>
-
 
 <footer class="mt-8 py-5 border-t border-white/5 text-center">
 
@@ -515,7 +513,6 @@ button{
 
 </main>
 
-
 <button
     id="musicBtn"
     class="music-btn"
@@ -530,9 +527,7 @@ button{
 
 </button>
 
-
 <div id="toast"></div>
-
 
 <div
     id="qrModal"
@@ -568,95 +563,22 @@ button{
 
 </div>
 
-
 <script>
 
 /* =====================================================
    LANGUAGE
 ===================================================== */
 
-let currentLang = "fa";
-
-const translations = {
-
-    fa:{
-        subscription:"اشتراک",
-        loading:"در حال دریافت اطلاعات اشتراک...",
-        remaining:"زمان باقی‌مانده",
-        active:"اشتراک فعال",
-        inactive:"اشتراک غیرفعال",
-        traffic:"ترافیک مصرفی",
-        protocol:"پروتکل",
-        devices:"تعداد دستگاه",
-        configs:"کانفیگ‌های اشتراک",
-        copyAll:"کپی همه",
-        qr:"QR",
-        copySub:"کپی لینک ساب",
-        importSub:"وارد کردن اشتراک",
-        subscriptionStatus:"وضعیت اشتراک",
-        copy:"کپی شد ✓",
-        copyError:"خطا در کپی",
-        days:"روز",
-        errorTitle:"اشتراک پیدا نشد",
-        connection:"Connection",
-        railway:"Railway IPs",
-        cloudflare:"Cloudflare IPs",
-        sni:"SNI Spoof for v2box",
-        scan:"برای وارد کردن اشتراک اسکن کنید"
-    },
-
-    en:{
-        subscription:"Subscription",
-        loading:"Loading subscription information...",
-        remaining:"Remaining Time",
-        active:"Active Subscription",
-        inactive:"Inactive Subscription",
-        traffic:"Traffic Usage",
-        protocol:"Protocol",
-        devices:"Devices",
-        configs:"Subscription Configs",
-        copyAll:"Copy All",
-        qr:"QR",
-        copySub:"Copy Subscription",
-        importSub:"Import Subscription",
-        subscriptionStatus:"Subscription Status",
-        copy:"Copied ✓",
-        copyError:"Copy failed",
-        days:"Days",
-        errorTitle:"Subscription Not Found",
-        connection:"Connection",
-        railway:"Railway IPs",
-        cloudflare:"Cloudflare IPs",
-        sni:"SNI Spoof for v2box",
-        scan:"Scan to import subscription"
-    }
-
-};
-
-function t(key){
-    return translations[currentLang][key] || key;
-}
-
 function toggleLanguage(){
 
-    currentLang =
-        currentLang === "fa"
-        ? "en"
-        : "fa";
+    const html = document.documentElement;
 
-    document.documentElement.lang =
-        currentLang;
-
-    document.documentElement.dir =
-        currentLang === "fa"
-        ? "rtl"
-        : "ltr";
-
-    document.getElementById("headerSubtitle").textContent =
-        t("subscription");
-
-    if(state.data){
-        render(state.data);
+    if(html.lang === "fa"){
+        html.lang = "en";
+        html.dir = "ltr";
+    }else{
+        html.lang = "fa";
+        html.dir = "rtl";
     }
 
 }
@@ -670,12 +592,6 @@ function toggleDarkMode(){
 
     document.documentElement.classList.toggle("dark");
 
-    const dark =
-        document.documentElement.classList.contains("dark");
-
-    document.getElementById("themeIcon").textContent =
-        dark ? "dark_mode" : "light_mode";
-
 }
 
 
@@ -683,34 +599,23 @@ function toggleDarkMode(){
    MOUSE GLOW
 ===================================================== */
 
-const mouseGlow =
-    document.getElementById("mouseGlow");
+const mouseGlow = document.getElementById("mouseGlow");
 
 if(window.matchMedia("(pointer:fine)").matches){
 
-    document.addEventListener(
-        "mousemove",
-        function(e){
+    document.addEventListener("mousemove",function(e){
 
-            mouseGlow.style.left =
-                e.clientX + "px";
+        mouseGlow.style.left = e.clientX + "px";
+        mouseGlow.style.top = e.clientY + "px";
+        mouseGlow.classList.add("active");
 
-            mouseGlow.style.top =
-                e.clientY + "px";
+    });
 
-            mouseGlow.classList.add("active");
+    document.addEventListener("mouseleave",function(){
 
-        }
-    );
+        mouseGlow.classList.remove("active");
 
-    document.addEventListener(
-        "mouseleave",
-        function(){
-
-            mouseGlow.classList.remove("active");
-
-        }
-    );
+    });
 
 }
 
@@ -725,10 +630,10 @@ let musicTimer = null;
 let musicPlaying = false;
 
 const notes = [
-    220.00,
+    220,
     261.63,
     329.63,
-    392.00,
+    392,
     329.63,
     293.66
 ];
@@ -742,17 +647,15 @@ function startMusic(){
 
     try{
 
-        audioCtx =
-            new (
-                window.AudioContext ||
-                window.webkitAudioContext
-            )();
+        audioCtx = new (
+            window.AudioContext ||
+            window.webkitAudioContext
+        )();
 
         masterGain =
             audioCtx.createGain();
 
-        masterGain.gain.value =
-            0.035;
+        masterGain.gain.value = .035;
 
         masterGain.connect(
             audioCtx.destination
@@ -772,10 +675,7 @@ function startMusic(){
 
     }catch(e){
 
-        console.warn(
-            "Audio unavailable",
-            e
-        );
+        console.log("Audio error:",e);
 
     }
 
@@ -783,9 +683,7 @@ function startMusic(){
 
 function playNote(){
 
-    if(!musicPlaying ||
-       !audioCtx ||
-       !masterGain)
+    if(!musicPlaying || !audioCtx)
         return;
 
     const now =
@@ -803,12 +701,12 @@ function playNote(){
         notes[noteIndex];
 
     gain.gain.setValueAtTime(
-        0,
+        .001,
         now
     );
 
     gain.gain.linearRampToValueAtTime(
-        0.18,
+        .18,
         now + .8
     );
 
@@ -823,15 +721,13 @@ function playNote(){
     osc.start(now);
     osc.stop(now + 4);
 
-    noteIndex =
-        (noteIndex + 1) %
-        notes.length;
+    noteIndex++;
+
+    if(noteIndex >= notes.length)
+        noteIndex = 0;
 
     musicTimer =
-        setTimeout(
-            playNote,
-            2500
-        );
+        setTimeout(playNote,2500);
 
 }
 
@@ -845,18 +741,9 @@ function stopMusic(){
 
         try{
 
-            masterGain.gain.cancelScheduledValues(
-                audioCtx.currentTime
-            );
-
-            masterGain.gain.setValueAtTime(
-                masterGain.gain.value,
-                audioCtx.currentTime
-            );
-
             masterGain.gain.exponentialRampToValueAtTime(
                 .001,
-                audioCtx.currentTime + .3
+                audioCtx.currentTime + .5
             );
 
         }catch(e){}
@@ -884,68 +771,124 @@ function toggleMusic(){
 
 
 /* =====================================================
-   API
+   API / SUBSCRIPTION
 ===================================================== */
 
 (function(){
 
-    var parts =
-        window.location.pathname
-            .split("/")
-            .filter(Boolean);
-
-    var uname =
-        decodeURIComponent(
-            parts[parts.length - 1] || ""
-        );
-
     /*
-     * اگر URL به شکل:
-     * /sub/username
-     * باشد username درست گرفته می‌شود.
+     * مهم:
+     *
+     * این صفحه می‌تواند با این فرمت‌ها باز شود:
+     *
+     * /sub/tel:@sepnet_conf
+     * /sub/@sepnet_conf
+     * /sub/sepnet_conf
+     *
+     * و همه آنها را به username مناسب تبدیل می‌کند.
      */
 
-    var apiUrl =
-        "/api/sub/" +
-        encodeURIComponent(uname);
+    function getUsername(){
 
-    var subUrl = "";
+        let parts =
+            window.location.pathname
+                .split("/")
+                .filter(Boolean);
 
-    var state = {
-        data:null
-    };
+        let value =
+            parts.length
+            ? parts[parts.length - 1]
+            : "";
 
-    window.state = state;
+        value =
+            decodeURIComponent(value);
 
+        /*
+         * حذف tel:
+         */
 
-    /* =================================================
-       NUMBER
-    ================================================= */
+        if(
+            value.toLowerCase().startsWith("tel:")
+        ){
 
-    function num(v){
+            value =
+                value.substring(4);
 
-        if(v === null ||
-           v === undefined ||
-           v === "")
-            return 0;
+        }
 
-        var n =
-            Number(v);
+        /*
+         * حذف @ اضافی برای API
+         * در صورت نیاز API می‌تواند username
+         * بدون @ را دریافت کند.
+         */
 
-        return isFinite(n)
-            ? n
-            : 0;
+        let apiUsername =
+            value.replace(/^@+/,"");
+
+        return {
+            original:value,
+            api:apiUsername
+        };
 
     }
 
 
+    const user =
+        getUsername();
+
+    /*
+     * API اصلی
+     */
+
+    const apiUrl =
+        "/api/sub/" +
+        encodeURIComponent(user.api);
+
+
+    let subUrl = "";
+
+    const state = {
+        data:null
+    };
+
+
     /* =================================================
-       BYTES
+       HELPERS
     ================================================= */
+
+    function esc(s){
+
+        return String(
+            s == null ? "" : s
+        ).replace(
+            /[&<>"']/g,
+            function(c){
+
+                return {
+                    "&":"&amp;",
+                    "<":"&lt;",
+                    ">":"&gt;",
+                    '"':"&quot;",
+                    "'":"&#39;"
+                }[c];
+
+            }
+        );
+
+    }
+
 
     function fmtBytes(bytes){
 
-        bytes = num(bytes);
+        if(
+            bytes === null ||
+            bytes === undefined ||
+            isNaN(bytes)
+        )
+            return "0 B";
+
+        bytes =
+            Number(bytes);
 
         if(bytes <= 0)
             return "0 B";
@@ -970,348 +913,101 @@ function toggleMusic(){
 
         }
 
-        let decimals =
-            i === 0
-            ? 0
-            : bytes >= 10
-                ? 1
-                : 2;
-
-        return bytes.toFixed(decimals)
+        return (
+            bytes.toFixed(i ? 2 : 0)
             + " "
-            + units[i];
-
-    }
-
-
-    /* =================================================
-       PERSIAN NUMBER
-    ================================================= */
-
-    function persianNumber(value){
-
-        if(currentLang !== "fa")
-            return String(value);
-
-        return String(value)
-            .replace(
-                /\d/g,
-                function(d){
-
-                    return "۰۱۲۳۴۵۶۷۸۹"[d];
-
-                }
-            );
-
-    }
-
-
-    /* =================================================
-       ESCAPE
-    ================================================= */
-
-    function esc(value){
-
-        return String(
-            value == null
-                ? ""
-                : value
-        ).replace(
-            /[&<>"']/g,
-            function(c){
-
-                return {
-                    "&":"&amp;",
-                    "<":"&lt;",
-                    ">":"&gt;",
-                    '"':"&quot;",
-                    "'":"&#39;"
-                }[c];
-
-            }
+            + units[i]
         );
 
     }
 
-
-    /* =================================================
-       TOAST
-    ================================================= */
 
     function toast(message){
 
-        var el =
+        const t =
             document.getElementById("toast");
 
-        if(!el)
-            return;
-
-        el.textContent =
+        t.textContent =
             message;
 
-        el.classList.add("show");
+        t.classList.add("show");
 
-        clearTimeout(
-            window.__toastTimer
-        );
+        setTimeout(function(){
 
-        window.__toastTimer =
-            setTimeout(
-                function(){
+            t.classList.remove("show");
 
-                    el.classList.remove("show");
-
-                },
-                2200
-            );
+        },2200);
 
     }
 
 
-    /* =================================================
-       COPY
-    ================================================= */
-
-    async function copyText(text){
+    function copyText(text){
 
         if(!text)
             return;
 
-        try{
+        if(
+            navigator.clipboard &&
+            window.isSecureContext
+        ){
 
-            if(
-                navigator.clipboard &&
-                window.isSecureContext
-            ){
+            navigator.clipboard
+                .writeText(text)
+                .then(function(){
 
-                await navigator.clipboard.writeText(
-                    text
-                );
+                    toast("کپی شد ✓");
 
-            }else{
+                })
+                .catch(function(){
 
-                var textarea =
-                    document.createElement(
-                        "textarea"
-                    );
+                    fallbackCopy(text);
 
-                textarea.value =
-                    text;
-
-                textarea.style.position =
-                    "fixed";
-
-                textarea.style.opacity =
-                    "0";
-
-                document.body.appendChild(
-                    textarea
-                );
-
-                textarea.focus();
-                textarea.select();
-
-                document.execCommand(
-                    "copy"
-                );
-
-                textarea.remove();
-
-            }
-
-            toast(t("copy"));
-
-        }catch(e){
-
-            toast(t("copyError"));
-
-        }
-
-    }
-
-
-    /* =================================================
-       DATE / SHAMSI
-    ================================================= */
-
-    function gregorianToJalali(
-        gy,
-        gm,
-        gd
-    ){
-
-        var g_d_m = [
-            0,31,59,90,120,151,
-            181,212,243,273,304,334
-        ];
-
-        var jy;
-
-        if(gy > 1600){
-
-            jy = 979;
-
-            gy -= 1600;
+                });
 
         }else{
 
-            jy = 0;
-
-            gy -= 621;
+            fallbackCopy(text);
 
         }
-
-        var gy2 =
-            gm > 2
-            ? gy + 1
-            : gy;
-
-        var days =
-            365 * gy
-            + Math.floor(
-                (gy2 + 3) / 4
-            )
-            - Math.floor(
-                (gy2 + 99) / 100
-            )
-            + Math.floor(
-                (gy2 + 399) / 400
-            )
-            - 80
-            + gd
-            + g_d_m[gm - 1];
-
-        jy +=
-            33 *
-            Math.floor(
-                days / 12053
-            );
-
-        days %= 12053;
-
-        jy +=
-            4 *
-            Math.floor(
-                days / 1461
-            );
-
-        days %= 1461;
-
-        if(days > 365){
-
-            jy +=
-                Math.floor(
-                    (days - 1) / 365
-                );
-
-            days =
-                (days - 1) % 365;
-
-        }
-
-        var jm =
-            days < 186
-            ? 1 +
-                Math.floor(
-                    days / 31
-                )
-            : 7 +
-                Math.floor(
-                    (days - 186) / 30
-                );
-
-        var jd =
-            1 +
-            (
-                days < 186
-                ? days % 31
-                : (days - 186) % 30
-            );
-
-        return [
-            jy,
-            jm,
-            jd
-        ];
 
     }
 
 
-    function formatJalaliDate(value){
+    function fallbackCopy(text){
 
-        if(!value)
-            return "—";
+        const textarea =
+            document.createElement("textarea");
 
-        var date =
-            new Date(value);
+        textarea.value =
+            text;
 
-        if(isNaN(date.getTime()))
-            return esc(value);
+        textarea.style.position =
+            "fixed";
 
-        var j =
-            gregorianToJalali(
-                date.getFullYear(),
-                date.getMonth() + 1,
-                date.getDate()
-            );
+        textarea.style.opacity =
+            "0";
 
-        var result =
-            j[0] +
-            "/" +
-            String(j[1]).padStart(2,"0") +
-            "/" +
-            String(j[2]).padStart(2,"0");
+        document.body.appendChild(
+            textarea
+        );
 
-        return currentLang === "fa"
-            ? persianNumber(result)
-            : result;
+        textarea.focus();
+        textarea.select();
 
-    }
+        try{
 
+            document.execCommand("copy");
 
-    /* =================================================
-       REMAINING DAYS
-    ================================================= */
+            toast("کپی شد ✓");
 
-    function getRemainingDays(d){
+        }catch(e){
 
-        if(
-            d.expire_days !== null &&
-            d.expire_days !== undefined &&
-            d.expire_days !== ""
-        ){
-
-            return num(
-                d.expire_days
-            );
+            toast("خطا در کپی");
 
         }
 
-        var dateValue =
-            d.expire_at ||
-            d.expires_at ||
-            d.expiry ||
-            d.expire_date;
-
-        if(!dateValue)
-            return null;
-
-        var expire =
-            new Date(dateValue);
-
-        if(isNaN(expire.getTime()))
-            return null;
-
-        var diff =
-            expire.getTime()
-            - Date.now();
-
-        return Math.max(
-            0,
-            Math.ceil(
-                diff /
-                86400000
-            )
+        document.body.removeChild(
+            textarea
         );
 
     }
@@ -1323,40 +1019,39 @@ function toggleMusic(){
 
     function ring(days,maxDays){
 
-        var r = 54;
+        const r = 54;
 
-        var circumference =
+        const circumference =
             2 * Math.PI * r;
 
-        var pct;
+        let percentage = 1;
 
-        if(days === null)
-            pct = 1;
-        else
-            pct =
-                maxDays > 0
-                ? Math.max(
+        if(
+            days !== null &&
+            days !== undefined &&
+            maxDays > 0
+        ){
+
+            percentage =
+                Math.max(
                     0,
                     Math.min(
                         1,
-                        days / maxDays
+                        Number(days) / Number(maxDays)
                     )
-                )
-                : 0;
+                );
 
-        var offset =
+        }
+
+        const offset =
             circumference *
-            (1 - pct);
+            (1 - percentage);
 
-        var number =
-            days === null
+        const number =
+            days === null ||
+            days === undefined
             ? "∞"
-            : persianNumber(
-                Math.max(
-                    0,
-                    Math.ceil(days)
-                )
-            );
+            : esc(days);
 
         return `
 
@@ -1370,7 +1065,7 @@ function toggleMusic(){
                     cx="60"
                     cy="60"
                     r="54"
-                    fill="transparent"
+                    fill="none"
                     stroke="rgba(255,255,255,.06)"
                     stroke-width="8">
                 </circle>
@@ -1380,7 +1075,7 @@ function toggleMusic(){
                     cx="60"
                     cy="60"
                     r="54"
-                    fill="transparent"
+                    fill="none"
                     stroke="#ffd21f"
                     stroke-width="8"
                     stroke-linecap="round"
@@ -1403,7 +1098,7 @@ function toggleMusic(){
                 </span>
 
                 <span class="text-[10px] text-zinc-500 uppercase tracking-[.25em]">
-                    ${currentLang === "fa" ? "روز" : "DAYS"}
+                    DAYS
                 </span>
 
             </div>
@@ -1416,149 +1111,99 @@ function toggleMusic(){
 
 
     /* =================================================
-       CONFIG PARSER
+       CONFIG
     ================================================= */
 
-    function parseConfig(c){
+    function cfgBlock(config,index,data){
 
-        var result = {
-            protocol:"",
-            host:"",
-            port:"",
-            path:"",
-            sni:"",
-            type:""
-        };
+        let address = "";
+        let port = "";
+        let path = "";
+        let sni = "";
+        let type = "";
 
         try{
 
-            var raw =
-                String(c);
+            const url =
+                new URL(config);
 
-            var url =
-                new URL(raw);
+            address =
+                url.hostname;
 
-            result.protocol =
-                url.protocol
-                    .replace(":","")
-                    .toUpperCase();
+            port =
+                url.port;
 
-            result.host =
-                url.hostname || "";
+            path =
+                url.pathname;
 
-            result.port =
-                url.port || "";
-
-            result.path =
-                url.pathname || "";
-
-            var params =
+            const params =
                 new URLSearchParams(
                     url.search
                 );
 
-            result.sni =
-                params.get("sni") ||
-                params.get("peer") ||
-                "";
+            sni =
+                params.get("sni") || "";
 
-            result.type =
+            type =
                 params.get("type") ||
-                params.get("security") ||
-                "";
+                data.protocol ||
+                "vless";
 
         }catch(e){
 
-            var protocol =
-                String(c)
-                    .split("://")[0];
-
-            result.protocol =
-                protocol
-                ? protocol.toUpperCase()
-                : "VLESS";
+            type =
+                data.protocol ||
+                "vless";
 
         }
 
-        return result;
 
-    }
+        let display = "";
 
+        if(address){
 
-    /* =================================================
-       CONFIG DISPLAY
-    ================================================= */
-
-    function configDisplay(c){
-
-        var p =
-            parseConfig(c);
-
-        var display = "";
-
-        if(p.host)
             display =
-                p.host;
+                address;
 
-        if(p.port)
-            display +=
-                ":" + p.port;
+            if(port)
+                display += ":" + port;
+
+        }
 
         if(
-            p.path &&
-            p.path !== "/"
+            path &&
+            path !== "/"
         ){
 
             display +=
-                " " + p.path;
+                " " + path;
 
         }
 
-        if(p.sni){
+        if(sni){
 
             display +=
-                " • SNI: " +
-                p.sni;
+                " | SNI: " + sni;
 
         }
 
         if(!display){
 
             display =
-                String(c)
+                String(config)
                     .substring(0,100);
-
-            if(String(c).length > 100)
-                display += "...";
 
         }
 
-        return {
-            display:display,
-            protocol:
-                p.protocol || "VLESS",
-            type:
-                p.type || ""
-        };
 
-    }
+        let protocol =
+            String(
+                config
+                    .split("://")[0] ||
+                data.protocol ||
+                "vless"
+            ).toUpperCase();
 
-
-    /* =================================================
-       CONFIG BLOCK
-    ================================================= */
-
-    function cfgBlock(
-        c,
-        index
-    ){
-
-        var info =
-            configDisplay(c);
-
-        var type =
-            info.type ||
-            info.protocol;
 
         return `
 
@@ -1576,14 +1221,20 @@ function toggleMusic(){
                             class="font-mono text-xs font-bold gold"
                             dir="ltr">
 
-                            ${esc(info.protocol)}
-                            #${index + 1}
+                            ${esc(protocol)} #${index + 1}
 
                         </span>
 
-                        <span class="px-2 py-1 rounded-full bg-[#ffd21f]/5 border border-[#ffd21f]/10 text-[9px] text-zinc-500">
+                        <span class="
+                            px-2 py-1
+                            rounded-full
+                            bg-[#ffd21f]/5
+                            border
+                            border-[#ffd21f]/10
+                            text-[9px]
+                            text-zinc-500">
 
-                            ${esc(type.toUpperCase())}
+                            ${esc(String(type).toUpperCase())}
 
                         </span>
 
@@ -1592,18 +1243,28 @@ function toggleMusic(){
                     <div
                         class="cfg-text truncate max-w-[250px] md:max-w-[600px]"
                         dir="ltr"
-                        title="${esc(c)}">
+                        title="${esc(config)}">
 
-                        ${esc(info.display)}
+                        ${esc(display)}
 
                     </div>
 
                 </div>
 
                 <button
-                    type="button"
                     onclick="event.stopPropagation();copyCfgIndex(${index})"
-                    class="w-9 h-9 shrink-0 rounded-xl bg-white/5 hover:bg-[#ffd21f]/10 hover:text-[#ffd21f] flex items-center justify-center text-zinc-500 transition">
+                    class="
+                        w-9 h-9
+                        shrink-0
+                        rounded-xl
+                        bg-white/5
+                        hover:bg-[#ffd21f]/10
+                        hover:text-[#ffd21f]
+                        flex
+                        items-center
+                        justify-center
+                        text-zinc-500
+                        transition">
 
                     <span class="material-symbols-outlined text-[17px]">
                         content_copy
@@ -1624,10 +1285,7 @@ function toggleMusic(){
        SECTION
     ================================================= */
 
-    function cfgSection(
-        label,
-        count
-    ){
+    function cfgSection(label,count){
 
         return `
 
@@ -1643,8 +1301,7 @@ function toggleMusic(){
 
                 ${
                     count
-                    ? " — " +
-                      persianNumber(count)
+                    ? " — " + count
                     : ""
                 }
 
@@ -1661,32 +1318,46 @@ function toggleMusic(){
        STATUS
     ================================================= */
 
-    function buildStatusBlock(d){
+    function buildStatusBlock(){
 
-        var days =
-            getRemainingDays(d);
+        const d =
+            state.data || {};
 
-        var used =
-            num(
-                d.traffic_used_bytes
+        const days =
+            d.expire_days == null
+            ? "∞"
+            : d.expire_days;
+
+        const used =
+            Number(
+                d.traffic_used_bytes || 0
             );
 
-        var limit =
-            num(
-                d.traffic_limit_bytes
+        const limit =
+            Number(
+                d.traffic_limit_bytes || 0
             );
 
-        var pct =
+        let percent = 0;
+
+        if(
             d.traffic_percent != null
-            ? num(d.traffic_percent)
-            : (
-                limit > 0
-                ? Math.min(
+        ){
+
+            percent =
+                Number(
+                    d.traffic_percent
+                );
+
+        }else if(limit > 0){
+
+            percent =
+                Math.min(
                     100,
                     used / limit * 100
-                )
-                : 0
-            );
+                );
+
+        }
 
         return `
 
@@ -1696,7 +1367,13 @@ function toggleMusic(){
 
             <div class="flex items-center gap-3">
 
-                <div class="w-9 h-9 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
+                <div class="
+                    w-9 h-9
+                    rounded-xl
+                    bg-[#ffd21f]/10
+                    flex
+                    items-center
+                    justify-center">
 
                     <span class="material-symbols-outlined gold text-[19px]">
                         schedule
@@ -1707,26 +1384,28 @@ function toggleMusic(){
                 <div class="flex-1">
 
                     <div class="text-xs font-bold">
-                        ${t("subscriptionStatus")}
+                        وضعیت اشتراک
                     </div>
 
                     <div class="flex flex-wrap gap-2 mt-2">
 
-                        <span class="px-2 py-1 rounded-full bg-white/5 text-[9px] text-zinc-500">
+                        <span class="
+                            px-2 py-1
+                            rounded-full
+                            bg-white/5
+                            text-[9px]
+                            text-zinc-500">
 
-                            ${
-                                days === null
-                                ? "∞"
-                                : persianNumber(
-                                    Math.ceil(days)
-                                  )
-                            }
-
-                            ${t("days")}
+                            ${esc(days)} روز
 
                         </span>
 
-                        <span class="px-2 py-1 rounded-full bg-white/5 text-[9px] text-zinc-500" dir="ltr">
+                        <span class="
+                            px-2 py-1
+                            rounded-full
+                            bg-white/5
+                            text-[9px]
+                            text-zinc-500">
 
                             ${fmtBytes(used)}
                             /
@@ -1734,9 +1413,14 @@ function toggleMusic(){
 
                         </span>
 
-                        <span class="px-2 py-1 rounded-full bg-[#ffd21f]/10 text-[#ffd21f] text-[9px]">
+                        <span class="
+                            px-2 py-1
+                            rounded-full
+                            bg-[#ffd21f]/10
+                            text-[#ffd21f]
+                            text-[9px]">
 
-                            ${pct.toFixed(1)}%
+                            ${percent.toFixed(1)}%
 
                         </span>
 
@@ -1754,197 +1438,189 @@ function toggleMusic(){
 
 
     /* =================================================
-       CONFIG COLLECTION
+       RENDER
     ================================================= */
 
-    function collectConfigs(d){
+    function render(data){
 
-        var result = [];
+        const d =
+            data || {};
 
-        function add(value){
+        const used =
+            Number(
+                d.traffic_used_bytes || 0
+            );
 
-            if(!value)
-                return;
+        const limit =
+            Number(
+                d.traffic_limit_bytes || 0
+            );
 
-            if(Array.isArray(value)){
+        let percent = 0;
 
-                value.forEach(add);
-                return;
+        if(
+            d.traffic_percent != null
+        ){
 
-            }
+            percent =
+                Number(
+                    d.traffic_percent
+                );
 
-            var str =
-                String(value).trim();
+        }else if(limit > 0){
 
-            if(!str)
-                return;
-
-            if(
-                str.includes(
-                    "%F0%9F%93%8A"
-                )
-            )
-                return;
-
-            if(
-                !result.includes(str)
-            ){
-
-                result.push(str);
-
-            }
+            percent =
+                Math.min(
+                    100,
+                    used / limit * 100
+                );
 
         }
 
+
+        const days =
+            d.expire_days == null
+            ? null
+            : Number(d.expire_days);
+
+
+        const active =
+            d.is_active !== false &&
+            (
+                !d.status ||
+                String(d.status).toLowerCase()
+                === "active"
+            );
+
+
         /*
-         * اولویت با worker_configs
+         * CONFIGS
          */
+
+        let configs = [];
+
+
+        if(
+            Array.isArray(d.configs)
+        ){
+
+            configs =
+                d.configs.filter(function(c){
+
+                    return (
+                        c &&
+                        typeof c === "string" &&
+                        !c.includes("%F0%9F%93%8A")
+                    );
+
+                });
+
+        }
+
 
         if(
             Array.isArray(d.worker_configs) &&
             d.worker_configs.length
         ){
 
-            add(d.worker_configs);
-
-        }else{
-
-            add(d.configs);
-
-            add(d.config);
-
-            add(d.vless_link);
+            configs =
+                d.worker_configs.filter(Boolean);
 
         }
 
-        return result;
 
-    }
+        if(
+            !configs.length &&
+            d.config
+        ){
 
+            configs = [
+                d.config
+            ];
 
-    /* =================================================
-       STATUS CONFIG
-    ================================================= */
-
-    function makeStatusConfig(
-        cfg,
-        d,
-        days,
-        pct
-    ){
-
-        if(!cfg)
-            return "";
-
-        var base =
-            String(cfg)
-                .replace(/#[^#]*$/,"");
-
-        var username =
-            d.username ||
-            uname ||
-            "USER";
-
-        var remark =
-            username +
-            " STATUS | " +
-            (
-                days === null
-                ? "∞"
-                : Math.ceil(days)
-            ) +
-            "d | " +
-            Math.round(pct) +
-            "%";
-
-        return (
-            base +
-            "#" +
-            encodeURIComponent(
-                remark
-            )
-        );
-
-    }
+        }
 
 
-    /* =================================================
-       RENDER
-    ================================================= */
+        if(
+            !configs.length &&
+            d.vless_link
+        ){
 
-    function render(d){
+            configs = [
+                d.vless_link
+            ];
 
-        var used =
-            num(
-                d.traffic_used_bytes
-            );
+        }
 
-        var limit =
-            num(
-                d.traffic_limit_bytes
-            );
-
-        var pct =
-            d.traffic_percent != null
-            ? Math.max(
-                0,
-                Math.min(
-                    100,
-                    num(
-                        d.traffic_percent
-                    )
-                )
-            )
-            : (
-                limit > 0
-                ? Math.min(
-                    100,
-                    used / limit * 100
-                )
-                : 0
-            );
-
-        var days =
-            getRemainingDays(d);
-
-        var active =
-            d.is_active !== false &&
-            (
-                !d.status ||
-                String(
-                    d.status
-                ).toLowerCase() === "active"
-            ) &&
-            (
-                days === null ||
-                days > 0
-            );
-
-        var cfgs =
-            collectConfigs(d);
 
         window.__cfgs =
-            cfgs;
+            configs;
 
         window.__cfg =
-            cfgs[0] || "";
+            configs[0] || "";
 
-        var statusCfg =
-            makeStatusConfig(
-                window.__cfg,
-                d,
-                days,
-                pct
-            );
-
-        window.__statuscfg =
-            statusCfg;
 
         /*
-         * لینک ساب
+         * STATUS CONFIG
          */
 
-        if(d.config_uuid){
+        let statusConfig = "";
+
+        if(configs[0]){
+
+            const statusText =
+                String(
+                    d.username ||
+                    user.original ||
+                    user.api
+                ) +
+                " STATUS | " +
+                (
+                    days == null
+                    ? "∞"
+                    : days
+                ) +
+                "d | " +
+                Math.round(percent) +
+                "%";
+
+
+            statusConfig =
+                configs[0]
+                    .replace(
+                        /#[^#]*$/,
+                        ""
+                    ) +
+                "#" +
+                encodeURIComponent(
+                    statusText
+                );
+
+        }
+
+
+        window.__statuscfg =
+            statusConfig;
+
+
+        /*
+         * SUB URL
+         *
+         * اگر API لینک ساب اختصاصی داد
+         * همان استفاده می‌شود.
+         */
+
+        if(d.subscription_url){
+
+            subUrl =
+                d.subscription_url;
+
+        }else if(d.sub_url){
+
+            subUrl =
+                d.sub_url;
+
+        }else if(d.config_uuid){
 
             subUrl =
                 window.location.origin +
@@ -1953,45 +1629,38 @@ function toggleMusic(){
                     d.config_uuid
                 );
 
-        }else if(
-            d.subscription_url
-        ){
-
-            subUrl =
-                d.subscription_url;
-
         }else{
 
-            subUrl = "";
+            /*
+             * fallback
+             */
+
+            subUrl =
+                window.location.origin +
+                "/sub/" +
+                encodeURIComponent(
+                    user.original
+                );
 
         }
 
 
         /*
-         * تاریخ انقضا
+         * LEFT
          */
 
-        var expireValue =
-            d.expire_at ||
-            d.expires_at ||
-            d.expiry ||
-            d.expire_date;
-
-        var expireDate =
-            formatJalaliDate(
-                expireValue
-            );
-
-
-        /* =============================================
-           LEFT
-        ============================================= */
-
-        var left = `
+        const left = `
 
         <div class="flex flex-col gap-5">
 
-            <div class="glass rounded-3xl p-7 md:p-9 text-center rise rise1 relative overflow-hidden">
+            <div class="
+                glass
+                rounded-3xl
+                p-7 md:p-9
+                text-center
+                rise rise1
+                relative
+                overflow-hidden">
 
                 <div
                     class="absolute inset-0 pointer-events-none"
@@ -2009,77 +1678,67 @@ function toggleMusic(){
 
                     <div class="flex justify-center mb-2">
 
-                        <span class="text-[10px] tracking-[.25em] text-zinc-600 uppercase">
+                        <span class="
+                            text-[10px]
+                            tracking-[.25em]
+                            text-zinc-600
+                            uppercase">
+
                             SEP NET
+
                         </span>
 
                     </div>
 
                     <h2 class="text-xl font-bold mb-6">
-
-                        ${
-                            currentLang === "fa"
-                            ? `زمان <span class="gold">باقیمانده</span>`
-                            : `Remaining <span class="gold">Time</span>`
-                        }
-
+                        زمان <span class="gold">باقیمانده</span>
                     </h2>
 
                     ${ring(days,30)}
 
-                    <div class="mt-5 flex justify-center items-center gap-2">
+                    <div class="
+                        mt-5
+                        flex
+                        justify-center
+                        items-center
+                        gap-2">
 
-                        <div class="status-dot ${active ? "" : "off"}"></div>
+                        <div class="
+                            status-dot
+                            ${active ? "" : "offline"}">
+                        </div>
 
                         <span class="text-xs text-zinc-500">
 
                             ${
                                 active
-                                ? t("active")
-                                : t("inactive")
+                                ? "اشتراک فعال"
+                                : "اشتراک غیرفعال"
                             }
 
                         </span>
 
                     </div>
 
-                    ${
-                        expireDate !== "—"
-                        ? `
-                        <div class="mt-5 pt-5 border-t border-white/5">
-
-                            <div class="text-[10px] text-zinc-600 mb-1">
-                                ${
-                                    currentLang === "fa"
-                                    ? "تاریخ انقضا"
-                                    : "Expiration Date"
-                                }
-                            </div>
-
-                            <div
-                                class="font-mono text-sm gold"
-                                dir="ltr">
-
-                                ${expireDate}
-
-                            </div>
-
-                        </div>
-                        `
-                        : ""
-                    }
-
                 </div>
 
             </div>
 
 
-            <div class="glass rounded-3xl p-6 rise rise2">
+            <div class="
+                glass
+                rounded-3xl
+                p-6
+                rise rise2">
 
-                <div class="flex justify-between items-end mb-3">
+                <div class="
+                    flex
+                    justify-between
+                    items-end
+                    mb-3">
 
                     <span class="text-xs text-zinc-500">
-                        ${t("traffic")}
+                        ترافیک مصرفی
                     </span>
 
                     <div dir="ltr">
@@ -2097,12 +1756,17 @@ function toggleMusic(){
 
                 </div>
 
-                <div class="h-2 rounded-full bg-white/5 overflow-hidden">
+
+                <div class="
+                    h-2
+                    rounded-full
+                    bg-white/5
+                    overflow-hidden">
 
                     <div
-                        class="h-full rounded-full transition-all duration-700"
+                        class="h-full rounded-full"
                         style="
-                            width:${pct.toFixed(1)}%;
+                            width:${Math.min(100,Math.max(0,percent)).toFixed(1)}%;
                             background:
                             linear-gradient(
                                 90deg,
@@ -2118,10 +1782,17 @@ function toggleMusic(){
 
                 </div>
 
-                <div class="flex justify-between mt-5 pt-5 border-t border-white/5">
+
+                <div class="
+                    flex
+                    justify-between
+                    mt-5
+                    pt-5
+                    border-t
+                    border-white/5">
 
                     <span class="text-xs text-zinc-500">
-                        ${t("protocol")}
+                        پروتکل
                     </span>
 
                     <span
@@ -2129,11 +1800,8 @@ function toggleMusic(){
                         dir="ltr">
 
                         ${esc(
-                            (
+                            String(
                                 d.protocol ||
-                                parseConfig(
-                                    window.__cfg
-                                ).protocol ||
                                 "VLESS"
                             ).toUpperCase()
                         )}
@@ -2142,10 +1810,17 @@ function toggleMusic(){
 
                 </div>
 
-                <div class="flex justify-between mt-5 pt-5 border-t border-white/5">
+
+                <div class="
+                    flex
+                    justify-between
+                    mt-5
+                    pt-5
+                    border-t
+                    border-white/5">
 
                     <span class="text-xs text-zinc-500">
-                        ${t("devices")}
+                        تعداد دستگاه
                     </span>
 
                     <span
@@ -2157,11 +1832,9 @@ function toggleMusic(){
                             ? esc(d.used_ips) +
                               " / " +
                               (
-                                d.max_ip_per_user != null
-                                ? esc(
-                                    d.max_ip_per_user
-                                  )
-                                : "∞"
+                                  d.max_ip_per_user != null
+                                  ? esc(d.max_ip_per_user)
+                                  : "∞"
                               )
                             : "∞"
                         }
@@ -2177,146 +1850,183 @@ function toggleMusic(){
         `;
 
 
-        /* =============================================
-           RIGHT
-        ============================================= */
+        /*
+         * RIGHT CONFIGS
+         */
 
-        var configHtml = "";
+        let configHTML = "";
 
-        configHtml +=
-            buildStatusBlock(d);
+        configHTML +=
+            buildStatusBlock();
 
 
-        cfgs.forEach(
-            function(c,index){
+        configs.forEach(function(config,index){
 
-                configHtml +=
-                    cfgBlock(
-                        c,
-                        index
-                    );
+            configHTML +=
+                cfgBlock(
+                    config,
+                    index,
+                    d
+                );
 
-            }
-        );
+        });
 
 
         /*
-         * اگر آرایه‌های دسته‌بندی وجود داشته باشند،
-         * فقط عنوان نمایش داده می‌شود و از ایجاد
-         * کانفیگ تکراری جلوگیری می‌کنیم.
+         * CUSTOM SECTIONS
+         *
+         * فقط در صورت وجود واقعی
          */
 
-        var customRailway =
-            Array.isArray(
-                d.custom_railway_configs
-            )
-            ? d.custom_railway_configs
-            : [];
+        if(
+            Array.isArray(d.custom_railway_configs) &&
+            d.custom_railway_configs.length
+        ){
 
-        var customCf =
-            Array.isArray(
-                d.custom_cf_configs
-            )
-            ? d.custom_cf_configs
-            : [];
-
-        var sniSpoof =
-            Array.isArray(
-                d.sni_spoof_configs
-            )
-            ? d.sni_spoof_configs
-            : [];
-
-
-        if(customRailway.length){
-
-            configHtml +=
+            configHTML +=
                 cfgSection(
-                    t("railway"),
-                    customRailway.length
-                );
-
-        }
-
-        if(customCf.length){
-
-            configHtml +=
-                cfgSection(
-                    t("cloudflare"),
-                    customCf.length
-                );
-
-        }
-
-        if(sniSpoof.length){
-
-            configHtml +=
-                cfgSection(
-                    t("sni"),
-                    sniSpoof.length
+                    "Railway IPs",
+                    d.custom_railway_configs.length
                 );
 
         }
 
 
-        var right = `
+        if(
+            Array.isArray(d.custom_cf_configs) &&
+            d.custom_cf_configs.length
+        ){
 
-        <div class="glass rounded-3xl p-6 md:p-8 h-full rise rise3">
+            configHTML +=
+                cfgSection(
+                    "Cloudflare IPs",
+                    d.custom_cf_configs.length
+                );
 
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        }
+
+
+        if(
+            Array.isArray(d.sni_spoof_configs) &&
+            d.sni_spoof_configs.length
+        ){
+
+            configHTML +=
+                cfgSection(
+                    "SNI Spoof for v2box",
+                    d.sni_spoof_configs.length
+                );
+
+        }
+
+
+        /*
+         * RIGHT
+         */
+
+        const right = `
+
+        <div class="
+            glass
+            rounded-3xl
+            p-6 md:p-8
+            h-full
+            rise rise3">
+
+            <div class="
+                flex
+                flex-col
+                sm:flex-row
+                sm:items-center
+                justify-between
+                gap-4
+                mb-6">
 
                 <div>
 
-                    <div class="text-[10px] text-zinc-600 tracking-[.2em] uppercase mb-1">
-                        ${t("connection")}
+                    <div class="
+                        text-[10px]
+                        text-zinc-600
+                        tracking-[.2em]
+                        uppercase
+                        mb-1">
+
+                        Connection
+
                     </div>
 
                     <h2 class="text-xl font-bold">
-                        ${
-                            currentLang === "fa"
-                            ? `کانفیگ‌های <span class="gold">اشتراک</span>`
-                            : `Subscription <span class="gold">Configs</span>`
-                        }
+
+                        کانفیگ‌های
+                        <span class="gold">
+                            اشتراک
+                        </span>
+
                     </h2>
 
                 </div>
 
+
                 <div class="flex gap-2">
 
                     ${
-                        cfgs.length
+                        configs.length
                         ? `
+
                         <button
-                            type="button"
                             onclick="showQr()"
-                            class="flex items-center gap-2 px-4 py-2.5 rounded-xl border border-white/10 hover:border-[#ffd21f]/30 hover:text-[#ffd21f] text-xs text-zinc-400 transition">
+                            class="
+                                flex
+                                items-center
+                                gap-2
+                                px-4
+                                py-2.5
+                                rounded-xl
+                                border
+                                border-white/10
+                                hover:border-[#ffd21f]/30
+                                hover:text-[#ffd21f]
+                                text-xs
+                                text-zinc-400
+                                transition">
 
                             <span class="material-symbols-outlined text-[17px]">
                                 qr_code_2
                             </span>
 
-                            ${t("qr")}
+                            QR
 
                         </button>
+
                         `
                         : ""
                     }
 
+
                     ${
-                        cfgs.length
+                        configs.length
                         ? `
+
                         <button
-                            type="button"
                             onclick="copyCfg()"
-                            class="flex items-center gap-2 px-4 py-2.5 rounded-xl gold-button text-xs">
+                            class="
+                                flex
+                                items-center
+                                gap-2
+                                px-4
+                                py-2.5
+                                rounded-xl
+                                gold-button
+                                text-xs">
 
                             <span class="material-symbols-outlined text-[17px]">
                                 content_copy
                             </span>
 
-                            ${t("copyAll")}
+                            کپی همه
 
                         </button>
+
                         `
                         : ""
                     }
@@ -2326,46 +2036,86 @@ function toggleMusic(){
             </div>
 
 
-            <div class="flex flex-col gap-3 max-h-[650px] overflow-y-auto pr-1">
+            <div class="
+                flex
+                flex-col
+                gap-3
+                max-h-[650px]
+                overflow-y-auto
+                pr-1">
 
-                ${configHtml}
+                ${configHTML}
 
             </div>
 
 
             ${
-                subUrl
+                configs.length
                 ? `
-                <div class="flex flex-wrap gap-2 mt-5 pt-5 border-t border-white/5">
+
+                <div class="
+                    flex
+                    flex-wrap
+                    gap-2
+                    mt-5
+                    pt-5
+                    border-t
+                    border-white/5">
 
                     <button
-                        type="button"
                         onclick="copySub()"
-                        class="flex-1 min-w-[160px] flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-white/10 hover:border-[#ffd21f]/30 hover:text-[#ffd21f] text-xs text-zinc-400 transition">
+                        class="
+                            flex-1
+                            min-w-[160px]
+                            flex
+                            items-center
+                            justify-center
+                            gap-2
+                            px-4
+                            py-3
+                            rounded-xl
+                            border
+                            border-white/10
+                            hover:border-[#ffd21f]/30
+                            hover:text-[#ffd21f]
+                            text-xs
+                            text-zinc-400
+                            transition">
 
                         <span class="material-symbols-outlined text-[17px]">
                             link
                         </span>
 
-                        ${t("copySub")}
+                        کپی لینک ساب
 
                     </button>
 
 
                     <button
-                        type="button"
                         onclick="importSub()"
-                        class="flex-1 min-w-[160px] flex items-center justify-center gap-2 px-4 py-3 rounded-xl gold-button text-xs">
+                        class="
+                            flex-1
+                            min-w-[160px]
+                            flex
+                            items-center
+                            justify-center
+                            gap-2
+                            px-4
+                            py-3
+                            rounded-xl
+                            gold-button
+                            text-xs">
 
                         <span class="material-symbols-outlined text-[17px]">
                             download
                         </span>
 
-                        ${t("importSub")}
+                        وارد کردن اشتراک
 
                     </button>
 
                 </div>
+
                 `
                 : ""
             }
@@ -2379,7 +2129,11 @@ function toggleMusic(){
             "app"
         ).innerHTML = `
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+        <div class="
+            grid
+            grid-cols-1
+            md:grid-cols-12
+            gap-5">
 
             <div class="md:col-span-4">
                 ${left}
@@ -2406,33 +2160,73 @@ function toggleMusic(){
             "app"
         ).innerHTML = `
 
-        <div class="glass rounded-3xl p-12 text-center rise">
+        <div class="
+            glass
+            rounded-3xl
+            p-10 md:p-12
+            text-center">
 
-            <div class="w-16 h-16 rounded-2xl mx-auto bg-red-500/5 flex items-center justify-center">
+            <div class="
+                w-16
+                h-16
+                rounded-2xl
+                mx-auto
+                bg-red-500/5
+                flex
+                items-center
+                justify-center">
 
-                <span class="material-symbols-outlined text-red-400 text-[35px]">
+                <span class="
+                    material-symbols-outlined
+                    text-red-400
+                    text-[35px]">
+
                     error
+
                 </span>
 
             </div>
 
+
             <h2 class="mt-5 text-xl font-bold">
-                ${t("errorTitle")}
+                اشتراک پیدا نشد
             </h2>
 
-            <p class="mt-2 text-sm text-zinc-600">
+
+            <p class="
+                mt-2
+                text-sm
+                text-zinc-600">
+
                 ${esc(message)}
+
             </p>
+
+
+            <div class="
+                mt-6
+                text-[10px]
+                text-zinc-700
+                font-mono
+                break-all"
+                dir="ltr">
+
+                ${esc(apiUrl)}
+
+            </div>
+
 
             <button
                 onclick="location.reload()"
-                class="mt-6 px-5 py-2.5 rounded-xl gold-button text-xs">
+                class="
+                    mt-6
+                    px-5
+                    py-2.5
+                    rounded-xl
+                    gold-button
+                    text-xs">
 
-                ${
-                    currentLang === "fa"
-                    ? "تلاش مجدد"
-                    : "Try Again"
-                }
+                تلاش مجدد
 
             </button>
 
@@ -2449,19 +2243,33 @@ function toggleMusic(){
 
     async function load(){
 
-        if(!uname){
-
-            renderError(
-                "Invalid subscription username"
-            );
-
-            return;
-
-        }
-
         try{
 
-            var response =
+            /*
+             * username خالی
+             */
+
+            if(!user.api){
+
+                throw new Error(
+                    "Username is empty"
+                );
+
+            }
+
+
+            console.log(
+                "Subscription username:",
+                user.api
+            );
+
+            console.log(
+                "API:",
+                apiUrl
+            );
+
+
+            const response =
                 await fetch(
                     apiUrl,
                     {
@@ -2474,6 +2282,7 @@ function toggleMusic(){
                     }
                 );
 
+
             if(!response.ok){
 
                 if(response.status === 404){
@@ -2484,15 +2293,45 @@ function toggleMusic(){
 
                 }
 
+                if(response.status === 403){
+
+                    throw new Error(
+                        "Access denied"
+                    );
+
+                }
+
                 throw new Error(
-                    "Server error: " +
-                    response.status
+                    "Server error (" +
+                    response.status +
+                    ")"
                 );
 
             }
 
-            var data =
+
+            const contentType =
+                response.headers
+                    .get("content-type") ||
+                "";
+
+
+            if(
+                !contentType.includes(
+                    "application/json"
+                )
+            ){
+
+                throw new Error(
+                    "API did not return JSON"
+                );
+
+            }
+
+
+            const data =
                 await response.json();
+
 
             if(
                 !data ||
@@ -2505,62 +2344,36 @@ function toggleMusic(){
 
             }
 
+
             state.data =
                 data;
+
 
             document.title =
                 "SEP NET | " +
                 (
                     data.username ||
-                    uname
+                    user.original ||
+                    user.api
                 );
 
+
             render(data);
+
 
         }catch(error){
 
             console.error(
-                "Subscription API error:",
+                "Subscription error:",
                 error
             );
 
             renderError(
                 error.message ||
-                "Unable to load subscription"
+                "Unknown error"
             );
 
         }
-
-    }
-
-
-    /* =================================================
-       ALL CONFIGS
-    ================================================= */
-
-    function allConfigsText(){
-
-        var parts = [];
-
-        if(window.__statuscfg){
-
-            parts.push(
-                window.__statuscfg
-            );
-
-        }
-
-        (window.__cfgs || [])
-            .forEach(
-                function(c){
-
-                    if(c)
-                        parts.push(c);
-
-                }
-            );
-
-        return parts.join("\n");
 
     }
 
@@ -2572,11 +2385,29 @@ function toggleMusic(){
     window.copyCfg =
         function(){
 
-            var text =
-                allConfigsText();
+            const list = [];
 
-            if(text)
-                copyText(text);
+            if(window.__statuscfg){
+
+                list.push(
+                    window.__statuscfg
+                );
+
+            }
+
+            (
+                window.__cfgs || []
+            ).forEach(function(config){
+
+                if(config)
+                    list.push(config);
+
+            });
+
+
+            copyText(
+                list.join("\n")
+            );
 
         };
 
@@ -2584,11 +2415,13 @@ function toggleMusic(){
     window.copyCfgIndex =
         function(index){
 
-            var c =
-                (window.__cfgs || [])[index];
+            const config =
+                (
+                    window.__cfgs || []
+                )[index];
 
-            if(c)
-                copyText(c);
+            if(config)
+                copyText(config);
 
         };
 
@@ -2607,8 +2440,19 @@ function toggleMusic(){
     window.copySub =
         function(){
 
-            if(subUrl)
-                copyText(subUrl);
+            if(subUrl){
+
+                copyText(
+                    subUrl
+                );
+
+            }else{
+
+                toast(
+                    "لینک اشتراک موجود نیست"
+                );
+
+            }
 
         };
 
@@ -2619,32 +2463,23 @@ function toggleMusic(){
             if(!subUrl){
 
                 toast(
-                    currentLang === "fa"
-                    ? "لینک اشتراک موجود نیست"
-                    : "Subscription URL unavailable"
+                    "لینک اشتراک موجود نیست"
                 );
 
                 return;
 
             }
 
-            /*
-             * V2RayNG
-             */
 
-            var v2rayng =
+            const v2rayUrl =
                 "v2rayng://install-sub?url=" +
                 encodeURIComponent(
                     subUrl
                 );
 
-            /*
-             * در موبایل/کلاینت مناسب
-             * این لینک را باز می‌کنیم.
-             */
 
             window.location.href =
-                v2rayng;
+                v2rayUrl;
 
         };
 
@@ -2652,65 +2487,53 @@ function toggleMusic(){
     window.showQr =
         function(){
 
-            var modal =
+            const modal =
                 document.getElementById(
                     "qrModal"
                 );
 
-            var img =
+            const img =
                 document.getElementById(
                     "qrImg"
                 );
+
 
             if(!modal || !img)
                 return;
 
 
             /*
-             * اول اگر API QR وجود داشته باشد
-             * از همان استفاده می‌کنیم.
+             * اگر API مخصوص QR دارد
              */
 
-            if(uname){
+            img.src =
+                "/api/sub/" +
+                encodeURIComponent(
+                    user.api
+                ) +
+                "/qr?t=" +
+                Date.now();
 
-                img.src =
-                    "/api/sub/" +
-                    encodeURIComponent(
-                        uname
-                    ) +
-                    "/qr?t=" +
-                    Date.now();
 
-                img.onerror =
-                    function(){
+            img.onerror =
+                function(){
 
-                        /*
-                         * fallback عمومی
-                         */
+                    /*
+                     * fallback به QR عمومی
+                     */
 
-                        if(subUrl){
+                    img.onerror = null;
 
-                            img.onerror = null;
+                    img.src =
+                        "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+                        encodeURIComponent(
+                            subUrl ||
+                            window.__cfg ||
+                            ""
+                        );
 
-                            img.src =
-                                "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" +
-                                encodeURIComponent(
-                                    subUrl
-                                );
+                };
 
-                        }
-
-                    };
-
-            }else if(subUrl){
-
-                img.src =
-                    "https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=" +
-                    encodeURIComponent(
-                        subUrl
-                    );
-
-            }
 
             modal.classList.add(
                 "show"
@@ -2722,20 +2545,25 @@ function toggleMusic(){
     window.closeQr =
         function(){
 
-            document
-                .getElementById(
+            const modal =
+                document.getElementById(
                     "qrModal"
-                )
-                .classList.remove(
+                );
+
+            if(modal){
+
+                modal.classList.remove(
                     "show"
                 );
+
+            }
 
         };
 
 
-    /* =================================================
-       QR CLOSE
-    ================================================= */
+    /*
+     * بستن QR با کلیک بیرون
+     */
 
     document
         .getElementById("qrModal")
@@ -2744,8 +2572,7 @@ function toggleMusic(){
             function(e){
 
                 if(
-                    e.target ===
-                    this
+                    e.target === this
                 ){
 
                     closeQr();
@@ -2756,31 +2583,42 @@ function toggleMusic(){
         );
 
 
-    /* =================================================
-       ESC CLOSE
-    ================================================= */
+    /*
+     * ESC
+     */
 
     document.addEventListener(
         "keydown",
         function(e){
 
-            if(e.key === "Escape"){
-
+            if(e.key === "Escape")
                 closeQr();
-
-            }
 
         }
     );
 
 
-    /* =================================================
-       START
-    ================================================= */
-
     load();
 
 })();
+
+
+/* =====================================================
+   START MUSIC AFTER USER INTERACTION
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(){
+
+        if(!musicPlaying)
+            startMusic();
+
+    },
+    {
+        once:true
+    }
+);
 
 </script>
 
