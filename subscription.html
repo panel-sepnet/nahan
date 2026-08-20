@@ -1,32 +1,23 @@
 <!DOCTYPE html>
-<html class="dark" dir="rtl" lang="fa">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SEP NET | __USER_NAME__</title>
 
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/itsyebekhe/nahan@main/tailwindcss.js"></script>
 
 <script>
-tailwind.config={
-    darkMode:"class",
-    theme:{
-        extend:{
-            colors:{
-                gold:"#ffd21f",
-                gold2:"#ffb800",
-                gold3:"#fff06a",
-                bg:"#050505"
-            },
-            fontFamily:{
-                fa:["Vazirmatn","Tahoma","Arial","sans-serif"],
-                mono:["JetBrains Mono","monospace"],
-                inter:["Inter","sans-serif"]
+tailwind.config = {
+    darkMode: 'class',
+    theme: {
+        extend: {
+            fontFamily: {
+                fa: ['Vazirmatn', 'sans-serif'],
+                en: ['Inter', 'sans-serif']
             }
         }
     }
@@ -34,922 +25,1129 @@ tailwind.config={
 </script>
 
 <style>
+:root {
+    --bg: #050505;
+    --bg2: #0a0a0a;
+    --card: rgba(18,18,18,.72);
+    --card2: rgba(255,255,255,.035);
 
-*{
-    box-sizing:border-box;
+    /* تغییر رنگ‌ها به طلایی نسخه اول */
+    --yellow: #ffd21f;
+    --yellow2: #ffb800;
+    --yellow-soft: rgba(255,210,31,.12);
+    --yellow-border: rgba(255,210,31,.25);
+
+    --green: #22c55e;
+    --red: #ef4444;
+    --orange: #f59e0b;
+
+    --text: #fff;
+    --text2: #b5b5b5;
+    --muted: #707070;
+
+    --border: rgba(255,255,255,.08);
+
+    --shadow:
+        0 25px 80px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.035);
 }
 
-html,body{
-    margin:0;
-    min-height:100%;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    background:#050505;
-    color:#f5f5f5;
-    font-family:"Vazirmatn",Tahoma,Arial,sans-serif;
-    overflow-x:hidden;
-    -webkit-font-smoothing:antialiased;
+html {
+    scroll-behavior: smooth;
 }
 
-/* BACKGROUND */
-
-.bg{
-    position:fixed;
-    inset:0;
-    z-index:-20;
+body {
+    margin: 0;
+    min-height: 100vh;
     background:
-        radial-gradient(
-            ellipse 800px 600px at 15% 10%,
-            rgba(255,210,31,.12),
-            transparent 70%
-        ),
-        radial-gradient(
-            ellipse 700px 500px at 90% 20%,
-            rgba(255,184,0,.08),
-            transparent 65%
-        ),
-        radial-gradient(
-            ellipse 600px 500px at 50% 100%,
-            rgba(255,210,31,.05),
-            transparent 70%
-        ),
-        #050505;
+        /* افکت‌های طلایی مشابه نسخه اول */
+        radial-gradient(circle at 10% 5%, rgba(255,210,31,.12), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(255,184,0,.08), transparent 28%),
+        radial-gradient(circle at 50% 100%, rgba(255,210,31,.05), transparent 30%),
+        linear-gradient(135deg,#030303,#090909 45%,#050505);
+    color: var(--text);
+    font-family: 'Inter','Vazirmatn',sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
-.grid-bg{
-    position:fixed;
-    inset:0;
-    z-index:-19;
-    opacity:.22;
+[lang="fa"] body {
+    font-family: 'Vazirmatn',sans-serif;
+}
+
+/* Background with grid animation similar to first version */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
     background-image:
+        linear-gradient(rgba(255,210,31,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,210,31,.035) 1px, transparent 1px);
+    background-size: 45px 45px;
+    mask-image: radial-gradient(ellipse 90% 80% at center, black 20%, transparent 85%);
+    z-index: -2;
+    animation: gridMove 35s linear infinite;
+}
+
+@keyframes gridMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 45px 45px;
+    }
+}
+
+/* Ambient orbs similar to first version */
+.ambient {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: -1;
+    animation: floatOrb 18s ease-in-out infinite alternate;
+}
+
+.ambient.one {
+    width: 420px;
+    height: 420px;
+    top: -170px;
+    left: -100px;
+    background: #ffd21f;
+    opacity: .08;
+}
+
+.ambient.two {
+    width: 350px;
+    height: 350px;
+    bottom: -150px;
+    right: -100px;
+    background: #ffb800;
+    opacity: .07;
+    animation-delay: -5s;
+}
+
+.ambient.three {
+    width: 260px;
+    height: 260px;
+    top: 45%;
+    left: 50%;
+    background: #fff06a;
+    opacity: .035;
+    animation-delay: -9s;
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes floatOrb {
+    from {
+        transform: translate(0,0) scale(1);
+    }
+    50% {
+        transform: translate(35px,-30px) scale(1.12);
+    }
+    to {
+        transform: translate(-25px,35px) scale(1.05);
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #050505;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(255,210,31,.3);
+}
+
+/* Glass - improved with gold border on hover */
+.glass {
+    background:
         linear-gradient(
-            rgba(255,210,31,.035) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,210,31,.035) 1px,
-            transparent 1px
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
         );
-    background-size:50px 50px;
-    mask-image:
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+    transition: transform .35s cubic-bezier(.22,1,.36,1),
+                border-color .35s ease,
+                box-shadow .35s ease;
+}
+
+.glass:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255,210,31,.22);
+    box-shadow: 0 20px 60px rgba(0,0,0,.7),
+                0 0 30px rgba(255,210,31,.045);
+}
+
+.card {
+    border-radius: 26px;
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
         radial-gradient(
-            ellipse 90% 80% at center,
-            black 20%,
-            transparent 85%
+            circle at 100% 0%,
+            rgba(255,210,31,.08),
+            transparent 35%
         );
-    animation:gridMove 35s linear infinite;
 }
 
-@keyframes gridMove{
-    from{
-        background-position:0 0;
-    }
-    to{
-        background-position:50px 50px;
-    }
+.card:hover {
+    border-color: rgba(255,210,31,.18);
 }
 
-.orb{
-    position:fixed;
-    border-radius:50%;
-    pointer-events:none;
-    filter:blur(90px);
-    z-index:-18;
-    animation:floatOrb 18s ease-in-out infinite alternate;
+/* Topbar */
+.topbar {
+    width: 100%;
+    max-width: 1180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 22px;
+    gap: 15px;
 }
 
-.orb1{
-    width:420px;
-    height:420px;
-    top:-170px;
-    right:-100px;
-    background:#ffd21f;
-    opacity:.08;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.orb2{
-    width:350px;
-    height:350px;
-    bottom:-150px;
-    left:-100px;
-    background:#ffb800;
-    opacity:.07;
-    animation-delay:-5s;
-}
-
-.orb3{
-    width:260px;
-    height:260px;
-    top:45%;
-    left:50%;
-    background:#fff06a;
-    opacity:.035;
-    animation-delay:-9s;
-}
-
-@keyframes floatOrb{
-    from{
-        transform:translate(0,0) scale(1);
-    }
-    50%{
-        transform:translate(35px,-30px) scale(1.12);
-    }
-    to{
-        transform:translate(-25px,35px) scale(1.05);
-    }
-}
-
-/* GLASS */
-
-.glass{
-    background:rgba(10,10,10,.72);
-    border:1px solid rgba(255,255,255,.055);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
+.brand-logo {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg,#ffd21f,#ffb800);
+    color: #080808;
+    font-weight: 900;
+    font-size: 14px;
+    letter-spacing: -1px;
     box-shadow:
-        0 15px 50px rgba(0,0,0,.55),
-        inset 0 1px 0 rgba(255,255,255,.025);
-    transition:
-        transform .35s cubic-bezier(.22,1,.36,1),
-        border-color .35s ease,
-        box-shadow .35s ease;
+        0 0 35px rgba(255,210,31,.25),
+        inset 0 1px rgba(255,255,255,.6);
+    animation: pulseGold 3s infinite;
 }
 
-.glass:hover{
-    transform:translateY(-3px);
-    border-color:rgba(255,210,31,.22);
-    box-shadow:
-        0 20px 60px rgba(0,0,0,.7),
-        0 0 30px rgba(255,210,31,.045);
+@keyframes pulseGold {
+    0%,100% {
+        box-shadow: 0 0 20px rgba(255,210,31,.15);
+    }
+    50% {
+        box-shadow: 0 0 35px rgba(255,210,31,.28);
+    }
 }
 
-/* GOLD */
-
-.gold{
-    color:#ffd21f;
+.brand-name {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
 }
 
-.gold-glow{
-    color:#ffd21f;
-    text-shadow:
-        0 0 7px rgba(255,210,31,.5),
-        0 0 18px rgba(255,184,0,.25);
+.brand-name span {
+    color: var(--yellow);
 }
 
-.gold-button{
+.brand-sub {
+    font-size: 9px;
+    color: var(--muted);
+    letter-spacing: 2px;
+    margin-top: 2px;
+}
+
+/* Buttons */
+.btn {
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 10px 15px;
+    font-weight: 800;
+    font-size: 11px;
+    cursor: pointer;
+    transition: .2s ease;
+}
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: rgba(255,255,255,.045);
+    color: var(--text);
+}
+.btn-secondary:hover {
+    border-color: var(--yellow-border);
+    color: var(--yellow);
+    background: var(--yellow-soft);
+}
+
+.btn-primary {
+    background: linear-gradient(110deg,#ffb800,#ffd21f,#fff06a,#ffd21f,#ffb800);
+    background-size: 250% 100%;
+    color: #090909;
+    border: 0;
+    font-weight: 900;
+    box-shadow: 0 8px 30px rgba(255,210,31,.18);
+    animation: buttonShimmer 4s linear infinite;
+}
+
+@keyframes buttonShimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.btn-primary:hover {
+    background: linear-gradient(110deg,#ffd21f,#ffb800,#fff06a,#ffd21f,#ffb800);
+    background-size: 250% 100%;
+    box-shadow: 0 10px 40px rgba(255,210,31,.28);
+}
+
+/* Profile */
+.profile {
+    text-align: center;
+    padding: 30px 24px;
+}
+
+.profile-logo {
+    width: 82px;
+    height: 82px;
+    margin: 0 auto 17px;
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #050505;
+    background: linear-gradient(145deg,#ffd21f,#ffb800);
+    box-shadow: 0 0 45px rgba(255,210,31,.25);
+}
+
+.profile h1 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+.user-id {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 10px;
+    font-family: monospace;
+}
+
+.status {
+    margin-top: 20px;
+    width: 100%;
+    padding: 11px;
+    border-radius: 13px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+}
+
+/* Status dot */
+.status-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 0 8px var(--yellow), 0 0 20px rgba(255,210,31,.55);
+    animation: pulse 2s ease-in-out infinite;
+    margin-left: 6px;
+}
+
+@keyframes pulse {
+    0%,100% {
+        box-shadow: 0 0 7px var(--yellow), 0 0 15px rgba(255,210,31,.4);
+    }
+    50% {
+        box-shadow: 0 0 12px var(--yellow), 0 0 28px rgba(255,210,31,.65);
+    }
+}
+
+/* Section title */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--text2);
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    margin-bottom: 17px;
+}
+.section-title svg {
+    color: var(--yellow);
+}
+
+/* Info */
+.info {
+    padding: 25px;
+}
+
+.expiry {
+    font-size: 25px;
+    font-weight: 900;
+    margin-bottom: 5px;
+    color: var(--yellow);
+    text-shadow: 0 0 7px rgba(255,210,31,.5), 0 0 18px rgba(255,184,0,.25);
+}
+
+.muted {
+    color: var(--muted);
+}
+.secondary {
+    color: var(--text2);
+}
+
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 22px 0;
+}
+
+.ip-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.ip {
+    color: var(--yellow);
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* Support */
+.support {
+    padding: 24px;
     background:
-        linear-gradient(
-            110deg,
-            #ffb800,
-            #ffd21f,
-            #fff06a,
-            #ffd21f,
-            #ffb800
-        );
-    background-size:250% 100%;
-    color:#080808;
-    animation:buttonShimmer 4s linear infinite;
-    font-weight:800;
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255,210,31,.12),
+            transparent 50%
+        ),
+        rgba(255,255,255,.025);
+}
+.support p {
+    font-size: 11px;
+    line-height: 1.9;
+    color: var(--text2);
+}
+.support-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    margin-top: 16px;
+    padding: 12px;
+    border-radius: 13px;
 }
 
-@keyframes buttonShimmer{
-    0%{
-        background-position:-200% 0;
-    }
-    100%{
-        background-position:200% 0;
-    }
+/* Metrics */
+.metric {
+    padding: 25px;
+}
+.metric-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.metric-icon {
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yellow);
+    background: var(--yellow-soft);
+    border: 1px solid var(--yellow-border);
+}
+.metric-title {
+    color: var(--text2);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+.metric-number {
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+.metric-limit {
+    color: var(--text2);
+    font-size: 12px;
 }
 
-/* STATUS */
-
-.status-dot{
-    width:9px;
-    height:9px;
-    border-radius:50%;
-    background:#ffd21f;
-    box-shadow:
-        0 0 8px #ffd21f,
-        0 0 20px rgba(255,210,31,.55);
-    animation:pulse 2s ease-in-out infinite;
+/* Progress - gold */
+.progress {
+    width: 100%;
+    height: 8px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(255,255,255,.05);
+}
+.progress > * {
+    background: linear-gradient(90deg,#ffb800,#ffd21f,#fff06a) !important;
+    box-shadow: 0 0 15px rgba(255,210,31,.45);
+    border-radius: 20px;
 }
 
-@keyframes pulse{
-    0%,100%{
-        box-shadow:
-            0 0 7px #ffd21f,
-            0 0 15px rgba(255,210,31,.4);
-    }
-
-    50%{
-        box-shadow:
-            0 0 12px #ffd21f,
-            0 0 28px rgba(255,210,31,.65);
-    }
+/* Main */
+.main-card {
+    padding: 30px;
+}
+.main-heading {
+    font-size: 19px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+.main-heading span {
+    color: var(--yellow);
+}
+.main-desc {
+    color: var(--text2);
+    font-size: 11px;
 }
 
-/* ANIMATION */
-
-.rise{
-    animation:rise .7s cubic-bezier(.22,1,.36,1) both;
-}
-
-.rise1{animation-delay:.08s}
-.rise2{animation-delay:.16s}
-.rise3{animation-delay:.24s}
-.rise4{animation-delay:.32s}
-
-@keyframes rise{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* CONFIG */
-
-.cfg{
-    border:1px solid rgba(255,255,255,.055);
-    background:rgba(255,255,255,.025);
-    border-radius:16px;
-    padding:15px;
-    transition:.3s ease;
-}
-
-.cfg:hover{
-    border-color:rgba(255,210,31,.2);
-    background:rgba(255,210,31,.035);
-    transform:translateX(-2px);
-}
-
-.cfg-text{
-    font-family:"JetBrains Mono",monospace;
-    font-size:11px;
-    color:#999;
-    word-break:break-all;
-}
-
-/* PROGRESS */
-
-.progress-wrap{
-    width:100%;
-    height:8px;
-    border-radius:999px;
-    background:rgba(255,255,255,.055);
-    overflow:hidden;
-}
-
-.progress-fill{
-    height:100%;
-    border-radius:999px;
+/* Universal */
+.universal {
+    margin-top: 25px;
+    padding: 23px;
+    border-radius: 21px;
+    border: 1px solid var(--yellow-border);
     background:
-        linear-gradient(
-            90deg,
-            #ffb800,
-            #ffd21f,
-            #fff06a
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255,210,31,.12),
+            transparent 45%
+        ),
+        rgba(255,210,31,.025);
+    position: relative;
+    overflow: hidden;
+}
+.recommended {
+    display: inline-block;
+    margin-left: 5px;
+    padding: 4px 8px;
+    border-radius: 7px;
+    background: var(--yellow);
+    color: #050505;
+    font-size: 8px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+/* Input */
+.input {
+    width: 100%;
+    min-width: 0;
+    background: rgba(0,0,0,.45);
+    color: var(--text);
+    border: 1px solid var(--border);
+    outline: none;
+    border-radius: 13px;
+    padding: 13px 14px;
+    font-size: 11px;
+    font-family: monospace;
+}
+.input:focus {
+    border-color: var(--yellow);
+    box-shadow: 0 0 0 3px rgba(255,210,31,.07);
+}
+
+/* Formats */
+.formats {
+    margin-top: 20px;
+    padding: 22px;
+    border-radius: 21px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.018);
+}
+.format-grid {
+    display: grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 13px;
+    margin-top: 18px;
+}
+.format {
+    padding: 16px;
+    border-radius: 17px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.025);
+    transition: .2s ease;
+}
+.format:hover {
+    border-color: var(--yellow-border);
+    transform: translateY(-2px);
+    background: rgba(255,210,31,.035);
+}
+.format-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 11px;
+}
+.format-name {
+    font-size: 10px;
+    font-weight: 900;
+}
+.tag {
+    padding: 4px 7px;
+    border-radius: 6px;
+    background: var(--yellow-soft);
+    color: var(--yellow);
+    font-size: 8px;
+    font-weight: 900;
+}
+.format-row {
+    display: flex;
+    gap: 7px;
+}
+.format-row .input {
+    padding: 10px;
+    font-size: 9px;
+}
+.small-btn {
+    border: 0;
+    background: linear-gradient(110deg,#ffb800,#ffd21f);
+    color: #050505;
+    border-radius: 10px;
+    padding: 0 12px;
+    font-size: 9px;
+    font-weight: 900;
+    cursor: pointer;
+    transition: .2s;
+}
+.small-btn:hover {
+    background: linear-gradient(110deg,#ffd21f,#ffb800);
+    transform: translateY(-1px);
+}
+.qr-btn {
+    width: 38px;
+    min-width: 38px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    color: var(--text2);
+    border-radius: 10px;
+    cursor: pointer;
+}
+.qr-btn:hover {
+    color: var(--yellow);
+    border-color: var(--yellow-border);
+}
+
+/* Apps */
+.apps {
+    margin-top: 28px;
+}
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(4,minmax(0,1fr));
+    gap: 10px;
+}
+.app {
+    text-decoration: none;
+    color: var(--text);
+    padding: 14px 10px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.035);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 800;
+    transition: .2s;
+}
+.app:hover {
+    color: var(--yellow);
+    border-color: var(--yellow-border);
+    background: var(--yellow-soft);
+    transform: translateY(-3px);
+}
+
+/* Bottom */
+.bottom {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+.raw-btn {
+    white-space: nowrap;
+}
+
+/* Modal */
+.modal-overlay {
+    background: rgba(0,0,0,.82);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+.modal-card {
+    background:
+        linear-gradient(145deg,
+            rgba(28,28,28,.95),
+            rgba(10,10,10,.97)
         );
+    border: 1px solid var(--yellow-border);
     box-shadow:
-        0 0 10px rgba(255,210,31,.35);
+        0 30px 100px rgba(0,0,0,.8),
+        0 0 50px rgba(255,210,31,.08);
 }
 
-/* MUSIC */
-
-.music-btn{
-    position:fixed;
-    left:20px;
-    bottom:20px;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    border:1px solid rgba(255,210,31,.3);
-    background:rgba(10,10,10,.8);
-    backdrop-filter:blur(12px);
-    color:#ffd21f;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    z-index:100;
-    box-shadow:0 0 20px rgba(255,210,31,.08);
-    transition:.3s ease;
+/* Toast */
+#toast {
+    background: rgba(20,20,20,.92) !important;
+    border: 1px solid var(--yellow-border);
+    color: white !important;
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
 }
 
-.music-btn:hover{
-    transform:scale(1.08);
-    border-color:#ffd21f;
-    box-shadow:0 0 25px rgba(255,210,31,.2);
-}
-
-.music-btn.playing{
-    animation:musicPulse 2s ease-in-out infinite;
-}
-
-@keyframes musicPulse{
-    0%,100%{
-        box-shadow:0 0 10px rgba(255,210,31,.15);
+/* Animations */
+@keyframes enter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
     }
-
-    50%{
-        box-shadow:0 0 25px rgba(255,210,31,.35);
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
-
-/* TOAST */
-
-#toast{
-    position:fixed;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%) translateY(20px);
-    opacity:0;
-    pointer-events:none;
-    background:#ffd21f;
-    color:#080808;
-    padding:10px 20px;
-    border-radius:999px;
-    font-weight:700;
-    font-size:13px;
-    transition:.3s ease;
-    z-index:200;
+.fade-in {
+    animation: enter .65s ease-out;
 }
 
-#toast.show{
-    opacity:1;
-    transform:translateX(-50%) translateY(0);
-}
-
-/* QR */
-
-#qrModal{
-    opacity:0;
-    pointer-events:none;
-    transition:.25s ease;
-}
-
-#qrModal.show{
-    opacity:1;
-    pointer-events:auto;
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-    .glass{
-        border-radius:22px;
+/* Mobile */
+@media(max-width:768px) {
+    body {
+        padding: 14px !important;
     }
-
+    .topbar {
+        margin-bottom: 16px;
+    }
+    .brand-name {
+        font-size: 15px;
+    }
+    .brand-sub {
+        font-size: 8px;
+    }
+    .brand-logo {
+        width: 40px;
+        height: 40px;
+    }
+    .format-grid {
+        grid-template-columns: 1fr;
+    }
+    .apps-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+    .main-card {
+        padding: 19px;
+    }
+    .universal,
+    .formats {
+        padding: 16px;
+    }
+    .bottom {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .raw-btn {
+        width: 100%;
+    }
+    .ambient.three {
+        display: none;
+    }
 }
 
+@media(max-width:480px) {
+    .topbar > div:last-child {
+        gap: 5px;
+    }
+    .topbar .btn {
+        padding: 9px 10px;
+    }
+    .metric-number {
+        font-size: 28px;
+    }
+    .expiry {
+        font-size: 22px;
+    }
+    .format-row {
+        flex-wrap: wrap;
+    }
+    .format-row .input {
+        width: 100%;
+        flex-basis: 100%;
+    }
+    .small-btn,
+    .qr-btn {
+        height: 38px;
+    }
+}
 </style>
 </head>
 
-<body>
+<body class="min-h-screen px-4 py-5 fade-in">
 
-<div class="bg"></div>
-<div class="grid-bg"></div>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+<div class="ambient three"></div>
 
-<main class="w-full max-w-[1440px] mx-auto px-4 md:px-6 py-7 min-h-screen flex flex-col">
+<!-- TOP BAR -->
+<div class="topbar">
 
-<!-- HEADER -->
-
-<header class="flex items-center justify-between mb-8">
-
-    <div class="flex items-center gap-3">
-
-        <div class="w-11 h-11 rounded-2xl glass flex items-center justify-center"
-             style="border-color:rgba(255,210,31,.3)">
-
-            <span
-                class="material-symbols-outlined gold"
-                style="font-variation-settings:'FILL' 1;">
-                cloud
-            </span>
-
-        </div>
+    <div class="brand">
+        <div class="brand-logo">SN</div>
 
         <div>
+            <div class="brand-name">SEP <span>NET</span></div>
+            <div class="brand-sub">SECURE NETWORK</div>
+        </div>
+    </div>
 
-            <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">
-                SEP<span class="gold">NET</span>
-            </h1>
+    <div class="flex gap-2">
 
-            <div class="text-[10px] text-zinc-500 tracking-[.2em] uppercase">
-                Subscription
-            </div>
+        <button
+            onclick="toggleTheme()"
+            id="theme-toggle"
+            class="btn btn-secondary flex items-center gap-2"
+        >
+            <span id="theme-icon">☀️</span>
+            <span id="theme-label">Light</span>
+        </button>
+
+        <button
+            onclick="toggleLang()"
+            id="lang-toggle"
+            class="btn btn-secondary flex items-center gap-2"
+        >
+            <span id="lang-icon">🇺🇸</span>
+            <span id="lang-label">EN</span>
+        </button>
+
+    </div>
+</div>
+
+
+<!-- MAIN GRID -->
+<div class="w-full max-w-[1180px] grid grid-cols-1 md:grid-cols-12 gap-5 relative z-10">
+
+
+<!-- LEFT -->
+<div class="md:col-span-4 flex flex-col gap-5">
+
+
+<!-- PROFILE -->
+<div class="glass card profile">
+
+    <div class="profile-logo">
+        SEP
+    </div>
+
+    <h1>__USER_NAME__</h1>
+
+    <div class="user-id">
+        ID: __USER_ID__
+    </div>
+
+    <div class="flex items-center justify-center gap-2 mt-4">
+        <span class="status-dot"></span>
+        <div
+            id="status-badge"
+            class="status"
+            style="margin-top:0;"
+        ></div>
+    </div>
+
+</div>
+
+
+<!-- INFO -->
+<div class="glass card info">
+
+    <div class="section-title">
+
+        <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+
+        <span data-i18n="expDate">
+            Expiration Date
+        </span>
+
+    </div>
+
+    <div class="expiry">
+        __EXPIRY_DATE__
+    </div>
+
+    <div class="muted text-xs" data-i18n="calendarLocal">
+        Calendar Local
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="ip-row">
+
+        <span class="secondary text-xs font-bold">
+            Connection IP
+        </span>
+
+        <span
+            id="client-ip"
+            class="ip"
+        >
+            Detecting...
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- SUPPORT -->
+<div class="glass card support">
+
+    <div class="section-title">
+
+        <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+
+        <span>
+            SEP NET SUPPORT
+        </span>
+
+    </div>
+
+    <p>
+        Having trouble connecting?
+        Keep your configuration updated or contact
+        SEP NET support for assistance.
+    </p>
+
+    <a
+        href="https://t.me/sepnet_conf"
+        class="btn btn-primary support-btn"
+    >
+
+        <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.98 1.26-5.59 3.7-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.49-.42-1.44-.88.03-.24.36-.48.98-.74 3.84-1.67 6.4-2.78 7.68-3.32 3.64-1.52 4.4-1.79 4.9-1.8.11 0 .36.03.49.14.11.09.14.22.15.34-.01.07-.01.16-.02.26z"/>
+        </svg>
+
+        Telegram Support
+
+    </a>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT -->
+<div class="md:col-span-8 flex flex-col gap-5">
+
+
+<!-- METRICS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+
+<!-- TOTAL -->
+<div class="glass card metric">
+
+    <div class="metric-top">
+
+        <div class="metric-title" data-i18n="totalUsage">
+            Total Usage
+        </div>
+
+        <div class="metric-icon">
+
+            <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+            </svg>
 
         </div>
 
     </div>
 
-    <div class="flex items-center gap-2">
+    <div class="flex items-baseline gap-2 mb-5">
 
-        <button
-            onclick="toggleLanguage()"
-            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f]">
+        <span class="metric-number">
+            __TOTAL_GB__
+        </span>
 
-            <span class="material-symbols-outlined text-[20px]">
-                translate
-            </span>
-
-        </button>
-
-        <button
-            onclick="toggleDarkMode()"
-            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f]">
-
-            <span class="material-symbols-outlined text-[20px]">
-                dark_mode
-            </span>
-
-        </button>
+        <span class="metric-limit">
+            / __LIMIT_TOTAL_GB__ GB
+        </span>
 
     </div>
 
-</header>
+    <div class="progress">
+        __TOTAL_PROGRESS__
+    </div>
 
+</div>
 
-<!-- MAIN -->
 
-<div class="flex-1">
+<!-- DAILY -->
+<div class="glass card metric">
 
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+    <div class="metric-top">
 
-        <!-- LEFT -->
+        <div class="metric-title" data-i18n="dailyUsage">
+            Daily Usage
+        </div>
 
-        <div class="md:col-span-4 flex flex-col gap-5">
+        <div class="metric-icon">
 
-            <!-- USER -->
-
-            <div class="glass rounded-3xl p-7 md:p-9 text-center rise rise1 relative overflow-hidden">
-
-                <div
-                    class="absolute inset-0 pointer-events-none"
-                    style="
-                        background:
-                        radial-gradient(
-                            circle at center,
-                            rgba(255,210,31,.08),
-                            transparent 60%
-                        );
-                    ">
-                </div>
-
-                <div class="relative">
-
-                    <div class="w-20 h-20 mx-auto mb-5 rounded-3xl glass flex items-center justify-center"
-                         style="border-color:rgba(255,210,31,.3)">
-
-                        <span
-                            class="material-symbols-outlined gold text-[40px]"
-                            style="font-variation-settings:'FILL' 1;">
-                            person
-                        </span>
-
-                    </div>
-
-                    <h1 class="text-2xl font-black tracking-tight break-all">
-                        __USER_NAME__
-                    </h1>
-
-                    <p
-                        class="text-xs font-mono text-zinc-600 mt-2 break-all"
-                        dir="ltr">
-
-                        __USER_ID__
-
-                    </p>
-
-                    <div class="mt-5">
-
-                        <span
-                            id="status-badge"
-                            class="inline-flex items-center justify-center px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#ffd21f]/10 text-[#ffd21f] border border-[#ffd21f]/10">
-
-                            __STATUS_CODE__
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXPIRY -->
-
-            <div class="glass rounded-3xl p-6 rise rise2">
-
-                <div class="flex items-center gap-3 mb-5">
-
-                    <div class="w-10 h-10 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
-
-                        <span class="material-symbols-outlined gold">
-                            calendar_month
-                        </span>
-
-                    </div>
-
-                    <div>
-
-                        <div class="text-[10px] text-zinc-600 uppercase tracking-widest">
-                            Subscription
-                        </div>
-
-                        <div class="text-sm font-bold">
-                            تاریخ انقضا
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div
-                    class="text-2xl font-black gold-glow"
-                    dir="ltr">
-
-                    __EXPIRY_DATE__
-
-                </div>
-
-                <div class="text-[10px] text-zinc-600 mt-2">
-                    تاریخ انقضای اشتراک
-                </div>
-
-            </div>
-
-
-            <!-- TOTAL TRAFFIC -->
-
-            <div class="glass rounded-3xl p-6 rise rise3">
-
-                <div class="flex items-center justify-between mb-4">
-
-                    <span class="text-xs text-zinc-500">
-                        ترافیک مصرفی
-                    </span>
-
-                    <span class="material-symbols-outlined gold text-[18px]">
-                        data_usage
-                    </span>
-
-                </div>
-
-                <div class="flex items-end justify-between gap-3">
-
-                    <div dir="ltr">
-
-                        <span class="text-2xl font-black">
-                            __TOTAL_GB__
-                        </span>
-
-                        <span class="text-xs text-zinc-600">
-                            GB
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="text-xs text-zinc-600"
-                        dir="ltr">
-
-                        /
-                        __LIMIT_TOTAL_GB__
-                        GB
-
-                    </div>
-
-                </div>
-
-                <div class="mt-5">
-
-                    __TOTAL_PROGRESS__
-
-                </div>
-
-            </div>
-
-
-            <!-- DAILY TRAFFIC -->
-
-            <div class="glass rounded-3xl p-6 rise rise4">
-
-                <div class="flex items-center justify-between mb-4">
-
-                    <span class="text-xs text-zinc-500">
-                        مصرف روزانه
-                    </span>
-
-                    <span class="material-symbols-outlined gold text-[18px]">
-                        today
-                    </span>
-
-                </div>
-
-                <div class="flex items-end justify-between gap-3">
-
-                    <div dir="ltr">
-
-                        <span class="text-2xl font-black">
-                            __DAILY_GB__
-                        </span>
-
-                        <span class="text-xs text-zinc-600">
-                            GB
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="text-xs text-zinc-600"
-                        dir="ltr">
-
-                        /
-                        __LIMIT_DAILY_GB__
-                        GB
-
-                    </div>
-
-                </div>
-
-                <div class="mt-5">
-
-                    __DAILY_PROGRESS__
-
-                </div>
-
-            </div>
+            <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
 
         </div>
 
+    </div>
 
-        <!-- RIGHT -->
+    <div class="flex items-baseline gap-2 mb-5">
 
-        <div class="md:col-span-8">
+        <span class="metric-number">
+            __DAILY_GB__
+        </span>
 
-            <div class="glass rounded-3xl p-6 md:p-8 h-full rise rise2">
+        <span class="metric-limit">
+            / __LIMIT_DAILY_GB__ GB
+        </span>
 
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
+    </div>
 
-                    <div>
+    <div class="progress">
+        __DAILY_PROGRESS__
+    </div>
 
-                        <div class="text-[10px] text-zinc-600 tracking-[.2em] uppercase mb-1">
-                            Connection
-                        </div>
+</div>
 
-                        <h2 class="text-xl font-bold">
-                            لینک‌های <span class="gold">اشتراک</span>
-                        </h2>
+</div>
 
-                    </div>
 
-                    <div class="flex items-center gap-2">
+<!-- MAIN SUBSCRIPTION CARD -->
+<div class="glass card main-card">
 
-                        <span class="status-dot"></span>
+    <div>
 
-                        <span class="text-xs text-zinc-500">
-                            SEP NET Secure
-                        </span>
+        <div class="main-heading">
+            <span data-i18n="integrationTitle">
+                Integration Connections
+            </span>
+        </div>
 
-                    </div>
+        <div
+            class="main-desc"
+            data-i18n="integrationDesc"
+        >
+            Add the correct configuration link based on your preferred format below.
+        </div>
 
-                </div>
+    </div>
 
 
-                <!-- NORMAL -->
+<!-- UNIVERSAL -->
+<div class="universal">
 
-                <div class="cfg mb-4">
+    <div class="font-black text-sm mb-2">
 
-                    <div class="flex items-center justify-between gap-3 mb-3">
+        <span data-i18n="universalLink">
+            Universal Auto-Detecting Link
+        </span>
 
-                        <div class="flex items-center gap-2">
+        <span class="recommended">
+            RECOMMENDED
+        </span>
 
-                            <div class="w-9 h-9 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
+    </div>
 
-                                <span class="material-symbols-outlined gold text-[18px]">
-                                    link
-                                </span>
+    <div
+        class="secondary text-xs leading-6 mb-4"
+        data-i18n="universalDesc"
+    >
+        This URL automatically detects your client and delivers the optimal format.
+    </div>
 
-                            </div>
+    <div
+        class="flex flex-col sm:flex-row gap-2"
+        dir="ltr"
+    >
 
-                            <div>
+        <input
+            type="text"
+            id="link-normal"
+            value="__SYNC_NORMAL__"
+            readonly
+            class="input flex-1"
+        >
 
-                                <div class="text-xs font-bold">
-                                    لینک اصلی اشتراک
-                                </div>
+        <div class="flex gap-2">
 
-                                <div class="text-[9px] text-zinc-600">
-                                    Normal Subscription
-                                </div>
+            <button
+                onclick="copyLink('link-normal')"
+                class="btn btn-primary flex-1"
+            >
+                <span data-i18n="copy">Copy</span>
+            </button>
 
-                            </div>
-
-                        </div>
-
-                        <button
-                            onclick="copyLink('normal')"
-                            class="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#ffd21f]/10 hover:text-[#ffd21f] flex items-center justify-center text-zinc-500">
-
-                            <span class="material-symbols-outlined text-[17px]">
-                                content_copy
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                    <div
-                        id="normalLink"
-                        class="cfg-text bg-black/20 rounded-xl p-3"
-                        dir="ltr">
-
-                        __SYNC_NORMAL__
-
-                    </div>
-
-                </div>
-
-
-                <!-- RAW -->
-
-                <div class="cfg mb-6">
-
-                    <div class="flex items-center justify-between gap-3 mb-3">
-
-                        <div class="flex items-center gap-2">
-
-                            <div class="w-9 h-9 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
-
-                                <span class="material-symbols-outlined gold text-[18px]">
-                                    code
-                                </span>
-
-                            </div>
-
-                            <div>
-
-                                <div class="text-xs font-bold">
-                                    لینک Raw
-                                </div>
-
-                                <div class="text-[9px] text-zinc-600">
-                                    Raw Subscription
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <button
-                            onclick="copyLink('raw')"
-                            class="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#ffd21f]/10 hover:text-[#ffd21f] flex items-center justify-center text-zinc-500">
-
-                            <span class="material-symbols-outlined text-[17px]">
-                                content_copy
-                            </span>
-
-                        </button>
-
-                    </div>
-
-                    <div
-                        id="rawLink"
-                        class="cfg-text bg-black/20 rounded-xl p-3"
-                        dir="ltr">
-
-                        __SYNC_RAW__
-
-                    </div>
-
-                </div>
-
-
-                <!-- ACTIONS -->
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-
-                    <button
-                        onclick="copyLink('normal')"
-                        class="gold-button rounded-xl px-5 py-3 flex items-center justify-center gap-2 text-xs">
-
-                        <span class="material-symbols-outlined text-[17px]">
-                            content_copy
-                        </span>
-
-                        کپی لینک اشتراک
-
-                    </button>
-
-                    <button
-                        onclick="openSubscription()"
-                        class="rounded-xl px-5 py-3 flex items-center justify-center gap-2 text-xs border border-white/10 hover:border-[#ffd21f]/30 hover:text-[#ffd21f] text-zinc-400 transition">
-
-                        <span class="material-symbols-outlined text-[17px]">
-                            open_in_new
-                        </span>
-
-                        باز کردن اشتراک
-
-                    </button>
-
-                </div>
-
-
-                <!-- INFO -->
-
-                <div class="mt-6 pt-6 border-t border-white/5">
-
-                    <div class="grid grid-cols-2 gap-3">
-
-                        <div class="rounded-2xl bg-white/[.025] border border-white/5 p-4">
-
-                            <div class="text-[10px] text-zinc-600 mb-2">
-                                مصرف کل
-                            </div>
-
-                            <div
-                                class="text-sm font-bold"
-                                dir="ltr">
-
-                                __TOTAL_PERCENT__%
-
-                            </div>
-
-                        </div>
-
-                        <div class="rounded-2xl bg-white/[.025] border border-white/5 p-4">
-
-                            <div class="text-[10px] text-zinc-600 mb-2">
-                                مصرف روزانه
-                            </div>
-
-                            <div
-                                class="text-sm font-bold"
-                                dir="ltr">
-
-                                __DAILY_PERCENT__%
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SUPPORT -->
-
-                <div class="mt-5 rounded-2xl border border-[#ffd21f]/10 bg-[#ffd21f]/[.025] p-5">
-
-                    <div class="flex items-center gap-3">
-
-                        <div class="w-10 h-10 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
-
-                            <span class="material-symbols-outlined gold">
-                                support_agent
-                            </span>
-
-                        </div>
-
-                        <div class="flex-1">
-
-                            <div class="text-sm font-bold">
-                                نیاز به پشتیبانی دارید؟
-                            </div>
-
-                            <div class="text-[10px] text-zinc-600 mt-1">
-                                برای دریافت راهنمایی با پشتیبانی SEP NET در ارتباط باشید.
-                            </div>
-
-                        </div>
-
-                        <a
-                            href="https://t.me/sepnet_conf"
-                            target="_blank"
-                            class="gold-button rounded-xl px-4 py-2 text-xs">
-
-                            پشتیبانی
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
+            <button
+                onclick="showQRModal('__SYNC_NORMAL__')"
+                class="btn btn-secondary"
+                title="QR"
+            >
+                QR
+            </button>
 
         </div>
 
@@ -958,421 +1156,1038 @@ body{
 </div>
 
 
-<footer class="mt-8 py-5 border-t border-white/5 text-center">
+<!-- FORMATS -->
+<div class="formats">
 
-    <span class="text-xs text-zinc-600">
-        © 2026 SEP NET
-    </span>
+    <div class="font-black text-sm">
+        <span data-i18n="availableFormats">
+            Available Subscription Formats
+        </span>
+    </div>
 
-    <span class="text-xs gold">
-        • Secure Subscription
-    </span>
+    <div
+        class="secondary text-xs leading-6 mt-2"
+        data-i18n="formatsDesc"
+    >
+        Use these links to explicitly request specific configuration formats.
+    </div>
 
-</footer>
 
-</main>
+<div class="format-grid">
 
 
-<!-- MUSIC -->
+<!-- RAW -->
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Raw Configs
+        </span>
+
+        <span class="tag">
+            RAW
+        </span>
+
+    </div>
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-raw-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-raw-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-raw-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- BASE64 -->
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Base64 Subscription
+        </span>
+
+        <span class="tag">
+            BASE64
+        </span>
+
+    </div>
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-base64-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-base64-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-base64-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- SINGBOX -->
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Sing-box Subscription
+        </span>
+
+        <span class="tag">
+            SINGBOX
+        </span>
+
+    </div>
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-singbox-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-singbox-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-singbox-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CLASH -->
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Clash Subscription
+        </span>
+
+        <span class="tag">
+            CLASH
+        </span>
+
+    </div>
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-clash-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-clash-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-clash-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- V2RAYN -->
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            v2rayN Subscription
+        </span>
+
+        <span class="tag">
+            V2RAYN
+        </span>
+
+    </div>
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-v2rayn-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-v2rayn-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-v2rayn-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+</div>
+
+
+<!-- ONE CLICK -->
+<div class="apps">
+
+    <div class="section-title">
+
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+
+        <span data-i18n="oneClickImport">
+            One-Click Import
+        </span>
+
+    </div>
+
+
+<div class="apps-grid">
+
+<a
+    id="v2rayng-link"
+    href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+    class="app"
+>
+    v2rayNG
+</a>
+
+<a
+    href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+    class="app"
+>
+    v2rayN
+</a>
+
+<a
+    href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__"
+    class="app"
+>
+    Shadowrocket
+</a>
+
+<a
+    href="streisand://import/__SYNC_NORMAL__"
+    class="app"
+>
+    Streisand
+</a>
+
+</div>
+</div>
+
+
+<!-- RAW CONTENT -->
+<div class="bottom">
+
+    <div class="secondary text-xs">
+        Advanced users can retrieve raw configuration content manually.
+    </div>
+
+    <div class="flex gap-2 w-full sm:w-auto">
+
+        <button
+            onclick="fetchDecodedRawContent()"
+            class="btn btn-secondary raw-btn"
+        >
+            <span data-i18n="parsedContent">
+                Retrieve Raw Content
+            </span>
+        </button>
+
+        <input
+            type="text"
+            id="link-raw"
+            value="__SYNC_RAW__"
+            class="hidden"
+        >
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- QR MODAL -->
+<div
+    id="qr-modal"
+    class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300"
+>
+
+<div
+    class="modal-card max-w-sm w-full rounded-3xl p-7 relative"
+>
 
 <button
-    id="musicBtn"
-    class="music-btn"
-    onclick="toggleMusic()"
-    aria-label="Music">
-
-    <span
-        id="musicIcon"
-        class="material-symbols-outlined">
-        music_off
-    </span>
-
+    onclick="closeQRModal()"
+    class="absolute top-4 right-4 btn btn-secondary rounded-full"
+>
+    ✕
 </button>
+
+<h3
+    id="qr-title"
+    class="text-xl font-black text-center mb-6"
+>
+    Scan QR Code
+</h3>
+
+<div class="bg-white p-4 rounded-2xl mx-auto w-fit mb-5">
+
+<img
+    id="qr-img"
+    src=""
+    alt="QR Code"
+    class="w-52 h-52"
+>
+
+</div>
+
+<p
+    id="qr-text"
+    class="text-xs text-center font-mono break-all mb-5 px-3 py-3 rounded-xl"
+    style="
+        color:#999;
+        background:rgba(255,255,255,.04);
+        border:1px solid rgba(255,255,255,.08);
+    "
+></p>
+
+<button
+    onclick="closeQRModal()"
+    class="btn btn-primary w-full"
+    data-i18n="close"
+>
+    Close
+</button>
+
+</div>
+</div>
 
 
 <!-- TOAST -->
-
-<div id="toast"></div>
+<div
+    id="toast"
+    class="fixed top-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full font-bold text-sm z-50 transition-all opacity-0 pointer-events-none"
+>
+    <span>Notification</span>
+</div>
 
 
 <script>
 
-/* LANGUAGE */
+/* =========================
+   TRANSLATIONS
+========================= */
 
-function toggleLanguage(){
+const I18N = {
 
-    const html=document.documentElement;
+en: {
+    totalUsage: 'Total Usage',
+    dailyUsage: 'Daily Usage',
+    expDate: 'Expiration Date',
+    calendarLocal: 'Calendar Local',
+    unlimitedPlan: 'Unlimited Plan',
+    noDailyLimit: 'No Daily Limit',
+    integrationTitle: 'Integration Connections',
+    integrationDesc: 'Add the correct configuration link based on your preferred format below.',
+    universalLink: 'Universal Auto-Detecting Link',
+    universalDesc: 'This URL automatically detects your client and delivers the optimal format.',
+    oneClickImport: 'One-Click Import',
+    copy: 'Copy',
+    copyRaw: 'Copy Raw URL',
+    qr: 'QR',
+    parsedContent: 'Retrieve Raw Content',
+    close: 'Close',
+    qrTitle: 'Scan QR Code',
+    copied: 'Copied to clipboard!',
+    decodedCopied: 'Decoded links copied!',
+    decodedError: 'Error fetching content',
+    used: '% Used',
+    active: 'Active',
+    paused: 'Paused',
+    expired: 'Expired',
+    limitExceeded: 'Limit Exceeded',
+    dailyLimitExceeded: 'Daily Limit Exceeded',
+    availableFormats: 'Available Subscription Formats',
+    formatsDesc: 'Use these links to explicitly request specific configuration formats.'
+},
 
-    if(html.lang==="fa"){
+fa: {
+    totalUsage: 'مصرف کل',
+    dailyUsage: 'مصرف روزانه',
+    expDate: 'تاریخ انقضا',
+    calendarLocal: 'زمان محلی',
+    unlimitedPlan: 'طرح نامحدود',
+    noDailyLimit: 'بدون محدودیت روزانه',
+    integrationTitle: 'لینک‌های اتصال',
+    integrationDesc: 'لینک پیکربندی مورد نظر خود را انتخاب کنید.',
+    universalLink: 'لینک خودکار',
+    universalDesc: 'این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.',
+    oneClickImport: 'وارد کردن با یک کلیک',
+    copy: 'کپی',
+    copyRaw: 'کپی لینک خام',
+    qr: 'QR',
+    parsedContent: 'دریافت متن خام',
+    close: 'بستن',
+    qrTitle: 'اسکن کد QR',
+    copied: 'کپی شد!',
+    decodedCopied: 'لینک‌ها کپی شد!',
+    decodedError: 'خطا در دریافت',
+    used: '% مصرف',
+    active: 'فعال',
+    paused: 'متوقف',
+    expired: 'منقضی',
+    limitExceeded: 'از حد مجاز رد شده',
+    dailyLimitExceeded: 'از حد روزانه رد شده',
+    availableFormats: 'فرمت‌های اشتراک',
+    formatsDesc: 'از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.'
+}
 
-        html.lang="en";
-        html.dir="ltr";
+};
 
-    }else{
+let currentLang = 'en';
+let isDark = true;
 
-        html.lang="fa";
-        html.dir="rtl";
 
+/* =========================
+   THEME
+========================= */
+
+function applyTheme() {
+
+    const root = document.documentElement;
+    const label = document.getElementById('theme-label');
+
+    if (isDark) {
+
+        root.classList.add('dark');
+
+        document.getElementById('theme-icon').textContent = '☀️';
+
+        if (label)
+            label.textContent =
+                currentLang === 'fa'
+                ? 'روشن'
+                : 'Light';
+
+    } else {
+
+        root.classList.remove('dark');
+
+        document.getElementById('theme-icon').textContent = '🌙';
+
+        if (label)
+            label.textContent =
+                currentLang === 'fa'
+                ? 'تاریک'
+                : 'Dark';
     }
 
-}
+    try {
 
+        localStorage.setItem(
+            'sub-theme',
+            isDark ? 'dark' : 'light'
+        );
 
-/* DARK */
-
-function toggleDarkMode(){
-
-    document.documentElement.classList.toggle("dark");
-
-}
-
-
-/* TOAST */
-
-function toast(message){
-
-    const el=document.getElementById("toast");
-
-    if(!el)return;
-
-    el.textContent=message;
-
-    el.classList.add("show");
-
-    setTimeout(function(){
-
-        el.classList.remove("show");
-
-    },2200);
+    } catch(e) {}
 
 }
 
 
-/* COPY */
+/* =========================
+   LANGUAGE
+========================= */
 
-function copyText(text){
+function applyLang() {
 
-    if(!text)return;
+    const t = I18N[currentLang];
 
-    if(navigator.clipboard){
+    document
+        .querySelectorAll('[data-i18n]')
+        .forEach(el => {
 
-        navigator.clipboard.writeText(text)
-        .then(function(){
+            const key = el.getAttribute('data-i18n');
 
-            toast("کپی شد ✓");
-
-        })
-        .catch(function(){
-
-            fallbackCopy(text);
+            if (t[key])
+                el.textContent = t[key];
 
         });
 
-    }else{
 
-        fallbackCopy(text);
+    if (currentLang === 'fa') {
+
+        document.documentElement.setAttribute('dir','rtl');
+
+        document.documentElement.setAttribute('lang','fa');
+
+        document.getElementById('lang-icon').textContent = '🇮🇷';
+
+        document.getElementById('lang-label').textContent = 'FA';
+
+    } else {
+
+        document.documentElement.setAttribute('dir','ltr');
+
+        document.documentElement.setAttribute('lang','en');
+
+        document.getElementById('lang-icon').textContent = '🇺🇸';
+
+        document.getElementById('lang-label').textContent = 'EN';
 
     }
+
+    initStatusBadge();
+
+    applyTheme();
+
+    try {
+
+        localStorage.setItem(
+            'sub-lang',
+            currentLang
+        );
+
+    } catch(e) {}
 
 }
 
 
-function fallbackCopy(text){
+function toggleTheme() {
 
-    const ta=document.createElement("textarea");
+    isDark = !isDark;
 
-    ta.value=text;
-
-    ta.style.position="fixed";
-    ta.style.opacity="0";
-
-    document.body.appendChild(ta);
-
-    ta.select();
-
-    try{
-
-        document.execCommand("copy");
-
-        toast("کپی شد ✓");
-
-    }catch(e){
-
-        toast("خطا در کپی");
-
-    }
-
-    document.body.removeChild(ta);
+    applyTheme();
 
 }
 
 
-/* LINKS */
+function toggleLang() {
 
-function copyLink(type){
+    currentLang =
+        currentLang === 'en'
+        ? 'fa'
+        : 'en';
 
-    let value="";
-
-    if(type==="raw"){
-
-        value="__SYNC_RAW__";
-
-    }else{
-
-        value="__SYNC_NORMAL__";
-
-    }
-
-    copyText(value);
+    applyLang();
 
 }
 
 
-/* OPEN SUB */
+/* =========================
+   STATUS
+========================= */
 
-function openSubscription(){
+function initStatusBadge() {
 
-    const url="__SYNC_NORMAL__";
+    const badge =
+        document.getElementById('status-badge');
 
-    if(url && url.indexOf("__SYNC_NORMAL__")===-1){
+    const t = I18N[currentLang];
 
-        window.open(url,"_blank");
+    const map = {
 
-    }else{
-
-        toast("لینک اشتراک موجود نیست");
-
-    }
-
-}
-
-
-/* STATUS */
-
-(function(){
-
-    const badge=document.getElementById("status-badge");
-
-    if(!badge)return;
-
-    const status="__STATUS_CODE__".toLowerCase();
-
-    const states={
-
-        active:{
-            text:"اشتراک فعال",
-            color:"#ffd21f"
+        active: {
+            text: t.active,
+            bg: 'rgba(34,197,94,.12)',
+            border: 'rgba(34,197,94,.3)',
+            color: '#4ade80'
         },
 
-        paused:{
-            text:"اشتراک متوقف",
-            color:"#f59e0b"
+        paused: {
+            text: t.paused,
+            bg: 'rgba(245,158,11,.12)',
+            border: 'rgba(245,158,11,.3)',
+            color: '#fbbf24'
         },
 
-        expired:{
-            text:"اشتراک منقضی شده",
-            color:"#ef4444"
+        expired: {
+            text: t.expired,
+            bg: 'rgba(239,68,68,.12)',
+            border: 'rgba(239,68,68,.3)',
+            color: '#f87171'
         },
 
-        limit:{
-            text:"حجم اشتراک تمام شده",
-            color:"#ef4444"
+        limit: {
+            text: t.limitExceeded,
+            bg: 'rgba(239,68,68,.12)',
+            border: 'rgba(239,68,68,.3)',
+            color: '#f87171'
         },
 
-        dailyLimit:{
-            text:"محدودیت روزانه",
-            color:"#f59e0b"
+        dailyLimit: {
+            text: t.dailyLimitExceeded,
+            bg: 'rgba(239,68,68,.12)',
+            border: 'rgba(239,68,68,.3)',
+            color: '#f87171'
         }
 
     };
 
-    const s=states[status] || states.active;
+    const status =
+        map['__STATUS_CODE__']
+        || map.active;
 
-    badge.textContent=s.text;
+    badge.textContent = status.text;
 
-    badge.style.color=s.color;
+    badge.style.background = status.bg;
 
-    badge.style.borderColor=s.color+"33";
+    badge.style.border =
+        '1px solid ' + status.border;
 
-    badge.style.background=s.color+"12";
+    badge.style.borderColor =
+        status.border;
 
-})();
-
-
-/* MUSIC */
-
-let audioCtx=null;
-let masterGain=null;
-let musicTimer=null;
-let musicPlaying=false;
-let noteIndex=0;
-
-const notes=[
-    220.00,
-    261.63,
-    329.63,
-    392.00,
-    329.63,
-    293.66
-];
-
-
-function startMusic(){
-
-    if(musicPlaying)return;
-
-    const AudioContext=
-        window.AudioContext ||
-        window.webkitAudioContext;
-
-    if(!AudioContext)return;
-
-    audioCtx=new AudioContext();
-
-    masterGain=audioCtx.createGain();
-
-    masterGain.gain.value=.035;
-
-    masterGain.connect(audioCtx.destination);
-
-    musicPlaying=true;
-
-    document
-        .getElementById("musicBtn")
-        .classList.add("playing");
-
-    document
-        .getElementById("musicIcon")
-        .textContent="music_note";
-
-    playNote();
-
+    badge.style.color =
+        status.color;
 }
 
 
-function playNote(){
+/* =========================
+   COPY
+========================= */
 
-    if(!musicPlaying || !audioCtx)return;
+function copyLink(id) {
 
-    const now=audioCtx.currentTime;
+    const el =
+        document.getElementById(id);
 
-    const osc=audioCtx.createOscillator();
+    if (!el) return;
 
-    const gain=audioCtx.createGain();
+    el.select();
 
-    osc.type="sine";
-
-    osc.frequency.value=notes[noteIndex];
-
-    gain.gain.setValueAtTime(0,now);
-
-    gain.gain.linearRampToValueAtTime(
-        .18,
-        now+.8
+    el.setSelectionRange(
+        0,
+        999999
     );
 
-    gain.gain.exponentialRampToValueAtTime(
-        .001,
-        now+3.8
-    );
+    navigator.clipboard
+        .writeText(el.value)
+        .then(() => {
 
-    osc.connect(gain);
-
-    gain.connect(masterGain);
-
-    osc.start(now);
-
-    osc.stop(now+4);
-
-    noteIndex++;
-
-    if(noteIndex>=notes.length)
-        noteIndex=0;
-
-    musicTimer=setTimeout(
-        playNote,
-        2500
-    );
-
-}
-
-
-function stopMusic(){
-
-    musicPlaying=false;
-
-    clearTimeout(musicTimer);
-
-    if(masterGain && audioCtx){
-
-        try{
-
-            masterGain.gain.exponentialRampToValueAtTime(
-                .001,
-                audioCtx.currentTime+.5
+            showToast(
+                I18N[currentLang].copied
             );
 
-        }catch(e){}
+        })
+        .catch(() => {
 
-    }
+            document.execCommand('copy');
 
-    document
-        .getElementById("musicBtn")
-        .classList.remove("playing");
+            showToast(
+                I18N[currentLang].copied
+            );
 
-    document
-        .getElementById("musicIcon")
-        .textContent="music_off";
-
-}
-
-
-function toggleMusic(){
-
-    if(musicPlaying){
-
-        stopMusic();
-
-    }else{
-
-        startMusic();
-
-    }
+        });
 
 }
 
 
-/* START MUSIC AFTER USER INTERACTION */
+/* =========================
+   RAW CONTENT
+========================= */
 
-document.addEventListener(
-    "click",
-    function(){
+async function fetchDecodedRawContent() {
 
-        if(!musicPlaying)
-            startMusic();
+    try {
 
-    },
-    {once:true}
-);
+        const res =
+            await fetch('__SYNC_RAW__');
+
+        if (!res.ok)
+            throw new Error('Failed');
+
+        const base64Str =
+            await res.text();
+
+        const decodedText =
+            atob(base64Str.trim());
+
+        await navigator.clipboard
+            .writeText(decodedText);
+
+        showToast(
+            I18N[currentLang].decodedCopied
+        );
+
+    } catch(e) {
+
+        alert(
+            I18N[currentLang].decodedError
+            + ': '
+            + e.message
+        );
+
+    }
+
+}
 
 
-/* KEYBOARD */
+/* =========================
+   QR
+========================= */
 
-document.addEventListener(
-    "keydown",
-    function(e){
+function showQRModal(url) {
 
-        if(e.key==="Escape"){
+    const t =
+        I18N[currentLang];
 
-            const el=document.getElementById("toast");
+    document.getElementById(
+        'qr-title'
+    ).innerText = t.qrTitle;
 
-            if(el)
-                el.classList.remove("show");
+    document.getElementById(
+        'qr-text'
+    ).innerText = url;
+
+    document.getElementById(
+        'qr-img'
+    ).src =
+        'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
+        + encodeURIComponent(url);
+
+
+    const modal =
+        document.getElementById('qr-modal');
+
+    modal.classList.remove('hidden');
+
+    modal.classList.add('flex');
+
+    setTimeout(() => {
+
+        modal.style.opacity = '1';
+
+    },10);
+
+}
+
+
+function closeQRModal() {
+
+    const modal =
+        document.getElementById('qr-modal');
+
+    modal.style.opacity = '0';
+
+    setTimeout(() => {
+
+        modal.classList.add('hidden');
+
+        modal.classList.remove('flex');
+
+    },300);
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(msg) {
+
+    const toast =
+        document.getElementById('toast');
+
+    toast.innerText = msg;
+
+    toast.style.opacity = '1';
+
+    toast.style.transform =
+        'translate(-50%,0)';
+
+    setTimeout(() => {
+
+        toast.style.opacity = '0';
+
+        toast.style.transform =
+            'translate(-50%,-15px)';
+
+    },2500);
+
+}
+
+
+/* =========================
+   CLIENT IP
+========================= */
+
+fetch(
+    'https://api.ipify.org?format=json'
+)
+.then(r => r.json())
+.then(data => {
+
+    const ip =
+        document.getElementById('client-ip');
+
+    if (ip)
+        ip.textContent = data.ip;
+
+})
+.catch(() => {
+
+    const ip =
+        document.getElementById('client-ip');
+
+    if (ip)
+        ip.textContent = 'Unknown';
+
+});
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+(function init() {
+
+    try {
+
+        const savedTheme =
+            localStorage.getItem('sub-theme');
+
+        if (savedTheme)
+            isDark =
+                savedTheme === 'dark';
+
+    } catch(e) {}
+
+
+    try {
+
+        const savedLang =
+            localStorage.getItem('sub-lang');
+
+        if (
+            savedLang &&
+            I18N[savedLang]
+        ) {
+
+            currentLang =
+                savedLang;
 
         }
 
+    } catch(e) {}
+
+
+    applyTheme();
+
+    applyLang();
+
+
+    /* Shadowrocket */
+
+    const normalLink =
+        '__SYNC_NORMAL__';
+
+    document
+        .querySelectorAll('a')
+        .forEach(a => {
+
+            if (
+                a.href.includes(
+                    '__SYNC_NORMAL_BASE64__'
+                )
+            ) {
+
+                a.href =
+                    a.href.replace(
+                        '__SYNC_NORMAL_BASE64__',
+                        btoa(normalLink)
+                    );
+
+            }
+
+        });
+
+
+    /* v2rayNG */
+
+    const v2rayngLink =
+        document.getElementById(
+            'v2rayng-link'
+        );
+
+    if (v2rayngLink) {
+
+        const base64Url =
+            normalLink
+            +
+            (
+                normalLink.includes('?')
+                ? '&flag=base64'
+                : '?flag=base64'
+            );
+
+        v2rayngLink.href =
+            'v2rayng://install-sub?url='
+            +
+            encodeURIComponent(base64Url)
+            +
+            '&name='
+            +
+            encodeURIComponent(
+                '__USER_NAME__'
+            );
+
     }
-);
+
+
+    /* Format links */
+
+    const rawInput =
+        document.getElementById(
+            'link-raw-fmt'
+        );
+
+    const base64Input =
+        document.getElementById(
+            'link-base64-fmt'
+        );
+
+    const singboxInput =
+        document.getElementById(
+            'link-singbox-fmt'
+        );
+
+    const clashInput =
+        document.getElementById(
+            'link-clash-fmt'
+        );
+
+    const v2raynInput =
+        document.getElementById(
+            'link-v2rayn-fmt'
+        );
+
+
+    if (rawInput)
+        rawInput.value =
+            normalLink
+            +
+            (
+                normalLink.includes('?')
+                ? '&flag=raw'
+                : '?flag=raw'
+            );
+
+
+    if (base64Input)
+        base64Input.value =
+            normalLink
+            +
+            (
+                normalLink.includes('?')
+                ? '&flag=base64'
+                : '?flag=base64'
+            );
+
+
+    if (singboxInput)
+        singboxInput.value =
+            normalLink
+            +
+            (
+                normalLink.includes('?')
+                ? '&flag=singbox'
+                : '?flag=singbox'
+            );
+
+
+    if (clashInput)
+        clashInput.value =
+            normalLink
+            +
+            (
+                normalLink.includes('?')
+                ? '&flag=clash'
+                : '?flag=clash'
+            );
+
+
+    if (v2raynInput)
+        v2raynInput.value =
+            normalLink
+            +
+            (
+                normalLink.includes('?')
+                ? '&flag=vjson'
+                : '?flag=vjson'
+            );
+
+})();
 
 </script>
 
