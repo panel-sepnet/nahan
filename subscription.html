@@ -2,43 +2,44 @@
 <html class="dark" dir="rtl" lang="fa">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>SEP NET | Subscription</title>
+<title>SEP NET | __USER_NAME__</title>
 
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com" rel="preconnect">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:FILL@0..1&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Vazirmatn:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
 <script>
-tailwind.config = {
-    darkMode: "class",
-    theme: {
-        extend: {
-            colors: {
-                gold: "#ffd21f",
-                gold2: "#ffb800",
-                gold3: "#fff06a"
+tailwind.config={
+    darkMode:"class",
+    theme:{
+        extend:{
+            colors:{
+                gold:"#ffd21f",
+                gold2:"#ffb800",
+                gold3:"#fff06a",
+                bg:"#050505"
             },
-            fontFamily: {
-                fa: ["Vazirmatn","Tahoma","Arial","sans-serif"],
-                mono: ["JetBrains Mono","monospace"],
-                inter: ["Inter","sans-serif"]
+            fontFamily:{
+                fa:["Vazirmatn","Tahoma","Arial","sans-serif"],
+                mono:["JetBrains Mono","monospace"],
+                inter:["Inter","sans-serif"]
             }
         }
     }
-};
+}
 </script>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
 
-html,
-body{
+html,body{
     margin:0;
     min-height:100%;
 }
@@ -51,14 +52,12 @@ body{
     -webkit-font-smoothing:antialiased;
 }
 
-button{
-    font-family:inherit;
-}
+/* BACKGROUND */
 
 .bg{
     position:fixed;
     inset:0;
-    z-index:-10;
+    z-index:-20;
     background:
         radial-gradient(
             ellipse 800px 600px at 15% 10%,
@@ -81,8 +80,8 @@ button{
 .grid-bg{
     position:fixed;
     inset:0;
-    z-index:-9;
-    opacity:.25;
+    z-index:-19;
+    opacity:.22;
     background-image:
         linear-gradient(
             rgba(255,210,31,.035) 1px,
@@ -94,11 +93,12 @@ button{
             transparent 1px
         );
     background-size:50px 50px;
-    mask-image:radial-gradient(
-        ellipse 90% 80% at center,
-        black 20%,
-        transparent 85%
-    );
+    mask-image:
+        radial-gradient(
+            ellipse 90% 80% at center,
+            black 20%,
+            transparent 85%
+        );
     animation:gridMove 35s linear infinite;
 }
 
@@ -116,7 +116,7 @@ button{
     border-radius:50%;
     pointer-events:none;
     filter:blur(90px);
-    z-index:-8;
+    z-index:-18;
     animation:floatOrb 18s ease-in-out infinite alternate;
 }
 
@@ -161,29 +161,7 @@ button{
     }
 }
 
-.mouse-glow{
-    position:fixed;
-    width:400px;
-    height:400px;
-    margin:-200px 0 0 -200px;
-    border-radius:50%;
-    pointer-events:none;
-    z-index:-7;
-    background:
-        radial-gradient(
-            circle,
-            rgba(255,210,31,.13),
-            rgba(255,184,0,.05) 35%,
-            transparent 70%
-        );
-    filter:blur(15px);
-    opacity:0;
-    transition:opacity .3s ease;
-}
-
-.mouse-glow.active{
-    opacity:1;
-}
+/* GLASS */
 
 .glass{
     background:rgba(10,10,10,.72);
@@ -207,6 +185,8 @@ button{
         0 0 30px rgba(255,210,31,.045);
 }
 
+/* GOLD */
+
 .gold{
     color:#ffd21f;
 }
@@ -216,13 +196,6 @@ button{
     text-shadow:
         0 0 7px rgba(255,210,31,.5),
         0 0 18px rgba(255,184,0,.25);
-}
-
-.gold-border{
-    border-color:rgba(255,210,31,.3);
-    box-shadow:
-        0 0 15px rgba(255,210,31,.08),
-        inset 0 0 10px rgba(255,210,31,.025);
 }
 
 .gold-button{
@@ -250,10 +223,7 @@ button{
     }
 }
 
-.progress-ring{
-    transform:rotate(-90deg);
-    transform-origin:50% 50%;
-}
+/* STATUS */
 
 .status-dot{
     width:9px;
@@ -266,25 +236,21 @@ button{
     animation:pulse 2s ease-in-out infinite;
 }
 
-.status-dot.offline{
-    background:#ef4444;
-    box-shadow:
-        0 0 8px #ef4444,
-        0 0 20px rgba(239,68,68,.35);
-}
-
 @keyframes pulse{
     0%,100%{
         box-shadow:
             0 0 7px #ffd21f,
             0 0 15px rgba(255,210,31,.4);
     }
+
     50%{
         box-shadow:
             0 0 12px #ffd21f,
             0 0 28px rgba(255,210,31,.65);
     }
 }
+
+/* ANIMATION */
 
 .rise{
     animation:rise .7s cubic-bezier(.22,1,.36,1) both;
@@ -293,37 +259,27 @@ button{
 .rise1{animation-delay:.08s}
 .rise2{animation-delay:.16s}
 .rise3{animation-delay:.24s}
+.rise4{animation-delay:.32s}
 
 @keyframes rise{
     from{
         opacity:0;
         transform:translateY(20px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
     }
 }
 
-::-webkit-scrollbar{
-    width:5px;
-}
-
-::-webkit-scrollbar-track{
-    background:rgba(255,255,255,.025);
-}
-
-::-webkit-scrollbar-thumb{
-    background:rgba(255,210,31,.25);
-    border-radius:10px;
-}
+/* CONFIG */
 
 .cfg{
     border:1px solid rgba(255,255,255,.055);
     background:rgba(255,255,255,.025);
     border-radius:16px;
     padding:15px;
-    cursor:pointer;
     transition:.3s ease;
 }
 
@@ -337,7 +293,34 @@ button{
     font-family:"JetBrains Mono",monospace;
     font-size:11px;
     color:#999;
+    word-break:break-all;
 }
+
+/* PROGRESS */
+
+.progress-wrap{
+    width:100%;
+    height:8px;
+    border-radius:999px;
+    background:rgba(255,255,255,.055);
+    overflow:hidden;
+}
+
+.progress-fill{
+    height:100%;
+    border-radius:999px;
+    background:
+        linear-gradient(
+            90deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a
+        );
+    box-shadow:
+        0 0 10px rgba(255,210,31,.35);
+}
+
+/* MUSIC */
 
 .music-btn{
     position:fixed;
@@ -362,6 +345,7 @@ button{
 .music-btn:hover{
     transform:scale(1.08);
     border-color:#ffd21f;
+    box-shadow:0 0 25px rgba(255,210,31,.2);
 }
 
 .music-btn.playing{
@@ -372,10 +356,13 @@ button{
     0%,100%{
         box-shadow:0 0 10px rgba(255,210,31,.15);
     }
+
     50%{
         box-shadow:0 0 25px rgba(255,210,31,.35);
     }
 }
+
+/* TOAST */
 
 #toast{
     position:fixed;
@@ -391,13 +378,15 @@ button{
     font-weight:700;
     font-size:13px;
     transition:.3s ease;
-    z-index:300;
+    z-index:200;
 }
 
 #toast.show{
     opacity:1;
     transform:translateX(-50%) translateY(0);
 }
+
+/* QR */
 
 #qrModal{
     opacity:0;
@@ -410,17 +399,16 @@ button{
     pointer-events:auto;
 }
 
+/* MOBILE */
+
 @media(max-width:768px){
 
     .glass{
         border-radius:22px;
     }
 
-    .mouse-glow{
-        display:none;
-    }
-
 }
+
 </style>
 </head>
 
@@ -431,23 +419,28 @@ button{
 <div class="orb orb1"></div>
 <div class="orb orb2"></div>
 <div class="orb orb3"></div>
-<div id="mouseGlow" class="mouse-glow"></div>
 
 <main class="w-full max-w-[1440px] mx-auto px-4 md:px-6 py-7 min-h-screen flex flex-col">
+
+<!-- HEADER -->
 
 <header class="flex items-center justify-between mb-8">
 
     <div class="flex items-center gap-3">
 
-        <div class="w-11 h-11 rounded-2xl glass gold-border flex items-center justify-center">
+        <div class="w-11 h-11 rounded-2xl glass flex items-center justify-center"
+             style="border-color:rgba(255,210,31,.3)">
+
             <span
                 class="material-symbols-outlined gold"
-                style="font-variation-settings:'FILL' 1">
+                style="font-variation-settings:'FILL' 1;">
                 cloud
             </span>
+
         </div>
 
         <div>
+
             <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">
                 SEP<span class="gold">NET</span>
             </h1>
@@ -455,6 +448,7 @@ button{
             <div class="text-[10px] text-zinc-500 tracking-[.2em] uppercase">
                 Subscription
             </div>
+
         </div>
 
     </div>
@@ -463,7 +457,7 @@ button{
 
         <button
             onclick="toggleLanguage()"
-            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f] transition">
+            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f]">
 
             <span class="material-symbols-outlined text-[20px]">
                 translate
@@ -473,7 +467,7 @@ button{
 
         <button
             onclick="toggleDarkMode()"
-            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f] transition">
+            class="w-10 h-10 rounded-xl glass flex items-center justify-center text-zinc-400 hover:text-[#ffd21f]">
 
             <span class="material-symbols-outlined text-[20px]">
                 dark_mode
@@ -485,1182 +479,20 @@ button{
 
 </header>
 
-<div id="app" class="flex-1">
 
-    <div class="glass rounded-3xl p-10 text-center">
+<!-- MAIN -->
 
-        <div class="inline-block w-10 h-10 border-2 border-white/10 border-t-[#ffd21f] rounded-full animate-spin"></div>
+<div class="flex-1">
 
-        <p class="mt-4 text-sm text-zinc-500">
-            در حال دریافت اطلاعات اشتراک...
-        </p>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
 
-    </div>
+        <!-- LEFT -->
 
-</div>
+        <div class="md:col-span-4 flex flex-col gap-5">
 
-<footer class="mt-8 py-5 border-t border-white/5 text-center">
+            <!-- USER -->
 
-    <span class="text-xs text-zinc-600">
-        © 2026 SEP NET
-    </span>
-
-    <span class="text-xs gold">
-        • Secure Subscription
-    </span>
-
-</footer>
-
-</main>
-
-<button
-    id="musicBtn"
-    class="music-btn"
-    onclick="toggleMusic()"
-    aria-label="Music">
-
-    <span
-        id="musicIcon"
-        class="material-symbols-outlined">
-        music_off
-    </span>
-
-</button>
-
-<div id="toast"></div>
-
-<div
-    id="qrModal"
-    class="fixed inset-0 bg-black/75 backdrop-blur-md flex items-center justify-center z-[150]">
-
-    <div class="glass rounded-3xl p-7 max-w-sm w-full mx-4 text-center relative">
-
-        <button
-            onclick="closeQr()"
-            class="absolute top-3 right-3 text-zinc-500 hover:text-[#ffd21f]">
-
-            <span class="material-symbols-outlined">
-                close
-            </span>
-
-        </button>
-
-        <h3 class="text-xl font-bold mb-5">
-            QR <span class="gold">Code</span>
-        </h3>
-
-        <img
-            id="qrImg"
-            class="mx-auto rounded-2xl bg-white p-2"
-            style="max-width:220px"
-            alt="QR Code">
-
-        <p class="mt-4 text-xs text-zinc-500">
-            برای وارد کردن اشتراک اسکن کنید
-        </p>
-
-    </div>
-
-</div>
-
-<script>
-
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
-function toggleLanguage(){
-
-    const html = document.documentElement;
-
-    if(html.lang === "fa"){
-        html.lang = "en";
-        html.dir = "ltr";
-    }else{
-        html.lang = "fa";
-        html.dir = "rtl";
-    }
-
-}
-
-
-/* =====================================================
-   DARK MODE
-===================================================== */
-
-function toggleDarkMode(){
-
-    document.documentElement.classList.toggle("dark");
-
-}
-
-
-/* =====================================================
-   MOUSE GLOW
-===================================================== */
-
-const mouseGlow = document.getElementById("mouseGlow");
-
-if(window.matchMedia("(pointer:fine)").matches){
-
-    document.addEventListener("mousemove",function(e){
-
-        mouseGlow.style.left = e.clientX + "px";
-        mouseGlow.style.top = e.clientY + "px";
-        mouseGlow.classList.add("active");
-
-    });
-
-    document.addEventListener("mouseleave",function(){
-
-        mouseGlow.classList.remove("active");
-
-    });
-
-}
-
-
-/* =====================================================
-   MUSIC
-===================================================== */
-
-let audioCtx = null;
-let masterGain = null;
-let musicTimer = null;
-let musicPlaying = false;
-
-const notes = [
-    220,
-    261.63,
-    329.63,
-    392,
-    329.63,
-    293.66
-];
-
-let noteIndex = 0;
-
-function startMusic(){
-
-    if(musicPlaying)
-        return;
-
-    try{
-
-        audioCtx = new (
-            window.AudioContext ||
-            window.webkitAudioContext
-        )();
-
-        masterGain =
-            audioCtx.createGain();
-
-        masterGain.gain.value = .035;
-
-        masterGain.connect(
-            audioCtx.destination
-        );
-
-        musicPlaying = true;
-
-        document
-            .getElementById("musicBtn")
-            .classList.add("playing");
-
-        document
-            .getElementById("musicIcon")
-            .textContent = "music_note";
-
-        playNote();
-
-    }catch(e){
-
-        console.log("Audio error:",e);
-
-    }
-
-}
-
-function playNote(){
-
-    if(!musicPlaying || !audioCtx)
-        return;
-
-    const now =
-        audioCtx.currentTime;
-
-    const osc =
-        audioCtx.createOscillator();
-
-    const gain =
-        audioCtx.createGain();
-
-    osc.type = "sine";
-
-    osc.frequency.value =
-        notes[noteIndex];
-
-    gain.gain.setValueAtTime(
-        .001,
-        now
-    );
-
-    gain.gain.linearRampToValueAtTime(
-        .18,
-        now + .8
-    );
-
-    gain.gain.exponentialRampToValueAtTime(
-        .001,
-        now + 3.8
-    );
-
-    osc.connect(gain);
-    gain.connect(masterGain);
-
-    osc.start(now);
-    osc.stop(now + 4);
-
-    noteIndex++;
-
-    if(noteIndex >= notes.length)
-        noteIndex = 0;
-
-    musicTimer =
-        setTimeout(playNote,2500);
-
-}
-
-function stopMusic(){
-
-    musicPlaying = false;
-
-    clearTimeout(musicTimer);
-
-    if(masterGain && audioCtx){
-
-        try{
-
-            masterGain.gain.exponentialRampToValueAtTime(
-                .001,
-                audioCtx.currentTime + .5
-            );
-
-        }catch(e){}
-
-    }
-
-    document
-        .getElementById("musicBtn")
-        .classList.remove("playing");
-
-    document
-        .getElementById("musicIcon")
-        .textContent = "music_off";
-
-}
-
-function toggleMusic(){
-
-    if(musicPlaying)
-        stopMusic();
-    else
-        startMusic();
-
-}
-
-
-/* =====================================================
-   API / SUBSCRIPTION
-===================================================== */
-
-(function(){
-
-    /*
-     * مهم:
-     *
-     * این صفحه می‌تواند با این فرمت‌ها باز شود:
-     *
-     * /sub/tel:@sepnet_conf
-     * /sub/@sepnet_conf
-     * /sub/sepnet_conf
-     *
-     * و همه آنها را به username مناسب تبدیل می‌کند.
-     */
-
-    function getUsername(){
-
-        let parts =
-            window.location.pathname
-                .split("/")
-                .filter(Boolean);
-
-        let value =
-            parts.length
-            ? parts[parts.length - 1]
-            : "";
-
-        value =
-            decodeURIComponent(value);
-
-        /*
-         * حذف tel:
-         */
-
-        if(
-            value.toLowerCase().startsWith("tel:")
-        ){
-
-            value =
-                value.substring(4);
-
-        }
-
-        /*
-         * حذف @ اضافی برای API
-         * در صورت نیاز API می‌تواند username
-         * بدون @ را دریافت کند.
-         */
-
-        let apiUsername =
-            value.replace(/^@+/,"");
-
-        return {
-            original:value,
-            api:apiUsername
-        };
-
-    }
-
-
-    const user =
-        getUsername();
-
-    /*
-     * API اصلی
-     */
-
-    const apiUrl =
-        "/api/sub/" +
-        encodeURIComponent(user.api);
-
-
-    let subUrl = "";
-
-    const state = {
-        data:null
-    };
-
-
-    /* =================================================
-       HELPERS
-    ================================================= */
-
-    function esc(s){
-
-        return String(
-            s == null ? "" : s
-        ).replace(
-            /[&<>"']/g,
-            function(c){
-
-                return {
-                    "&":"&amp;",
-                    "<":"&lt;",
-                    ">":"&gt;",
-                    '"':"&quot;",
-                    "'":"&#39;"
-                }[c];
-
-            }
-        );
-
-    }
-
-
-    function fmtBytes(bytes){
-
-        if(
-            bytes === null ||
-            bytes === undefined ||
-            isNaN(bytes)
-        )
-            return "0 B";
-
-        bytes =
-            Number(bytes);
-
-        if(bytes <= 0)
-            return "0 B";
-
-        const units = [
-            "B",
-            "KB",
-            "MB",
-            "GB",
-            "TB"
-        ];
-
-        let i = 0;
-
-        while(
-            bytes >= 1024 &&
-            i < units.length - 1
-        ){
-
-            bytes /= 1024;
-            i++;
-
-        }
-
-        return (
-            bytes.toFixed(i ? 2 : 0)
-            + " "
-            + units[i]
-        );
-
-    }
-
-
-    function toast(message){
-
-        const t =
-            document.getElementById("toast");
-
-        t.textContent =
-            message;
-
-        t.classList.add("show");
-
-        setTimeout(function(){
-
-            t.classList.remove("show");
-
-        },2200);
-
-    }
-
-
-    function copyText(text){
-
-        if(!text)
-            return;
-
-        if(
-            navigator.clipboard &&
-            window.isSecureContext
-        ){
-
-            navigator.clipboard
-                .writeText(text)
-                .then(function(){
-
-                    toast("کپی شد ✓");
-
-                })
-                .catch(function(){
-
-                    fallbackCopy(text);
-
-                });
-
-        }else{
-
-            fallbackCopy(text);
-
-        }
-
-    }
-
-
-    function fallbackCopy(text){
-
-        const textarea =
-            document.createElement("textarea");
-
-        textarea.value =
-            text;
-
-        textarea.style.position =
-            "fixed";
-
-        textarea.style.opacity =
-            "0";
-
-        document.body.appendChild(
-            textarea
-        );
-
-        textarea.focus();
-        textarea.select();
-
-        try{
-
-            document.execCommand("copy");
-
-            toast("کپی شد ✓");
-
-        }catch(e){
-
-            toast("خطا در کپی");
-
-        }
-
-        document.body.removeChild(
-            textarea
-        );
-
-    }
-
-
-    /* =================================================
-       RING
-    ================================================= */
-
-    function ring(days,maxDays){
-
-        const r = 54;
-
-        const circumference =
-            2 * Math.PI * r;
-
-        let percentage = 1;
-
-        if(
-            days !== null &&
-            days !== undefined &&
-            maxDays > 0
-        ){
-
-            percentage =
-                Math.max(
-                    0,
-                    Math.min(
-                        1,
-                        Number(days) / Number(maxDays)
-                    )
-                );
-
-        }
-
-        const offset =
-            circumference *
-            (1 - percentage);
-
-        const number =
-            days === null ||
-            days === undefined
-            ? "∞"
-            : esc(days);
-
-        return `
-
-        <div class="relative w-48 h-48 mx-auto flex items-center justify-center">
-
-            <svg
-                class="w-full h-full"
-                viewBox="0 0 120 120">
-
-                <circle
-                    cx="60"
-                    cy="60"
-                    r="54"
-                    fill="none"
-                    stroke="rgba(255,255,255,.06)"
-                    stroke-width="8">
-                </circle>
-
-                <circle
-                    class="progress-ring"
-                    cx="60"
-                    cy="60"
-                    r="54"
-                    fill="none"
-                    stroke="#ffd21f"
-                    stroke-width="8"
-                    stroke-linecap="round"
-                    stroke-dasharray="${circumference}"
-                    stroke-dashoffset="${offset}"
-                    style="
-                        filter:drop-shadow(
-                            0 0 5px
-                            rgba(255,210,31,.5)
-                        );
-                    ">
-                </circle>
-
-            </svg>
-
-            <div class="absolute flex flex-col items-center">
-
-                <span class="text-4xl font-extrabold gold-glow">
-                    ${number}
-                </span>
-
-                <span class="text-[10px] text-zinc-500 uppercase tracking-[.25em]">
-                    DAYS
-                </span>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
-
-    /* =================================================
-       CONFIG
-    ================================================= */
-
-    function cfgBlock(config,index,data){
-
-        let address = "";
-        let port = "";
-        let path = "";
-        let sni = "";
-        let type = "";
-
-        try{
-
-            const url =
-                new URL(config);
-
-            address =
-                url.hostname;
-
-            port =
-                url.port;
-
-            path =
-                url.pathname;
-
-            const params =
-                new URLSearchParams(
-                    url.search
-                );
-
-            sni =
-                params.get("sni") || "";
-
-            type =
-                params.get("type") ||
-                data.protocol ||
-                "vless";
-
-        }catch(e){
-
-            type =
-                data.protocol ||
-                "vless";
-
-        }
-
-
-        let display = "";
-
-        if(address){
-
-            display =
-                address;
-
-            if(port)
-                display += ":" + port;
-
-        }
-
-        if(
-            path &&
-            path !== "/"
-        ){
-
-            display +=
-                " " + path;
-
-        }
-
-        if(sni){
-
-            display +=
-                " | SNI: " + sni;
-
-        }
-
-        if(!display){
-
-            display =
-                String(config)
-                    .substring(0,100);
-
-        }
-
-
-        let protocol =
-            String(
-                config
-                    .split("://")[0] ||
-                data.protocol ||
-                "vless"
-            ).toUpperCase();
-
-
-        return `
-
-        <div
-            class="cfg group"
-            onclick="copyCfgIndex(${index})">
-
-            <div class="flex items-center justify-between gap-4">
-
-                <div class="min-w-0">
-
-                    <div class="flex flex-wrap items-center gap-2 mb-2">
-
-                        <span
-                            class="font-mono text-xs font-bold gold"
-                            dir="ltr">
-
-                            ${esc(protocol)} #${index + 1}
-
-                        </span>
-
-                        <span class="
-                            px-2 py-1
-                            rounded-full
-                            bg-[#ffd21f]/5
-                            border
-                            border-[#ffd21f]/10
-                            text-[9px]
-                            text-zinc-500">
-
-                            ${esc(String(type).toUpperCase())}
-
-                        </span>
-
-                    </div>
-
-                    <div
-                        class="cfg-text truncate max-w-[250px] md:max-w-[600px]"
-                        dir="ltr"
-                        title="${esc(config)}">
-
-                        ${esc(display)}
-
-                    </div>
-
-                </div>
-
-                <button
-                    onclick="event.stopPropagation();copyCfgIndex(${index})"
-                    class="
-                        w-9 h-9
-                        shrink-0
-                        rounded-xl
-                        bg-white/5
-                        hover:bg-[#ffd21f]/10
-                        hover:text-[#ffd21f]
-                        flex
-                        items-center
-                        justify-center
-                        text-zinc-500
-                        transition">
-
-                    <span class="material-symbols-outlined text-[17px]">
-                        content_copy
-                    </span>
-
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
-
-    /* =================================================
-       SECTION
-    ================================================= */
-
-    function cfgSection(label,count){
-
-        return `
-
-        <div class="flex items-center gap-2 px-3 py-2 my-1">
-
-            <span class="material-symbols-outlined gold text-[16px]">
-                bolt
-            </span>
-
-            <span class="text-[10px] text-zinc-500 font-bold">
-
-                ${esc(label)}
-
-                ${
-                    count
-                    ? " — " + count
-                    : ""
-                }
-
-            </span>
-
-        </div>
-
-        `;
-
-    }
-
-
-    /* =================================================
-       STATUS
-    ================================================= */
-
-    function buildStatusBlock(){
-
-        const d =
-            state.data || {};
-
-        const days =
-            d.expire_days == null
-            ? "∞"
-            : d.expire_days;
-
-        const used =
-            Number(
-                d.traffic_used_bytes || 0
-            );
-
-        const limit =
-            Number(
-                d.traffic_limit_bytes || 0
-            );
-
-        let percent = 0;
-
-        if(
-            d.traffic_percent != null
-        ){
-
-            percent =
-                Number(
-                    d.traffic_percent
-                );
-
-        }else if(limit > 0){
-
-            percent =
-                Math.min(
-                    100,
-                    used / limit * 100
-                );
-
-        }
-
-        return `
-
-        <div
-            class="cfg"
-            onclick="copyStatus()">
-
-            <div class="flex items-center gap-3">
-
-                <div class="
-                    w-9 h-9
-                    rounded-xl
-                    bg-[#ffd21f]/10
-                    flex
-                    items-center
-                    justify-center">
-
-                    <span class="material-symbols-outlined gold text-[19px]">
-                        schedule
-                    </span>
-
-                </div>
-
-                <div class="flex-1">
-
-                    <div class="text-xs font-bold">
-                        وضعیت اشتراک
-                    </div>
-
-                    <div class="flex flex-wrap gap-2 mt-2">
-
-                        <span class="
-                            px-2 py-1
-                            rounded-full
-                            bg-white/5
-                            text-[9px]
-                            text-zinc-500">
-
-                            ${esc(days)} روز
-
-                        </span>
-
-                        <span class="
-                            px-2 py-1
-                            rounded-full
-                            bg-white/5
-                            text-[9px]
-                            text-zinc-500">
-
-                            ${fmtBytes(used)}
-                            /
-                            ${limit > 0 ? fmtBytes(limit) : "∞"}
-
-                        </span>
-
-                        <span class="
-                            px-2 py-1
-                            rounded-full
-                            bg-[#ffd21f]/10
-                            text-[#ffd21f]
-                            text-[9px]">
-
-                            ${percent.toFixed(1)}%
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        `;
-
-    }
-
-
-    /* =================================================
-       RENDER
-    ================================================= */
-
-    function render(data){
-
-        const d =
-            data || {};
-
-        const used =
-            Number(
-                d.traffic_used_bytes || 0
-            );
-
-        const limit =
-            Number(
-                d.traffic_limit_bytes || 0
-            );
-
-        let percent = 0;
-
-        if(
-            d.traffic_percent != null
-        ){
-
-            percent =
-                Number(
-                    d.traffic_percent
-                );
-
-        }else if(limit > 0){
-
-            percent =
-                Math.min(
-                    100,
-                    used / limit * 100
-                );
-
-        }
-
-
-        const days =
-            d.expire_days == null
-            ? null
-            : Number(d.expire_days);
-
-
-        const active =
-            d.is_active !== false &&
-            (
-                !d.status ||
-                String(d.status).toLowerCase()
-                === "active"
-            );
-
-
-        /*
-         * CONFIGS
-         */
-
-        let configs = [];
-
-
-        if(
-            Array.isArray(d.configs)
-        ){
-
-            configs =
-                d.configs.filter(function(c){
-
-                    return (
-                        c &&
-                        typeof c === "string" &&
-                        !c.includes("%F0%9F%93%8A")
-                    );
-
-                });
-
-        }
-
-
-        if(
-            Array.isArray(d.worker_configs) &&
-            d.worker_configs.length
-        ){
-
-            configs =
-                d.worker_configs.filter(Boolean);
-
-        }
-
-
-        if(
-            !configs.length &&
-            d.config
-        ){
-
-            configs = [
-                d.config
-            ];
-
-        }
-
-
-        if(
-            !configs.length &&
-            d.vless_link
-        ){
-
-            configs = [
-                d.vless_link
-            ];
-
-        }
-
-
-        window.__cfgs =
-            configs;
-
-        window.__cfg =
-            configs[0] || "";
-
-
-        /*
-         * STATUS CONFIG
-         */
-
-        let statusConfig = "";
-
-        if(configs[0]){
-
-            const statusText =
-                String(
-                    d.username ||
-                    user.original ||
-                    user.api
-                ) +
-                " STATUS | " +
-                (
-                    days == null
-                    ? "∞"
-                    : days
-                ) +
-                "d | " +
-                Math.round(percent) +
-                "%";
-
-
-            statusConfig =
-                configs[0]
-                    .replace(
-                        /#[^#]*$/,
-                        ""
-                    ) +
-                "#" +
-                encodeURIComponent(
-                    statusText
-                );
-
-        }
-
-
-        window.__statuscfg =
-            statusConfig;
-
-
-        /*
-         * SUB URL
-         *
-         * اگر API لینک ساب اختصاصی داد
-         * همان استفاده می‌شود.
-         */
-
-        if(d.subscription_url){
-
-            subUrl =
-                d.subscription_url;
-
-        }else if(d.sub_url){
-
-            subUrl =
-                d.sub_url;
-
-        }else if(d.config_uuid){
-
-            subUrl =
-                window.location.origin +
-                "/sub/" +
-                encodeURIComponent(
-                    d.config_uuid
-                );
-
-        }else{
-
-            /*
-             * fallback
-             */
-
-            subUrl =
-                window.location.origin +
-                "/sub/" +
-                encodeURIComponent(
-                    user.original
-                );
-
-        }
-
-
-        /*
-         * LEFT
-         */
-
-        const left = `
-
-        <div class="flex flex-col gap-5">
-
-            <div class="
-                glass
-                rounded-3xl
-                p-7 md:p-9
-                text-center
-                rise rise1
-                relative
-                overflow-hidden">
+            <div class="glass rounded-3xl p-7 md:p-9 text-center rise rise1 relative overflow-hidden">
 
                 <div
                     class="absolute inset-0 pointer-events-none"
@@ -1676,45 +508,36 @@ function toggleMusic(){
 
                 <div class="relative">
 
-                    <div class="flex justify-center mb-2">
+                    <div class="w-20 h-20 mx-auto mb-5 rounded-3xl glass flex items-center justify-center"
+                         style="border-color:rgba(255,210,31,.3)">
 
-                        <span class="
-                            text-[10px]
-                            tracking-[.25em]
-                            text-zinc-600
-                            uppercase">
-
-                            SEP NET
-
+                        <span
+                            class="material-symbols-outlined gold text-[40px]"
+                            style="font-variation-settings:'FILL' 1;">
+                            person
                         </span>
 
                     </div>
 
-                    <h2 class="text-xl font-bold mb-6">
-                        زمان <span class="gold">باقیمانده</span>
-                    </h2>
+                    <h1 class="text-2xl font-black tracking-tight break-all">
+                        __USER_NAME__
+                    </h1>
 
-                    ${ring(days,30)}
+                    <p
+                        class="text-xs font-mono text-zinc-600 mt-2 break-all"
+                        dir="ltr">
 
-                    <div class="
-                        mt-5
-                        flex
-                        justify-center
-                        items-center
-                        gap-2">
+                        __USER_ID__
 
-                        <div class="
-                            status-dot
-                            ${active ? "" : "offline"}">
-                        </div>
+                    </p>
 
-                        <span class="text-xs text-zinc-500">
+                    <div class="mt-5">
 
-                            ${
-                                active
-                                ? "اشتراک فعال"
-                                : "اشتراک غیرفعال"
-                            }
+                        <span
+                            id="status-badge"
+                            class="inline-flex items-center justify-center px-5 py-2 rounded-xl text-xs font-bold uppercase tracking-wider bg-[#ffd21f]/10 text-[#ffd21f] border border-[#ffd21f]/10">
+
+                            __STATUS_CODE__
 
                         </span>
 
@@ -1725,121 +548,145 @@ function toggleMusic(){
             </div>
 
 
-            <div class="
-                glass
-                rounded-3xl
-                p-6
-                rise rise2">
+            <!-- EXPIRY -->
 
-                <div class="
-                    flex
-                    justify-between
-                    items-end
-                    mb-3">
+            <div class="glass rounded-3xl p-6 rise rise2">
+
+                <div class="flex items-center gap-3 mb-5">
+
+                    <div class="w-10 h-10 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
+
+                        <span class="material-symbols-outlined gold">
+                            calendar_month
+                        </span>
+
+                    </div>
+
+                    <div>
+
+                        <div class="text-[10px] text-zinc-600 uppercase tracking-widest">
+                            Subscription
+                        </div>
+
+                        <div class="text-sm font-bold">
+                            تاریخ انقضا
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="text-2xl font-black gold-glow"
+                    dir="ltr">
+
+                    __EXPIRY_DATE__
+
+                </div>
+
+                <div class="text-[10px] text-zinc-600 mt-2">
+                    تاریخ انقضای اشتراک
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL TRAFFIC -->
+
+            <div class="glass rounded-3xl p-6 rise rise3">
+
+                <div class="flex items-center justify-between mb-4">
 
                     <span class="text-xs text-zinc-500">
                         ترافیک مصرفی
                     </span>
 
+                    <span class="material-symbols-outlined gold text-[18px]">
+                        data_usage
+                    </span>
+
+                </div>
+
+                <div class="flex items-end justify-between gap-3">
+
                     <div dir="ltr">
 
-                        <span class="text-lg font-bold">
-                            ${fmtBytes(used)}
+                        <span class="text-2xl font-black">
+                            __TOTAL_GB__
                         </span>
 
                         <span class="text-xs text-zinc-600">
-                            /
-                            ${limit > 0 ? fmtBytes(limit) : "∞"}
+                            GB
                         </span>
 
                     </div>
 
-                </div>
-
-
-                <div class="
-                    h-2
-                    rounded-full
-                    bg-white/5
-                    overflow-hidden">
-
                     <div
-                        class="h-full rounded-full"
-                        style="
-                            width:${Math.min(100,Math.max(0,percent)).toFixed(1)}%;
-                            background:
-                            linear-gradient(
-                                90deg,
-                                #ffb800,
-                                #ffd21f,
-                                #fff06a
-                            );
-                            box-shadow:
-                            0 0 10px
-                            rgba(255,210,31,.35);
-                        ">
+                        class="text-xs text-zinc-600"
+                        dir="ltr">
+
+                        /
+                        __LIMIT_TOTAL_GB__
+                        GB
+
                     </div>
 
                 </div>
 
+                <div class="mt-5">
 
-                <div class="
-                    flex
-                    justify-between
-                    mt-5
-                    pt-5
-                    border-t
-                    border-white/5">
+                    __TOTAL_PROGRESS__
+
+                </div>
+
+            </div>
+
+
+            <!-- DAILY TRAFFIC -->
+
+            <div class="glass rounded-3xl p-6 rise rise4">
+
+                <div class="flex items-center justify-between mb-4">
 
                     <span class="text-xs text-zinc-500">
-                        پروتکل
+                        مصرف روزانه
                     </span>
 
-                    <span
-                        class="font-mono text-xs gold"
-                        dir="ltr">
-
-                        ${esc(
-                            String(
-                                d.protocol ||
-                                "VLESS"
-                            ).toUpperCase()
-                        )}
-
+                    <span class="material-symbols-outlined gold text-[18px]">
+                        today
                     </span>
 
                 </div>
 
+                <div class="flex items-end justify-between gap-3">
 
-                <div class="
-                    flex
-                    justify-between
-                    mt-5
-                    pt-5
-                    border-t
-                    border-white/5">
+                    <div dir="ltr">
 
-                    <span class="text-xs text-zinc-500">
-                        تعداد دستگاه
-                    </span>
+                        <span class="text-2xl font-black">
+                            __DAILY_GB__
+                        </span>
 
-                    <span
-                        class="font-mono text-xs"
+                        <span class="text-xs text-zinc-600">
+                            GB
+                        </span>
+
+                    </div>
+
+                    <div
+                        class="text-xs text-zinc-600"
                         dir="ltr">
 
-                        ${
-                            d.used_ips != null
-                            ? esc(d.used_ips) +
-                              " / " +
-                              (
-                                  d.max_ip_per_user != null
-                                  ? esc(d.max_ip_per_user)
-                                  : "∞"
-                              )
-                            : "∞"
-                        }
+                        /
+                        __LIMIT_DAILY_GB__
+                        GB
 
-                    </span>
+                    </div>
+
+                </div>
+
+                <div class="mt-5">
+
+                    __DAILY_PROGRESS__
 
                 </div>
 
@@ -1847,765 +694,655 @@ function toggleMusic(){
 
         </div>
 
-        `;
 
+        <!-- RIGHT -->
 
-        /*
-         * RIGHT CONFIGS
-         */
+        <div class="md:col-span-8">
 
-        let configHTML = "";
+            <div class="glass rounded-3xl p-6 md:p-8 h-full rise rise2">
 
-        configHTML +=
-            buildStatusBlock();
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-7">
 
+                    <div>
 
-        configs.forEach(function(config,index){
+                        <div class="text-[10px] text-zinc-600 tracking-[.2em] uppercase mb-1">
+                            Connection
+                        </div>
 
-            configHTML +=
-                cfgBlock(
-                    config,
-                    index,
-                    d
-                );
-
-        });
-
-
-        /*
-         * CUSTOM SECTIONS
-         *
-         * فقط در صورت وجود واقعی
-         */
-
-        if(
-            Array.isArray(d.custom_railway_configs) &&
-            d.custom_railway_configs.length
-        ){
-
-            configHTML +=
-                cfgSection(
-                    "Railway IPs",
-                    d.custom_railway_configs.length
-                );
-
-        }
-
-
-        if(
-            Array.isArray(d.custom_cf_configs) &&
-            d.custom_cf_configs.length
-        ){
-
-            configHTML +=
-                cfgSection(
-                    "Cloudflare IPs",
-                    d.custom_cf_configs.length
-                );
-
-        }
-
-
-        if(
-            Array.isArray(d.sni_spoof_configs) &&
-            d.sni_spoof_configs.length
-        ){
-
-            configHTML +=
-                cfgSection(
-                    "SNI Spoof for v2box",
-                    d.sni_spoof_configs.length
-                );
-
-        }
-
-
-        /*
-         * RIGHT
-         */
-
-        const right = `
-
-        <div class="
-            glass
-            rounded-3xl
-            p-6 md:p-8
-            h-full
-            rise rise3">
-
-            <div class="
-                flex
-                flex-col
-                sm:flex-row
-                sm:items-center
-                justify-between
-                gap-4
-                mb-6">
-
-                <div>
-
-                    <div class="
-                        text-[10px]
-                        text-zinc-600
-                        tracking-[.2em]
-                        uppercase
-                        mb-1">
-
-                        Connection
+                        <h2 class="text-xl font-bold">
+                            لینک‌های <span class="gold">اشتراک</span>
+                        </h2>
 
                     </div>
 
-                    <h2 class="text-xl font-bold">
+                    <div class="flex items-center gap-2">
 
-                        کانفیگ‌های
-                        <span class="gold">
-                            اشتراک
+                        <span class="status-dot"></span>
+
+                        <span class="text-xs text-zinc-500">
+                            SEP NET Secure
                         </span>
 
-                    </h2>
+                    </div>
 
                 </div>
 
 
-                <div class="flex gap-2">
+                <!-- NORMAL -->
 
-                    ${
-                        configs.length
-                        ? `
+                <div class="cfg mb-4">
 
-                        <button
-                            onclick="showQr()"
-                            class="
-                                flex
-                                items-center
-                                gap-2
-                                px-4
-                                py-2.5
-                                rounded-xl
-                                border
-                                border-white/10
-                                hover:border-[#ffd21f]/30
-                                hover:text-[#ffd21f]
-                                text-xs
-                                text-zinc-400
-                                transition">
+                    <div class="flex items-center justify-between gap-3 mb-3">
 
-                            <span class="material-symbols-outlined text-[17px]">
-                                qr_code_2
-                            </span>
+                        <div class="flex items-center gap-2">
 
-                            QR
+                            <div class="w-9 h-9 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
 
-                        </button>
+                                <span class="material-symbols-outlined gold text-[18px]">
+                                    link
+                                </span>
 
-                        `
-                        : ""
-                    }
+                            </div>
 
+                            <div>
 
-                    ${
-                        configs.length
-                        ? `
+                                <div class="text-xs font-bold">
+                                    لینک اصلی اشتراک
+                                </div>
+
+                                <div class="text-[9px] text-zinc-600">
+                                    Normal Subscription
+                                </div>
+
+                            </div>
+
+                        </div>
 
                         <button
-                            onclick="copyCfg()"
-                            class="
-                                flex
-                                items-center
-                                gap-2
-                                px-4
-                                py-2.5
-                                rounded-xl
-                                gold-button
-                                text-xs">
+                            onclick="copyLink('normal')"
+                            class="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#ffd21f]/10 hover:text-[#ffd21f] flex items-center justify-center text-zinc-500">
 
                             <span class="material-symbols-outlined text-[17px]">
                                 content_copy
                             </span>
 
-                            کپی همه
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="normalLink"
+                        class="cfg-text bg-black/20 rounded-xl p-3"
+                        dir="ltr">
+
+                        __SYNC_NORMAL__
+
+                    </div>
+
+                </div>
+
+
+                <!-- RAW -->
+
+                <div class="cfg mb-6">
+
+                    <div class="flex items-center justify-between gap-3 mb-3">
+
+                        <div class="flex items-center gap-2">
+
+                            <div class="w-9 h-9 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
+
+                                <span class="material-symbols-outlined gold text-[18px]">
+                                    code
+                                </span>
+
+                            </div>
+
+                            <div>
+
+                                <div class="text-xs font-bold">
+                                    لینک Raw
+                                </div>
+
+                                <div class="text-[9px] text-zinc-600">
+                                    Raw Subscription
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            onclick="copyLink('raw')"
+                            class="w-9 h-9 rounded-xl bg-white/5 hover:bg-[#ffd21f]/10 hover:text-[#ffd21f] flex items-center justify-center text-zinc-500">
+
+                            <span class="material-symbols-outlined text-[17px]">
+                                content_copy
+                            </span>
 
                         </button>
 
-                        `
-                        : ""
-                    }
+                    </div>
+
+                    <div
+                        id="rawLink"
+                        class="cfg-text bg-black/20 rounded-xl p-3"
+                        dir="ltr">
+
+                        __SYNC_RAW__
+
+                    </div>
 
                 </div>
 
-            </div>
 
+                <!-- ACTIONS -->
 
-            <div class="
-                flex
-                flex-col
-                gap-3
-                max-h-[650px]
-                overflow-y-auto
-                pr-1">
-
-                ${configHTML}
-
-            </div>
-
-
-            ${
-                configs.length
-                ? `
-
-                <div class="
-                    flex
-                    flex-wrap
-                    gap-2
-                    mt-5
-                    pt-5
-                    border-t
-                    border-white/5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
 
                     <button
-                        onclick="copySub()"
-                        class="
-                            flex-1
-                            min-w-[160px]
-                            flex
-                            items-center
-                            justify-center
-                            gap-2
-                            px-4
-                            py-3
-                            rounded-xl
-                            border
-                            border-white/10
-                            hover:border-[#ffd21f]/30
-                            hover:text-[#ffd21f]
-                            text-xs
-                            text-zinc-400
-                            transition">
+                        onclick="copyLink('normal')"
+                        class="gold-button rounded-xl px-5 py-3 flex items-center justify-center gap-2 text-xs">
 
                         <span class="material-symbols-outlined text-[17px]">
-                            link
+                            content_copy
                         </span>
 
-                        کپی لینک ساب
+                        کپی لینک اشتراک
 
                     </button>
 
-
                     <button
-                        onclick="importSub()"
-                        class="
-                            flex-1
-                            min-w-[160px]
-                            flex
-                            items-center
-                            justify-center
-                            gap-2
-                            px-4
-                            py-3
-                            rounded-xl
-                            gold-button
-                            text-xs">
+                        onclick="openSubscription()"
+                        class="rounded-xl px-5 py-3 flex items-center justify-center gap-2 text-xs border border-white/10 hover:border-[#ffd21f]/30 hover:text-[#ffd21f] text-zinc-400 transition">
 
                         <span class="material-symbols-outlined text-[17px]">
-                            download
+                            open_in_new
                         </span>
 
-                        وارد کردن اشتراک
+                        باز کردن اشتراک
 
                     </button>
 
                 </div>
 
-                `
-                : ""
-            }
+
+                <!-- INFO -->
+
+                <div class="mt-6 pt-6 border-t border-white/5">
+
+                    <div class="grid grid-cols-2 gap-3">
+
+                        <div class="rounded-2xl bg-white/[.025] border border-white/5 p-4">
+
+                            <div class="text-[10px] text-zinc-600 mb-2">
+                                مصرف کل
+                            </div>
+
+                            <div
+                                class="text-sm font-bold"
+                                dir="ltr">
+
+                                __TOTAL_PERCENT__%
+
+                            </div>
+
+                        </div>
+
+                        <div class="rounded-2xl bg-white/[.025] border border-white/5 p-4">
+
+                            <div class="text-[10px] text-zinc-600 mb-2">
+                                مصرف روزانه
+                            </div>
+
+                            <div
+                                class="text-sm font-bold"
+                                dir="ltr">
+
+                                __DAILY_PERCENT__%
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUPPORT -->
+
+                <div class="mt-5 rounded-2xl border border-[#ffd21f]/10 bg-[#ffd21f]/[.025] p-5">
+
+                    <div class="flex items-center gap-3">
+
+                        <div class="w-10 h-10 rounded-xl bg-[#ffd21f]/10 flex items-center justify-center">
+
+                            <span class="material-symbols-outlined gold">
+                                support_agent
+                            </span>
+
+                        </div>
+
+                        <div class="flex-1">
+
+                            <div class="text-sm font-bold">
+                                نیاز به پشتیبانی دارید؟
+                            </div>
+
+                            <div class="text-[10px] text-zinc-600 mt-1">
+                                برای دریافت راهنمایی با پشتیبانی SEP NET در ارتباط باشید.
+                            </div>
+
+                        </div>
+
+                        <a
+                            href="https://t.me/sepnet_conf"
+                            target="_blank"
+                            class="gold-button rounded-xl px-4 py-2 text-xs">
+
+                            پشتیبانی
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-        `;
+    </div>
+
+</div>
 
 
-        document.getElementById(
-            "app"
-        ).innerHTML = `
+<footer class="mt-8 py-5 border-t border-white/5 text-center">
 
-        <div class="
-            grid
-            grid-cols-1
-            md:grid-cols-12
-            gap-5">
+    <span class="text-xs text-zinc-600">
+        © 2026 SEP NET
+    </span>
 
-            <div class="md:col-span-4">
-                ${left}
-            </div>
+    <span class="text-xs gold">
+        • Secure Subscription
+    </span>
 
-            <div class="md:col-span-8">
-                ${right}
-            </div>
+</footer>
 
-        </div>
+</main>
 
-        `;
+
+<!-- MUSIC -->
+
+<button
+    id="musicBtn"
+    class="music-btn"
+    onclick="toggleMusic()"
+    aria-label="Music">
+
+    <span
+        id="musicIcon"
+        class="material-symbols-outlined">
+        music_off
+    </span>
+
+</button>
+
+
+<!-- TOAST -->
+
+<div id="toast"></div>
+
+
+<script>
+
+/* LANGUAGE */
+
+function toggleLanguage(){
+
+    const html=document.documentElement;
+
+    if(html.lang==="fa"){
+
+        html.lang="en";
+        html.dir="ltr";
+
+    }else{
+
+        html.lang="fa";
+        html.dir="rtl";
 
     }
 
-
-    /* =================================================
-       ERROR
-    ================================================= */
-
-    function renderError(message){
-
-        document.getElementById(
-            "app"
-        ).innerHTML = `
-
-        <div class="
-            glass
-            rounded-3xl
-            p-10 md:p-12
-            text-center">
-
-            <div class="
-                w-16
-                h-16
-                rounded-2xl
-                mx-auto
-                bg-red-500/5
-                flex
-                items-center
-                justify-center">
-
-                <span class="
-                    material-symbols-outlined
-                    text-red-400
-                    text-[35px]">
-
-                    error
-
-                </span>
-
-            </div>
+}
 
 
-            <h2 class="mt-5 text-xl font-bold">
-                اشتراک پیدا نشد
-            </h2>
+/* DARK */
+
+function toggleDarkMode(){
+
+    document.documentElement.classList.toggle("dark");
+
+}
 
 
-            <p class="
-                mt-2
-                text-sm
-                text-zinc-600">
+/* TOAST */
 
-                ${esc(message)}
+function toast(message){
 
-            </p>
+    const el=document.getElementById("toast");
 
+    if(!el)return;
 
-            <div class="
-                mt-6
-                text-[10px]
-                text-zinc-700
-                font-mono
-                break-all"
-                dir="ltr">
+    el.textContent=message;
 
-                ${esc(apiUrl)}
+    el.classList.add("show");
 
-            </div>
+    setTimeout(function(){
+
+        el.classList.remove("show");
+
+    },2200);
+
+}
 
 
-            <button
-                onclick="location.reload()"
-                class="
-                    mt-6
-                    px-5
-                    py-2.5
-                    rounded-xl
-                    gold-button
-                    text-xs">
+/* COPY */
 
-                تلاش مجدد
+function copyText(text){
 
-            </button>
+    if(!text)return;
 
-        </div>
+    if(navigator.clipboard){
 
-        `;
+        navigator.clipboard.writeText(text)
+        .then(function(){
+
+            toast("کپی شد ✓");
+
+        })
+        .catch(function(){
+
+            fallbackCopy(text);
+
+        });
+
+    }else{
+
+        fallbackCopy(text);
 
     }
 
-
-    /* =================================================
-       LOAD
-    ================================================= */
-
-    async function load(){
-
-        try{
-
-            /*
-             * username خالی
-             */
-
-            if(!user.api){
-
-                throw new Error(
-                    "Username is empty"
-                );
-
-            }
+}
 
 
-            console.log(
-                "Subscription username:",
-                user.api
-            );
+function fallbackCopy(text){
 
-            console.log(
-                "API:",
-                apiUrl
-            );
+    const ta=document.createElement("textarea");
 
+    ta.value=text;
 
-            const response =
-                await fetch(
-                    apiUrl,
-                    {
-                        method:"GET",
-                        headers:{
-                            "Accept":
-                                "application/json"
-                        },
-                        cache:"no-store"
-                    }
-                );
+    ta.style.position="fixed";
+    ta.style.opacity="0";
 
+    document.body.appendChild(ta);
 
-            if(!response.ok){
+    ta.select();
 
-                if(response.status === 404){
+    try{
 
-                    throw new Error(
-                        "User not found"
-                    );
+        document.execCommand("copy");
 
-                }
+        toast("کپی شد ✓");
 
-                if(response.status === 403){
+    }catch(e){
 
-                    throw new Error(
-                        "Access denied"
-                    );
+        toast("خطا در کپی");
 
-                }
+    }
 
-                throw new Error(
-                    "Server error (" +
-                    response.status +
-                    ")"
-                );
+    document.body.removeChild(ta);
 
-            }
+}
 
 
-            const contentType =
-                response.headers
-                    .get("content-type") ||
-                "";
+/* LINKS */
+
+function copyLink(type){
+
+    let value="";
+
+    if(type==="raw"){
+
+        value="__SYNC_RAW__";
+
+    }else{
+
+        value="__SYNC_NORMAL__";
+
+    }
+
+    copyText(value);
+
+}
 
 
-            if(
-                !contentType.includes(
-                    "application/json"
-                )
-            ){
+/* OPEN SUB */
 
-                throw new Error(
-                    "API did not return JSON"
-                );
+function openSubscription(){
 
-            }
+    const url="__SYNC_NORMAL__";
 
+    if(url && url.indexOf("__SYNC_NORMAL__")===-1){
 
-            const data =
-                await response.json();
+        window.open(url,"_blank");
 
+    }else{
 
-            if(
-                !data ||
-                typeof data !== "object"
-            ){
+        toast("لینک اشتراک موجود نیست");
 
-                throw new Error(
-                    "Invalid API response"
-                );
+    }
 
-            }
+}
 
 
-            state.data =
-                data;
+/* STATUS */
 
+(function(){
 
-            document.title =
-                "SEP NET | " +
-                (
-                    data.username ||
-                    user.original ||
-                    user.api
-                );
+    const badge=document.getElementById("status-badge");
 
+    if(!badge)return;
 
-            render(data);
+    const status="__STATUS_CODE__".toLowerCase();
 
+    const states={
 
-        }catch(error){
+        active:{
+            text:"اشتراک فعال",
+            color:"#ffd21f"
+        },
 
-            console.error(
-                "Subscription error:",
-                error
-            );
+        paused:{
+            text:"اشتراک متوقف",
+            color:"#f59e0b"
+        },
 
-            renderError(
-                error.message ||
-                "Unknown error"
-            );
+        expired:{
+            text:"اشتراک منقضی شده",
+            color:"#ef4444"
+        },
 
+        limit:{
+            text:"حجم اشتراک تمام شده",
+            color:"#ef4444"
+        },
+
+        dailyLimit:{
+            text:"محدودیت روزانه",
+            color:"#f59e0b"
         }
 
-    }
+    };
 
+    const s=states[status] || states.active;
 
-    /* =================================================
-       GLOBAL ACTIONS
-    ================================================= */
+    badge.textContent=s.text;
 
-    window.copyCfg =
-        function(){
+    badge.style.color=s.color;
 
-            const list = [];
+    badge.style.borderColor=s.color+"33";
 
-            if(window.__statuscfg){
-
-                list.push(
-                    window.__statuscfg
-                );
-
-            }
-
-            (
-                window.__cfgs || []
-            ).forEach(function(config){
-
-                if(config)
-                    list.push(config);
-
-            });
-
-
-            copyText(
-                list.join("\n")
-            );
-
-        };
-
-
-    window.copyCfgIndex =
-        function(index){
-
-            const config =
-                (
-                    window.__cfgs || []
-                )[index];
-
-            if(config)
-                copyText(config);
-
-        };
-
-
-    window.copyStatus =
-        function(){
-
-            if(window.__statuscfg)
-                copyText(
-                    window.__statuscfg
-                );
-
-        };
-
-
-    window.copySub =
-        function(){
-
-            if(subUrl){
-
-                copyText(
-                    subUrl
-                );
-
-            }else{
-
-                toast(
-                    "لینک اشتراک موجود نیست"
-                );
-
-            }
-
-        };
-
-
-    window.importSub =
-        function(){
-
-            if(!subUrl){
-
-                toast(
-                    "لینک اشتراک موجود نیست"
-                );
-
-                return;
-
-            }
-
-
-            const v2rayUrl =
-                "v2rayng://install-sub?url=" +
-                encodeURIComponent(
-                    subUrl
-                );
-
-
-            window.location.href =
-                v2rayUrl;
-
-        };
-
-
-    window.showQr =
-        function(){
-
-            const modal =
-                document.getElementById(
-                    "qrModal"
-                );
-
-            const img =
-                document.getElementById(
-                    "qrImg"
-                );
-
-
-            if(!modal || !img)
-                return;
-
-
-            /*
-             * اگر API مخصوص QR دارد
-             */
-
-            img.src =
-                "/api/sub/" +
-                encodeURIComponent(
-                    user.api
-                ) +
-                "/qr?t=" +
-                Date.now();
-
-
-            img.onerror =
-                function(){
-
-                    /*
-                     * fallback به QR عمومی
-                     */
-
-                    img.onerror = null;
-
-                    img.src =
-                        "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
-                        encodeURIComponent(
-                            subUrl ||
-                            window.__cfg ||
-                            ""
-                        );
-
-                };
-
-
-            modal.classList.add(
-                "show"
-            );
-
-        };
-
-
-    window.closeQr =
-        function(){
-
-            const modal =
-                document.getElementById(
-                    "qrModal"
-                );
-
-            if(modal){
-
-                modal.classList.remove(
-                    "show"
-                );
-
-            }
-
-        };
-
-
-    /*
-     * بستن QR با کلیک بیرون
-     */
-
-    document
-        .getElementById("qrModal")
-        .addEventListener(
-            "click",
-            function(e){
-
-                if(
-                    e.target === this
-                ){
-
-                    closeQr();
-
-                }
-
-            }
-        );
-
-
-    /*
-     * ESC
-     */
-
-    document.addEventListener(
-        "keydown",
-        function(e){
-
-            if(e.key === "Escape")
-                closeQr();
-
-        }
-    );
-
-
-    load();
+    badge.style.background=s.color+"12";
 
 })();
 
 
-/* =====================================================
-   START MUSIC AFTER USER INTERACTION
-===================================================== */
+/* MUSIC */
+
+let audioCtx=null;
+let masterGain=null;
+let musicTimer=null;
+let musicPlaying=false;
+let noteIndex=0;
+
+const notes=[
+    220.00,
+    261.63,
+    329.63,
+    392.00,
+    329.63,
+    293.66
+];
+
+
+function startMusic(){
+
+    if(musicPlaying)return;
+
+    const AudioContext=
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+    if(!AudioContext)return;
+
+    audioCtx=new AudioContext();
+
+    masterGain=audioCtx.createGain();
+
+    masterGain.gain.value=.035;
+
+    masterGain.connect(audioCtx.destination);
+
+    musicPlaying=true;
+
+    document
+        .getElementById("musicBtn")
+        .classList.add("playing");
+
+    document
+        .getElementById("musicIcon")
+        .textContent="music_note";
+
+    playNote();
+
+}
+
+
+function playNote(){
+
+    if(!musicPlaying || !audioCtx)return;
+
+    const now=audioCtx.currentTime;
+
+    const osc=audioCtx.createOscillator();
+
+    const gain=audioCtx.createGain();
+
+    osc.type="sine";
+
+    osc.frequency.value=notes[noteIndex];
+
+    gain.gain.setValueAtTime(0,now);
+
+    gain.gain.linearRampToValueAtTime(
+        .18,
+        now+.8
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        now+3.8
+    );
+
+    osc.connect(gain);
+
+    gain.connect(masterGain);
+
+    osc.start(now);
+
+    osc.stop(now+4);
+
+    noteIndex++;
+
+    if(noteIndex>=notes.length)
+        noteIndex=0;
+
+    musicTimer=setTimeout(
+        playNote,
+        2500
+    );
+
+}
+
+
+function stopMusic(){
+
+    musicPlaying=false;
+
+    clearTimeout(musicTimer);
+
+    if(masterGain && audioCtx){
+
+        try{
+
+            masterGain.gain.exponentialRampToValueAtTime(
+                .001,
+                audioCtx.currentTime+.5
+            );
+
+        }catch(e){}
+
+    }
+
+    document
+        .getElementById("musicBtn")
+        .classList.remove("playing");
+
+    document
+        .getElementById("musicIcon")
+        .textContent="music_off";
+
+}
+
+
+function toggleMusic(){
+
+    if(musicPlaying){
+
+        stopMusic();
+
+    }else{
+
+        startMusic();
+
+    }
+
+}
+
+
+/* START MUSIC AFTER USER INTERACTION */
 
 document.addEventListener(
     "click",
@@ -2615,8 +1352,25 @@ document.addEventListener(
             startMusic();
 
     },
-    {
-        once:true
+    {once:true}
+);
+
+
+/* KEYBOARD */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(e.key==="Escape"){
+
+            const el=document.getElementById("toast");
+
+            if(el)
+                el.classList.remove("show");
+
+        }
+
     }
 );
 
