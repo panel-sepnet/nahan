@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -10,36 +11,30 @@
 
 <script src="https://cdn.jsdelivr.net/gh/itsyebekhe/nahan@main/tailwindcss.js"></script>
 
-<script>
-tailwind.config = {
-    darkMode: 'class',
-    theme: {
-        extend: {
-            fontFamily: {
-                fa: ['Vazirmatn', 'sans-serif'],
-                en: ['Inter', 'sans-serif']
-            }
-        }
-    }
-}
-</script>
-
 <style>
 
 :root {
+
     --bg:#050505;
-    --bg2:#0a0a0a;
+    --bg2:#090909;
+
+    --card:rgba(18,18,18,.72);
+
     --yellow:#ffd21f;
     --yellow2:#ffb800;
+
     --yellow-soft:rgba(255,210,31,.12);
     --yellow-border:rgba(255,210,31,.25);
-    --green:#22c55e;
-    --red:#ef4444;
-    --orange:#f59e0b;
+
     --text:#fff;
     --text2:#b5b5b5;
     --muted:#707070;
+
     --border:rgba(255,255,255,.08);
+
+    --green:#22c55e;
+    --red:#ef4444;
+    --orange:#f59e0b;
 
     --shadow:
         0 25px 80px rgba(0,0,0,.55),
@@ -55,6 +50,7 @@ html {
 }
 
 body {
+
     margin:0;
     min-height:100vh;
 
@@ -64,16 +60,19 @@ body {
             rgba(255,210,31,.12),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 90% 80%,
             rgba(255,184,0,.08),
             transparent 28%
         ),
+
         radial-gradient(
             circle at 50% 100%,
             rgba(255,210,31,.05),
             transparent 30%
         ),
+
         linear-gradient(
             135deg,
             #030303,
@@ -82,22 +81,41 @@ body {
         );
 
     color:var(--text);
-    font-family:'Vazirmatn','Inter',sans-serif;
+
+    font-family:
+        'Vazirmatn',
+        'Inter',
+        sans-serif;
+
     -webkit-font-smoothing:antialiased;
+
     overflow-x:hidden;
+
+    padding:20px 16px;
 }
 
+
+/* =========================
+   GRID BACKGROUND
+========================= */
+
 body::before {
+
     content:"";
+
     position:fixed;
+
     inset:0;
+
     pointer-events:none;
 
     background-image:
+
         linear-gradient(
             rgba(255,210,31,.035) 1px,
             transparent 1px
         ),
+
         linear-gradient(
             90deg,
             rgba(255,210,31,.035) 1px,
@@ -129,60 +147,97 @@ body::before {
     }
 }
 
+
+/* =========================
+   AMBIENT
+========================= */
+
 .ambient {
+
     position:fixed;
+
     border-radius:50%;
+
     filter:blur(90px);
+
     pointer-events:none;
+
     z-index:-1;
 
     animation:
-        floatOrb 18s ease-in-out infinite alternate;
+        floatOrb
+        18s
+        ease-in-out
+        infinite
+        alternate;
 }
 
 .ambient.one {
+
     width:420px;
     height:420px;
+
     top:-170px;
     left:-100px;
+
     background:#ffd21f;
+
     opacity:.08;
 }
 
 .ambient.two {
+
     width:350px;
     height:350px;
+
     bottom:-150px;
     right:-100px;
+
     background:#ffb800;
+
     opacity:.07;
+
     animation-delay:-5s;
 }
 
 .ambient.three {
+
     width:260px;
     height:260px;
+
     top:45%;
     left:50%;
+
     background:#fff06a;
+
     opacity:.035;
-    animation-delay:-9s;
 }
 
 @keyframes floatOrb {
 
     from {
-        transform:translate(0,0) scale(1);
+        transform:
+            translate(0,0)
+            scale(1);
     }
 
     50% {
-        transform:translate(35px,-30px) scale(1.12);
+        transform:
+            translate(35px,-30px)
+            scale(1.12);
     }
 
     to {
-        transform:translate(-25px,35px) scale(1.05);
+        transform:
+            translate(-25px,35px)
+            scale(1.05);
     }
 }
+
+
+/* =========================
+   SCROLLBAR
+========================= */
 
 ::-webkit-scrollbar {
     width:6px;
@@ -193,11 +248,23 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
+
     background:var(--yellow);
+
     border-radius:20px;
+
+    box-shadow:
+        0 0 10px
+        rgba(255,210,31,.3);
 }
 
+
+/* =========================
+   GLASS
+========================= */
+
 .glass {
+
     background:
         linear-gradient(
             145deg,
@@ -205,40 +272,54 @@ body::before {
             rgba(255,255,255,.018)
         );
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
 
     box-shadow:var(--shadow);
 
     backdrop-filter:blur(22px);
+
     -webkit-backdrop-filter:blur(22px);
 
     transition:
-        transform .35s cubic-bezier(.22,1,.36,1),
+        transform .35s
+            cubic-bezier(.22,1,.36,1),
         border-color .35s ease,
         box-shadow .35s ease;
 }
 
 .glass:hover {
+
     transform:translateY(-3px);
 
     border-color:
         rgba(255,210,31,.22);
 
     box-shadow:
+
         0 20px 60px rgba(0,0,0,.7),
-        0 0 30px rgba(255,210,31,.045);
+
+        0 0 30px
+        rgba(255,210,31,.045);
 }
 
 .card {
+
     border-radius:26px;
+
     position:relative;
+
     overflow:hidden;
 }
 
 .card::before {
+
     content:"";
+
     position:absolute;
+
     inset:0;
+
     pointer-events:none;
 
     background:
@@ -249,32 +330,48 @@ body::before {
         );
 }
 
+
+/* =========================
+   TOPBAR
+========================= */
+
 .topbar {
+
     width:100%;
+
     max-width:1180px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
-    margin-bottom:22px;
+    margin:0 auto 22px;
+
     gap:15px;
 }
 
 .brand {
+
     display:flex;
+
     align-items:center;
+
     gap:12px;
 }
 
 .brand-logo {
+
     width:44px;
     height:44px;
 
     border-radius:14px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     background:
@@ -287,16 +384,40 @@ body::before {
     color:#080808;
 
     font-weight:900;
+
     font-size:14px;
 
     box-shadow:
-        0 0 35px rgba(255,210,31,.25),
-        inset 0 1px rgba(255,255,255,.6);
+        0 0 35px
+        rgba(255,210,31,.25),
+
+        inset 0 1px
+        rgba(255,255,255,.6);
+
+    animation:pulseGold 3s infinite;
+}
+
+@keyframes pulseGold {
+
+    0%,100% {
+        box-shadow:
+            0 0 20px
+            rgba(255,210,31,.15);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px
+            rgba(255,210,31,.28);
+    }
 }
 
 .brand-name {
+
     font-size:18px;
+
     font-weight:900;
+
     letter-spacing:2px;
 }
 
@@ -305,23 +426,47 @@ body::before {
 }
 
 .brand-sub {
+
     font-size:9px;
+
     color:var(--muted);
+
     letter-spacing:2px;
+
     margin-top:2px;
 }
 
+
+/* =========================
+   BUTTONS
+========================= */
+
 .btn {
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:13px;
 
     padding:10px 15px;
 
     font-weight:800;
+
     font-size:11px;
 
     cursor:pointer;
+
     transition:.2s ease;
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
 }
 
 .btn:hover {
@@ -329,17 +474,26 @@ body::before {
 }
 
 .btn-secondary {
-    background:rgba(255,255,255,.045);
+
+    background:
+        rgba(255,255,255,.045);
+
     color:var(--text);
 }
 
 .btn-secondary:hover {
-    border-color:var(--yellow-border);
+
+    border-color:
+        var(--yellow-border);
+
     color:var(--yellow);
-    background:var(--yellow-soft);
+
+    background:
+        var(--yellow-soft);
 }
 
 .btn-primary {
+
     background:
         linear-gradient(
             110deg,
@@ -353,15 +507,20 @@ body::before {
     background-size:250% 100%;
 
     color:#090909;
+
     border:0;
 
     font-weight:900;
 
     box-shadow:
-        0 8px 30px rgba(255,210,31,.18);
+        0 8px 30px
+        rgba(255,210,31,.18);
 
     animation:
-        buttonShimmer 4s linear infinite;
+        buttonShimmer
+        4s
+        linear
+        infinite;
 }
 
 @keyframes buttonShimmer {
@@ -375,12 +534,20 @@ body::before {
     }
 }
 
+
+/* =========================
+   PROFILE
+========================= */
+
 .profile {
+
     text-align:center;
+
     padding:30px 24px;
 }
 
 .profile-logo {
+
     width:82px;
     height:82px;
 
@@ -389,10 +556,13 @@ body::before {
     border-radius:24px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     font-size:20px;
+
     font-weight:900;
 
     color:#050505;
@@ -405,16 +575,21 @@ body::before {
         );
 
     box-shadow:
-        0 0 45px rgba(255,210,31,.25);
+        0 0 45px
+        rgba(255,210,31,.25);
 }
 
 .profile h1 {
+
     margin:0;
+
     font-size:25px;
+
     font-weight:900;
 }
 
 .user-id {
+
     margin-top:6px;
 
     color:var(--muted);
@@ -422,11 +597,17 @@ body::before {
     font-size:10px;
 
     font-family:monospace;
-    direction:ltr;
 }
 
+
+/* =========================
+   STATUS
+========================= */
+
 .status {
+
     margin-top:20px;
+
     width:100%;
 
     padding:11px;
@@ -434,12 +615,14 @@ body::before {
     border-radius:13px;
 
     font-size:10px;
+
     font-weight:900;
 
-    letter-spacing:.5px;
+    letter-spacing:1.5px;
 }
 
 .status-dot {
+
     display:inline-block;
 
     width:9px;
@@ -451,9 +634,12 @@ body::before {
 
     box-shadow:
         0 0 8px var(--yellow),
-        0 0 20px rgba(255,210,31,.55);
+        0 0 20px
+        rgba(255,210,31,.55);
 
     animation:pulse 2s ease-in-out infinite;
+
+    margin-left:6px;
 }
 
 @keyframes pulse {
@@ -461,48 +647,62 @@ body::before {
     0%,100% {
         box-shadow:
             0 0 7px var(--yellow),
-            0 0 15px rgba(255,210,31,.4);
+            0 0 15px
+            rgba(255,210,31,.4);
     }
 
     50% {
         box-shadow:
             0 0 12px var(--yellow),
-            0 0 28px rgba(255,210,31,.65);
+            0 0 28px
+            rgba(255,210,31,.65);
     }
 }
 
+
+/* =========================
+   SECTION
+========================= */
+
 .section-title {
+
     display:flex;
+
     align-items:center;
+
     gap:9px;
 
     font-size:11px;
+
     font-weight:900;
 
     color:var(--text2);
+
+    text-transform:uppercase;
+
+    letter-spacing:1.6px;
 
     margin-bottom:17px;
 }
 
 .section-title svg {
     color:var(--yellow);
-    flex-shrink:0;
 }
 
-.section-title .en {
-    color:#777;
-    font-family:'Inter',sans-serif;
-    font-size:9px;
-    font-weight:700;
-    direction:ltr;
-}
+
+/* =========================
+   INFO
+========================= */
 
 .info {
+
     padding:25px;
 }
 
 .expiry {
+
     font-size:25px;
+
     font-weight:900;
 
     margin-bottom:5px;
@@ -510,207 +710,127 @@ body::before {
     color:var(--yellow);
 
     text-shadow:
-        0 0 7px rgba(255,210,31,.5),
-        0 0 18px rgba(255,184,0,.25);
+        0 0 7px
+        rgba(255,210,31,.5),
+
+        0 0 18px
+        rgba(255,184,0,.25);
 
     direction:ltr;
+
     text-align:right;
-}
-
-.expiry-sub {
-    color:var(--muted);
-    font-size:10px;
-}
-
-.remaining-box {
-    margin-top:18px;
-
-    padding:15px;
-
-    border-radius:17px;
-
-    background:
-        rgba(255,210,31,.045);
-
-    border:
-        1px solid
-        rgba(255,210,31,.14);
-}
-
-.remaining-title {
-    color:var(--text2);
-    font-size:10px;
-    font-weight:800;
-    margin-bottom:7px;
-}
-
-.remaining-title .en {
-    color:#666;
-    font-family:Inter,sans-serif;
-    font-size:8px;
-}
-
-.remaining-number {
-    font-size:28px;
-    font-weight:900;
-    color:var(--yellow);
-    direction:ltr;
-}
-
-.remaining-number .unit {
-    font-size:11px;
-    color:var(--text2);
-}
-
-.divider {
-    height:1px;
-    background:var(--border);
-    margin:22px 0;
-}
-
-.ip-row {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:10px;
-}
-
-.ip {
-    color:var(--yellow);
-    font-family:monospace;
-    font-size:11px;
-    font-weight:800;
-    direction:ltr;
-}
-
-.secondary {
-    color:var(--text2);
 }
 
 .muted {
     color:var(--muted);
 }
 
+.secondary {
+    color:var(--text2);
+}
+
+.divider {
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:22px 0;
+}
+
+.ip-row {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.ip {
+
+    color:var(--yellow);
+
+    font-family:monospace;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    direction:ltr;
+}
+
+
+/* =========================
+   SUPPORT
+========================= */
+
 .support {
+
     padding:24px;
 
     background:
+
         radial-gradient(
             circle at 100% 0%,
             rgba(255,210,31,.12),
             transparent 50%
         ),
+
         rgba(255,255,255,.025);
 }
 
 .support p {
+
     font-size:11px;
+
     line-height:1.9;
+
     color:var(--text2);
 }
 
 .support-btn {
+
     width:100%;
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:8px;
-
-    text-decoration:none;
-
-    margin-top:16px;
+    margin-top:10px;
 
     padding:12px;
-
-    border-radius:13px;
 }
 
-.social-links {
-    margin-top:20px;
 
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,minmax(0,1fr));
-
-    gap:8px;
-}
-
-.social-link {
-    text-decoration:none;
-
-    color:var(--text);
-
-    padding:12px 7px;
-
-    border-radius:13px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid var(--border);
-
-    text-align:center;
-
-    transition:.2s;
-}
-
-.social-link:hover {
-    color:var(--yellow);
-
-    border-color:
-        var(--yellow-border);
-
-    background:
-        var(--yellow-soft);
-
-    transform:translateY(-2px);
-}
-
-.social-fa {
-    display:block;
-
-    font-size:9px;
-    font-weight:900;
-}
-
-.social-en {
-    display:block;
-
-    margin-top:3px;
-
-    color:#666;
-
-    font-family:Inter,sans-serif;
-
-    font-size:7px;
-    font-weight:700;
-
-    direction:ltr;
-}
+/* =========================
+   METRICS
+========================= */
 
 .metric {
     padding:25px;
 }
 
 .metric-top {
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
 
     margin-bottom:20px;
 }
 
 .metric-icon {
+
     width:39px;
     height:39px;
 
     border-radius:12px;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     color:var(--yellow);
@@ -723,40 +843,43 @@ body::before {
 }
 
 .metric-title {
+
     color:var(--text2);
-    font-size:11px;
+
+    font-size:10px;
+
     font-weight:900;
-}
 
-.metric-title .en {
-    display:block;
+    letter-spacing:1.5px;
 
-    margin-top:3px;
-
-    color:#666;
-
-    font-family:Inter,sans-serif;
-
-    font-size:8px;
-
-    direction:ltr;
+    text-transform:uppercase;
 }
 
 .metric-number {
+
     font-size:32px;
+
     font-weight:900;
+
     letter-spacing:-1px;
-    direction:ltr;
 }
 
 .metric-limit {
+
     color:var(--text2);
+
     font-size:12px;
-    direction:ltr;
 }
 
+
+/* =========================
+   PROGRESS
+========================= */
+
 .progress {
+
     width:100%;
+
     height:8px;
 
     border-radius:20px;
@@ -772,6 +895,7 @@ body::before {
 }
 
 .progress > * {
+
     background:
         linear-gradient(
             90deg,
@@ -787,13 +911,21 @@ body::before {
     border-radius:20px;
 }
 
+
+/* =========================
+   MAIN CARD
+========================= */
+
 .main-card {
     padding:30px;
 }
 
 .main-heading {
+
     font-size:19px;
+
     font-weight:900;
+
     margin-bottom:5px;
 }
 
@@ -801,28 +933,20 @@ body::before {
     color:var(--yellow);
 }
 
-.main-heading .en {
-    color:#777;
-    font-family:Inter,sans-serif;
-    font-size:10px;
-    margin-right:8px;
-}
-
 .main-desc {
+
     color:var(--text2);
+
     font-size:11px;
-    line-height:1.9;
 }
 
-.main-desc .en {
-    display:block;
-    color:#666;
-    font-family:Inter,sans-serif;
-    font-size:9px;
-    direction:ltr;
-}
+
+/* =========================
+   UNIVERSAL
+========================= */
 
 .universal {
+
     margin-top:25px;
 
     padding:23px;
@@ -834,21 +958,21 @@ body::before {
         var(--yellow-border);
 
     background:
+
         radial-gradient(
             circle at 100% 0%,
             rgba(255,210,31,.12),
             transparent 45%
         ),
-        rgba(255,210,31,.025);
 
-    position:relative;
-    overflow:hidden;
+        rgba(255,210,31,.025);
 }
 
 .recommended {
+
     display:inline-block;
 
-    margin-right:5px;
+    margin-left:5px;
 
     padding:4px 8px;
 
@@ -859,43 +983,21 @@ body::before {
     color:#050505;
 
     font-size:8px;
+
     font-weight:900;
 
-    direction:ltr;
+    letter-spacing:1px;
 }
 
-.dual-title {
-    font-size:13px;
-    font-weight:900;
-}
 
-.dual-title .en {
-    color:#777;
-    font-family:Inter,sans-serif;
-    font-size:9px;
-    margin-right:6px;
-}
-
-.dual-desc {
-    color:var(--text2);
-    font-size:10px;
-    line-height:1.9;
-}
-
-.dual-desc .en {
-    display:block;
-
-    color:#666;
-
-    font-family:Inter,sans-serif;
-
-    font-size:8px;
-
-    direction:ltr;
-}
+/* =========================
+   INPUT
+========================= */
 
 .input {
+
     width:100%;
+
     min-width:0;
 
     background:
@@ -904,7 +1006,8 @@ body::before {
     color:var(--text);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     outline:none;
 
@@ -920,6 +1023,7 @@ body::before {
 }
 
 .input:focus {
+
     border-color:var(--yellow);
 
     box-shadow:
@@ -927,7 +1031,13 @@ body::before {
         rgba(255,210,31,.07);
 }
 
+
+/* =========================
+   FORMATS
+========================= */
+
 .formats {
+
     margin-top:20px;
 
     padding:22px;
@@ -935,13 +1045,15 @@ body::before {
     border-radius:21px;
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     background:
         rgba(255,255,255,.018);
 }
 
 .format-grid {
+
     display:grid;
 
     grid-template-columns:
@@ -953,12 +1065,14 @@ body::before {
 }
 
 .format {
+
     padding:16px;
 
     border-radius:17px;
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     background:
         rgba(255,255,255,.025);
@@ -967,6 +1081,7 @@ body::before {
 }
 
 .format:hover {
+
     border-color:
         var(--yellow-border);
 
@@ -977,6 +1092,7 @@ body::before {
 }
 
 .format-head {
+
     display:flex;
 
     align-items:center;
@@ -989,23 +1105,14 @@ body::before {
 }
 
 .format-name {
+
     font-size:10px;
+
     font-weight:900;
 }
 
-.format-name .en {
-    display:block;
-
-    color:#666;
-
-    font-family:Inter,sans-serif;
-
-    font-size:7px;
-
-    margin-top:2px;
-}
-
 .tag {
+
     padding:4px 7px;
 
     border-radius:6px;
@@ -1017,21 +1124,24 @@ body::before {
     font-size:8px;
 
     font-weight:900;
-
-    direction:ltr;
 }
 
 .format-row {
+
     display:flex;
+
     gap:7px;
 }
 
 .format-row .input {
+
     padding:10px;
+
     font-size:9px;
 }
 
 .small-btn {
+
     border:0;
 
     background:
@@ -1052,20 +1162,17 @@ body::before {
     font-weight:900;
 
     cursor:pointer;
-
-    transition:.2s;
-}
-
-.small-btn:hover {
-    transform:translateY(-1px);
 }
 
 .qr-btn {
+
     width:38px;
+
     min-width:38px;
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     background:
         rgba(255,255,255,.04);
@@ -1078,17 +1185,24 @@ body::before {
 }
 
 .qr-btn:hover {
+
     color:var(--yellow);
 
     border-color:
         var(--yellow-border);
 }
 
+
+/* =========================
+   APPS
+========================= */
+
 .apps {
     margin-top:28px;
 }
 
 .apps-grid {
+
     display:grid;
 
     grid-template-columns:
@@ -1098,6 +1212,7 @@ body::before {
 }
 
 .app {
+
     text-decoration:none;
 
     color:var(--text);
@@ -1110,22 +1225,26 @@ body::before {
         rgba(255,255,255,.035);
 
     border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     gap:7px;
 
     font-size:11px;
+
     font-weight:800;
 
     transition:.2s;
 }
 
 .app:hover {
+
     color:var(--yellow);
 
     border-color:
@@ -1137,13 +1256,20 @@ body::before {
     transform:translateY(-3px);
 }
 
+
+/* =========================
+   BOTTOM
+========================= */
+
 .bottom {
+
     margin-top:25px;
 
     padding-top:20px;
 
     border-top:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
     display:flex;
 
@@ -1158,14 +1284,23 @@ body::before {
     white-space:nowrap;
 }
 
+
+/* =========================
+   MODAL
+========================= */
+
 .modal-overlay {
+
     background:
         rgba(0,0,0,.82);
 
     backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
 }
 
 .modal-card {
+
     background:
         linear-gradient(
             145deg,
@@ -1178,12 +1313,21 @@ body::before {
         var(--yellow-border);
 
     box-shadow:
-        0 30px 100px rgba(0,0,0,.8),
+
+        0 30px 100px
+        rgba(0,0,0,.8),
+
         0 0 50px
         rgba(255,210,31,.08);
 }
 
+
+/* =========================
+   TOAST
+========================= */
+
 #toast {
+
     background:
         rgba(20,20,20,.92) !important;
 
@@ -1197,6 +1341,11 @@ body::before {
         0 20px 60px
         rgba(0,0,0,.6);
 }
+
+
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes enter {
 
@@ -1212,9 +1361,13 @@ body::before {
 }
 
 .fade-in {
-    animation:
-        enter .65s ease-out;
+    animation:enter .65s ease-out;
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:768px) {
 
@@ -1235,6 +1388,7 @@ body::before {
     }
 
     .brand-logo {
+
         width:40px;
         height:40px;
     }
@@ -1248,10 +1402,6 @@ body::before {
             repeat(2,1fr);
     }
 
-    .social-links {
-        grid-template-columns:1fr;
-    }
-
     .main-card {
         padding:19px;
     }
@@ -1262,7 +1412,9 @@ body::before {
     }
 
     .bottom {
+
         flex-direction:column;
+
         align-items:stretch;
     }
 
@@ -1275,14 +1427,11 @@ body::before {
     }
 }
 
+
 @media(max-width:480px) {
 
-    .topbar > div:last-child {
-        gap:5px;
-    }
-
     .topbar .btn {
-        padding:9px 10px;
+        padding:9px 11px;
     }
 
     .metric-number {
@@ -1290,7 +1439,7 @@ body::before {
     }
 
     .expiry {
-        font-size:22px;
+        font-size:21px;
     }
 
     .format-row {
@@ -1298,7 +1447,9 @@ body::before {
     }
 
     .format-row .input {
+
         width:100%;
+
         flex-basis:100%;
     }
 
@@ -1306,23 +1457,24 @@ body::before {
     .qr-btn {
         height:38px;
     }
-
 }
 
 </style>
+
 </head>
 
 
-<body class="min-h-screen px-4 py-5 fade-in">
+<body class="fade-in">
+
 
 <div class="ambient one"></div>
 <div class="ambient two"></div>
 <div class="ambient three"></div>
 
 
-<!-- =====================================================
+<!-- =========================
      TOP BAR
-===================================================== -->
+========================= -->
 
 <div class="topbar">
 
@@ -1347,40 +1499,50 @@ body::before {
     </div>
 
 
-    <div class="flex gap-2">
+    <!-- ONLY LANGUAGE BUTTON -->
 
-        <button
-            onclick="toggleTheme()"
-            class="btn btn-secondary flex items-center gap-2"
-        >
+    <button
+        onclick="toggleLang()"
+        id="lang-toggle"
+        class="btn btn-secondary"
+    >
 
-            <span id="theme-icon">
-                ☀️
-            </span>
+        <span id="lang-icon">
+            🇬🇧
+        </span>
 
-            <span id="theme-label">
-                روشن
-            </span>
+        <span id="lang-label">
+            EN
+        </span>
 
-        </button>
-
-    </div>
+    </button>
 
 </div>
 
 
-<!-- =====================================================
+
+<!-- =========================
      MAIN
-===================================================== -->
+========================= -->
 
 <div
-    class="w-full max-w-[1180px] grid grid-cols-1 md:grid-cols-12 gap-5 relative z-10"
+    class="
+        w-full
+        max-w-[1180px]
+        mx-auto
+        grid
+        grid-cols-1
+        md:grid-cols-12
+        gap-5
+        relative
+        z-10
+    "
 >
 
 
-<!-- =====================================================
+<!-- =========================
      LEFT
-===================================================== -->
+========================= -->
 
 <div class="md:col-span-4 flex flex-col gap-5">
 
@@ -1401,7 +1563,15 @@ body::before {
         ID: __USER_ID__
     </div>
 
-    <div class="flex items-center justify-center gap-2 mt-4">
+    <div
+        class="
+            flex
+            items-center
+            justify-center
+            gap-2
+            mt-4
+        "
+    >
 
         <span class="status-dot"></span>
 
@@ -1416,9 +1586,8 @@ body::before {
 </div>
 
 
-<!-- =====================================================
-     EXPIRATION
-===================================================== -->
+
+<!-- INFO -->
 
 <div class="glass card info">
 
@@ -1433,54 +1602,68 @@ body::before {
         >
             <path
                 stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                d="
+                    M8 7V3
+                    m8 4V3
+                    m-9 8h10
+                    M5 21h14
+                    a2 2 0 002-2V7
+                    a2 2 0 00-2-2H5
+                    a2 2 0 00-2 2v12
+                    a2 2 0 002 2z
+                "
             />
         </svg>
 
-        <span>
+        <span data-i18n="expDate">
             تاریخ انقضا
         </span>
 
-        <span class="en">
-            Expiration Date
-        </span>
+    </div>
 
+
+    <!--
+        IMPORTANT:
+        The backend value is kept untouched.
+    -->
+
+    <div
+        id="expiry-date"
+        class="expiry"
+        data-expiry="__EXPIRY_DATE__"
+    >
+        __EXPIRY_DATE__
     </div>
 
 
     <div
-        class="expiry"
-        id="expiry-date"
+        class="muted text-xs"
+        data-i18n="calendarLocal"
     >
-        در حال بررسی...
+        تاریخ میلادی
     </div>
 
 
-    <div class="expiry-sub">
-        تاریخ میلادی — Gregorian Date
-    </div>
+    <div class="divider"></div>
 
 
-    <!-- DAYS REMAINING -->
+    <!-- COUNTDOWN -->
 
-    <div class="remaining-box">
+    <div class="ip-row">
 
-        <div class="remaining-title">
+        <span
+            class="secondary text-xs font-bold"
+            data-i18n="remaining"
+        >
+            زمان باقی‌مانده
+        </span>
 
-            روزهای باقی‌مانده
-
-            <span class="en">
-                Days Remaining
-            </span>
-
-        </div>
-
-        <div
-            id="remaining-days"
-            class="remaining-number"
+        <span
+            id="days-left"
+            class="ip"
         >
             --
-        </div>
+        </span>
 
     </div>
 
@@ -1492,21 +1675,11 @@ body::before {
 
     <div class="ip-row">
 
-        <span class="secondary text-xs font-bold">
-
+        <span
+            class="secondary text-xs font-bold"
+            data-i18n="connectionIp"
+        >
             IP اتصال
-
-            <span
-                style="
-                    color:#666;
-                    font-size:8px;
-                    font-family:Inter;
-                    direction:ltr;
-                "
-            >
-                Connection IP
-            </span>
-
         </span>
 
         <span
@@ -1521,9 +1694,8 @@ body::before {
 </div>
 
 
-<!-- =====================================================
-     SUPPORT
-===================================================== -->
+
+<!-- SUPPORT -->
 
 <div class="glass card support">
 
@@ -1538,128 +1710,93 @@ body::before {
         >
             <path
                 stroke-width="2"
-                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                d="
+                    M18.364 5.636
+                    l-3.536 3.536
+                    m0 5.656
+                    l3.536 3.536
+                    M9.172 9.172
+                    L5.636 5.636
+                    m3.536 9.192
+                    l-3.536 3.536
+                    M21 12
+                    a9 9 0 11-18 0
+                    9 9 0 0118 0z
+                "
             />
         </svg>
 
-        <span>
+        <span data-i18n="supportTitle">
             پشتیبانی SEP NET
-        </span>
-
-        <span class="en">
-            SEP NET SUPPORT
         </span>
 
     </div>
 
 
-    <p>
-
-        در اتصال یا استفاده از سرویس مشکلی دارید؟
-        برای دریافت راهنمایی با تیم پشتیبانی سپ نت در ارتباط باشید.
-
-        <br>
-
-        <span
-            style="
-                color:#666;
-                font-family:Inter;
-                font-size:9px;
-                direction:ltr;
-                display:block;
-                margin-top:5px;
-            "
-        >
-            Having trouble connecting?
-            Contact SEP NET support for assistance.
-        </span>
-
+    <p data-i18n="supportDesc">
+        برای دریافت راهنمایی، خرید اشتراک یا حل مشکل اتصال می‌توانید از لینک‌های زیر استفاده کنید.
     </p>
 
 
+    <!-- CHANNEL -->
+
     <a
-        href="https://t.me/sepnet_supportbot"
+        href="https://t.me/sepnet_conf"
         target="_blank"
-        class="btn btn-primary support-btn"
+        class="btn btn-secondary support-btn"
     >
 
-        پشتیبانی سپ نت
-        <span
-            style="
-                font-family:Inter;
-                font-size:9px;
-            "
-        >
-            — Support
+        📢
+
+        <span data-i18n="channel">
+            کانال ما
         </span>
 
     </a>
 
 
-    <!-- SOCIAL LINKS -->
+    <!-- SHOP -->
 
-    <div class="social-links">
+    <a
+        href="https://t.me/sepnet_irbot"
+        target="_blank"
+        class="btn btn-primary support-btn"
+    >
 
-        <a
-            href="https://t.me/sepnet_conf"
-            target="_blank"
-            class="social-link"
-        >
+        🛒
 
-            <span class="social-fa">
-                کانال ما
-            </span>
+        <span data-i18n="buyBot">
+            ربات خرید
+        </span>
 
-            <span class="social-en">
-                Our Channel
-            </span>
-
-        </a>
+    </a>
 
 
-        <a
-            href="https://t.me/sepnet_irbot"
-            target="_blank"
-            class="social-link"
-        >
+    <!-- SUPPORT -->
 
-            <span class="social-fa">
-                ربات خرید
-            </span>
+    <a
+        href="https://t.me/sepnet_supportbot"
+        target="_blank"
+        class="btn btn-secondary support-btn"
+    >
 
-            <span class="social-en">
-                Purchase Bot
-            </span>
+        💬
 
-        </a>
+        <span data-i18n="supportBot">
+            تیم پشتیبانی سپ نت
+        </span>
 
-
-        <a
-            href="https://t.me/sepnet_supportbot"
-            target="_blank"
-            class="social-link"
-        >
-
-            <span class="social-fa">
-                پشتیبانی
-            </span>
-
-            <span class="social-en">
-                Support
-            </span>
-
-        </a>
-
-    </div>
+    </a>
 
 </div>
 
 </div>
 
 
-<!-- =====================================================
+
+<!-- =========================
      RIGHT
-===================================================== -->
+========================= -->
 
 <div class="md:col-span-8 flex flex-col gap-5">
 
@@ -1675,14 +1812,11 @@ body::before {
 
     <div class="metric-top">
 
-        <div class="metric-title">
-
+        <div
+            class="metric-title"
+            data-i18n="totalUsage"
+        >
             مصرف کل
-
-            <span class="en">
-                Total Usage
-            </span>
-
         </div>
 
         <div class="metric-icon">
@@ -1696,7 +1830,17 @@ body::before {
             >
                 <path
                     stroke-width="2"
-                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+                    d="
+                        M4 7v10
+                        c0 2.21 3.582 4 8 4
+                        s8-1.79 8-4V7
+                        M4 7
+                        c0 2.21 3.582 4 8 4
+                        s8-1.79 8-4
+                        M4 7
+                        c0-2.21 3.582-4 8-4
+                        s8 1.79 8 4
+                    "
                 />
             </svg>
 
@@ -1725,20 +1869,18 @@ body::before {
 </div>
 
 
+
 <!-- DAILY -->
 
 <div class="glass card metric">
 
     <div class="metric-top">
 
-        <div class="metric-title">
-
+        <div
+            class="metric-title"
+            data-i18n="dailyUsage"
+        >
             مصرف روزانه
-
-            <span class="en">
-                Daily Usage
-            </span>
-
         </div>
 
         <div class="metric-icon">
@@ -1752,7 +1894,12 @@ body::before {
             >
                 <path
                     stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    d="
+                        M12 8v4l3 3
+                        m6-3
+                        a9 9 0 11-18 0
+                        9 9 0 0118 0z
+                    "
                 />
             </svg>
 
@@ -1783,49 +1930,41 @@ body::before {
 </div>
 
 
-<!-- =====================================================
-     MAIN SUBSCRIPTION
-===================================================== -->
+
+<!-- MAIN CARD -->
 
 <div class="glass card main-card">
 
 
-    <div>
+<div>
 
-        <div class="main-heading">
+    <div class="main-heading">
 
+        <span data-i18n="integrationTitle">
             لینک‌های اتصال
-
-            <span class="en">
-                Connection Links
-            </span>
-
-        </div>
-
-
-        <div class="main-desc">
-
-            لینک پیکربندی مورد نظر خود را انتخاب کنید.
-
-            <span class="en">
-                Choose your preferred configuration link below.
-            </span>
-
-        </div>
+        </span>
 
     </div>
+
+    <div
+        class="main-desc"
+        data-i18n="integrationDesc"
+    >
+        لینک پیکربندی مورد نظر خود را انتخاب کنید.
+    </div>
+
+</div>
+
 
 
 <!-- UNIVERSAL -->
 
 <div class="universal">
 
-    <div class="dual-title">
+    <div class="font-black text-sm mb-2">
 
-        لینک خودکار
-
-        <span class="en">
-            Universal Auto-Detecting Link
+        <span data-i18n="universalLink">
+            لینک خودکار
         </span>
 
         <span class="recommended">
@@ -1835,14 +1974,16 @@ body::before {
     </div>
 
 
-    <div class="dual-desc mt-2 mb-4">
-
-        این لینک کلاینت شما را شناسایی کرده و بهترین فرمت را ارسال می‌کند.
-
-        <span class="en">
-            This URL automatically detects your client and delivers the optimal format.
-        </span>
-
+    <div
+        class="
+            secondary
+            text-xs
+            leading-6
+            mb-4
+        "
+        data-i18n="universalDesc"
+    >
+        این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.
     </div>
 
 
@@ -1867,15 +2008,8 @@ body::before {
                 class="btn btn-primary flex-1"
             >
 
-                کپی
-
-                <span
-                    style="
-                        font-family:Inter;
-                        font-size:8px;
-                    "
-                >
-                    Copy
+                <span data-i18n="copy">
+                    کپی
                 </span>
 
             </button>
@@ -1895,305 +2029,267 @@ body::before {
 </div>
 
 
-<!-- =====================================================
-     FORMATS
-===================================================== -->
+
+<!-- FORMATS -->
 
 <div class="formats">
 
-    <div class="dual-title">
+    <div class="font-black text-sm">
 
-        فرمت‌های اشتراک
-
-        <span class="en">
-            Subscription Formats
+        <span data-i18n="availableFormats">
+            فرمت‌های اشتراک
         </span>
 
     </div>
 
 
-    <div class="dual-desc mt-2">
-
-        برای دریافت مستقیم فرمت مورد نظر از لینک‌های زیر استفاده کنید.
-
-        <span class="en">
-            Use these links to explicitly request specific configuration formats.
-        </span>
-
+    <div
+        class="
+            secondary
+            text-xs
+            leading-6
+            mt-2
+        "
+        data-i18n="formatsDesc"
+    >
+        از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.
     </div>
 
 
     <div class="format-grid">
 
 
-        <!-- RAW -->
+<!-- RAW -->
 
-        <div class="format">
+<div class="format">
 
-            <div class="format-head">
+    <div class="format-head">
 
-                <span class="format-name">
+        <span class="format-name">
+            Raw Configs
+        </span>
 
-                    کانفیگ خام
+        <span class="tag">
+            RAW
+        </span>
 
-                    <span class="en">
-                        Raw Config
-                    </span>
+    </div>
 
-                </span>
 
-                <span class="tag">
-                    RAW
-                </span>
+    <div class="format-row" dir="ltr">
 
-            </div>
+        <input
+            id="link-raw-fmt"
+            readonly
+            class="input"
+        >
 
+        <button
+            onclick="copyLink('link-raw-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
 
-            <div class="format-row" dir="ltr">
-
-                <input
-                    id="link-raw-fmt"
-                    readonly
-                    class="input"
-                >
-
-
-                <button
-                    onclick="copyLink('link-raw-fmt')"
-                    class="small-btn"
-                >
-                    Copy
-                </button>
-
-
-                <button
-                    onclick="showQRModal(document.getElementById('link-raw-fmt').value)"
-                    class="qr-btn"
-                >
-                    QR
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- BASE64 -->
-
-        <div class="format">
-
-            <div class="format-head">
-
-                <span class="format-name">
-
-                    اشتراک Base64
-
-                    <span class="en">
-                        Base64 Subscription
-                    </span>
-
-                </span>
-
-                <span class="tag">
-                    BASE64
-                </span>
-
-            </div>
-
-
-            <div class="format-row" dir="ltr">
-
-                <input
-                    id="link-base64-fmt"
-                    readonly
-                    class="input"
-                >
-
-
-                <button
-                    onclick="copyLink('link-base64-fmt')"
-                    class="small-btn"
-                >
-                    Copy
-                </button>
-
-
-                <button
-                    onclick="showQRModal(document.getElementById('link-base64-fmt').value)"
-                    class="qr-btn"
-                >
-                    QR
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- SINGBOX -->
-
-        <div class="format">
-
-            <div class="format-head">
-
-                <span class="format-name">
-
-                    اشتراک Sing-box
-
-                    <span class="en">
-                        Sing-box Subscription
-                    </span>
-
-                </span>
-
-                <span class="tag">
-                    SINGBOX
-                </span>
-
-            </div>
-
-
-            <div class="format-row" dir="ltr">
-
-                <input
-                    id="link-singbox-fmt"
-                    readonly
-                    class="input"
-                >
-
-
-                <button
-                    onclick="copyLink('link-singbox-fmt')"
-                    class="small-btn"
-                >
-                    Copy
-                </button>
-
-
-                <button
-                    onclick="showQRModal(document.getElementById('link-singbox-fmt').value)"
-                    class="qr-btn"
-                >
-                    QR
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- CLASH -->
-
-        <div class="format">
-
-            <div class="format-head">
-
-                <span class="format-name">
-
-                    اشتراک Clash
-
-                    <span class="en">
-                        Clash Subscription
-                    </span>
-
-                </span>
-
-                <span class="tag">
-                    CLASH
-                </span>
-
-            </div>
-
-
-            <div class="format-row" dir="ltr">
-
-                <input
-                    id="link-clash-fmt"
-                    readonly
-                    class="input"
-                >
-
-
-                <button
-                    onclick="copyLink('link-clash-fmt')"
-                    class="small-btn"
-                >
-                    Copy
-                </button>
-
-
-                <button
-                    onclick="showQRModal(document.getElementById('link-clash-fmt').value)"
-                    class="qr-btn"
-                >
-                    QR
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <!-- V2RAYN -->
-
-        <div class="format">
-
-            <div class="format-head">
-
-                <span class="format-name">
-
-                    اشتراک v2rayN
-
-                    <span class="en">
-                        v2rayN Subscription
-                    </span>
-
-                </span>
-
-                <span class="tag">
-                    V2RAYN
-                </span>
-
-            </div>
-
-
-            <div class="format-row" dir="ltr">
-
-                <input
-                    id="link-v2rayn-fmt"
-                    readonly
-                    class="input"
-                >
-
-
-                <button
-                    onclick="copyLink('link-v2rayn-fmt')"
-                    class="small-btn"
-                >
-                    Copy
-                </button>
-
-
-                <button
-                    onclick="showQRModal(document.getElementById('link-v2rayn-fmt').value)"
-                    class="qr-btn"
-                >
-                    QR
-                </button>
-
-            </div>
-
-        </div>
-
+        <button
+            onclick="showQRModal(document.getElementById('link-raw-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
-     ONE CLICK
-===================================================== -->
+
+<!-- BASE64 -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Base64 Subscription
+        </span>
+
+        <span class="tag">
+            BASE64
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-base64-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-base64-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-base64-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- SINGBOX -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Sing-box Subscription
+        </span>
+
+        <span class="tag">
+            SINGBOX
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-singbox-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-singbox-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-singbox-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- CLASH -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Clash Subscription
+        </span>
+
+        <span class="tag">
+            CLASH
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-clash-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-clash-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-clash-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- V2RAYN -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            v2rayN Subscription
+        </span>
+
+        <span class="tag">
+            V2RAYN
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-v2rayn-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-v2rayn-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-v2rayn-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ONE CLICK -->
 
 <div class="apps">
 
@@ -2208,16 +2304,15 @@ body::before {
         >
             <path
                 stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
+                d="
+                    M13 10V3
+                    L4 14h7v7l9-11h-7z
+                "
             />
         </svg>
 
-        <span>
-            ورود با یک کلیک
-        </span>
-
-        <span class="en">
-            One-Click Import
+        <span data-i18n="oneClickImport">
+            وارد کردن با یک کلیک
         </span>
 
     </div>
@@ -2228,7 +2323,7 @@ body::before {
 
         <a
             id="v2rayng-link"
-            href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+            href="#"
             class="app"
         >
             v2rayNG
@@ -2237,7 +2332,7 @@ body::before {
 
         <a
             id="v2rayn-link"
-            href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+            href="#"
             class="app"
         >
             v2rayN
@@ -2254,40 +2349,29 @@ body::before {
 
 
         <a
-            href="streisand://import/__SYNC_NORMAL__"
+            id="streisand-link"
+            href="#"
             class="app"
         >
             Streisand
         </a>
+
 
     </div>
 
 </div>
 
 
-<!-- =====================================================
-     RAW CONTENT
-===================================================== -->
+
+<!-- RAW -->
 
 <div class="bottom">
 
-    <div class="secondary text-xs">
-
-        دریافت محتوای خام برای کاربران حرفه‌ای
-
-        <span
-            style="
-                color:#666;
-                font-family:Inter;
-                font-size:8px;
-                display:block;
-                direction:ltr;
-                margin-top:4px;
-            "
-        >
-            Retrieve raw configuration content
-        </span>
-
+    <div
+        class="secondary text-xs"
+        data-i18n="rawDescription"
+    >
+        کاربران حرفه‌ای می‌توانند محتوای خام کانفیگ را دریافت کنند.
     </div>
 
 
@@ -2298,15 +2382,8 @@ body::before {
             class="btn btn-secondary raw-btn"
         >
 
-            دریافت متن خام
-
-            <span
-                style="
-                    font-family:Inter;
-                    font-size:8px;
-                "
-            >
-                Retrieve Raw
+            <span data-i18n="parsedContent">
+                دریافت متن خام
             </span>
 
         </button>
@@ -2331,22 +2408,50 @@ body::before {
 </div>
 
 
-<!-- =====================================================
+
+<!-- =========================
      QR MODAL
-===================================================== -->
+========================= -->
 
 <div
     id="qr-modal"
-    class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300"
+    class="
+        fixed
+        inset-0
+        modal-overlay
+        z-50
+        hidden
+        items-center
+        justify-center
+        p-4
+        opacity-0
+        transition-opacity
+        duration-300
+    "
 >
 
     <div
-        class="modal-card max-w-sm w-full rounded-3xl p-7 relative"
+        class="
+            modal-card
+            max-w-sm
+            w-full
+            rounded-3xl
+            p-7
+            relative
+        "
     >
+
 
         <button
             onclick="closeQRModal()"
-            class="absolute top-4 right-4 btn btn-secondary rounded-full"
+            class="
+                absolute
+                top-4
+                right-4
+                btn
+                btn-secondary
+                rounded-full
+            "
         >
             ✕
         </button>
@@ -2354,14 +2459,26 @@ body::before {
 
         <h3
             id="qr-title"
-            class="text-xl font-black text-center mb-6"
+            class="
+                text-xl
+                font-black
+                text-center
+                mb-6
+            "
         >
             اسکن کد QR
         </h3>
 
 
         <div
-            class="bg-white p-4 rounded-2xl mx-auto w-fit mb-5"
+            class="
+                bg-white
+                p-4
+                rounded-2xl
+                mx-auto
+                w-fit
+                mb-5
+            "
         >
 
             <img
@@ -2376,7 +2493,16 @@ body::before {
 
         <p
             id="qr-text"
-            class="text-xs text-center font-mono break-all mb-5 px-3 py-3 rounded-xl"
+            class="
+                text-xs
+                text-center
+                font-mono
+                break-all
+                mb-5
+                px-3
+                py-3
+                rounded-xl
+            "
             style="
                 color:#999;
                 background:rgba(255,255,255,.04);
@@ -2388,19 +2514,9 @@ body::before {
         <button
             onclick="closeQRModal()"
             class="btn btn-primary w-full"
+            data-i18n="close"
         >
-
             بستن
-
-            <span
-                style="
-                    font-family:Inter;
-                    font-size:9px;
-                "
-            >
-                Close
-            </span>
-
         </button>
 
     </div>
@@ -2408,405 +2524,320 @@ body::before {
 </div>
 
 
+
 <!-- TOAST -->
 
 <div
     id="toast"
-    class="fixed top-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full font-bold text-sm z-50 transition-all opacity-0 pointer-events-none"
+    class="
+        fixed
+        top-8
+        left-1/2
+        -translate-x-1/2
+        px-6
+        py-3
+        rounded-full
+        font-bold
+        text-sm
+        z-50
+        transition-all
+        opacity-0
+        pointer-events-none
+    "
 >
     Notification
 </div>
 
 
+
 <script>
 
 /* =========================================================
-   DATE
+   TRANSLATIONS
 ========================================================= */
 
-function parseExpiryDate(value) {
+const I18N = {
 
-    if (!value)
-        return null;
+    fa: {
 
-    value =
-        String(value)
-        .trim();
+        totalUsage:'مصرف کل',
+        dailyUsage:'مصرف روزانه',
 
-    if (!value)
-        return null;
+        expDate:'تاریخ انقضا',
+        calendarLocal:'تاریخ میلادی',
+
+        remaining:'زمان باقی‌مانده',
+        connectionIp:'IP اتصال',
+
+        integrationTitle:'لینک‌های اتصال',
+
+        integrationDesc:
+            'لینک پیکربندی مورد نظر خود را انتخاب کنید.',
+
+        universalLink:'لینک خودکار',
+
+        universalDesc:
+            'این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.',
+
+        oneClickImport:'وارد کردن با یک کلیک',
+
+        copy:'کپی',
+        copyRaw:'کپی لینک خام',
+
+        qr:'QR',
+
+        parsedContent:'دریافت متن خام',
+
+        close:'بستن',
+
+        qrTitle:'اسکن کد QR',
+
+        copied:'کپی شد!',
+
+        decodedCopied:'لینک‌ها کپی شدند!',
+
+        decodedError:'خطا در دریافت اطلاعات',
+
+        active:'فعال',
+
+        paused:'متوقف',
+
+        expired:'منقضی',
+
+        limitExceeded:
+            'از حد مجاز عبور کرده',
+
+        dailyLimitExceeded:
+            'از حد روزانه عبور کرده',
+
+        availableFormats:
+            'فرمت‌های اشتراک',
+
+        formatsDesc:
+            'از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.',
+
+        supportTitle:
+            'پشتیبانی SEP NET',
+
+        supportDesc:
+            'برای دریافت راهنمایی، خرید اشتراک یا حل مشکل اتصال می‌توانید از لینک‌های زیر استفاده کنید.',
+
+        channel:
+            'کانال ما',
+
+        buyBot:
+            'ربات خرید',
+
+        supportBot:
+            'تیم پشتیبانی سپ نت',
+
+        rawDescription:
+            'کاربران حرفه‌ای می‌توانند محتوای خام کانفیگ را دریافت کنند.',
+
+        days:
+            'روز',
+
+        day:
+            'روز',
+
+        expiredTime:
+            'منقضی شده',
+
+        invalidDate:
+            'تاریخ نامعتبر'
+    },
 
 
-    /*
-        YYYY-MM-DD
-    */
+    en: {
 
-    let match =
-        value.match(
-            /^(\d{4})-(\d{1,2})-(\d{1,2})$/
-        );
+        totalUsage:'Total Usage',
+        dailyUsage:'Daily Usage',
 
+        expDate:'Expiration Date',
+        calendarLocal:'Gregorian Date',
 
-    if (match) {
+        remaining:'Time Remaining',
+        connectionIp:'Connection IP',
 
-        const y =
-            Number(match[1]);
+        integrationTitle:
+            'Integration Connections',
 
-        const m =
-            Number(match[2]);
+        integrationDesc:
+            'Choose the configuration link for your preferred format.',
 
-        const d =
-            Number(match[3]);
+        universalLink:
+            'Universal Auto-Detecting Link',
 
+        universalDesc:
+            'This URL automatically detects your client and delivers the optimal format.',
 
-        const date =
-            new Date(
-                y,
-                m - 1,
-                d,
-                23,
-                59,
-                59,
-                999
-            );
+        oneClickImport:
+            'One-Click Import',
 
+        copy:'Copy',
 
-        if (
-            date.getFullYear() === y &&
-            date.getMonth() === m - 1 &&
-            date.getDate() === d
-        ) {
+        copyRaw:'Copy Raw URL',
 
-            return date;
+        qr:'QR',
 
-        }
+        parsedContent:
+            'Retrieve Raw Content',
 
+        close:'Close',
+
+        qrTitle:
+            'Scan QR Code',
+
+        copied:
+            'Copied to clipboard!',
+
+        decodedCopied:
+            'Links copied!',
+
+        decodedError:
+            'Error fetching content',
+
+        active:'Active',
+
+        paused:'Paused',
+
+        expired:'Expired',
+
+        limitExceeded:
+            'Limit Exceeded',
+
+        dailyLimitExceeded:
+            'Daily Limit Exceeded',
+
+        availableFormats:
+            'Available Subscription Formats',
+
+        formatsDesc:
+            'Use these links to explicitly request specific configuration formats.',
+
+        supportTitle:
+            'SEP NET Support',
+
+        supportDesc:
+            'For help, subscription purchases, or connection issues, use the links below.',
+
+        channel:
+            'Our Channel',
+
+        buyBot:
+            'Purchase Bot',
+
+        supportBot:
+            'SEP NET Support Team',
+
+        rawDescription:
+            'Advanced users can retrieve the raw configuration content.',
+
+        days:
+            'Days',
+
+        day:
+            'Day',
+
+        expiredTime:
+            'Expired',
+
+        invalidDate:
+            'Invalid Date'
     }
 
+};
 
-    /*
-        YYYY/MM/DD
-    */
 
-    match =
-        value.match(
-            /^(\d{4})\/(\d{1,2})\/(\d{1,2})$/
-        );
-
-
-    if (match) {
-
-        const y =
-            Number(match[1]);
-
-        const m =
-            Number(match[2]);
-
-        const d =
-            Number(match[3]);
-
-
-        const date =
-            new Date(
-                y,
-                m - 1,
-                d,
-                23,
-                59,
-                59,
-                999
-            );
-
-
-        if (
-            date.getFullYear() === y &&
-            date.getMonth() === m - 1 &&
-            date.getDate() === d
-        ) {
-
-            return date;
-
-        }
-
-    }
-
-
-    /*
-        ISO / Date
-    */
-
-    const date =
-        new Date(value);
-
-
-    if (
-        !isNaN(
-            date.getTime()
-        )
-    ) {
-
-        return date;
-
-    }
-
-
-    return null;
-}
-
-
-/*
-    تاریخ میلادی
-    خروجی:
-    YYYY/MM/DD
-*/
-
-function formatGregorianDate(date) {
-
-    if (!date)
-        return 'تاریخ نامعتبر — Invalid Date';
-
-
-    return (
-        date.getFullYear()
-        +
-        '/'
-        +
-        String(
-            date.getMonth() + 1
-        ).padStart(2,'0')
-        +
-        '/'
-        +
-        String(
-            date.getDate()
-        ).padStart(2,'0')
-    );
-}
-
-
-/*
-    محاسبه واقعی روزهای باقی‌مانده
-*/
-
-function calculateRemainingDays(expiryDate) {
-
-    if (!expiryDate)
-        return null;
-
-
-    const now =
-        new Date();
-
-
-    const expiry =
-        new Date(expiryDate);
-
-
-    /*
-        تا پایان همان روز
-    */
-
-    expiry.setHours(
-        23,
-        59,
-        59,
-        999
-    );
-
-
-    const difference =
-        expiry.getTime()
-        -
-        now.getTime();
-
-
-    if (difference <= 0)
-        return 0;
-
-
-    return Math.ceil(
-        difference
-        /
-        (
-            1000 *
-            60 *
-            60 *
-            24
-        )
-    );
-}
-
-
-/*
-    بروزرسانی تاریخ و روز شمار
-*/
-
-function updateExpiry() {
-
-    const raw =
-        '__EXPIRY_DATE__';
-
-
-    const expiry =
-        parseExpiryDate(raw);
-
-
-    const dateElement =
-        document.getElementById(
-            'expiry-date'
-        );
-
-
-    const remainingElement =
-        document.getElementById(
-            'remaining-days'
-        );
-
-
-    if (!expiry) {
-
-        dateElement.textContent =
-            'تاریخ نامعتبر — Invalid Date';
-
-
-        remainingElement.innerHTML =
-            '<span style="color:#f87171">--</span>';
-
-        return;
-    }
-
-
-    /*
-        تاریخ میلادی
-    */
-
-    dateElement.textContent =
-        formatGregorianDate(
-            expiry
-        );
-
-
-    /*
-        روز باقی مانده
-    */
-
-    const days =
-        calculateRemainingDays(
-            expiry
-        );
-
-
-    if (days <= 0) {
-
-        remainingElement.innerHTML =
-            '<span style="color:#f87171">0</span>'
-            +
-            ' روز — '
-            +
-            '<span style="font-family:Inter;color:#f87171">0 Days</span>';
-
-    } else {
-
-        remainingElement.innerHTML =
-
-            '<span style="color:var(--yellow);font-size:28px;font-weight:900;">'
-            +
-            days
-            +
-            '</span>'
-            +
-            ' روز'
-            +
-            ' — '
-            +
-            '<span style="font-family:Inter;color:#aaa;">'
-            +
-            days
-            +
-            ' Days'
-            +
-            '</span>';
-
-    }
-
-}
-
-
-/*
-    هر یک دقیقه دوباره محاسبه شود
-*/
-
-updateExpiry();
-
-setInterval(
-    updateExpiry,
-    60000
-);
+let currentLang = 'fa';
 
 
 /* =========================================================
-   THEME
+   LANGUAGE
 ========================================================= */
 
-let isDark = true;
+function applyLang() {
+
+    const t =
+        I18N[currentLang];
 
 
-function applyTheme() {
+    document
+        .querySelectorAll('[data-i18n]')
+        .forEach(el => {
 
-    const root =
-        document.documentElement;
+            const key =
+                el.getAttribute(
+                    'data-i18n'
+                );
+
+            if (t[key]) {
+
+                el.textContent =
+                    t[key];
+
+            }
+
+        });
 
 
-    const icon =
+    if (currentLang === 'fa') {
+
+        document.documentElement
+            .setAttribute(
+                'dir',
+                'rtl'
+            );
+
+        document.documentElement
+            .setAttribute(
+                'lang',
+                'fa'
+            );
+
         document.getElementById(
-            'theme-icon'
-        );
+            'lang-icon'
+        ).textContent = '🇬🇧';
 
-
-    const label =
         document.getElementById(
-            'theme-label'
-        );
-
-
-    if (isDark) {
-
-        root.classList.add(
-            'dark'
-        );
-
-        if (icon)
-            icon.textContent =
-                '☀️';
-
-        if (label)
-            label.textContent =
-                'روشن — Light';
+            'lang-label'
+        ).textContent = 'EN';
 
     } else {
 
-        root.classList.remove(
-            'dark'
-        );
+        document.documentElement
+            .setAttribute(
+                'dir',
+                'ltr'
+            );
 
-        if (icon)
-            icon.textContent =
-                '🌙';
+        document.documentElement
+            .setAttribute(
+                'lang',
+                'en'
+            );
 
-        if (label)
-            label.textContent =
-                'تاریک — Dark';
+        document.getElementById(
+            'lang-icon'
+        ).textContent = '🇮🇷';
+
+        document.getElementById(
+            'lang-label'
+        ).textContent = 'FA';
 
     }
+
+
+    initStatusBadge();
+
+    updateExpiryCountdown();
 
 
     try {
 
         localStorage.setItem(
-            'sub-theme',
-            isDark
-                ? 'dark'
-                : 'light'
+            'sub-lang',
+            currentLang
         );
 
     } catch(e) {}
@@ -2814,12 +2845,14 @@ function applyTheme() {
 }
 
 
-function toggleTheme() {
+function toggleLang() {
 
-    isDark =
-        !isDark;
+    currentLang =
+        currentLang === 'fa'
+            ? 'en'
+            : 'fa';
 
-    applyTheme();
+    applyLang();
 
 }
 
@@ -2835,90 +2868,73 @@ function initStatusBadge() {
             'status-badge'
         );
 
-
     if (!badge)
         return;
+
+
+    const t =
+        I18N[currentLang];
 
 
     const map = {
 
         active: {
 
-            text:
-                'فعال — Active',
+            text:t.active,
 
-            bg:
-                'rgba(34,197,94,.12)',
+            bg:'rgba(34,197,94,.12)',
 
-            border:
-                'rgba(34,197,94,.3)',
+            border:'rgba(34,197,94,.3)',
 
-            color:
-                '#4ade80'
+            color:'#4ade80'
         },
 
 
         paused: {
 
-            text:
-                'متوقف — Paused',
+            text:t.paused,
 
-            bg:
-                'rgba(245,158,11,.12)',
+            bg:'rgba(245,158,11,.12)',
 
-            border:
-                'rgba(245,158,11,.3)',
+            border:'rgba(245,158,11,.3)',
 
-            color:
-                '#fbbf24'
+            color:'#fbbf24'
         },
 
 
         expired: {
 
-            text:
-                'منقضی شده — Expired',
+            text:t.expired,
 
-            bg:
-                'rgba(239,68,68,.12)',
+            bg:'rgba(239,68,68,.12)',
 
-            border:
-                'rgba(239,68,68,.3)',
+            border:'rgba(239,68,68,.3)',
 
-            color:
-                '#f87171'
+            color:'#f87171'
         },
 
 
         limit: {
 
-            text:
-                'سقف مصرف تمام شده — Limit Exceeded',
+            text:t.limitExceeded,
 
-            bg:
-                'rgba(239,68,68,.12)',
+            bg:'rgba(239,68,68,.12)',
 
-            border:
-                'rgba(239,68,68,.3)',
+            border:'rgba(239,68,68,.3)',
 
-            color:
-                '#f87171'
+            color:'#f87171'
         },
 
 
         dailyLimit: {
 
-            text:
-                'سقف روزانه تمام شده — Daily Limit Exceeded',
+            text:t.dailyLimitExceeded,
 
-            bg:
-                'rgba(239,68,68,.12)',
+            bg:'rgba(239,68,68,.12)',
 
-            border:
-                'rgba(239,68,68,.3)',
+            border:'rgba(239,68,68,.3)',
 
-            color:
-                '#f87171'
+            color:'#f87171'
         }
 
     };
@@ -2926,8 +2942,7 @@ function initStatusBadge() {
 
     const status =
         map['__STATUS_CODE__']
-        ||
-        map.active;
+        || map.active;
 
 
     badge.textContent =
@@ -2939,8 +2954,7 @@ function initStatusBadge() {
 
 
     badge.style.border =
-        '1px solid '
-        +
+        '1px solid ' +
         status.border;
 
 
@@ -2950,53 +2964,391 @@ function initStatusBadge() {
 
 
 /* =========================================================
+   DATE PARSER
+========================================================= */
+
+function parseExpiryDate(value) {
+
+    if (!value)
+        return null;
+
+
+    value =
+        String(value)
+        .trim();
+
+
+    /*
+        Supported:
+
+        2026-08-20
+        2026/08/20
+        2026-08-20 23:59
+        2026/08/20 23:59:59
+        ISO
+    */
+
+
+    const match =
+        value.match(
+            /^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+
+    if (match) {
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]);
+
+        const day =
+            Number(match[3]);
+
+
+        const hour =
+            match[4] !== undefined
+                ? Number(match[4])
+                : 23;
+
+
+        const minute =
+            match[5] !== undefined
+                ? Number(match[5])
+                : 59;
+
+
+        const second =
+            match[6] !== undefined
+                ? Number(match[6])
+                : 59;
+
+
+        const date =
+            new Date(
+                year,
+                month - 1,
+                day,
+                hour,
+                minute,
+                second
+            );
+
+
+        /*
+            Prevent invalid dates
+            like 2026/02/31
+        */
+
+        if (
+
+            date.getFullYear()
+                !== year
+
+            ||
+
+            date.getMonth()
+                !== month - 1
+
+            ||
+
+            date.getDate()
+                !== day
+
+        ) {
+
+            return null;
+        }
+
+
+        return date;
+    }
+
+
+    /*
+        ISO fallback
+    */
+
+    const timestamp =
+        Date.parse(value);
+
+
+    if (
+        Number.isNaN(timestamp)
+    ) {
+
+        return null;
+    }
+
+
+    const date =
+        new Date(timestamp);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return null;
+    }
+
+
+    return date;
+}
+
+
+/* =========================================================
+   FORMAT GREGORIAN DATE
+========================================================= */
+
+function formatGregorianDate(date) {
+
+    if (!date)
+        return I18N[currentLang].invalidDate;
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,'0');
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2,'0');
+
+
+    const hours =
+        String(
+            date.getHours()
+        ).padStart(2,'0');
+
+
+    const minutes =
+        String(
+            date.getMinutes()
+        ).padStart(2,'0');
+
+
+    return (
+        year +
+        '/' +
+        month +
+        '/' +
+        day +
+        ' ' +
+        hours +
+        ':' +
+        minutes
+    );
+}
+
+
+/* =========================================================
+   REAL COUNTDOWN
+========================================================= */
+
+function updateExpiryCountdown() {
+
+    const expiryElement =
+        document.getElementById(
+            'expiry-date'
+        );
+
+
+    const countdownElement =
+        document.getElementById(
+            'days-left'
+        );
+
+
+    if (
+        !expiryElement ||
+        !countdownElement
+    ) {
+
+        return;
+    }
+
+
+    /*
+        READ ONLY REAL BACKEND VALUE
+    */
+
+    const rawExpiry =
+        expiryElement.dataset.expiry;
+
+
+    const expiryDate =
+        parseExpiryDate(
+            rawExpiry
+        );
+
+
+    /*
+        INVALID DATE
+    */
+
+    if (!expiryDate) {
+
+        expiryElement.textContent =
+            I18N[currentLang].invalidDate;
+
+        countdownElement.textContent =
+            '--';
+
+        return;
+    }
+
+
+    /*
+        SHOW REAL GREGORIAN DATE
+    */
+
+    expiryElement.textContent =
+        formatGregorianDate(
+            expiryDate
+        );
+
+
+    /*
+        REAL REMAINING TIME
+    */
+
+    const now =
+        new Date();
+
+
+    const difference =
+        expiryDate.getTime()
+        -
+        now.getTime();
+
+
+    /*
+        EXPIRED
+    */
+
+    if (difference <= 0) {
+
+        countdownElement.textContent =
+            I18N[currentLang].expiredTime;
+
+        return;
+    }
+
+
+    /*
+        REAL DAYS
+
+        ceil means:
+
+        1 day + 1 hour
+        = 2 days remaining
+
+        5 hours
+        = 1 day remaining
+    */
+
+    const days =
+        Math.ceil(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    /*
+        NEVER allow nonsense
+        values
+    */
+
+    if (
+        !Number.isFinite(days)
+        ||
+        days < 0
+    ) {
+
+        countdownElement.textContent =
+            '--';
+
+        return;
+    }
+
+
+    countdownElement.textContent =
+        String(days)
+        +
+        ' '
+        +
+        (
+            days === 1
+                ? I18N[currentLang].day
+                : I18N[currentLang].days
+        );
+}
+
+
+/* =========================================================
+   UPDATE COUNTDOWN EVERY MINUTE
+========================================================= */
+
+setInterval(
+    updateExpiryCountdown,
+    60000
+);
+
+
+/* =========================================================
    COPY
 ========================================================= */
 
 function copyLink(id) {
 
-    const element =
+    const el =
         document.getElementById(id);
 
 
-    if (!element)
+    if (!el)
         return;
 
 
-    const text =
-        element.value;
+    const value =
+        el.value;
 
 
     if (
-        navigator.clipboard &&
-        window.isSecureContext
+        navigator.clipboard
     ) {
 
         navigator.clipboard
-            .writeText(text)
+            .writeText(value)
             .then(() => {
 
                 showToast(
-                    'کپی شد — Copied!'
+                    I18N[currentLang].copied
+                );
+
+            })
+            .catch(() => {
+
+                fallbackCopy(
+                    el
                 );
 
             });
 
     } else {
 
-        element.select();
-
-        element.setSelectionRange(
-            0,
-            999999
-        );
-
-        document.execCommand(
-            'copy'
-        );
-
-        showToast(
-            'کپی شد — Copied!'
+        fallbackCopy(
+            el
         );
 
     }
@@ -3004,63 +3356,101 @@ function copyLink(id) {
 }
 
 
+function fallbackCopy(el) {
+
+    el.select();
+
+    el.setSelectionRange(
+        0,
+        999999
+    );
+
+    document.execCommand(
+        'copy'
+    );
+
+    showToast(
+        I18N[currentLang].copied
+    );
+}
+
+
 /* =========================================================
-   RAW
+   RAW CONTENT
 ========================================================= */
 
 async function fetchDecodedRawContent() {
 
     try {
 
-        const response =
+        const res =
             await fetch(
                 '__SYNC_RAW__'
             );
 
 
-        if (!response.ok)
+        if (!res.ok)
             throw new Error(
                 'Failed'
             );
 
 
-        const base64 =
-            (
-                await response.text()
-            ).trim();
-
-
-        const decoded =
-            atob(base64);
-
-
-        const bytes =
-            Uint8Array.from(
-                decoded,
-                c => c.charCodeAt(0)
-            );
-
-
         const text =
-            new TextDecoder(
-                'utf-8'
-            ).decode(
-                bytes
-            );
+            await res.text();
 
 
-        await navigator.clipboard
-            .writeText(text);
+        let decodedText =
+            text.trim();
+
+
+        /*
+            Try Base64 decoding.
+        */
+
+        try {
+
+            decodedText =
+                atob(
+                    decodedText
+                );
+
+        } catch(e) {
+
+            /*
+                If it isn't Base64,
+                use raw content itself.
+            */
+
+        }
+
+
+        if (
+            navigator.clipboard
+        ) {
+
+            await navigator.clipboard
+                .writeText(
+                    decodedText
+                );
+
+        }
 
 
         showToast(
-            'محتوا کپی شد — Content Copied!'
+            I18N[currentLang]
+                .decodedCopied
         );
 
-    } catch(error) {
 
-        showToast(
-            'خطا در دریافت محتوا — Error'
+    } catch(e) {
+
+        alert(
+            I18N[currentLang]
+                .decodedError
+            +
+            ': '
+            +
+            e.message
         );
 
     }
@@ -3078,44 +3468,33 @@ function showQRModal(url) {
         return;
 
 
+    document.getElementById(
+        'qr-title'
+    ).innerText =
+        I18N[currentLang]
+            .qrTitle;
+
+
+    document.getElementById(
+        'qr-text'
+    ).innerText =
+        url;
+
+
+    document.getElementById(
+        'qr-img'
+    ).src =
+        'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
+        +
+        encodeURIComponent(
+            url
+        );
+
+
     const modal =
         document.getElementById(
             'qr-modal'
         );
-
-
-    const image =
-        document.getElementById(
-            'qr-img'
-        );
-
-
-    const text =
-        document.getElementById(
-            'qr-text'
-        );
-
-
-    const title =
-        document.getElementById(
-            'qr-title'
-        );
-
-
-    title.innerHTML =
-        'اسکن کد QR '
-        +
-        '<span style="font-family:Inter;font-size:10px;color:#777;">Scan QR Code</span>';
-
-
-    text.textContent =
-        url;
-
-
-    image.src =
-        'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
-        +
-        encodeURIComponent(url);
 
 
     modal.classList.remove(
@@ -3168,7 +3547,7 @@ function closeQRModal() {
    TOAST
 ========================================================= */
 
-function showToast(message) {
+function showToast(msg) {
 
     const toast =
         document.getElementById(
@@ -3176,8 +3555,8 @@ function showToast(message) {
         );
 
 
-    toast.textContent =
-        message;
+    toast.innerText =
+        msg;
 
 
     toast.style.opacity =
@@ -3203,7 +3582,7 @@ function showToast(message) {
 
 
 /* =========================================================
-   IP
+   CLIENT IP
 ========================================================= */
 
 fetch(
@@ -3211,37 +3590,42 @@ fetch(
 )
 
 .then(
-    response =>
-        response.json()
+    r => r.json()
 )
 
 .then(
     data => {
 
-        const element =
+        const ip =
             document.getElementById(
                 'client-ip'
             );
 
 
-        if (element)
-            element.textContent =
+        if (ip) {
+
+            ip.textContent =
                 data.ip;
+
+        }
 
     }
 )
 
 .catch(() => {
 
-    const element =
+    const ip =
         document.getElementById(
             'client-ip'
         );
 
 
-    if (element)
-        element.textContent =
+    if (ip) {
+
+        ip.textContent =
             'Unknown';
+
+    }
 
 });
 
@@ -3250,103 +3634,177 @@ fetch(
    FORMAT LINKS
 ========================================================= */
 
-(function initLinks() {
+function buildFlagLink(
+    normalLink,
+    flag
+) {
 
-    const normal =
+    return normalLink
+        +
+        (
+            normalLink.includes('?')
+                ? '&flag='
+                : '?flag='
+        )
+        +
+        flag;
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+(function init() {
+
+
+    /*
+        LANGUAGE
+    */
+
+    try {
+
+        const savedLang =
+            localStorage.getItem(
+                'sub-lang'
+            );
+
+
+        if (
+            savedLang &&
+            I18N[savedLang]
+        ) {
+
+            currentLang =
+                savedLang;
+
+        }
+
+    } catch(e) {}
+
+
+    applyLang();
+
+
+    /*
+        NORMAL LINK
+    */
+
+    const normalLink =
         '__SYNC_NORMAL__';
 
 
-    if (!normal)
-        return;
+    const rawLink =
+        buildFlagLink(
+            normalLink,
+            'raw'
+        );
 
 
-    function addFlag(
-        flag
-    ) {
-
-        return normal
-            +
-            (
-                normal.includes('?')
-                    ? '&'
-                    : '?'
-            )
-            +
-            'flag='
-            +
-            flag;
-
-    }
+    const base64Link =
+        buildFlagLink(
+            normalLink,
+            'base64'
+        );
 
 
-    const raw =
+    const singboxLink =
+        buildFlagLink(
+            normalLink,
+            'singbox'
+        );
+
+
+    const clashLink =
+        buildFlagLink(
+            normalLink,
+            'clash'
+        );
+
+
+    const v2raynLink =
+        buildFlagLink(
+            normalLink,
+            'vjson'
+        );
+
+
+    /*
+        FORMAT INPUTS
+    */
+
+    const rawInput =
         document.getElementById(
             'link-raw-fmt'
         );
 
-    const base64 =
+
+    const base64Input =
         document.getElementById(
             'link-base64-fmt'
         );
 
-    const singbox =
+
+    const singboxInput =
         document.getElementById(
             'link-singbox-fmt'
         );
 
-    const clash =
+
+    const clashInput =
         document.getElementById(
             'link-clash-fmt'
         );
 
-    const v2rayn =
+
+    const v2raynInput =
         document.getElementById(
             'link-v2rayn-fmt'
         );
 
 
-    if (raw)
-        raw.value =
-            addFlag('raw');
+    if (rawInput)
+        rawInput.value =
+            rawLink;
 
 
-    if (base64)
-        base64.value =
-            addFlag('base64');
+    if (base64Input)
+        base64Input.value =
+            base64Link;
 
 
-    if (singbox)
-        singbox.value =
-            addFlag('singbox');
+    if (singboxInput)
+        singboxInput.value =
+            singboxLink;
 
 
-    if (clash)
-        clash.value =
-            addFlag('clash');
+    if (clashInput)
+        clashInput.value =
+            clashLink;
 
 
-    if (v2rayn)
-        v2rayn.value =
-            addFlag('vjson');
+    if (v2raynInput)
+        v2raynInput.value =
+            v2raynLink;
 
 
     /*
-        v2rayNG
+        V2RAYNG
     */
 
-    const v2rayng =
+    const v2rayngLink =
         document.getElementById(
             'v2rayng-link'
         );
 
 
-    if (v2rayng) {
+    if (v2rayngLink) {
 
-        v2rayng.href =
+        v2rayngLink.href =
             'v2rayng://install-sub?url='
             +
             encodeURIComponent(
-                addFlag('base64')
+                base64Link
             )
             +
             '&name='
@@ -3359,22 +3817,22 @@ fetch(
 
 
     /*
-        v2rayN
+        V2RAYN
     */
 
-    const v2raynLink =
+    const v2raynApp =
         document.getElementById(
             'v2rayn-link'
         );
 
 
-    if (v2raynLink) {
+    if (v2raynApp) {
 
-        v2raynLink.href =
+        v2raynApp.href =
             'v2rayn://install-sub?url='
             +
             encodeURIComponent(
-                normal
+                normalLink
             )
             +
             '&name='
@@ -3387,7 +3845,7 @@ fetch(
 
 
     /*
-        Shadowrocket
+        SHADOWROCKET
     */
 
     const shadowrocket =
@@ -3398,22 +3856,14 @@ fetch(
 
     if (shadowrocket) {
 
-        const encoded =
-            btoa(
-                unescape(
-                    encodeURIComponent(
-                        normal
-                    )
-                )
-            );
-
-
         shadowrocket.href =
             'shadowrocket://add/sub://'
             +
-            encoded
+            btoa(
+                normalLink
+            )
             +
-            '?remark='
+            '?title='
             +
             encodeURIComponent(
                 '__USER_NAME__'
@@ -3421,45 +3871,37 @@ fetch(
 
     }
 
-})();
+
+    /*
+        STREISAND
+    */
+
+    const streisand =
+        document.getElementById(
+            'streisand-link'
+        );
 
 
-/* =========================================================
-   INITIALIZE
-========================================================= */
+    if (streisand) {
 
-(function init() {
-
-
-    try {
-
-        const saved =
-            localStorage.getItem(
-                'sub-theme'
+        streisand.href =
+            'streisand://import/'
+            +
+            encodeURIComponent(
+                normalLink
             );
 
-
-        if (saved) {
-
-            isDark =
-                saved === 'dark';
-
-        }
-
-    } catch(e) {}
+    }
 
 
-    applyTheme();
+    /*
+        REAL EXPIRY COUNTDOWN
+    */
 
-
-    initStatusBadge();
-
-
-    updateExpiry();
+    updateExpiryCountdown();
 
 
 })();
-
 </script>
 
 </body>
