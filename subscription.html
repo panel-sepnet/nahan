@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,26 +25,21 @@ tailwind.config = {
 </script>
 
 <style>
+
 :root {
-    --bg: #050505;
-    --bg2: #0a0a0a;
-    --card: rgba(18,18,18,.72);
-    --card2: rgba(255,255,255,.035);
-
-    --yellow: #ffd000;
-    --yellow2: #ffb800;
-    --yellow-soft: rgba(255,208,0,.12);
-    --yellow-border: rgba(255,208,0,.25);
-
-    --green: #22c55e;
-    --red: #ef4444;
-    --orange: #f59e0b;
-
-    --text: #fff;
-    --text2: #b5b5b5;
-    --muted: #707070;
-
-    --border: rgba(255,255,255,.08);
+    --bg:#050505;
+    --bg2:#0a0a0a;
+    --yellow:#ffd21f;
+    --yellow2:#ffb800;
+    --yellow-soft:rgba(255,210,31,.12);
+    --yellow-border:rgba(255,210,31,.25);
+    --green:#22c55e;
+    --red:#ef4444;
+    --orange:#f59e0b;
+    --text:#fff;
+    --text2:#b5b5b5;
+    --muted:#707070;
+    --border:rgba(255,255,255,.08);
 
     --shadow:
         0 25px 80px rgba(0,0,0,.55),
@@ -52,83 +47,155 @@ tailwind.config = {
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior:smooth;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
+    margin:0;
+    min-height:100vh;
+
     background:
-        radial-gradient(circle at 10% 5%, rgba(255,208,0,.12), transparent 30%),
-        radial-gradient(circle at 90% 80%, rgba(255,184,0,.08), transparent 28%),
-        linear-gradient(135deg,#030303,#090909 45%,#050505);
-    color: var(--text);
-    font-family: 'Inter','Vazirmatn',sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-}
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(255,210,31,.12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255,184,0,.08),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255,210,31,.05),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #030303,
+            #090909 45%,
+            #050505
+        );
 
-[lang="fa"] body {
-    font-family: 'Vazirmatn',sans-serif;
+    color:var(--text);
+    font-family:'Vazirmatn','Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
 }
-
-/* Background */
 
 body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+
     background-image:
-        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
-    background-size: 45px 45px;
-    mask-image: linear-gradient(to bottom,black,transparent);
-    z-index: -2;
+        linear-gradient(
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:45px 45px;
+
+    mask-image:
+        radial-gradient(
+            ellipse 90% 80% at center,
+            black 20%,
+            transparent 85%
+        );
+
+    z-index:-2;
+
+    animation:gridMove 35s linear infinite;
+}
+
+@keyframes gridMove {
+
+    from {
+        background-position:0 0;
+    }
+
+    to {
+        background-position:45px 45px;
+    }
 }
 
 .ambient {
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: var(--yellow);
-    filter: blur(140px);
-    opacity: .09;
-    pointer-events: none;
-    z-index: -1;
+    position:fixed;
+    border-radius:50%;
+    filter:blur(90px);
+    pointer-events:none;
+    z-index:-1;
+
+    animation:
+        floatOrb 18s ease-in-out infinite alternate;
 }
 
 .ambient.one {
-    top: -100px;
-    left: -100px;
+    width:420px;
+    height:420px;
+    top:-170px;
+    left:-100px;
+    background:#ffd21f;
+    opacity:.08;
 }
 
 .ambient.two {
-    bottom: -100px;
-    right: -100px;
+    width:350px;
+    height:350px;
+    bottom:-150px;
+    right:-100px;
+    background:#ffb800;
+    opacity:.07;
+    animation-delay:-5s;
 }
 
-/* Scrollbar */
+.ambient.three {
+    width:260px;
+    height:260px;
+    top:45%;
+    left:50%;
+    background:#fff06a;
+    opacity:.035;
+    animation-delay:-9s;
+}
+
+@keyframes floatOrb {
+
+    from {
+        transform:translate(0,0) scale(1);
+    }
+
+    50% {
+        transform:translate(35px,-30px) scale(1.12);
+    }
+
+    to {
+        transform:translate(-25px,35px) scale(1.05);
+    }
+}
 
 ::-webkit-scrollbar {
-    width: 6px;
+    width:6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #050505;
+    background:#050505;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--yellow);
-    border-radius: 20px;
+    background:var(--yellow);
+    border-radius:20px;
 }
-
-/* Glass */
 
 .glass {
     background:
@@ -137,782 +204,1309 @@ body::before {
             rgba(255,255,255,.055),
             rgba(255,255,255,.018)
         );
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(22px);
-    -webkit-backdrop-filter: blur(22px);
+
+    border:1px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(22px);
+    -webkit-backdrop-filter:blur(22px);
+
+    transition:
+        transform .35s cubic-bezier(.22,1,.36,1),
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.glass:hover {
+    transform:translateY(-3px);
+
+    border-color:
+        rgba(255,210,31,.22);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.7),
+        0 0 30px rgba(255,210,31,.045);
 }
 
 .card {
-    border-radius: 26px;
-    position: relative;
-    overflow: hidden;
+    border-radius:26px;
+    position:relative;
+    overflow:hidden;
 }
 
 .card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+
     background:
         radial-gradient(
             circle at 100% 0%,
-            rgba(255,208,0,.08),
+            rgba(255,210,31,.08),
             transparent 35%
         );
 }
 
-.card:hover {
-    border-color: rgba(255,208,0,.18);
-}
-
-/* Topbar */
-
 .topbar {
-    width: 100%;
-    max-width: 1180px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 22px;
-    gap: 15px;
+    width:100%;
+    max-width:1180px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:22px;
+    gap:15px;
 }
 
 .brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
 }
 
 .brand-logo {
-    width: 44px;
-    height: 44px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(145deg,#ffe46b,#ffb800);
-    color: #080808;
-    font-weight: 900;
-    font-size: 14px;
-    letter-spacing: -1px;
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd21f,
+            #ffb800
+        );
+
+    color:#080808;
+
+    font-weight:900;
+    font-size:14px;
+
     box-shadow:
-        0 0 35px rgba(255,208,0,.25),
+        0 0 35px rgba(255,210,31,.25),
         inset 0 1px rgba(255,255,255,.6);
 }
 
 .brand-name {
-    font-size: 18px;
-    font-weight: 900;
-    letter-spacing: 2px;
+    font-size:18px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.brand-name span {
+    color:var(--yellow);
 }
 
 .brand-sub {
-    font-size: 9px;
-    color: var(--muted);
-    letter-spacing: 2px;
-    margin-top: 2px;
+    font-size:9px;
+    color:var(--muted);
+    letter-spacing:2px;
+    margin-top:2px;
 }
 
-/* Buttons */
-
 .btn {
-    border: 1px solid var(--border);
-    border-radius: 13px;
-    padding: 10px 15px;
-    font-weight: 800;
-    font-size: 11px;
-    cursor: pointer;
-    transition: .2s ease;
+    border:1px solid var(--border);
+    border-radius:13px;
+
+    padding:10px 15px;
+
+    font-weight:800;
+    font-size:11px;
+
+    cursor:pointer;
+    transition:.2s ease;
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    transform:translateY(-2px);
 }
 
 .btn-secondary {
-    background: rgba(255,255,255,.045);
-    color: var(--text);
+    background:rgba(255,255,255,.045);
+    color:var(--text);
 }
 
 .btn-secondary:hover {
-    border-color: var(--yellow-border);
-    color: var(--yellow);
-    background: var(--yellow-soft);
+    border-color:var(--yellow-border);
+    color:var(--yellow);
+    background:var(--yellow-soft);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg,#ffe36b,#ffc400);
-    color: #090909;
-    border: 0;
-    font-weight: 900;
-    box-shadow: 0 8px 30px rgba(255,208,0,.18);
+    background:
+        linear-gradient(
+            110deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a,
+            #ffd21f,
+            #ffb800
+        );
+
+    background-size:250% 100%;
+
+    color:#090909;
+    border:0;
+
+    font-weight:900;
+
+    box-shadow:
+        0 8px 30px rgba(255,210,31,.18);
+
+    animation:
+        buttonShimmer 4s linear infinite;
 }
 
-.btn-primary:hover {
-    background: linear-gradient(135deg,#ffe982,#ffd000);
-    box-shadow: 0 10px 40px rgba(255,208,0,.28);
-}
+@keyframes buttonShimmer {
 
-/* Profile */
+    0% {
+        background-position:-200% 0;
+    }
+
+    100% {
+        background-position:200% 0;
+    }
+}
 
 .profile {
-    text-align: center;
-    padding: 30px 24px;
+    text-align:center;
+    padding:30px 24px;
 }
 
 .profile-logo {
-    width: 82px;
-    height: 82px;
-    margin: 0 auto 17px;
-    border-radius: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: #050505;
+    width:82px;
+    height:82px;
+
+    margin:0 auto 17px;
+
+    border-radius:24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:20px;
+    font-weight:900;
+
+    color:#050505;
+
     background:
-        linear-gradient(145deg,#fff19b,#ffc400);
+        linear-gradient(
+            145deg,
+            #ffd21f,
+            #ffb800
+        );
+
     box-shadow:
-        0 0 45px rgba(255,208,0,.25),
-        inset 0 1px 0 rgba(255,255,255,.7);
+        0 0 45px rgba(255,210,31,.25);
 }
 
 .profile h1 {
-    margin: 0;
-    font-size: 25px;
-    font-weight: 900;
+    margin:0;
+    font-size:25px;
+    font-weight:900;
 }
 
 .user-id {
-    margin-top: 6px;
-    color: var(--muted);
-    font-size: 10px;
-    font-family: monospace;
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    font-family:monospace;
+    direction:ltr;
 }
 
 .status {
-    margin-top: 20px;
-    width: 100%;
-    padding: 11px;
-    border-radius: 13px;
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
+    margin-top:20px;
+    width:100%;
+
+    padding:11px;
+
+    border-radius:13px;
+
+    font-size:10px;
+    font-weight:900;
+
+    letter-spacing:.5px;
 }
 
-/* Section title */
+.status-dot {
+    display:inline-block;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--yellow);
+
+    box-shadow:
+        0 0 8px var(--yellow),
+        0 0 20px rgba(255,210,31,.55);
+
+    animation:pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+    0%,100% {
+        box-shadow:
+            0 0 7px var(--yellow),
+            0 0 15px rgba(255,210,31,.4);
+    }
+
+    50% {
+        box-shadow:
+            0 0 12px var(--yellow),
+            0 0 28px rgba(255,210,31,.65);
+    }
+}
 
 .section-title {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    font-size: 11px;
-    font-weight: 900;
-    color: var(--text2);
-    text-transform: uppercase;
-    letter-spacing: 1.6px;
-    margin-bottom: 17px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+
+    font-size:11px;
+    font-weight:900;
+
+    color:var(--text2);
+
+    margin-bottom:17px;
 }
 
 .section-title svg {
-    color: var(--yellow);
+    color:var(--yellow);
+    flex-shrink:0;
 }
 
-/* Info */
+.section-title .en {
+    color:#777;
+    font-family:'Inter',sans-serif;
+    font-size:9px;
+    font-weight:700;
+    direction:ltr;
+}
 
 .info {
-    padding: 25px;
+    padding:25px;
 }
 
 .expiry {
-    font-size: 25px;
-    font-weight: 900;
-    margin-bottom: 5px;
+    font-size:25px;
+    font-weight:900;
+
+    margin-bottom:5px;
+
+    color:var(--yellow);
+
+    text-shadow:
+        0 0 7px rgba(255,210,31,.5),
+        0 0 18px rgba(255,184,0,.25);
+
+    direction:ltr;
+    text-align:right;
 }
 
-.muted {
-    color: var(--muted);
+.expiry-sub {
+    color:var(--muted);
+    font-size:10px;
 }
 
-.secondary {
-    color: var(--text2);
+.remaining-box {
+    margin-top:18px;
+
+    padding:15px;
+
+    border-radius:17px;
+
+    background:
+        rgba(255,210,31,.045);
+
+    border:
+        1px solid
+        rgba(255,210,31,.14);
+}
+
+.remaining-title {
+    color:var(--text2);
+    font-size:10px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+
+.remaining-title .en {
+    color:#666;
+    font-family:Inter,sans-serif;
+    font-size:8px;
+}
+
+.remaining-number {
+    font-size:28px;
+    font-weight:900;
+    color:var(--yellow);
+    direction:ltr;
+}
+
+.remaining-number .unit {
+    font-size:11px;
+    color:var(--text2);
 }
 
 .divider {
-    height: 1px;
-    background: var(--border);
-    margin: 22px 0;
+    height:1px;
+    background:var(--border);
+    margin:22px 0;
 }
 
 .ip-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
 }
 
 .ip {
-    color: var(--yellow);
-    font-family: monospace;
-    font-size: 11px;
-    font-weight: 800;
+    color:var(--yellow);
+    font-family:monospace;
+    font-size:11px;
+    font-weight:800;
+    direction:ltr;
 }
 
-/* Support */
+.secondary {
+    color:var(--text2);
+}
+
+.muted {
+    color:var(--muted);
+}
 
 .support {
-    padding: 24px;
+    padding:24px;
+
     background:
         radial-gradient(
             circle at 100% 0%,
-            rgba(255,208,0,.12),
+            rgba(255,210,31,.12),
             transparent 50%
         ),
         rgba(255,255,255,.025);
 }
 
 .support p {
-    font-size: 11px;
-    line-height: 1.9;
-    color: var(--text2);
+    font-size:11px;
+    line-height:1.9;
+    color:var(--text2);
 }
 
 .support-btn {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    text-decoration: none;
-    margin-top: 16px;
-    padding: 12px;
-    border-radius: 13px;
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    text-decoration:none;
+
+    margin-top:16px;
+
+    padding:12px;
+
+    border-radius:13px;
 }
 
-/* Metrics */
+.social-links {
+    margin-top:20px;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:8px;
+}
+
+.social-link {
+    text-decoration:none;
+
+    color:var(--text);
+
+    padding:12px 7px;
+
+    border-radius:13px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid var(--border);
+
+    text-align:center;
+
+    transition:.2s;
+}
+
+.social-link:hover {
+    color:var(--yellow);
+
+    border-color:
+        var(--yellow-border);
+
+    background:
+        var(--yellow-soft);
+
+    transform:translateY(-2px);
+}
+
+.social-fa {
+    display:block;
+
+    font-size:9px;
+    font-weight:900;
+}
+
+.social-en {
+    display:block;
+
+    margin-top:3px;
+
+    color:#666;
+
+    font-family:Inter,sans-serif;
+
+    font-size:7px;
+    font-weight:700;
+
+    direction:ltr;
+}
 
 .metric {
-    padding: 25px;
+    padding:25px;
 }
 
 .metric-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    margin-bottom:20px;
 }
 
 .metric-icon {
-    width: 39px;
-    height: 39px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--yellow);
-    background: var(--yellow-soft);
-    border: 1px solid var(--yellow-border);
+    width:39px;
+    height:39px;
+
+    border-radius:12px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--yellow);
+
+    background:var(--yellow-soft);
+
+    border:
+        1px solid
+        var(--yellow-border);
 }
 
 .metric-title {
-    color: var(--text2);
-    font-size: 10px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
+    color:var(--text2);
+    font-size:11px;
+    font-weight:900;
+}
+
+.metric-title .en {
+    display:block;
+
+    margin-top:3px;
+
+    color:#666;
+
+    font-family:Inter,sans-serif;
+
+    font-size:8px;
+
+    direction:ltr;
 }
 
 .metric-number {
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: -1px;
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:-1px;
+    direction:ltr;
 }
 
 .metric-limit {
-    color: var(--text2);
-    font-size: 12px;
+    color:var(--text2);
+    font-size:12px;
+    direction:ltr;
 }
 
-/* Progress */
-
 .progress {
-    width: 100%;
-    height: 8px;
-    border-radius: 20px;
-    overflow: hidden;
-    background: rgba(255,255,255,.07);
-    border: 1px solid rgba(255,255,255,.05);
+    width:100%;
+    height:8px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
 }
 
 .progress > * {
-    background: linear-gradient(
-        90deg,
-        #ffb800,
-        #ffe16b
-    ) !important;
-    box-shadow: 0 0 15px rgba(255,208,0,.45);
-    border-radius: 20px;
+    background:
+        linear-gradient(
+            90deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a
+        ) !important;
+
+    box-shadow:
+        0 0 15px
+        rgba(255,210,31,.45);
+
+    border-radius:20px;
 }
 
-/* Main */
-
 .main-card {
-    padding: 30px;
+    padding:30px;
 }
 
 .main-heading {
-    font-size: 19px;
-    font-weight: 900;
-    margin-bottom: 5px;
+    font-size:19px;
+    font-weight:900;
+    margin-bottom:5px;
+}
+
+.main-heading span {
+    color:var(--yellow);
+}
+
+.main-heading .en {
+    color:#777;
+    font-family:Inter,sans-serif;
+    font-size:10px;
+    margin-right:8px;
 }
 
 .main-desc {
-    color: var(--text2);
-    font-size: 11px;
+    color:var(--text2);
+    font-size:11px;
+    line-height:1.9;
 }
 
-/* Universal */
+.main-desc .en {
+    display:block;
+    color:#666;
+    font-family:Inter,sans-serif;
+    font-size:9px;
+    direction:ltr;
+}
 
 .universal {
-    margin-top: 25px;
-    padding: 23px;
-    border-radius: 21px;
-    border: 1px solid var(--yellow-border);
+    margin-top:25px;
+
+    padding:23px;
+
+    border-radius:21px;
+
+    border:
+        1px solid
+        var(--yellow-border);
+
     background:
         radial-gradient(
             circle at 100% 0%,
-            rgba(255,208,0,.12),
+            rgba(255,210,31,.12),
             transparent 45%
         ),
-        rgba(255,208,0,.025);
-    position: relative;
-    overflow: hidden;
+        rgba(255,210,31,.025);
+
+    position:relative;
+    overflow:hidden;
 }
 
 .recommended {
-    display: inline-block;
-    margin-left: 5px;
-    padding: 4px 8px;
-    border-radius: 7px;
-    background: var(--yellow);
-    color: #050505;
-    font-size: 8px;
-    font-weight: 900;
-    letter-spacing: 1px;
+    display:inline-block;
+
+    margin-right:5px;
+
+    padding:4px 8px;
+
+    border-radius:7px;
+
+    background:var(--yellow);
+
+    color:#050505;
+
+    font-size:8px;
+    font-weight:900;
+
+    direction:ltr;
+}
+
+.dual-title {
+    font-size:13px;
+    font-weight:900;
+}
+
+.dual-title .en {
+    color:#777;
+    font-family:Inter,sans-serif;
+    font-size:9px;
+    margin-right:6px;
+}
+
+.dual-desc {
+    color:var(--text2);
+    font-size:10px;
+    line-height:1.9;
+}
+
+.dual-desc .en {
+    display:block;
+
+    color:#666;
+
+    font-family:Inter,sans-serif;
+
+    font-size:8px;
+
+    direction:ltr;
 }
 
 .input {
-    width: 100%;
-    min-width: 0;
-    background: rgba(0,0,0,.45);
-    color: var(--text);
-    border: 1px solid var(--border);
-    outline: none;
-    border-radius: 13px;
-    padding: 13px 14px;
-    font-size: 11px;
-    font-family: monospace;
+    width:100%;
+    min-width:0;
+
+    background:
+        rgba(0,0,0,.45);
+
+    color:var(--text);
+
+    border:
+        1px solid var(--border);
+
+    outline:none;
+
+    border-radius:13px;
+
+    padding:13px 14px;
+
+    font-size:11px;
+
+    font-family:monospace;
+
+    direction:ltr;
 }
 
 .input:focus {
-    border-color: var(--yellow);
-    box-shadow: 0 0 0 3px rgba(255,208,0,.07);
+    border-color:var(--yellow);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,210,31,.07);
 }
 
-/* Formats */
-
 .formats {
-    margin-top: 20px;
-    padding: 22px;
-    border-radius: 21px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.018);
+    margin-top:20px;
+
+    padding:22px;
+
+    border-radius:21px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.018);
 }
 
 .format-grid {
-    display: grid;
-    grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 13px;
-    margin-top: 18px;
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:13px;
+
+    margin-top:18px;
 }
 
 .format {
-    padding: 16px;
-    border-radius: 17px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.025);
-    transition: .2s ease;
+    padding:16px;
+
+    border-radius:17px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+
+    transition:.2s ease;
 }
 
 .format:hover {
-    border-color: var(--yellow-border);
-    transform: translateY(-2px);
-    background: rgba(255,208,0,.035);
+    border-color:
+        var(--yellow-border);
+
+    transform:translateY(-2px);
+
+    background:
+        rgba(255,210,31,.035);
 }
 
 .format-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    margin-bottom: 11px;
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:11px;
 }
 
 .format-name {
-    font-size: 10px;
-    font-weight: 900;
+    font-size:10px;
+    font-weight:900;
+}
+
+.format-name .en {
+    display:block;
+
+    color:#666;
+
+    font-family:Inter,sans-serif;
+
+    font-size:7px;
+
+    margin-top:2px;
 }
 
 .tag {
-    padding: 4px 7px;
-    border-radius: 6px;
-    background: var(--yellow-soft);
-    color: var(--yellow);
-    font-size: 8px;
-    font-weight: 900;
+    padding:4px 7px;
+
+    border-radius:6px;
+
+    background:var(--yellow-soft);
+
+    color:var(--yellow);
+
+    font-size:8px;
+
+    font-weight:900;
+
+    direction:ltr;
 }
 
 .format-row {
-    display: flex;
-    gap: 7px;
+    display:flex;
+    gap:7px;
 }
 
 .format-row .input {
-    padding: 10px;
-    font-size: 9px;
+    padding:10px;
+    font-size:9px;
 }
 
 .small-btn {
-    border: 0;
-    background: var(--yellow);
-    color: #050505;
-    border-radius: 10px;
-    padding: 0 12px;
-    font-size: 9px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: .2s;
+    border:0;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffb800,
+            #ffd21f
+        );
+
+    color:#050505;
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+    transition:.2s;
 }
 
 .small-btn:hover {
-    background: #ffe16b;
-    transform: translateY(-1px);
+    transform:translateY(-1px);
 }
 
 .qr-btn {
-    width: 38px;
-    min-width: 38px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,.04);
-    color: var(--text2);
-    border-radius: 10px;
-    cursor: pointer;
+    width:38px;
+    min-width:38px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:var(--text2);
+
+    border-radius:10px;
+
+    cursor:pointer;
 }
 
 .qr-btn:hover {
-    color: var(--yellow);
-    border-color: var(--yellow-border);
+    color:var(--yellow);
+
+    border-color:
+        var(--yellow-border);
 }
 
-/* Apps */
-
 .apps {
-    margin-top: 28px;
+    margin-top:28px;
 }
 
 .apps-grid {
-    display: grid;
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 10px;
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:10px;
 }
 
 .app {
-    text-decoration: none;
-    color: var(--text);
-    padding: 14px 10px;
-    border-radius: 14px;
-    background: rgba(255,255,255,.035);
-    border: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 7px;
-    font-size: 11px;
-    font-weight: 800;
-    transition: .2s;
+    text-decoration:none;
+
+    color:var(--text);
+
+    padding:14px 10px;
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:7px;
+
+    font-size:11px;
+    font-weight:800;
+
+    transition:.2s;
 }
 
 .app:hover {
-    color: var(--yellow);
-    border-color: var(--yellow-border);
-    background: var(--yellow-soft);
-    transform: translateY(-3px);
+    color:var(--yellow);
+
+    border-color:
+        var(--yellow-border);
+
+    background:
+        var(--yellow-soft);
+
+    transform:translateY(-3px);
 }
 
-/* Bottom */
-
 .bottom {
-    margin-top: 25px;
-    padding-top: 20px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:
+        1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
 }
 
 .raw-btn {
-    white-space: nowrap;
+    white-space:nowrap;
 }
 
-/* Modal */
-
 .modal-overlay {
-    background: rgba(0,0,0,.82);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    background:
+        rgba(0,0,0,.82);
+
+    backdrop-filter:blur(18px);
 }
 
 .modal-card {
     background:
-        linear-gradient(145deg,
+        linear-gradient(
+            145deg,
             rgba(28,28,28,.95),
             rgba(10,10,10,.97)
         );
-    border: 1px solid var(--yellow-border);
+
+    border:
+        1px solid
+        var(--yellow-border);
+
     box-shadow:
         0 30px 100px rgba(0,0,0,.8),
-        0 0 50px rgba(255,208,0,.08);
+        0 0 50px
+        rgba(255,210,31,.08);
 }
-
-/* Toast */
 
 #toast {
-    background: rgba(20,20,20,.92) !important;
-    border: 1px solid var(--yellow-border);
-    color: white !important;
-    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    background:
+        rgba(20,20,20,.92) !important;
+
+    border:
+        1px solid
+        var(--yellow-border);
+
+    color:white !important;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.6);
 }
 
-/* Animations */
-
 @keyframes enter {
+
     from {
-        opacity: 0;
-        transform: translateY(20px);
+        opacity:0;
+        transform:translateY(20px);
     }
+
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
 .fade-in {
-    animation: enter .65s ease-out;
+    animation:
+        enter .65s ease-out;
 }
-
-@keyframes pulseYellow {
-    0%,100% {
-        box-shadow: 0 0 20px rgba(255,208,0,.15);
-    }
-    50% {
-        box-shadow: 0 0 35px rgba(255,208,0,.28);
-    }
-}
-
-.brand-logo {
-    animation: pulseYellow 3s infinite;
-}
-
-/* Mobile */
 
 @media(max-width:768px) {
 
     body {
-        padding: 14px !important;
+        padding:14px !important;
     }
 
     .topbar {
-        margin-bottom: 16px;
+        margin-bottom:16px;
     }
 
     .brand-name {
-        font-size: 15px;
+        font-size:15px;
     }
 
     .brand-sub {
-        font-size: 8px;
+        font-size:8px;
     }
 
     .brand-logo {
-        width: 40px;
-        height: 40px;
+        width:40px;
+        height:40px;
     }
 
     .format-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:1fr;
     }
 
     .apps-grid {
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .social-links {
+        grid-template-columns:1fr;
     }
 
     .main-card {
-        padding: 19px;
+        padding:19px;
     }
 
     .universal,
     .formats {
-        padding: 16px;
+        padding:16px;
     }
 
     .bottom {
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction:column;
+        align-items:stretch;
     }
 
     .raw-btn {
-        width: 100%;
+        width:100%;
+    }
+
+    .ambient.three {
+        display:none;
     }
 }
 
 @media(max-width:480px) {
 
     .topbar > div:last-child {
-        gap: 5px;
+        gap:5px;
     }
 
     .topbar .btn {
-        padding: 9px 10px;
+        padding:9px 10px;
     }
 
     .metric-number {
-        font-size: 28px;
+        font-size:28px;
     }
 
     .expiry {
-        font-size: 22px;
+        font-size:22px;
     }
 
     .format-row {
-        flex-wrap: wrap;
+        flex-wrap:wrap;
     }
 
     .format-row .input {
-        width: 100%;
-        flex-basis: 100%;
+        width:100%;
+        flex-basis:100%;
     }
 
     .small-btn,
     .qr-btn {
-        height: 38px;
+        height:38px;
     }
+
 }
+
 </style>
 </head>
+
 
 <body class="min-h-screen px-4 py-5 fade-in">
 
 <div class="ambient one"></div>
 <div class="ambient two"></div>
+<div class="ambient three"></div>
 
-<!-- TOP BAR -->
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
 <div class="topbar">
 
     <div class="brand">
-        <div class="brand-logo">SN</div>
+
+        <div class="brand-logo">
+            SN
+        </div>
 
         <div>
-            <div class="brand-name">SEP NET</div>
-            <div class="brand-sub">SECURE NETWORK</div>
+
+            <div class="brand-name">
+                SEP <span>NET</span>
+            </div>
+
+            <div class="brand-sub">
+                SECURE NETWORK
+            </div>
+
         </div>
+
     </div>
+
 
     <div class="flex gap-2">
 
         <button
             onclick="toggleTheme()"
-            id="theme-toggle"
             class="btn btn-secondary flex items-center gap-2"
         >
-            <span id="theme-icon">☀️</span>
-            <span id="theme-label">Light</span>
-        </button>
 
-        <button
-            onclick="toggleLang()"
-            id="lang-toggle"
-            class="btn btn-secondary flex items-center gap-2"
-        >
-            <span id="lang-icon">🇺🇸</span>
-            <span id="lang-label">EN</span>
+            <span id="theme-icon">
+                ☀️
+            </span>
+
+            <span id="theme-label">
+                روشن
+            </span>
+
         </button>
 
     </div>
+
 </div>
 
 
-<!-- MAIN GRID -->
-<div class="w-full max-w-[1180px] grid grid-cols-1 md:grid-cols-12 gap-5 relative z-10">
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<div
+    class="w-full max-w-[1180px] grid grid-cols-1 md:grid-cols-12 gap-5 relative z-10"
+>
 
 
-<!-- LEFT -->
+<!-- =====================================================
+     LEFT
+===================================================== -->
+
 <div class="md:col-span-4 flex flex-col gap-5">
 
 
 <!-- PROFILE -->
+
 <div class="glass card profile">
 
     <div class="profile-logo">
         SEP
     </div>
 
-    <h1>__USER_NAME__</h1>
+    <h1>
+        __USER_NAME__
+    </h1>
 
     <div class="user-id">
         ID: __USER_ID__
     </div>
 
-    <div
-        id="status-badge"
-        class="status"
-    ></div>
+    <div class="flex items-center justify-center gap-2 mt-4">
+
+        <span class="status-dot"></span>
+
+        <div
+            id="status-badge"
+            class="status"
+            style="margin-top:0;"
+        ></div>
+
+    </div>
 
 </div>
 
 
-<!-- INFO -->
+<!-- =====================================================
+     EXPIRATION
+===================================================== -->
+
 <div class="glass card info">
 
     <div class="section-title">
 
-        <svg width="17" height="17" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        <svg
+            width="17"
+            height="17"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
         </svg>
 
-        <span data-i18n="expDate">
+        <span>
+            تاریخ انقضا
+        </span>
+
+        <span class="en">
             Expiration Date
         </span>
 
     </div>
 
-    <div class="expiry">
-        __EXPIRY_DATE__
+
+    <div
+        class="expiry"
+        id="expiry-date"
+    >
+        در حال بررسی...
     </div>
 
-    <div class="muted text-xs" data-i18n="calendarLocal">
-        Calendar Local
+
+    <div class="expiry-sub">
+        تاریخ میلادی — Gregorian Date
     </div>
+
+
+    <!-- DAYS REMAINING -->
+
+    <div class="remaining-box">
+
+        <div class="remaining-title">
+
+            روزهای باقی‌مانده
+
+            <span class="en">
+                Days Remaining
+            </span>
+
+        </div>
+
+        <div
+            id="remaining-days"
+            class="remaining-number"
+        >
+            --
+        </div>
+
+    </div>
+
 
     <div class="divider"></div>
+
+
+    <!-- IP -->
 
     <div class="ip-row">
 
         <span class="secondary text-xs font-bold">
-            Connection IP
+
+            IP اتصال
+
+            <span
+                style="
+                    color:#666;
+                    font-size:8px;
+                    font-family:Inter;
+                    direction:ltr;
+                "
+            >
+                Connection IP
+            </span>
+
         </span>
 
         <span
@@ -927,71 +1521,189 @@ body::before {
 </div>
 
 
-<!-- SUPPORT -->
+<!-- =====================================================
+     SUPPORT
+===================================================== -->
+
 <div class="glass card support">
 
     <div class="section-title">
 
-        <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        <svg
+            width="19"
+            height="19"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
         </svg>
 
         <span>
+            پشتیبانی SEP NET
+        </span>
+
+        <span class="en">
             SEP NET SUPPORT
         </span>
 
     </div>
 
+
     <p>
-        Having trouble connecting?
-        Keep your configuration updated or contact
-        SEP NET support for assistance.
+
+        در اتصال یا استفاده از سرویس مشکلی دارید؟
+        برای دریافت راهنمایی با تیم پشتیبانی سپ نت در ارتباط باشید.
+
+        <br>
+
+        <span
+            style="
+                color:#666;
+                font-family:Inter;
+                font-size:9px;
+                direction:ltr;
+                display:block;
+                margin-top:5px;
+            "
+        >
+            Having trouble connecting?
+            Contact SEP NET support for assistance.
+        </span>
+
     </p>
 
+
     <a
-        href="https://t.me/sepnet_conf"
+        href="https://t.me/sepnet_supportbot"
+        target="_blank"
         class="btn btn-primary support-btn"
     >
 
-        <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.19-.08-.05-.19-.02-.27 0-.12.03-1.98 1.26-5.59 3.7-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.49-.42-1.44-.88.03-.24.36-.48.98-.74 3.84-1.67 6.4-2.78 7.68-3.32 3.64-1.52 4.4-1.79 4.9-1.8.11 0 .36.03.49.14.11.09.14.22.15.34-.01.07-.01.16-.02.26z"/>
-        </svg>
-
-        Telegram Support
+        پشتیبانی سپ نت
+        <span
+            style="
+                font-family:Inter;
+                font-size:9px;
+            "
+        >
+            — Support
+        </span>
 
     </a>
 
-</div>
+
+    <!-- SOCIAL LINKS -->
+
+    <div class="social-links">
+
+        <a
+            href="https://t.me/sepnet_conf"
+            target="_blank"
+            class="social-link"
+        >
+
+            <span class="social-fa">
+                کانال ما
+            </span>
+
+            <span class="social-en">
+                Our Channel
+            </span>
+
+        </a>
+
+
+        <a
+            href="https://t.me/sepnet_irbot"
+            target="_blank"
+            class="social-link"
+        >
+
+            <span class="social-fa">
+                ربات خرید
+            </span>
+
+            <span class="social-en">
+                Purchase Bot
+            </span>
+
+        </a>
+
+
+        <a
+            href="https://t.me/sepnet_supportbot"
+            target="_blank"
+            class="social-link"
+        >
+
+            <span class="social-fa">
+                پشتیبانی
+            </span>
+
+            <span class="social-en">
+                Support
+            </span>
+
+        </a>
+
+    </div>
 
 </div>
 
+</div>
 
-<!-- RIGHT -->
+
+<!-- =====================================================
+     RIGHT
+===================================================== -->
+
 <div class="md:col-span-8 flex flex-col gap-5">
 
 
 <!-- METRICS -->
+
 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
 
 
 <!-- TOTAL -->
+
 <div class="glass card metric">
 
     <div class="metric-top">
 
-        <div class="metric-title" data-i18n="totalUsage">
-            Total Usage
+        <div class="metric-title">
+
+            مصرف کل
+
+            <span class="en">
+                Total Usage
+            </span>
+
         </div>
 
         <div class="metric-icon">
 
-            <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+            <svg
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-width="2"
+                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
+                />
             </svg>
 
         </div>
 
     </div>
+
 
     <div class="flex items-baseline gap-2 mb-5">
 
@@ -1005,6 +1717,7 @@ body::before {
 
     </div>
 
+
     <div class="progress">
         __TOTAL_PROGRESS__
     </div>
@@ -1013,23 +1726,40 @@ body::before {
 
 
 <!-- DAILY -->
+
 <div class="glass card metric">
 
     <div class="metric-top">
 
-        <div class="metric-title" data-i18n="dailyUsage">
-            Daily Usage
+        <div class="metric-title">
+
+            مصرف روزانه
+
+            <span class="en">
+                Daily Usage
+            </span>
+
         </div>
 
         <div class="metric-icon">
 
-            <svg width="19" height="19" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            <svg
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
             </svg>
 
         </div>
 
     </div>
+
 
     <div class="flex items-baseline gap-2 mb-5">
 
@@ -1043,6 +1773,7 @@ body::before {
 
     </div>
 
+
     <div class="progress">
         __DAILY_PROGRESS__
     </div>
@@ -1052,33 +1783,48 @@ body::before {
 </div>
 
 
-<!-- MAIN SUBSCRIPTION CARD -->
+<!-- =====================================================
+     MAIN SUBSCRIPTION
+===================================================== -->
+
 <div class="glass card main-card">
+
 
     <div>
 
         <div class="main-heading">
-            <span data-i18n="integrationTitle">
-                Integration Connections
+
+            لینک‌های اتصال
+
+            <span class="en">
+                Connection Links
             </span>
+
         </div>
 
-        <div
-            class="main-desc"
-            data-i18n="integrationDesc"
-        >
-            Add the correct configuration link based on your preferred format below.
+
+        <div class="main-desc">
+
+            لینک پیکربندی مورد نظر خود را انتخاب کنید.
+
+            <span class="en">
+                Choose your preferred configuration link below.
+            </span>
+
         </div>
 
     </div>
 
 
 <!-- UNIVERSAL -->
+
 <div class="universal">
 
-    <div class="font-black text-sm mb-2">
+    <div class="dual-title">
 
-        <span data-i18n="universalLink">
+        لینک خودکار
+
+        <span class="en">
             Universal Auto-Detecting Link
         </span>
 
@@ -1088,12 +1834,17 @@ body::before {
 
     </div>
 
-    <div
-        class="secondary text-xs leading-6 mb-4"
-        data-i18n="universalDesc"
-    >
-        This URL automatically detects your client and delivers the optimal format.
+
+    <div class="dual-desc mt-2 mb-4">
+
+        این لینک کلاینت شما را شناسایی کرده و بهترین فرمت را ارسال می‌کند.
+
+        <span class="en">
+            This URL automatically detects your client and delivers the optimal format.
+        </span>
+
     </div>
+
 
     <div
         class="flex flex-col sm:flex-row gap-2"
@@ -1108,19 +1859,31 @@ body::before {
             class="input flex-1"
         >
 
+
         <div class="flex gap-2">
 
             <button
                 onclick="copyLink('link-normal')"
                 class="btn btn-primary flex-1"
             >
-                <span data-i18n="copy">Copy</span>
+
+                کپی
+
+                <span
+                    style="
+                        font-family:Inter;
+                        font-size:8px;
+                    "
+                >
+                    Copy
+                </span>
+
             </button>
+
 
             <button
                 onclick="showQRModal('__SYNC_NORMAL__')"
                 class="btn btn-secondary"
-                title="QR"
             >
                 QR
             </button>
@@ -1132,297 +1895,401 @@ body::before {
 </div>
 
 
-<!-- FORMATS -->
+<!-- =====================================================
+     FORMATS
+===================================================== -->
+
 <div class="formats">
 
-    <div class="font-black text-sm">
-        <span data-i18n="availableFormats">
-            Available Subscription Formats
-        </span>
-    </div>
+    <div class="dual-title">
 
-    <div
-        class="secondary text-xs leading-6 mt-2"
-        data-i18n="formatsDesc"
-    >
-        Use these links to explicitly request specific configuration formats.
-    </div>
+        فرمت‌های اشتراک
 
-
-<div class="format-grid">
-
-
-<!-- RAW -->
-<div class="format">
-
-    <div class="format-head">
-
-        <span class="format-name">
-            Raw Configs
-        </span>
-
-        <span class="tag">
-            RAW
+        <span class="en">
+            Subscription Formats
         </span>
 
     </div>
 
-    <div class="format-row" dir="ltr">
 
-        <input
-            id="link-raw-fmt"
-            readonly
-            class="input"
-        >
+    <div class="dual-desc mt-2">
 
-        <button
-            onclick="copyLink('link-raw-fmt')"
-            class="small-btn"
-        >
-            Copy
-        </button>
+        برای دریافت مستقیم فرمت مورد نظر از لینک‌های زیر استفاده کنید.
 
-        <button
-            onclick="showQRModal(document.getElementById('link-raw-fmt').value)"
-            class="qr-btn"
-        >
-            QR
-        </button>
+        <span class="en">
+            Use these links to explicitly request specific configuration formats.
+        </span>
+
+    </div>
+
+
+    <div class="format-grid">
+
+
+        <!-- RAW -->
+
+        <div class="format">
+
+            <div class="format-head">
+
+                <span class="format-name">
+
+                    کانفیگ خام
+
+                    <span class="en">
+                        Raw Config
+                    </span>
+
+                </span>
+
+                <span class="tag">
+                    RAW
+                </span>
+
+            </div>
+
+
+            <div class="format-row" dir="ltr">
+
+                <input
+                    id="link-raw-fmt"
+                    readonly
+                    class="input"
+                >
+
+
+                <button
+                    onclick="copyLink('link-raw-fmt')"
+                    class="small-btn"
+                >
+                    Copy
+                </button>
+
+
+                <button
+                    onclick="showQRModal(document.getElementById('link-raw-fmt').value)"
+                    class="qr-btn"
+                >
+                    QR
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- BASE64 -->
+
+        <div class="format">
+
+            <div class="format-head">
+
+                <span class="format-name">
+
+                    اشتراک Base64
+
+                    <span class="en">
+                        Base64 Subscription
+                    </span>
+
+                </span>
+
+                <span class="tag">
+                    BASE64
+                </span>
+
+            </div>
+
+
+            <div class="format-row" dir="ltr">
+
+                <input
+                    id="link-base64-fmt"
+                    readonly
+                    class="input"
+                >
+
+
+                <button
+                    onclick="copyLink('link-base64-fmt')"
+                    class="small-btn"
+                >
+                    Copy
+                </button>
+
+
+                <button
+                    onclick="showQRModal(document.getElementById('link-base64-fmt').value)"
+                    class="qr-btn"
+                >
+                    QR
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SINGBOX -->
+
+        <div class="format">
+
+            <div class="format-head">
+
+                <span class="format-name">
+
+                    اشتراک Sing-box
+
+                    <span class="en">
+                        Sing-box Subscription
+                    </span>
+
+                </span>
+
+                <span class="tag">
+                    SINGBOX
+                </span>
+
+            </div>
+
+
+            <div class="format-row" dir="ltr">
+
+                <input
+                    id="link-singbox-fmt"
+                    readonly
+                    class="input"
+                >
+
+
+                <button
+                    onclick="copyLink('link-singbox-fmt')"
+                    class="small-btn"
+                >
+                    Copy
+                </button>
+
+
+                <button
+                    onclick="showQRModal(document.getElementById('link-singbox-fmt').value)"
+                    class="qr-btn"
+                >
+                    QR
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- CLASH -->
+
+        <div class="format">
+
+            <div class="format-head">
+
+                <span class="format-name">
+
+                    اشتراک Clash
+
+                    <span class="en">
+                        Clash Subscription
+                    </span>
+
+                </span>
+
+                <span class="tag">
+                    CLASH
+                </span>
+
+            </div>
+
+
+            <div class="format-row" dir="ltr">
+
+                <input
+                    id="link-clash-fmt"
+                    readonly
+                    class="input"
+                >
+
+
+                <button
+                    onclick="copyLink('link-clash-fmt')"
+                    class="small-btn"
+                >
+                    Copy
+                </button>
+
+
+                <button
+                    onclick="showQRModal(document.getElementById('link-clash-fmt').value)"
+                    class="qr-btn"
+                >
+                    QR
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- V2RAYN -->
+
+        <div class="format">
+
+            <div class="format-head">
+
+                <span class="format-name">
+
+                    اشتراک v2rayN
+
+                    <span class="en">
+                        v2rayN Subscription
+                    </span>
+
+                </span>
+
+                <span class="tag">
+                    V2RAYN
+                </span>
+
+            </div>
+
+
+            <div class="format-row" dir="ltr">
+
+                <input
+                    id="link-v2rayn-fmt"
+                    readonly
+                    class="input"
+                >
+
+
+                <button
+                    onclick="copyLink('link-v2rayn-fmt')"
+                    class="small-btn"
+                >
+                    Copy
+                </button>
+
+
+                <button
+                    onclick="showQRModal(document.getElementById('link-v2rayn-fmt').value)"
+                    class="qr-btn"
+                >
+                    QR
+                </button>
+
+            </div>
+
+        </div>
+
 
     </div>
 
 </div>
 
 
-<!-- BASE64 -->
-<div class="format">
+<!-- =====================================================
+     ONE CLICK
+===================================================== -->
 
-    <div class="format-head">
-
-        <span class="format-name">
-            Base64 Subscription
-        </span>
-
-        <span class="tag">
-            BASE64
-        </span>
-
-    </div>
-
-    <div class="format-row" dir="ltr">
-
-        <input
-            id="link-base64-fmt"
-            readonly
-            class="input"
-        >
-
-        <button
-            onclick="copyLink('link-base64-fmt')"
-            class="small-btn"
-        >
-            Copy
-        </button>
-
-        <button
-            onclick="showQRModal(document.getElementById('link-base64-fmt').value)"
-            class="qr-btn"
-        >
-            QR
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- SINGBOX -->
-<div class="format">
-
-    <div class="format-head">
-
-        <span class="format-name">
-            Sing-box Subscription
-        </span>
-
-        <span class="tag">
-            SINGBOX
-        </span>
-
-    </div>
-
-    <div class="format-row" dir="ltr">
-
-        <input
-            id="link-singbox-fmt"
-            readonly
-            class="input"
-        >
-
-        <button
-            onclick="copyLink('link-singbox-fmt')"
-            class="small-btn"
-        >
-            Copy
-        </button>
-
-        <button
-            onclick="showQRModal(document.getElementById('link-singbox-fmt').value)"
-            class="qr-btn"
-        >
-            QR
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- CLASH -->
-<div class="format">
-
-    <div class="format-head">
-
-        <span class="format-name">
-            Clash Subscription
-        </span>
-
-        <span class="tag">
-            CLASH
-        </span>
-
-    </div>
-
-    <div class="format-row" dir="ltr">
-
-        <input
-            id="link-clash-fmt"
-            readonly
-            class="input"
-        >
-
-        <button
-            onclick="copyLink('link-clash-fmt')"
-            class="small-btn"
-        >
-            Copy
-        </button>
-
-        <button
-            onclick="showQRModal(document.getElementById('link-clash-fmt').value)"
-            class="qr-btn"
-        >
-            QR
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- V2RAYN -->
-<div class="format">
-
-    <div class="format-head">
-
-        <span class="format-name">
-            v2rayN Subscription
-        </span>
-
-        <span class="tag">
-            V2RAYN
-        </span>
-
-    </div>
-
-    <div class="format-row" dir="ltr">
-
-        <input
-            id="link-v2rayn-fmt"
-            readonly
-            class="input"
-        >
-
-        <button
-            onclick="copyLink('link-v2rayn-fmt')"
-            class="small-btn"
-        >
-            Copy
-        </button>
-
-        <button
-            onclick="showQRModal(document.getElementById('link-v2rayn-fmt').value)"
-            class="qr-btn"
-        >
-            QR
-        </button>
-
-    </div>
-
-</div>
-
-
-</div>
-</div>
-
-
-<!-- ONE CLICK -->
 <div class="apps">
 
     <div class="section-title">
 
-        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        <svg
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"
+            />
         </svg>
 
-        <span data-i18n="oneClickImport">
+        <span>
+            ورود با یک کلیک
+        </span>
+
+        <span class="en">
             One-Click Import
         </span>
 
     </div>
 
 
-<div class="apps-grid">
+    <div class="apps-grid">
 
-<a
-    id="v2rayng-link"
-    href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
-    class="app"
->
-    v2rayNG
-</a>
 
-<a
-    href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
-    class="app"
->
-    v2rayN
-</a>
+        <a
+            id="v2rayng-link"
+            href="v2rayng://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+            class="app"
+        >
+            v2rayNG
+        </a>
 
-<a
-    href="shadowrocket://add/sub://__SYNC_NORMAL_BASE64__?title=__USER_NAME__"
-    class="app"
->
-    Shadowrocket
-</a>
 
-<a
-    href="streisand://import/__SYNC_NORMAL__"
-    class="app"
->
-    Streisand
-</a>
+        <a
+            id="v2rayn-link"
+            href="v2rayn://install-sub?url=__SYNC_NORMAL__&name=__USER_NAME__"
+            class="app"
+        >
+            v2rayN
+        </a>
+
+
+        <a
+            id="shadowrocket-link"
+            href="#"
+            class="app"
+        >
+            Shadowrocket
+        </a>
+
+
+        <a
+            href="streisand://import/__SYNC_NORMAL__"
+            class="app"
+        >
+            Streisand
+        </a>
+
+    </div>
 
 </div>
-</div>
 
 
-<!-- RAW CONTENT -->
+<!-- =====================================================
+     RAW CONTENT
+===================================================== -->
+
 <div class="bottom">
 
     <div class="secondary text-xs">
-        Advanced users can retrieve raw configuration content manually.
+
+        دریافت محتوای خام برای کاربران حرفه‌ای
+
+        <span
+            style="
+                color:#666;
+                font-family:Inter;
+                font-size:8px;
+                display:block;
+                direction:ltr;
+                margin-top:4px;
+            "
+        >
+            Retrieve raw configuration content
+        </span>
+
     </div>
+
 
     <div class="flex gap-2 w-full sm:w-auto">
 
@@ -1430,10 +2297,20 @@ body::before {
             onclick="fetchDecodedRawContent()"
             class="btn btn-secondary raw-btn"
         >
-            <span data-i18n="parsedContent">
-                Retrieve Raw Content
+
+            دریافت متن خام
+
+            <span
+                style="
+                    font-family:Inter;
+                    font-size:8px;
+                "
+            >
+                Retrieve Raw
             </span>
+
         </button>
+
 
         <input
             type="text"
@@ -1446,262 +2323,490 @@ body::before {
 
 </div>
 
+
 </div>
 
 </div>
+
 </div>
 
 
-<!-- QR MODAL -->
+<!-- =====================================================
+     QR MODAL
+===================================================== -->
+
 <div
     id="qr-modal"
     class="fixed inset-0 modal-overlay z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300"
 >
 
-<div
-    class="modal-card max-w-sm w-full rounded-3xl p-7 relative"
->
+    <div
+        class="modal-card max-w-sm w-full rounded-3xl p-7 relative"
+    >
 
-<button
-    onclick="closeQRModal()"
-    class="absolute top-4 right-4 btn btn-secondary rounded-full"
->
-    ✕
-</button>
+        <button
+            onclick="closeQRModal()"
+            class="absolute top-4 right-4 btn btn-secondary rounded-full"
+        >
+            ✕
+        </button>
 
-<h3
-    id="qr-title"
-    class="text-xl font-black text-center mb-6"
->
-    Scan QR Code
-</h3>
 
-<div class="bg-white p-4 rounded-2xl mx-auto w-fit mb-5">
+        <h3
+            id="qr-title"
+            class="text-xl font-black text-center mb-6"
+        >
+            اسکن کد QR
+        </h3>
 
-<img
-    id="qr-img"
-    src=""
-    alt="QR Code"
-    class="w-52 h-52"
->
 
-</div>
+        <div
+            class="bg-white p-4 rounded-2xl mx-auto w-fit mb-5"
+        >
 
-<p
-    id="qr-text"
-    class="text-xs text-center font-mono break-all mb-5 px-3 py-3 rounded-xl"
-    style="
-        color:#999;
-        background:rgba(255,255,255,.04);
-        border:1px solid rgba(255,255,255,.08);
-    "
-></p>
+            <img
+                id="qr-img"
+                src=""
+                alt="QR Code"
+                class="w-52 h-52"
+            >
 
-<button
-    onclick="closeQRModal()"
-    class="btn btn-primary w-full"
-    data-i18n="close"
->
-    Close
-</button>
+        </div>
 
-</div>
+
+        <p
+            id="qr-text"
+            class="text-xs text-center font-mono break-all mb-5 px-3 py-3 rounded-xl"
+            style="
+                color:#999;
+                background:rgba(255,255,255,.04);
+                border:1px solid rgba(255,255,255,.08);
+            "
+        ></p>
+
+
+        <button
+            onclick="closeQRModal()"
+            class="btn btn-primary w-full"
+        >
+
+            بستن
+
+            <span
+                style="
+                    font-family:Inter;
+                    font-size:9px;
+                "
+            >
+                Close
+            </span>
+
+        </button>
+
+    </div>
+
 </div>
 
 
 <!-- TOAST -->
+
 <div
     id="toast"
     class="fixed top-8 left-1/2 -translate-x-1/2 px-6 py-3 rounded-full font-bold text-sm z-50 transition-all opacity-0 pointer-events-none"
 >
-    <span>Notification</span>
+    Notification
 </div>
 
 
 <script>
 
-/* =========================
-   TRANSLATIONS
-========================= */
+/* =========================================================
+   DATE
+========================================================= */
 
-const I18N = {
+function parseExpiryDate(value) {
 
-en: {
-    totalUsage: 'Total Usage',
-    dailyUsage: 'Daily Usage',
-    expDate: 'Expiration Date',
-    calendarLocal: 'Calendar Local',
-    unlimitedPlan: 'Unlimited Plan',
-    noDailyLimit: 'No Daily Limit',
-    integrationTitle: 'Integration Connections',
-    integrationDesc: 'Add the correct configuration link based on your preferred format below.',
-    universalLink: 'Universal Auto-Detecting Link',
-    universalDesc: 'This URL automatically detects your client and delivers the optimal format.',
-    oneClickImport: 'One-Click Import',
-    copy: 'Copy',
-    copyRaw: 'Copy Raw URL',
-    qr: 'QR',
-    parsedContent: 'Retrieve Raw Content',
-    close: 'Close',
-    qrTitle: 'Scan QR Code',
-    copied: 'Copied to clipboard!',
-    decodedCopied: 'Decoded links copied!',
-    decodedError: 'Error fetching content',
-    used: '% Used',
-    active: 'Active',
-    paused: 'Paused',
-    expired: 'Expired',
-    limitExceeded: 'Limit Exceeded',
-    dailyLimitExceeded: 'Daily Limit Exceeded',
-    availableFormats: 'Available Subscription Formats',
-    formatsDesc: 'Use these links to explicitly request specific configuration formats.'
-},
+    if (!value)
+        return null;
 
-fa: {
-    totalUsage: 'مصرف کل',
-    dailyUsage: 'مصرف روزانه',
-    expDate: 'تاریخ انقضا',
-    calendarLocal: 'زمان محلی',
-    unlimitedPlan: 'طرح نامحدود',
-    noDailyLimit: 'بدون محدودیت روزانه',
-    integrationTitle: 'لینک‌های اتصال',
-    integrationDesc: 'لینک پیکربندی مورد نظر خود را انتخاب کنید.',
-    universalLink: 'لینک خودکار',
-    universalDesc: 'این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.',
-    oneClickImport: 'وارد کردن با یک کلیک',
-    copy: 'کپی',
-    copyRaw: 'کپی لینک خام',
-    qr: 'QR',
-    parsedContent: 'دریافت متن خام',
-    close: 'بستن',
-    qrTitle: 'اسکن کد QR',
-    copied: 'کپی شد!',
-    decodedCopied: 'لینک‌ها کپی شد!',
-    decodedError: 'خطا در دریافت',
-    used: '% مصرف',
-    active: 'فعال',
-    paused: 'متوقف',
-    expired: 'منقضی',
-    limitExceeded: 'از حد مجاز رد شده',
-    dailyLimitExceeded: 'از حد روزانه رد شده',
-    availableFormats: 'فرمت‌های اشتراک',
-    formatsDesc: 'از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.'
-}
+    value =
+        String(value)
+        .trim();
 
-};
+    if (!value)
+        return null;
 
-let currentLang = 'en';
-let isDark = true;
-
-
-/* =========================
-   THEME
-========================= */
-
-function applyTheme() {
-
-    const root = document.documentElement;
-    const label = document.getElementById('theme-label');
 
     /*
-       SEP NET is designed primarily
-       as a dark premium interface.
+        YYYY-MM-DD
     */
 
-    if (isDark) {
+    let match =
+        value.match(
+            /^(\d{4})-(\d{1,2})-(\d{1,2})$/
+        );
 
-        root.classList.add('dark');
 
-        document.getElementById('theme-icon').textContent = '☀️';
+    if (match) {
 
-        if (label)
-            label.textContent =
-                currentLang === 'fa'
-                ? 'روشن'
-                : 'Light';
+        const y =
+            Number(match[1]);
+
+        const m =
+            Number(match[2]);
+
+        const d =
+            Number(match[3]);
+
+
+        const date =
+            new Date(
+                y,
+                m - 1,
+                d,
+                23,
+                59,
+                59,
+                999
+            );
+
+
+        if (
+            date.getFullYear() === y &&
+            date.getMonth() === m - 1 &&
+            date.getDate() === d
+        ) {
+
+            return date;
+
+        }
+
+    }
+
+
+    /*
+        YYYY/MM/DD
+    */
+
+    match =
+        value.match(
+            /^(\d{4})\/(\d{1,2})\/(\d{1,2})$/
+        );
+
+
+    if (match) {
+
+        const y =
+            Number(match[1]);
+
+        const m =
+            Number(match[2]);
+
+        const d =
+            Number(match[3]);
+
+
+        const date =
+            new Date(
+                y,
+                m - 1,
+                d,
+                23,
+                59,
+                59,
+                999
+            );
+
+
+        if (
+            date.getFullYear() === y &&
+            date.getMonth() === m - 1 &&
+            date.getDate() === d
+        ) {
+
+            return date;
+
+        }
+
+    }
+
+
+    /*
+        ISO / Date
+    */
+
+    const date =
+        new Date(value);
+
+
+    if (
+        !isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return date;
+
+    }
+
+
+    return null;
+}
+
+
+/*
+    تاریخ میلادی
+    خروجی:
+    YYYY/MM/DD
+*/
+
+function formatGregorianDate(date) {
+
+    if (!date)
+        return 'تاریخ نامعتبر — Invalid Date';
+
+
+    return (
+        date.getFullYear()
+        +
+        '/'
+        +
+        String(
+            date.getMonth() + 1
+        ).padStart(2,'0')
+        +
+        '/'
+        +
+        String(
+            date.getDate()
+        ).padStart(2,'0')
+    );
+}
+
+
+/*
+    محاسبه واقعی روزهای باقی‌مانده
+*/
+
+function calculateRemainingDays(expiryDate) {
+
+    if (!expiryDate)
+        return null;
+
+
+    const now =
+        new Date();
+
+
+    const expiry =
+        new Date(expiryDate);
+
+
+    /*
+        تا پایان همان روز
+    */
+
+    expiry.setHours(
+        23,
+        59,
+        59,
+        999
+    );
+
+
+    const difference =
+        expiry.getTime()
+        -
+        now.getTime();
+
+
+    if (difference <= 0)
+        return 0;
+
+
+    return Math.ceil(
+        difference
+        /
+        (
+            1000 *
+            60 *
+            60 *
+            24
+        )
+    );
+}
+
+
+/*
+    بروزرسانی تاریخ و روز شمار
+*/
+
+function updateExpiry() {
+
+    const raw =
+        '__EXPIRY_DATE__';
+
+
+    const expiry =
+        parseExpiryDate(raw);
+
+
+    const dateElement =
+        document.getElementById(
+            'expiry-date'
+        );
+
+
+    const remainingElement =
+        document.getElementById(
+            'remaining-days'
+        );
+
+
+    if (!expiry) {
+
+        dateElement.textContent =
+            'تاریخ نامعتبر — Invalid Date';
+
+
+        remainingElement.innerHTML =
+            '<span style="color:#f87171">--</span>';
+
+        return;
+    }
+
+
+    /*
+        تاریخ میلادی
+    */
+
+    dateElement.textContent =
+        formatGregorianDate(
+            expiry
+        );
+
+
+    /*
+        روز باقی مانده
+    */
+
+    const days =
+        calculateRemainingDays(
+            expiry
+        );
+
+
+    if (days <= 0) {
+
+        remainingElement.innerHTML =
+            '<span style="color:#f87171">0</span>'
+            +
+            ' روز — '
+            +
+            '<span style="font-family:Inter;color:#f87171">0 Days</span>';
 
     } else {
 
-        /*
-           Keep a dark premium appearance
-           even when light mode is selected,
-           but change button state.
-        */
+        remainingElement.innerHTML =
 
-        root.classList.remove('dark');
+            '<span style="color:var(--yellow);font-size:28px;font-weight:900;">'
+            +
+            days
+            +
+            '</span>'
+            +
+            ' روز'
+            +
+            ' — '
+            +
+            '<span style="font-family:Inter;color:#aaa;">'
+            +
+            days
+            +
+            ' Days'
+            +
+            '</span>';
 
-        document.getElementById('theme-icon').textContent = '🌙';
+    }
+
+}
+
+
+/*
+    هر یک دقیقه دوباره محاسبه شود
+*/
+
+updateExpiry();
+
+setInterval(
+    updateExpiry,
+    60000
+);
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+let isDark = true;
+
+
+function applyTheme() {
+
+    const root =
+        document.documentElement;
+
+
+    const icon =
+        document.getElementById(
+            'theme-icon'
+        );
+
+
+    const label =
+        document.getElementById(
+            'theme-label'
+        );
+
+
+    if (isDark) {
+
+        root.classList.add(
+            'dark'
+        );
+
+        if (icon)
+            icon.textContent =
+                '☀️';
 
         if (label)
             label.textContent =
-                currentLang === 'fa'
-                ? 'تاریک'
-                : 'Dark';
+                'روشن — Light';
+
+    } else {
+
+        root.classList.remove(
+            'dark'
+        );
+
+        if (icon)
+            icon.textContent =
+                '🌙';
+
+        if (label)
+            label.textContent =
+                'تاریک — Dark';
+
     }
+
 
     try {
 
         localStorage.setItem(
             'sub-theme',
-            isDark ? 'dark' : 'light'
-        );
-
-    } catch(e) {}
-
-}
-
-
-/* =========================
-   LANGUAGE
-========================= */
-
-function applyLang() {
-
-    const t = I18N[currentLang];
-
-    document
-        .querySelectorAll('[data-i18n]')
-        .forEach(el => {
-
-            const key = el.getAttribute('data-i18n');
-
-            if (t[key])
-                el.textContent = t[key];
-
-        });
-
-
-    if (currentLang === 'fa') {
-
-        document.documentElement.setAttribute('dir','rtl');
-
-        document.documentElement.setAttribute('lang','fa');
-
-        document.getElementById('lang-icon').textContent = '🇮🇷';
-
-        document.getElementById('lang-label').textContent = 'FA';
-
-    } else {
-
-        document.documentElement.setAttribute('dir','ltr');
-
-        document.documentElement.setAttribute('lang','en');
-
-        document.getElementById('lang-icon').textContent = '🇺🇸';
-
-        document.getElementById('lang-label').textContent = 'EN';
-
-    }
-
-    initStatusBadge();
-
-    applyTheme();
-
-    try {
-
-        localStorage.setItem(
-            'sub-lang',
-            currentLang
+            isDark
+                ? 'dark'
+                : 'light'
         );
 
     } catch(e) {}
@@ -1711,167 +2816,187 @@ function applyLang() {
 
 function toggleTheme() {
 
-    isDark = !isDark;
+    isDark =
+        !isDark;
 
     applyTheme();
 
 }
 
 
-function toggleLang() {
-
-    currentLang =
-        currentLang === 'en'
-        ? 'fa'
-        : 'en';
-
-    applyLang();
-
-}
-
-
-/* =========================
+/* =========================================================
    STATUS
-========================= */
+========================================================= */
 
 function initStatusBadge() {
 
     const badge =
-        document.getElementById('status-badge');
+        document.getElementById(
+            'status-badge'
+        );
 
-    const t = I18N[currentLang];
+
+    if (!badge)
+        return;
+
 
     const map = {
 
         active: {
-            text: t.active,
-            bg: 'rgba(34,197,94,.12)',
-            border: 'rgba(34,197,94,.3)',
-            color: '#4ade80'
+
+            text:
+                'فعال — Active',
+
+            bg:
+                'rgba(34,197,94,.12)',
+
+            border:
+                'rgba(34,197,94,.3)',
+
+            color:
+                '#4ade80'
         },
+
 
         paused: {
-            text: t.paused,
-            bg: 'rgba(245,158,11,.12)',
-            border: 'rgba(245,158,11,.3)',
-            color: '#fbbf24'
+
+            text:
+                'متوقف — Paused',
+
+            bg:
+                'rgba(245,158,11,.12)',
+
+            border:
+                'rgba(245,158,11,.3)',
+
+            color:
+                '#fbbf24'
         },
+
 
         expired: {
-            text: t.expired,
-            bg: 'rgba(239,68,68,.12)',
-            border: 'rgba(239,68,68,.3)',
-            color: '#f87171'
+
+            text:
+                'منقضی شده — Expired',
+
+            bg:
+                'rgba(239,68,68,.12)',
+
+            border:
+                'rgba(239,68,68,.3)',
+
+            color:
+                '#f87171'
         },
+
 
         limit: {
-            text: t.limitExceeded,
-            bg: 'rgba(239,68,68,.12)',
-            border: 'rgba(239,68,68,.3)',
-            color: '#f87171'
+
+            text:
+                'سقف مصرف تمام شده — Limit Exceeded',
+
+            bg:
+                'rgba(239,68,68,.12)',
+
+            border:
+                'rgba(239,68,68,.3)',
+
+            color:
+                '#f87171'
         },
 
+
         dailyLimit: {
-            text: t.dailyLimitExceeded,
-            bg: 'rgba(239,68,68,.12)',
-            border: 'rgba(239,68,68,.3)',
-            color: '#f87171'
+
+            text:
+                'سقف روزانه تمام شده — Daily Limit Exceeded',
+
+            bg:
+                'rgba(239,68,68,.12)',
+
+            border:
+                'rgba(239,68,68,.3)',
+
+            color:
+                '#f87171'
         }
 
     };
 
+
     const status =
         map['__STATUS_CODE__']
-        || map.active;
+        ||
+        map.active;
 
-    badge.textContent = status.text;
 
-    badge.style.background = status.bg;
+    badge.textContent =
+        status.text;
+
+
+    badge.style.background =
+        status.bg;
+
 
     badge.style.border =
-        '1px solid ' + status.border;
-
-    badge.style.borderColor =
+        '1px solid '
+        +
         status.border;
+
 
     badge.style.color =
         status.color;
 }
 
 
-/* =========================
+/* =========================================================
    COPY
-========================= */
+========================================================= */
 
 function copyLink(id) {
 
-    const el =
+    const element =
         document.getElementById(id);
 
-    if (!el) return;
 
-    el.select();
-
-    el.setSelectionRange(
-        0,
-        999999
-    );
-
-    navigator.clipboard
-        .writeText(el.value)
-        .then(() => {
-
-            showToast(
-                I18N[currentLang].copied
-            );
-
-        })
-        .catch(() => {
-
-            document.execCommand('copy');
-
-            showToast(
-                I18N[currentLang].copied
-            );
-
-        });
-
-}
+    if (!element)
+        return;
 
 
-/* =========================
-   RAW CONTENT
-========================= */
+    const text =
+        element.value;
 
-async function fetchDecodedRawContent() {
 
-    try {
+    if (
+        navigator.clipboard &&
+        window.isSecureContext
+    ) {
 
-        const res =
-            await fetch('__SYNC_RAW__');
+        navigator.clipboard
+            .writeText(text)
+            .then(() => {
 
-        if (!res.ok)
-            throw new Error('Failed');
+                showToast(
+                    'کپی شد — Copied!'
+                );
 
-        const base64Str =
-            await res.text();
+            });
 
-        const decodedText =
-            atob(base64Str.trim());
+    } else {
 
-        await navigator.clipboard
-            .writeText(decodedText);
+        element.select();
 
-        showToast(
-            I18N[currentLang].decodedCopied
+        element.setSelectionRange(
+            0,
+            999999
         );
 
-    } catch(e) {
+        document.execCommand(
+            'copy'
+        );
 
-        alert(
-            I18N[currentLang].decodedError
-            + ': '
-            + e.message
+        showToast(
+            'کپی شد — Copied!'
         );
 
     }
@@ -1879,40 +3004,133 @@ async function fetchDecodedRawContent() {
 }
 
 
-/* =========================
+/* =========================================================
+   RAW
+========================================================= */
+
+async function fetchDecodedRawContent() {
+
+    try {
+
+        const response =
+            await fetch(
+                '__SYNC_RAW__'
+            );
+
+
+        if (!response.ok)
+            throw new Error(
+                'Failed'
+            );
+
+
+        const base64 =
+            (
+                await response.text()
+            ).trim();
+
+
+        const decoded =
+            atob(base64);
+
+
+        const bytes =
+            Uint8Array.from(
+                decoded,
+                c => c.charCodeAt(0)
+            );
+
+
+        const text =
+            new TextDecoder(
+                'utf-8'
+            ).decode(
+                bytes
+            );
+
+
+        await navigator.clipboard
+            .writeText(text);
+
+
+        showToast(
+            'محتوا کپی شد — Content Copied!'
+        );
+
+    } catch(error) {
+
+        showToast(
+            'خطا در دریافت محتوا — Error'
+        );
+
+    }
+
+}
+
+
+/* =========================================================
    QR
-========================= */
+========================================================= */
 
 function showQRModal(url) {
 
-    const t =
-        I18N[currentLang];
-
-    document.getElementById(
-        'qr-title'
-    ).innerText = t.qrTitle;
-
-    document.getElementById(
-        'qr-text'
-    ).innerText = url;
-
-    document.getElementById(
-        'qr-img'
-    ).src =
-        'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
-        + encodeURIComponent(url);
+    if (!url)
+        return;
 
 
     const modal =
-        document.getElementById('qr-modal');
+        document.getElementById(
+            'qr-modal'
+        );
 
-    modal.classList.remove('hidden');
 
-    modal.classList.add('flex');
+    const image =
+        document.getElementById(
+            'qr-img'
+        );
+
+
+    const text =
+        document.getElementById(
+            'qr-text'
+        );
+
+
+    const title =
+        document.getElementById(
+            'qr-title'
+        );
+
+
+    title.innerHTML =
+        'اسکن کد QR '
+        +
+        '<span style="font-family:Inter;font-size:10px;color:#777;">Scan QR Code</span>';
+
+
+    text.textContent =
+        url;
+
+
+    image.src =
+        'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
+        +
+        encodeURIComponent(url);
+
+
+    modal.classList.remove(
+        'hidden'
+    );
+
+    modal.classList.add(
+        'flex'
+    );
+
 
     setTimeout(() => {
 
-        modal.style.opacity = '1';
+        modal.style.opacity =
+            '1';
 
     },10);
 
@@ -1922,40 +3140,59 @@ function showQRModal(url) {
 function closeQRModal() {
 
     const modal =
-        document.getElementById('qr-modal');
+        document.getElementById(
+            'qr-modal'
+        );
 
-    modal.style.opacity = '0';
+
+    modal.style.opacity =
+        '0';
+
 
     setTimeout(() => {
 
-        modal.classList.add('hidden');
+        modal.classList.add(
+            'hidden'
+        );
 
-        modal.classList.remove('flex');
+        modal.classList.remove(
+            'flex'
+        );
 
     },300);
 
 }
 
 
-/* =========================
+/* =========================================================
    TOAST
-========================= */
+========================================================= */
 
-function showToast(msg) {
+function showToast(message) {
 
     const toast =
-        document.getElementById('toast');
+        document.getElementById(
+            'toast'
+        );
 
-    toast.innerText = msg;
 
-    toast.style.opacity = '1';
+    toast.textContent =
+        message;
+
+
+    toast.style.opacity =
+        '1';
+
 
     toast.style.transform =
         'translate(-50%,0)';
 
+
     setTimeout(() => {
 
-        toast.style.opacity = '0';
+        toast.style.opacity =
+            '0';
+
 
         toast.style.transform =
             'translate(-50%,-15px)';
@@ -1965,123 +3202,152 @@ function showToast(msg) {
 }
 
 
-/* =========================
-   CLIENT IP
-========================= */
+/* =========================================================
+   IP
+========================================================= */
 
 fetch(
     'https://api.ipify.org?format=json'
 )
-.then(r => r.json())
-.then(data => {
 
-    const ip =
-        document.getElementById('client-ip');
+.then(
+    response =>
+        response.json()
+)
 
-    if (ip)
-        ip.textContent = data.ip;
+.then(
+    data => {
 
-})
+        const element =
+            document.getElementById(
+                'client-ip'
+            );
+
+
+        if (element)
+            element.textContent =
+                data.ip;
+
+    }
+)
+
 .catch(() => {
 
-    const ip =
-        document.getElementById('client-ip');
+    const element =
+        document.getElementById(
+            'client-ip'
+        );
 
-    if (ip)
-        ip.textContent = 'Unknown';
+
+    if (element)
+        element.textContent =
+            'Unknown';
 
 });
 
 
-/* =========================
-   INITIALIZE
-========================= */
+/* =========================================================
+   FORMAT LINKS
+========================================================= */
 
-(function init() {
+(function initLinks() {
 
-    try {
-
-        const savedTheme =
-            localStorage.getItem('sub-theme');
-
-        if (savedTheme)
-            isDark =
-                savedTheme === 'dark';
-
-    } catch(e) {}
-
-
-    try {
-
-        const savedLang =
-            localStorage.getItem('sub-lang');
-
-        if (
-            savedLang &&
-            I18N[savedLang]
-        ) {
-
-            currentLang =
-                savedLang;
-
-        }
-
-    } catch(e) {}
-
-
-    applyTheme();
-
-    applyLang();
-
-
-    /* Shadowrocket */
-
-    const normalLink =
+    const normal =
         '__SYNC_NORMAL__';
 
-    document
-        .querySelectorAll('a')
-        .forEach(a => {
 
-            if (
-                a.href.includes(
-                    '__SYNC_NORMAL_BASE64__'
-                )
-            ) {
-
-                a.href =
-                    a.href.replace(
-                        '__SYNC_NORMAL_BASE64__',
-                        btoa(normalLink)
-                    );
-
-            }
-
-        });
+    if (!normal)
+        return;
 
 
-    /* v2rayNG */
+    function addFlag(
+        flag
+    ) {
 
-    const v2rayngLink =
+        return normal
+            +
+            (
+                normal.includes('?')
+                    ? '&'
+                    : '?'
+            )
+            +
+            'flag='
+            +
+            flag;
+
+    }
+
+
+    const raw =
+        document.getElementById(
+            'link-raw-fmt'
+        );
+
+    const base64 =
+        document.getElementById(
+            'link-base64-fmt'
+        );
+
+    const singbox =
+        document.getElementById(
+            'link-singbox-fmt'
+        );
+
+    const clash =
+        document.getElementById(
+            'link-clash-fmt'
+        );
+
+    const v2rayn =
+        document.getElementById(
+            'link-v2rayn-fmt'
+        );
+
+
+    if (raw)
+        raw.value =
+            addFlag('raw');
+
+
+    if (base64)
+        base64.value =
+            addFlag('base64');
+
+
+    if (singbox)
+        singbox.value =
+            addFlag('singbox');
+
+
+    if (clash)
+        clash.value =
+            addFlag('clash');
+
+
+    if (v2rayn)
+        v2rayn.value =
+            addFlag('vjson');
+
+
+    /*
+        v2rayNG
+    */
+
+    const v2rayng =
         document.getElementById(
             'v2rayng-link'
         );
 
-    if (v2rayngLink) {
 
-        const base64Url =
-            normalLink
-            +
-            (
-                normalLink.includes('?')
-                ? '&flag=base64'
-                : '?flag=base64'
-            );
+    if (v2rayng) {
 
-        v2rayngLink.href =
+        v2rayng.href =
             'v2rayng://install-sub?url='
             +
-            encodeURIComponent(base64Url)
+            encodeURIComponent(
+                addFlag('base64')
+            )
             +
             '&name='
             +
@@ -2092,87 +3358,105 @@ fetch(
     }
 
 
-    /* Format links */
+    /*
+        v2rayN
+    */
 
-    const rawInput =
+    const v2raynLink =
         document.getElementById(
-            'link-raw-fmt'
-        );
-
-    const base64Input =
-        document.getElementById(
-            'link-base64-fmt'
-        );
-
-    const singboxInput =
-        document.getElementById(
-            'link-singbox-fmt'
-        );
-
-    const clashInput =
-        document.getElementById(
-            'link-clash-fmt'
-        );
-
-    const v2raynInput =
-        document.getElementById(
-            'link-v2rayn-fmt'
+            'v2rayn-link'
         );
 
 
-    if (rawInput)
-        rawInput.value =
-            normalLink
+    if (v2raynLink) {
+
+        v2raynLink.href =
+            'v2rayn://install-sub?url='
             +
-            (
-                normalLink.includes('?')
-                ? '&flag=raw'
-                : '?flag=raw'
+            encodeURIComponent(
+                normal
+            )
+            +
+            '&name='
+            +
+            encodeURIComponent(
+                '__USER_NAME__'
+            );
+
+    }
+
+
+    /*
+        Shadowrocket
+    */
+
+    const shadowrocket =
+        document.getElementById(
+            'shadowrocket-link'
+        );
+
+
+    if (shadowrocket) {
+
+        const encoded =
+            btoa(
+                unescape(
+                    encodeURIComponent(
+                        normal
+                    )
+                )
             );
 
 
-    if (base64Input)
-        base64Input.value =
-            normalLink
+        shadowrocket.href =
+            'shadowrocket://add/sub://'
             +
-            (
-                normalLink.includes('?')
-                ? '&flag=base64'
-                : '?flag=base64'
+            encoded
+            +
+            '?remark='
+            +
+            encodeURIComponent(
+                '__USER_NAME__'
+            );
+
+    }
+
+})();
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+(function init() {
+
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                'sub-theme'
             );
 
 
-    if (singboxInput)
-        singboxInput.value =
-            normalLink
-            +
-            (
-                normalLink.includes('?')
-                ? '&flag=singbox'
-                : '?flag=singbox'
-            );
+        if (saved) {
+
+            isDark =
+                saved === 'dark';
+
+        }
+
+    } catch(e) {}
 
 
-    if (clashInput)
-        clashInput.value =
-            normalLink
-            +
-            (
-                normalLink.includes('?')
-                ? '&flag=clash'
-                : '?flag=clash'
-            );
+    applyTheme();
 
 
-    if (v2raynInput)
-        v2raynInput.value =
-            normalLink
-            +
-            (
-                normalLink.includes('?')
-                ? '&flag=vjson'
-                : '?flag=vjson'
-            );
+    initStatusBadge();
+
+
+    updateExpiry();
+
 
 })();
 
