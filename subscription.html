@@ -5133,6 +5133,26 @@ img,svg {
 }
 
 </style>
+<script>
+const bgMusic = document.getElementById("bg-music");
+const soundBtn = document.querySelector(".sound-toggle");
 
+if (soundBtn && bgMusic) {
+    soundBtn.addEventListener("click", () => {
+        if (bgMusic.paused) {
+            bgMusic.play()
+                .then(() => {
+                    soundBtn.classList.add("is-on");
+                })
+                .catch(err => {
+                    console.log("Audio blocked:", err);
+                });
+        } else {
+            bgMusic.pause();
+            soundBtn.classList.remove("is-on");
+        }
+    });
+}
+</script>
 </body>
 </html>
