@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="fa" dir="rtl">
+<html lang="fa" dir="rtl">
 <head>
 
 <meta charset="UTF-8">
@@ -7,422 +7,3902 @@
 
 <title>SEP NET | __USER_NAME__</title>
 
-<!-- Fonts & Icons -->
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&family=Vazirmatn:wght@400;700;900&display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-  tailwind.config = {
-    darkMode: "class",
-    theme: {
-      extend: {
-        "colors": {
-          "neon": "#00e1c1",
-          "surface": "#000000",
-          "on-surface": "#e2e2e2",
-          "on-surface-variant": "#cfc4c5"
-        },
-        "borderRadius": {
-          "DEFAULT": "0.25rem",
-          "lg": "0.5rem",
-          "xl": "0.75rem",
-          "2xl": "1rem",
-          "3xl": "1.5rem",
-          "full": "9999px"
-        }
-      }
-    }
-  }
-</script>
+<script src="https://cdn.jsdelivr.net/gh/itsyebekhe/nahan@main/tailwindcss.js"></script>
 
 <style>
-        body {
-            background-color: #000000;
-            color: #e2e2e2;
-            -webkit-font-smoothing: antialiased;
-            font-family: 'Vazirmatn', 'Inter', sans-serif;
-            overflow-x: hidden;
-            padding: 20px 16px;
-        }
 
-        html[lang="en"] body {
-            font-family: 'Inter', sans-serif;
-        }
+:root {
 
-        /* ═══ GLASS PANELS ═══ */
-        .glass-panel {
-            background: rgba(3, 3, 5, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
-            transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
-        }
-        .glass-panel:hover {
-            transform: translateY(-3px);
-            border-color: rgba(0,225,193,0.22);
-            box-shadow: 0 14px 44px rgba(0,0,0,0.65), 0 0 24px rgba(0,225,193,0.06);
-        }
+    --bg:#050505;
+    --bg2:#090909;
 
-        /* ═══ ANIMATED NEON BACKGROUND ═══ */
-        .bg-fx {
-            position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none;
-            background:
-                radial-gradient(ellipse 900px 600px at 25% 20%, rgba(0,225,193,0.16) 0%, transparent 70%),
-                radial-gradient(ellipse 700px 500px at 75% 15%, rgba(64,120,255,0.12) 0%, transparent 60%),
-                radial-gradient(ellipse 600px 400px at 60% 75%, rgba(139,92,246,0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 500px 400px at 10% 80%, rgba(0,180,255,0.07) 0%, transparent 55%);
-        }
-        .bg-grid {
-            position: fixed; inset: -2px; z-index: -2; pointer-events: none;
-            background-image: linear-gradient(rgba(0,225,193,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(0,225,193,0.04) 1px, transparent 1px);
-            background-size: 48px 48px;
-            mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, black 20%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 45%, black 20%, transparent 70%);
-            animation: grid-drift 36s linear infinite;
-        }
-        @keyframes grid-drift { from { background-position: 0 0; } to { background-position: 48px 48px; } }
+    --card:rgba(18,18,18,.72);
 
-        /* Mouse neon trail */
-        .neon-trail {
-            position: fixed; width: 520px; height: 520px; margin: -260px 0 0 -260px; border-radius: 50%;
-            pointer-events: none; z-index: -1;
-            background: radial-gradient(circle, rgba(0,225,193,0.18) 0%, rgba(90,120,255,0.10) 30%, rgba(139,92,246,0.05) 50%, transparent 70%);
-            filter: blur(12px); opacity: 0; transform: scale(0.5);
-            transition: opacity 0.35s ease, transform 0.35s ease; will-change: transform;
-        }
-        .neon-trail.visible { opacity: 1; transform: scale(1); }
+    --yellow:#ffd21f;
+    --yellow2:#ffb800;
 
-        /* Ambient floating orbs */
-        .orb { position: fixed; border-radius: 50%; filter: blur(80px); z-index: -2; pointer-events: none; animation: orb-float 18s ease-in-out infinite alternate; will-change: transform, opacity; }
-        .orb-1 { width: 480px; height: 480px; top: -150px; left: -120px; background: #00e1c1; opacity: 0.18; }
-        .orb-2 { width: 420px; height: 420px; bottom: -140px; right: -100px; background: #5a78ff; opacity: 0.15; animation-delay: -4s; }
-        .orb-3 { width: 300px; height: 300px; top: 35%; left: 60%; background: #8b5cf6; opacity: 0.12; animation-delay: -8s; }
-        @keyframes orb-float {
-            from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.18; }
-            50%  { transform: translate3d(50px, -40px, 0) scale(1.15); opacity: 0.22; }
-            to   { transform: translate3d(-30px, 50px, 0) scale(1.1); opacity: 0.18; }
-        }
+    --yellow-soft:rgba(255,210,31,.12);
+    --yellow-border:rgba(255,210,31,.25);
 
-        /* ═══ COMPONENTS ═══ */
-        .neon-text { text-shadow: 0 0 6px rgba(0, 255, 229, 0.5), 0 0 12px rgba(0, 255, 229, 0.25); color: #00e1c1; }
-        .neon-border { box-shadow: 0 0 10px rgba(0, 255, 229, 0.15), inset 0 0 6px rgba(0, 255, 229, 0.08); border-color: rgba(0, 255, 229, 0.3); }
-        
-        .progress-bar { background: rgba(255,255,255,0.06); }
-        .progress-fill { background: linear-gradient(90deg, #00e1c1, #00ffd9); box-shadow: 0 0 8px rgba(0,225,193,0.6); }
+    --text:#fff;
+    --text2:#b5b5b5;
+    --muted:#707070;
 
-        .input-field {
-            background: rgba(255,255,255,0.03); color: #e2e2e2; border: 1px solid rgba(255,255,255,0.06);
-            outline: none; transition: border-color 0.2s;
-        }
-        .input-field:focus { border-color: rgba(0,225,193,0.5); box-shadow: 0 0 0 3px rgba(0,225,193,0.08); }
+    --border:rgba(255,255,255,.08);
 
-        /* Buttons */
-        .btn-ghost { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: #e2e2e2; transition: all 0.2s; }
-        .btn-ghost:hover { background: rgba(255,255,255,0.06); border-color: rgba(0,225,193,0.3); color: #00e1c1; }
-        
-        .btn-primary-neon {
-            background: linear-gradient(110deg, #00e1c1 20%, #00ffd9 40%, #00e1c1 60%);
-            background-size: 200% 100%; color: #000; font-weight: 700; border: none;
-            animation: shimmer 3.5s linear infinite; transition: opacity 0.2s;
-        }
-        .btn-primary-neon:hover { opacity: 0.9; }
-        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+    --green:#22c55e;
+    --red:#ef4444;
+    --orange:#f59e0b;
 
-        /* Status Dot */
-        @keyframes neon-pulse { 0%, 100% { box-shadow: 0 0 8px #00e1c1; } 50% { box-shadow: 0 0 18px #00e1c1, 0 0 30px rgba(0,225,193,0.5); } }
-        .pulse-dot { animation: neon-pulse 2.2s ease-in-out infinite; }
+    --shadow:
+        0 25px 80px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.035);
+}
 
-        /* Entrance Animations */
-        @keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-        .rise-in { animation: rise-in 0.7s cubic-bezier(.22,1,.36,1) both; }
-        .rise-in-1 { animation-delay: 0.08s; }
-        .rise-in-2 { animation-delay: 0.16s; }
-        .rise-in-3 { animation-delay: 0.24s; }
-        .rise-in-4 { animation-delay: 0.32s; }
+* {
+    box-sizing:border-box;
+}
 
-        /* Scrollbar */
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: rgba(255,255,255,0.04); }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 20px; }
-        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
+html {
+    scroll-behavior:smooth;
+}
 
-        /* Utilities */
-        .tag { padding: 4px 8px; border-radius: 6px; background: rgba(0,225,193,0.1); color: #00e1c1; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        .text-muted { color: #8a8f98; }
-        .divider { height: 1px; background: rgba(255,255,255,0.06); margin: 16px 0; }
+body {
 
-        /* Modal */
-        #qr-modal { background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); }
-        #qr-modal.show { opacity: 1; pointer-events: auto; }
-        #toast.show { opacity: 1; }
+    margin:0;
+    min-height:100vh;
 
-        /* Responsive */
-        @media(max-width: 768px) {
-            body { padding: 14px !important; }
-        }
+    background:
+        radial-gradient(
+            circle at 10% 5%,
+            rgba(255,210,31,.12),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(255,184,0,.08),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(255,210,31,.05),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            135deg,
+            #030303,
+            #090909 45%,
+            #050505
+        );
+
+    color:var(--text);
+
+    font-family:
+        'Vazirmatn',
+        'Inter',
+        sans-serif;
+
+    -webkit-font-smoothing:antialiased;
+
+    overflow-x:hidden;
+
+    padding:20px 16px;
+}
+
+
+/* =========================
+   GRID BACKGROUND
+========================= */
+
+body::before {
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,210,31,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:45px 45px;
+
+    mask-image:
+        radial-gradient(
+            ellipse 90% 80% at center,
+            black 20%,
+            transparent 85%
+        );
+
+    z-index:-2;
+
+    animation:gridMove 35s linear infinite;
+}
+
+@keyframes gridMove {
+
+    from {
+        background-position:0 0;
+    }
+
+    to {
+        background-position:45px 45px;
+    }
+}
+
+
+/* =========================
+   AMBIENT
+========================= */
+
+.ambient {
+
+    position:fixed;
+
+    border-radius:50%;
+
+    filter:blur(90px);
+
+    pointer-events:none;
+
+    z-index:-1;
+
+    animation:
+        floatOrb
+        18s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+.ambient.one {
+
+    width:420px;
+    height:420px;
+
+    top:-170px;
+    left:-100px;
+
+    background:#ffd21f;
+
+    opacity:.08;
+}
+
+.ambient.two {
+
+    width:350px;
+    height:350px;
+
+    bottom:-150px;
+    right:-100px;
+
+    background:#ffb800;
+
+    opacity:.07;
+
+    animation-delay:-5s;
+}
+
+.ambient.three {
+
+    width:260px;
+    height:260px;
+
+    top:45%;
+    left:50%;
+
+    background:#fff06a;
+
+    opacity:.035;
+}
+
+@keyframes floatOrb {
+
+    from {
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate(35px,-30px)
+            scale(1.12);
+    }
+
+    to {
+        transform:
+            translate(-25px,35px)
+            scale(1.05);
+    }
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width:6px;
+}
+
+::-webkit-scrollbar-track {
+    background:#050505;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background:var(--yellow);
+
+    border-radius:20px;
+
+    box-shadow:
+        0 0 10px
+        rgba(255,210,31,.3);
+}
+
+
+/* =========================
+   GLASS
+========================= */
+
+.glass {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.018)
+        );
+
+    border:
+        1px solid var(--border);
+
+    box-shadow:var(--shadow);
+
+    backdrop-filter:blur(22px);
+
+    -webkit-backdrop-filter:blur(22px);
+
+    transition:
+        transform .35s
+            cubic-bezier(.22,1,.36,1),
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+.glass:hover {
+
+    transform:translateY(-3px);
+
+    border-color:
+        rgba(255,210,31,.22);
+
+    box-shadow:
+
+        0 20px 60px rgba(0,0,0,.7),
+
+        0 0 30px
+        rgba(255,210,31,.045);
+}
+
+.card {
+
+    border-radius:26px;
+
+    position:relative;
+
+    overflow:hidden;
+}
+
+.card::before {
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255,210,31,.08),
+            transparent 35%
+        );
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+
+    width:100%;
+
+    max-width:1180px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin:0 auto 22px;
+
+    gap:15px;
+}
+
+.brand {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+}
+
+.brand-logo {
+
+    width:44px;
+    height:44px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd21f,
+            #ffb800
+        );
+
+    color:#080808;
+
+    font-weight:900;
+
+    font-size:14px;
+
+    box-shadow:
+        0 0 35px
+        rgba(255,210,31,.25),
+
+        inset 0 1px
+        rgba(255,255,255,.6);
+
+    animation:pulseGold 3s infinite;
+}
+
+@keyframes pulseGold {
+
+    0%,100% {
+        box-shadow:
+            0 0 20px
+            rgba(255,210,31,.15);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px
+            rgba(255,210,31,.28);
+    }
+}
+
+.brand-name {
+
+    font-size:18px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+}
+
+.brand-name span {
+    color:var(--yellow);
+}
+
+.brand-sub {
+
+    font-size:9px;
+
+    color:var(--muted);
+
+    letter-spacing:2px;
+
+    margin-top:2px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn {
+
+    border:
+        1px solid var(--border);
+
+    border-radius:13px;
+
+    padding:10px 15px;
+
+    font-weight:800;
+
+    font-size:11px;
+
+    cursor:pointer;
+
+    transition:.2s ease;
+
+    text-decoration:none;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+}
+
+.btn:hover {
+    transform:translateY(-2px);
+}
+
+.btn-secondary {
+
+    background:
+        rgba(255,255,255,.045);
+
+    color:var(--text);
+}
+
+.btn-secondary:hover {
+
+    border-color:
+        var(--yellow-border);
+
+    color:var(--yellow);
+
+    background:
+        var(--yellow-soft);
+}
+
+.btn-primary {
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a,
+            #ffd21f,
+            #ffb800
+        );
+
+    background-size:250% 100%;
+
+    color:#090909;
+
+    border:0;
+
+    font-weight:900;
+
+    box-shadow:
+        0 8px 30px
+        rgba(255,210,31,.18);
+
+    animation:
+        buttonShimmer
+        4s
+        linear
+        infinite;
+}
+
+@keyframes buttonShimmer {
+
+    0% {
+        background-position:-200% 0;
+    }
+
+    100% {
+        background-position:200% 0;
+    }
+}
+
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile {
+
+    text-align:center;
+
+    padding:30px 24px;
+}
+
+.profile-logo {
+
+    width:82px;
+    height:82px;
+
+    margin:0 auto 17px;
+
+    border-radius:24px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:20px;
+
+    font-weight:900;
+
+    color:#050505;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffd21f,
+            #ffb800
+        );
+
+    box-shadow:
+        0 0 45px
+        rgba(255,210,31,.25);
+}
+
+.profile h1 {
+
+    margin:0;
+
+    font-size:25px;
+
+    font-weight:900;
+}
+
+.user-id {
+
+    margin-top:6px;
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    font-family:monospace;
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+
+    margin-top:20px;
+
+    width:100%;
+
+    padding:11px;
+
+    border-radius:13px;
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+}
+
+.status-dot {
+
+    display:inline-block;
+
+    width:9px;
+    height:9px;
+
+    border-radius:50%;
+
+    background:var(--yellow);
+
+    box-shadow:
+        0 0 8px var(--yellow),
+        0 0 20px
+        rgba(255,210,31,.55);
+
+    animation:pulse 2s ease-in-out infinite;
+
+    margin-left:6px;
+}
+
+@keyframes pulse {
+
+    0%,100% {
+        box-shadow:
+            0 0 7px var(--yellow),
+            0 0 15px
+            rgba(255,210,31,.4);
+    }
+
+    50% {
+        box-shadow:
+            0 0 12px var(--yellow),
+            0 0 28px
+            rgba(255,210,31,.65);
+    }
+}
+
+
+/* =========================
+   SECTION
+========================= */
+
+.section-title {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    font-size:11px;
+
+    font-weight:900;
+
+    color:var(--text2);
+
+    text-transform:uppercase;
+
+    letter-spacing:1.6px;
+
+    margin-bottom:17px;
+}
+
+.section-title svg {
+    color:var(--yellow);
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.info {
+
+    padding:25px;
+}
+
+.expiry {
+
+    font-size:25px;
+
+    font-weight:900;
+
+    margin-bottom:5px;
+
+    color:var(--yellow);
+
+    text-shadow:
+        0 0 7px
+        rgba(255,210,31,.5),
+
+        0 0 18px
+        rgba(255,184,0,.25);
+
+    direction:ltr;
+
+    text-align:right;
+}
+
+.muted {
+    color:var(--muted);
+}
+
+.secondary {
+    color:var(--text2);
+}
+
+.divider {
+
+    height:1px;
+
+    background:var(--border);
+
+    margin:22px 0;
+}
+
+.ip-row {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.ip {
+
+    color:var(--yellow);
+
+    font-family:monospace;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    direction:ltr;
+}
+
+
+/* =========================
+   SUPPORT
+========================= */
+
+.support {
+
+    padding:24px;
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255,210,31,.12),
+            transparent 50%
+        ),
+
+        rgba(255,255,255,.025);
+}
+
+.support p {
+
+    font-size:11px;
+
+    line-height:1.9;
+
+    color:var(--text2);
+}
+
+.support-btn {
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:12px;
+}
+
+
+/* =========================
+   METRICS
+========================= */
+
+.metric {
+    padding:25px;
+}
+
+.metric-top {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:20px;
+}
+
+.metric-icon {
+
+    width:39px;
+    height:39px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:var(--yellow);
+
+    background:var(--yellow-soft);
+
+    border:
+        1px solid
+        var(--yellow-border);
+}
+
+.metric-title {
+
+    color:var(--text2);
+
+    font-size:10px;
+
+    font-weight:900;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+}
+
+.metric-number {
+
+    font-size:32px;
+
+    font-weight:900;
+
+    letter-spacing:-1px;
+}
+
+.metric-limit {
+
+    color:var(--text2);
+
+    font-size:12px;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.progress {
+
+    width:100%;
+
+    height:8px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:
+        rgba(255,255,255,.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,.05);
+}
+
+.progress > * {
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffb800,
+            #ffd21f,
+            #fff06a
+        ) !important;
+
+    box-shadow:
+        0 0 15px
+        rgba(255,210,31,.45);
+
+    border-radius:20px;
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+
+.main-card {
+    padding:30px;
+}
+
+.main-heading {
+
+    font-size:19px;
+
+    font-weight:900;
+
+    margin-bottom:5px;
+}
+
+.main-heading span {
+    color:var(--yellow);
+}
+
+.main-desc {
+
+    color:var(--text2);
+
+    font-size:11px;
+}
+
+
+/* =========================
+   UNIVERSAL
+========================= */
+
+.universal {
+
+    margin-top:25px;
+
+    padding:23px;
+
+    border-radius:21px;
+
+    border:
+        1px solid
+        var(--yellow-border);
+
+    background:
+
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(255,210,31,.12),
+            transparent 45%
+        ),
+
+        rgba(255,210,31,.025);
+}
+
+.recommended {
+
+    display:inline-block;
+
+    margin-left:5px;
+
+    padding:4px 8px;
+
+    border-radius:7px;
+
+    background:var(--yellow);
+
+    color:#050505;
+
+    font-size:8px;
+
+    font-weight:900;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.input {
+
+    width:100%;
+
+    min-width:0;
+
+    background:
+        rgba(0,0,0,.45);
+
+    color:var(--text);
+
+    border:
+        1px solid
+        var(--border);
+
+    outline:none;
+
+    border-radius:13px;
+
+    padding:13px 14px;
+
+    font-size:11px;
+
+    font-family:monospace;
+
+    direction:ltr;
+}
+
+.input:focus {
+
+    border-color:var(--yellow);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(255,210,31,.07);
+}
+
+
+/* =========================
+   FORMATS
+========================= */
+
+.formats {
+
+    margin-top:20px;
+
+    padding:22px;
+
+    border-radius:21px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.018);
+}
+
+.format-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,minmax(0,1fr));
+
+    gap:13px;
+
+    margin-top:18px;
+}
+
+.format {
+
+    padding:16px;
+
+    border-radius:17px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.025);
+
+    transition:.2s ease;
+}
+
+.format:hover {
+
+    border-color:
+        var(--yellow-border);
+
+    transform:translateY(-2px);
+
+    background:
+        rgba(255,210,31,.035);
+}
+
+.format-head {
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:10px;
+
+    margin-bottom:11px;
+}
+
+.format-name {
+
+    font-size:10px;
+
+    font-weight:900;
+}
+
+.tag {
+
+    padding:4px 7px;
+
+    border-radius:6px;
+
+    background:var(--yellow-soft);
+
+    color:var(--yellow);
+
+    font-size:8px;
+
+    font-weight:900;
+}
+
+.format-row {
+
+    display:flex;
+
+    gap:7px;
+}
+
+.format-row .input {
+
+    padding:10px;
+
+    font-size:9px;
+}
+
+.small-btn {
+
+    border:0;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffb800,
+            #ffd21f
+        );
+
+    color:#050505;
+
+    border-radius:10px;
+
+    padding:0 12px;
+
+    font-size:9px;
+
+    font-weight:900;
+
+    cursor:pointer;
+}
+
+.qr-btn {
+
+    width:38px;
+
+    min-width:38px;
+
+    border:
+        1px solid
+        var(--border);
+
+    background:
+        rgba(255,255,255,.04);
+
+    color:var(--text2);
+
+    border-radius:10px;
+
+    cursor:pointer;
+}
+
+.qr-btn:hover {
+
+    color:var(--yellow);
+
+    border-color:
+        var(--yellow-border);
+}
+
+
+/* =========================
+   APPS
+========================= */
+
+.apps {
+    margin-top:28px;
+}
+
+.apps-grid {
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,minmax(0,1fr));
+
+    gap:10px;
+}
+
+.app {
+
+    text-decoration:none;
+
+    color:var(--text);
+
+    padding:14px 10px;
+
+    border-radius:14px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:7px;
+
+    font-size:11px;
+
+    font-weight:800;
+
+    transition:.2s;
+}
+
+.app:hover {
+
+    color:var(--yellow);
+
+    border-color:
+        var(--yellow-border);
+
+    background:
+        var(--yellow-soft);
+
+    transform:translateY(-3px);
+}
+
+
+/* =========================
+   BOTTOM
+========================= */
+
+.bottom {
+
+    margin-top:25px;
+
+    padding-top:20px;
+
+    border-top:
+        1px solid
+        var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.raw-btn {
+    white-space:nowrap;
+}
+
+
+/* =========================
+   MODAL
+========================= */
+
+.modal-overlay {
+
+    background:
+        rgba(0,0,0,.82);
+
+    backdrop-filter:blur(18px);
+
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.modal-card {
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(28,28,28,.95),
+            rgba(10,10,10,.97)
+        );
+
+    border:
+        1px solid
+        var(--yellow-border);
+
+    box-shadow:
+
+        0 30px 100px
+        rgba(0,0,0,.8),
+
+        0 0 50px
+        rgba(255,210,31,.08);
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+#toast {
+
+    background:
+        rgba(20,20,20,.92) !important;
+
+    border:
+        1px solid
+        var(--yellow-border);
+
+    color:white !important;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.6);
+}
+
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes enter {
+
+    from {
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.fade-in {
+    animation:enter .65s ease-out;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:768px) {
+
+    body {
+        padding:14px !important;
+    }
+
+    .topbar {
+        margin-bottom:16px;
+    }
+
+    .brand-name {
+        font-size:15px;
+    }
+
+    .brand-sub {
+        font-size:8px;
+    }
+
+    .brand-logo {
+
+        width:40px;
+        height:40px;
+    }
+
+    .format-grid {
+        grid-template-columns:1fr;
+    }
+
+    .apps-grid {
+        grid-template-columns:
+            repeat(2,1fr);
+    }
+
+    .main-card {
+        padding:19px;
+    }
+
+    .universal,
+    .formats {
+        padding:16px;
+    }
+
+    .bottom {
+
+        flex-direction:column;
+
+        align-items:stretch;
+    }
+
+    .raw-btn {
+        width:100%;
+    }
+
+    .ambient.three {
+        display:none;
+    }
+}
+
+
+@media(max-width:480px) {
+
+    .topbar .btn {
+        padding:9px 11px;
+    }
+
+    .metric-number {
+        font-size:28px;
+    }
+
+    .expiry {
+        font-size:21px;
+    }
+
+    .format-row {
+        flex-wrap:wrap;
+    }
+
+    .format-row .input {
+
+        width:100%;
+
+        flex-basis:100%;
+    }
+
+    .small-btn,
+    .qr-btn {
+        height:38px;
+    }
+}
+
 </style>
 
 </head>
 
-<body>
-<!-- ═══ ANIMATED BACKGROUND LAYERS ═══ -->
-<div class="bg-fx"></div>
-<div class="bg-grid"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div class="neon-trail" id="neonTrail"></div>
 
-<!-- ========================= TOP BAR ========================= -->
-<header class="w-full max-w-[1180px] mx-auto flex justify-between items-center mb-8 rise-in">
-    <div class="flex items-center gap-3">
-        <div class="w-11 h-11 rounded-xl bg-neon flex items-center justify-center text-black font-black text-sm shadow-lg shadow-neon/20">
+<body class="fade-in">
+
+
+<div class="ambient one"></div>
+<div class="ambient two"></div>
+<div class="ambient three"></div>
+
+
+<!-- =========================
+     TOP BAR
+========================= -->
+
+<div class="topbar">
+
+    <div class="brand">
+
+        <div class="brand-logo">
             SN
         </div>
+
         <div>
-            <h1 class="text-xl font-bold tracking-tight text-on-surface">SEP <span class="neon-text">NET</span></h1>
-            <div class="text-[9px] text-muted tracking-[2px] font-bold">SECURE NETWORK</div>
+
+            <div class="brand-name">
+                SEP <span>NET</span>
+            </div>
+
+            <div class="brand-sub">
+                SECURE NETWORK
+            </div>
+
         </div>
+
     </div>
-    <button onclick="toggleLang()" id="lang-toggle" class="btn-ghost flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold">
-        <span id="lang-icon">🇬🇧</span>
-        <span id="lang-label">EN</span>
+
+
+    <!-- ONLY LANGUAGE BUTTON -->
+
+    <button
+        onclick="toggleLang()"
+        id="lang-toggle"
+        class="btn btn-secondary"
+    >
+
+        <span id="lang-icon">
+            🇬🇧
+        </span>
+
+        <span id="lang-label">
+            EN
+        </span>
+
     </button>
-</header>
 
-<!-- ========================= MAIN GRID ========================= -->
-<div class="w-full max-w-[1180px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-6 relative z-10">
+</div>
 
-    <!-- ========================= LEFT COL ========================= -->
-    <div class="md:col-span-4 flex flex-col gap-6">
-        
-        <!-- PROFILE -->
-        <div class="glass-panel rounded-3xl p-8 text-center rise-in rise-in-1 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(circle at center, #00e1c1 0%, transparent 60%);"></div>
-            <div class="w-20 h-20 mx-auto mb-4 rounded-2xl bg-neon flex items-center justify-center text-black text-xl font-black relative z-10" style="box-shadow: 0 0 35px rgba(0,225,193,0.3);">
-                SEP
-            </div>
-            <h2 class="text-2xl font-bold mb-1 relative z-10">__USER_NAME__</h2>
-            <div class="text-muted text-xs mono relative z-10">ID: __USER_ID__</div>
-            
-            <div class="flex items-center justify-center gap-2 mt-5 relative z-10">
-                <div class="w-2 h-2 rounded-full bg-neon pulse-dot"></div>
-                <span id="status-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-white/5 border border-white/10"></span>
-            </div>
-        </div>
 
-        <!-- INFO -->
-        <div class="glass-panel rounded-3xl p-6 rise-in rise-in-2">
-            <div class="flex items-center gap-2 mb-5 text-muted text-xs font-bold tracking-widest uppercase">
-                <span class="material-symbols-outlined text-[18px] text-neon">calendar_month</span>
-                <span data-i18n="expDate">تاریخ انقضا</span>
-            </div>
 
-            <div id="expiry-date" class="text-3xl font-bold neon-text mb-1 ltr:text-right" data-expiry="__EXPIRY_DATE__" dir="ltr">__EXPIRY_DATE__</div>
-            <div class="text-muted text-xs" data-i18n="calendarLocal">تاریخ میلادی</div>
+<!-- =========================
+     MAIN
+========================= -->
 
-            <div class="divider"></div>
+<div
+    class="
+        w-full
+        max-w-[1180px]
+        mx-auto
+        grid
+        grid-cols-1
+        md:grid-cols-12
+        gap-5
+        relative
+        z-10
+    "
+>
 
-            <div class="flex justify-between items-center">
-                <span class="text-muted text-xs font-semibold" data-i18n="remaining">زمان باقی‌مانده</span>
-                <span id="days-left" class="mono text-neon text-xs font-bold">--</span>
-            </div>
 
-            <div class="divider"></div>
+<!-- =========================
+     LEFT
+========================= -->
 
-            <div class="flex justify-between items-center">
-                <span class="text-muted text-xs font-semibold" data-i18n="connectionIp">IP اتصال</span>
-                <span id="client-ip" class="mono text-neon text-xs font-bold" dir="ltr">Detecting...</span>
-            </div>
-        </div>
+<div class="md:col-span-4 flex flex-col gap-5">
 
-        <!-- SUPPORT -->
-        <div class="glass-panel rounded-3xl p-6 rise-in rise-in-3">
-            <div class="flex items-center gap-2 mb-4 text-muted text-xs font-bold tracking-widest uppercase">
-                <span class="material-symbols-outlined text-[18px] text-neon">support_agent</span>
-                <span data-i18n="supportTitle">پشتیبانی SEP NET</span>
-            </div>
-            <p class="text-sm text-muted leading-7 mb-4" data-i18n="supportDesc">برای دریافت راهنمایی، خرید اشتراک یا حل مشکل اتصال می‌توانید از لینک‌های زیر استفاده کنید.</p>
-            
-            <div class="flex flex-col gap-2">
-                <a href="https://t.me/sepnet_conf" target="_blank" class="btn-ghost w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
-                    <span class="material-symbols-outlined text-[18px]">campaign</span>
-                    <span data-i18n="channel">کانال ما</span>
-                </a>
-                <a href="https://t.me/sepnet_irbot" target="_blank" class="btn-primary-neon w-full py-3 rounded-xl text-sm flex items-center justify-center gap-2">
-                    <span class="material-symbols-outlined text-[18px]">shopping_cart</span>
-                    <span data-i18n="buyBot">ربات خرید</span>
-                </a>
-                <a href="https://t.me/sepnet_supportbot" target="_blank" class="btn-ghost w-full py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2">
-                    <span class="material-symbols-outlined text-[18px]">chat</span>
-                    <span data-i18n="supportBot">تیم پشتیبانی سپ نت</span>
-                </a>
-            </div>
-        </div>
+
+<!-- PROFILE -->
+
+<div class="glass card profile">
+
+    <div class="profile-logo">
+        SEP
     </div>
 
-    <!-- ========================= RIGHT COL ========================= -->
-    <div class="md:col-span-8 flex flex-col gap-6">
-        
-        <!-- METRICS -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <!-- TOTAL -->
-            <div class="glass-panel rounded-3xl p-6 rise-in rise-in-2">
-                <div class="flex justify-between items-center mb-5">
-                    <span class="text-muted text-xs font-bold tracking-widest uppercase" data-i18n="totalUsage">مصرف کل</span>
-                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-neon">
-                        <span class="material-symbols-outlined text-[20px]">data_usage</span>
-                    </div>
-                </div>
-                <div class="flex items-baseline gap-2 mb-5">
-                    <span class="text-3xl font-bold">__TOTAL_GB__</span>
-                    <span class="text-sm text-muted">/ __LIMIT_TOTAL_GB__ GB</span>
-                </div>
-                <div class="w-full h-1.5 progress-bar rounded-full overflow-hidden">
-                    <div class="h-full progress-fill rounded-full" style="width: 0%">__TOTAL_PROGRESS__</div>
-                </div>
-            </div>
+    <h1>
+        __USER_NAME__
+    </h1>
 
-            <!-- DAILY -->
-            <div class="glass-panel rounded-3xl p-6 rise-in rise-in-3">
-                <div class="flex justify-between items-center mb-5">
-                    <span class="text-muted text-xs font-bold tracking-widest uppercase" data-i18n="dailyUsage">مصرف روزانه</span>
-                    <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-neon">
-                        <span class="material-symbols-outlined text-[20px]">timer</span>
-                    </div>
-                </div>
-                <div class="flex items-baseline gap-2 mb-5">
-                    <span class="text-3xl font-bold">__DAILY_GB__</span>
-                    <span class="text-sm text-muted">/ __LIMIT_DAILY_GB__ GB</span>
-                </div>
-                <div class="w-full h-1.5 progress-bar rounded-full overflow-hidden">
-                    <div class="h-full progress-fill rounded-full" style="width: 0%">__DAILY_PROGRESS__</div>
-                </div>
-            </div>
+    <div class="user-id">
+        ID: __USER_ID__
+    </div>
+
+    <div
+        class="
+            flex
+            items-center
+            justify-center
+            gap-2
+            mt-4
+        "
+    >
+
+        <span class="status-dot"></span>
+
+        <div
+            id="status-badge"
+            class="status"
+            style="margin-top:0;"
+        ></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- INFO -->
+
+<div class="glass card info">
+
+    <div class="section-title">
+
+        <svg
+            width="17"
+            height="17"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="
+                    M8 7V3
+                    m8 4V3
+                    m-9 8h10
+                    M5 21h14
+                    a2 2 0 002-2V7
+                    a2 2 0 00-2-2H5
+                    a2 2 0 00-2 2v12
+                    a2 2 0 002 2z
+                "
+            />
+        </svg>
+
+        <span data-i18n="expDate">
+            تاریخ انقضا
+        </span>
+
+    </div>
+
+
+    <!--
+        IMPORTANT:
+        The backend value is kept untouched.
+    -->
+
+    <div
+        id="expiry-date"
+        class="expiry"
+        data-expiry="__EXPIRY_DATE__"
+    >
+        __EXPIRY_DATE__
+    </div>
+
+
+    <div
+        class="muted text-xs"
+        data-i18n="calendarLocal"
+    >
+        تاریخ میلادی
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- COUNTDOWN -->
+
+    <div class="ip-row">
+
+        <span
+            class="secondary text-xs font-bold"
+            data-i18n="remaining"
+        >
+            زمان باقی‌مانده
+        </span>
+
+        <span
+            id="days-left"
+            class="ip"
+        >
+            --
+        </span>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- IP -->
+
+    <div class="ip-row">
+
+        <span
+            class="secondary text-xs font-bold"
+            data-i18n="connectionIp"
+        >
+            IP اتصال
+        </span>
+
+        <span
+            id="client-ip"
+            class="ip"
+        >
+            Detecting...
+        </span>
+
+    </div>
+
+</div>
+
+
+
+<!-- SUPPORT -->
+
+<div class="glass card support">
+
+    <div class="section-title">
+
+        <svg
+            width="19"
+            height="19"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="
+                    M18.364 5.636
+                    l-3.536 3.536
+                    m0 5.656
+                    l3.536 3.536
+                    M9.172 9.172
+                    L5.636 5.636
+                    m3.536 9.192
+                    l-3.536 3.536
+                    M21 12
+                    a9 9 0 11-18 0
+                    9 9 0 0118 0z
+                "
+            />
+        </svg>
+
+        <span data-i18n="supportTitle">
+            پشتیبانی SEP NET
+        </span>
+
+    </div>
+
+
+    <p data-i18n="supportDesc">
+        برای دریافت راهنمایی، خرید اشتراک یا حل مشکل اتصال می‌توانید از لینک‌های زیر استفاده کنید.
+    </p>
+
+
+    <!-- CHANNEL -->
+
+    <a
+        href="https://t.me/sepnet_conf"
+        target="_blank"
+        class="btn btn-secondary support-btn"
+    >
+
+        📢
+
+        <span data-i18n="channel">
+            کانال ما
+        </span>
+
+    </a>
+
+
+    <!-- SHOP -->
+
+    <a
+        href="https://t.me/sepnet_irbot"
+        target="_blank"
+        class="btn btn-primary support-btn"
+    >
+
+        🛒
+
+        <span data-i18n="buyBot">
+            ربات خرید
+        </span>
+
+    </a>
+
+
+    <!-- SUPPORT -->
+
+    <a
+        href="https://t.me/sepnet_supportbot"
+        target="_blank"
+        class="btn btn-secondary support-btn"
+    >
+
+        💬
+
+        <span data-i18n="supportBot">
+            تیم پشتیبانی سپ نت
+        </span>
+
+    </a>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     RIGHT
+========================= -->
+
+<div class="md:col-span-8 flex flex-col gap-5">
+
+
+<!-- METRICS -->
+
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+
+<!-- TOTAL -->
+
+<div class="glass card metric">
+
+    <div class="metric-top">
+
+        <div
+            class="metric-title"
+            data-i18n="totalUsage"
+        >
+            مصرف کل
         </div>
 
-        <!-- MAIN CONFIG CARD -->
-        <div class="glass-panel rounded-3xl p-8 flex-1 flex flex-col rise-in rise-in-4">
-            
-            <div class="mb-6">
-                <h2 class="text-xl font-bold mb-1" data-i18n="integrationTitle">لینک‌های اتصال</h2>
-                <p class="text-sm text-muted" data-i18n="integrationDesc">لینک پیکربندی مورد نظر خود را انتخاب کنید.</p>
-            </div>
+        <div class="metric-icon">
 
-            <!-- UNIVERSAL LINK -->
-            <div class="rounded-2xl border border-neon/30 bg-neon/5 p-5 mb-6 relative overflow-hidden">
-                <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-1 bg-neon"></div>
-                <div class="flex items-center gap-2 mb-3 ltr:pl-3 rtl:pr-3">
-                    <span class="font-bold text-sm" data-i18n="universalLink">لینک خودکار</span>
-                    <span class="tag">RECOMMENDED</span>
-                </div>
-                <p class="text-xs text-muted mb-4 ltr:pl-3 rtl:pr-3" data-i18n="universalDesc">این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.</p>
-                
-                <div class="flex flex-col sm:flex-row gap-2 ltr:pl-3 rtl:pr-3" dir="ltr">
-                    <input type="text" id="link-normal" value="__SYNC_NORMAL__" readonly class="input-field flex-1 rounded-xl px-4 py-3 text-xs mono">
-                    <div class="flex gap-2">
-                        <button onclick="copyLink('link-normal')" class="btn-primary-neon px-5 py-3 rounded-xl text-xs flex items-center justify-center gap-2">
-                            <span class="material-symbols-outlined text-[16px]">content_copy</span>
-                            <span data-i18n="copy">کپی</span>
-                        </button>
-                        <button onclick="showQRModal('__SYNC_NORMAL__')" class="btn-ghost px-4 py-3 rounded-xl text-xs flex items-center justify-center">
-                            <span class="material-symbols-outlined text-[16px]">qr_code_2</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <svg
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-width="2"
+                    d="
+                        M4 7v10
+                        c0 2.21 3.582 4 8 4
+                        s8-1.79 8-4V7
+                        M4 7
+                        c0 2.21 3.582 4 8 4
+                        s8-1.79 8-4
+                        M4 7
+                        c0-2.21 3.582-4 8-4
+                        s8 1.79 8 4
+                    "
+                />
+            </svg>
 
-            <!-- FORMATS GRID -->
-            <div class="mb-6">
-                <h3 class="font-bold text-sm mb-1" data-i18n="availableFormats">فرمت‌های اشتراک</h3>
-                <p class="text-xs text-muted mb-4" data-i18n="formatsDesc">از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.</p>
-                
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <!-- RAW -->
-                    <div class="group border border-white/6 bg-white/3 rounded-2xl p-4 hover:bg-white/6 hover:border-neon/30 transition-all cursor-pointer relative overflow-hidden">
-                        <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-1 bg-neon opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="flex justify-between items-center mb-3 ltr:pl-2 rtl:pr-2">
-                            <span class="text-xs font-bold">Raw Configs</span>
-                            <span class="tag">RAW</span>
-                        </div>
-                        <div class="flex gap-2 ltr:pl-2 rtl:pr-2" dir="ltr">
-                            <input id="link-raw-fmt" readonly class="input-field flex-1 rounded-lg px-3 py-2 text-[10px] mono min-w-0">
-                            <button onclick="event.stopPropagation(); copyLink('link-raw-fmt')" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
-                            <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-raw-fmt').value)" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center">QR</button>
-                        </div>
-                    </div>
+        </div>
 
-                    <!-- BASE64 -->
-                    <div class="group border border-white/6 bg-white/3 rounded-2xl p-4 hover:bg-white/6 hover:border-neon/30 transition-all cursor-pointer relative overflow-hidden">
-                        <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-1 bg-neon opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="flex justify-between items-center mb-3 ltr:pl-2 rtl:pr-2">
-                            <span class="text-xs font-bold">Base64 Subscription</span>
-                            <span class="tag">BASE64</span>
-                        </div>
-                        <div class="flex gap-2 ltr:pl-2 rtl:pr-2" dir="ltr">
-                            <input id="link-base64-fmt" readonly class="input-field flex-1 rounded-lg px-3 py-2 text-[10px] mono min-w-0">
-                            <button onclick="event.stopPropagation(); copyLink('link-base64-fmt')" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
-                            <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-base64-fmt').value)" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center">QR</button>
-                        </div>
-                    </div>
+    </div>
 
-                    <!-- SINGBOX -->
-                    <div class="group border border-white/6 bg-white/3 rounded-2xl p-4 hover:bg-white/6 hover:border-neon/30 transition-all cursor-pointer relative overflow-hidden">
-                        <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-1 bg-neon opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="flex justify-between items-center mb-3 ltr:pl-2 rtl:pr-2">
-                            <span class="text-xs font-bold">Sing-box Subscription</span>
-                            <span class="tag">SINGBOX</span>
-                        </div>
-                        <div class="flex gap-2 ltr:pl-2 rtl:pr-2" dir="ltr">
-                            <input id="link-singbox-fmt" readonly class="input-field flex-1 rounded-lg px-3 py-2 text-[10px] mono min-w-0">
-                            <button onclick="event.stopPropagation(); copyLink('link-singbox-fmt')" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
-                            <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-singbox-fmt').value)" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center">QR</button>
-                        </div>
-                    </div>
 
-                    <!-- CLASH -->
-                    <div class="group border border-white/6 bg-white/3 rounded-2xl p-4 hover:bg-white/6 hover:border-neon/30 transition-all cursor-pointer relative overflow-hidden">
-                        <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-1 bg-neon opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="flex justify-between items-center mb-3 ltr:pl-2 rtl:pr-2">
-                            <span class="text-xs font-bold">Clash Subscription</span>
-                            <span class="tag">CLASH</span>
-                        </div>
-                        <div class="flex gap-2 ltr:pl-2 rtl:pr-2" dir="ltr">
-                            <input id="link-clash-fmt" readonly class="input-field flex-1 rounded-lg px-3 py-2 text-[10px] mono min-w-0">
-                            <button onclick="event.stopPropagation(); copyLink('link-clash-fmt')" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
-                            <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-clash-fmt').value)" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center">QR</button>
-                        </div>
-                    </div>
+    <div class="flex items-baseline gap-2 mb-5">
 
-                    <!-- V2RAYN -->
-                    <div class="group border border-white/6 bg-white/3 rounded-2xl p-4 hover:bg-white/6 hover:border-neon/30 transition-all cursor-pointer relative overflow-hidden sm:col-span-2">
-                        <div class="absolute ltr:left-0 rtl:right-0 top-0 bottom-0 w-1 bg-neon opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <div class="flex justify-between items-center mb-3 ltr:pl-2 rtl:pr-2">
-                            <span class="text-xs font-bold">v2rayN Subscription</span>
-                            <span class="tag">V2RAYN</span>
-                        </div>
-                        <div class="flex gap-2 ltr:pl-2 rtl:pr-2" dir="ltr">
-                            <input id="link-v2rayn-fmt" readonly class="input-field flex-1 rounded-lg px-3 py-2 text-[10px] mono min-w-0">
-                            <button onclick="event.stopPropagation(); copyLink('link-v2rayn-fmt')" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center"><span class="material-symbols-outlined text-[14px]">content_copy</span></button>
-                            <button onclick="event.stopPropagation(); showQRModal(document.getElementById('link-v2rayn-fmt').value)" class="btn-ghost px-3 rounded-lg text-[10px] flex items-center">QR</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <span class="metric-number">
+            __TOTAL_GB__
+        </span>
 
-            <!-- APPS -->
-            <div class="mt-auto">
-                <div class="flex items-center gap-2 mb-4 text-muted text-xs font-bold tracking-widest uppercase">
-                    <span class="material-symbols-outlined text-[18px] text-neon">bolt</span>
-                    <span data-i18n="oneClickImport">وارد کردن با یک کلیک</span>
-                </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    <a id="v2rayng-link" href="#" class="btn-ghost rounded-xl py-3 text-xs font-bold flex items-center justify-center gap-2">v2rayNG</a>
-                    <a id="v2rayn-link" href="#" class="btn-ghost rounded-xl py-3 text-xs font-bold flex items-center justify-center gap-2">v2rayN</a>
-                    <a id="shadowrocket-link" href="#" class="btn
+        <span class="metric-limit">
+            / __LIMIT_TOTAL_GB__ GB
+        </span>
+
+    </div>
+
+
+    <div class="progress">
+        __TOTAL_PROGRESS__
+    </div>
+
+</div>
+
+
+
+<!-- DAILY -->
+
+<div class="glass card metric">
+
+    <div class="metric-top">
+
+        <div
+            class="metric-title"
+            data-i18n="dailyUsage"
+        >
+            مصرف روزانه
+        </div>
+
+        <div class="metric-icon">
+
+            <svg
+                width="19"
+                height="19"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-width="2"
+                    d="
+                        M12 8v4l3 3
+                        m6-3
+                        a9 9 0 11-18 0
+                        9 9 0 0118 0z
+                    "
+                />
+            </svg>
+
+        </div>
+
+    </div>
+
+
+    <div class="flex items-baseline gap-2 mb-5">
+
+        <span class="metric-number">
+            __DAILY_GB__
+        </span>
+
+        <span class="metric-limit">
+            / __LIMIT_DAILY_GB__ GB
+        </span>
+
+    </div>
+
+
+    <div class="progress">
+        __DAILY_PROGRESS__
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- MAIN CARD -->
+
+<div class="glass card main-card">
+
+
+<div>
+
+    <div class="main-heading">
+
+        <span data-i18n="integrationTitle">
+            لینک‌های اتصال
+        </span>
+
+    </div>
+
+    <div
+        class="main-desc"
+        data-i18n="integrationDesc"
+    >
+        لینک پیکربندی مورد نظر خود را انتخاب کنید.
+    </div>
+
+</div>
+
+
+
+<!-- UNIVERSAL -->
+
+<div class="universal">
+
+    <div class="font-black text-sm mb-2">
+
+        <span data-i18n="universalLink">
+            لینک خودکار
+        </span>
+
+        <span class="recommended">
+            RECOMMENDED
+        </span>
+
+    </div>
+
+
+    <div
+        class="
+            secondary
+            text-xs
+            leading-6
+            mb-4
+        "
+        data-i18n="universalDesc"
+    >
+        این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.
+    </div>
+
+
+    <div
+        class="flex flex-col sm:flex-row gap-2"
+        dir="ltr"
+    >
+
+        <input
+            type="text"
+            id="link-normal"
+            value="__SYNC_NORMAL__"
+            readonly
+            class="input flex-1"
+        >
+
+
+        <div class="flex gap-2">
+
+            <button
+                onclick="copyLink('link-normal')"
+                class="btn btn-primary flex-1"
+            >
+
+                <span data-i18n="copy">
+                    کپی
+                </span>
+
+            </button>
+
+
+            <button
+                onclick="showQRModal('__SYNC_NORMAL__')"
+                class="btn btn-secondary"
+            >
+                QR
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- FORMATS -->
+
+<div class="formats">
+
+    <div class="font-black text-sm">
+
+        <span data-i18n="availableFormats">
+            فرمت‌های اشتراک
+        </span>
+
+    </div>
+
+
+    <div
+        class="
+            secondary
+            text-xs
+            leading-6
+            mt-2
+        "
+        data-i18n="formatsDesc"
+    >
+        از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.
+    </div>
+
+
+    <div class="format-grid">
+
+
+<!-- RAW -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Raw Configs
+        </span>
+
+        <span class="tag">
+            RAW
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-raw-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-raw-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-raw-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- BASE64 -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Base64 Subscription
+        </span>
+
+        <span class="tag">
+            BASE64
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-base64-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-base64-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-base64-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- SINGBOX -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Sing-box Subscription
+        </span>
+
+        <span class="tag">
+            SINGBOX
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-singbox-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-singbox-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-singbox-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- CLASH -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            Clash Subscription
+        </span>
+
+        <span class="tag">
+            CLASH
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-clash-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-clash-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-clash-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- V2RAYN -->
+
+<div class="format">
+
+    <div class="format-head">
+
+        <span class="format-name">
+            v2rayN Subscription
+        </span>
+
+        <span class="tag">
+            V2RAYN
+        </span>
+
+    </div>
+
+
+    <div class="format-row" dir="ltr">
+
+        <input
+            id="link-v2rayn-fmt"
+            readonly
+            class="input"
+        >
+
+        <button
+            onclick="copyLink('link-v2rayn-fmt')"
+            class="small-btn"
+        >
+            Copy
+        </button>
+
+        <button
+            onclick="showQRModal(document.getElementById('link-v2rayn-fmt').value)"
+            class="qr-btn"
+        >
+            QR
+        </button>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ONE CLICK -->
+
+<div class="apps">
+
+    <div class="section-title">
+
+        <svg
+            width="16"
+            height="16"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-width="2"
+                d="
+                    M13 10V3
+                    L4 14h7v7l9-11h-7z
+                "
+            />
+        </svg>
+
+        <span data-i18n="oneClickImport">
+            وارد کردن با یک کلیک
+        </span>
+
+    </div>
+
+
+    <div class="apps-grid">
+
+
+        <a
+            id="v2rayng-link"
+            href="#"
+            class="app"
+        >
+            v2rayNG
+        </a>
+
+
+        <a
+            id="v2rayn-link"
+            href="#"
+            class="app"
+        >
+            v2rayN
+        </a>
+
+
+        <a
+            id="shadowrocket-link"
+            href="#"
+            class="app"
+        >
+            Shadowrocket
+        </a>
+
+
+        <a
+            id="streisand-link"
+            href="#"
+            class="app"
+        >
+            Streisand
+        </a>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- RAW -->
+
+<div class="bottom">
+
+    <div
+        class="secondary text-xs"
+        data-i18n="rawDescription"
+    >
+        کاربران حرفه‌ای می‌توانند محتوای خام کانفیگ را دریافت کنند.
+    </div>
+
+
+    <div class="flex gap-2 w-full sm:w-auto">
+
+        <button
+            onclick="fetchDecodedRawContent()"
+            class="btn btn-secondary raw-btn"
+        >
+
+            <span data-i18n="parsedContent">
+                دریافت متن خام
+            </span>
+
+        </button>
+
+
+        <input
+            type="text"
+            id="link-raw"
+            value="__SYNC_RAW__"
+            class="hidden"
+        >
+
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     QR MODAL
+========================= -->
+
+<div
+    id="qr-modal"
+    class="
+        fixed
+        inset-0
+        modal-overlay
+        z-50
+        hidden
+        items-center
+        justify-center
+        p-4
+        opacity-0
+        transition-opacity
+        duration-300
+    "
+>
+
+    <div
+        class="
+            modal-card
+            max-w-sm
+            w-full
+            rounded-3xl
+            p-7
+            relative
+        "
+    >
+
+
+        <button
+            onclick="closeQRModal()"
+            class="
+                absolute
+                top-4
+                right-4
+                btn
+                btn-secondary
+                rounded-full
+            "
+        >
+            ✕
+        </button>
+
+
+        <h3
+            id="qr-title"
+            class="
+                text-xl
+                font-black
+                text-center
+                mb-6
+            "
+        >
+            اسکن کد QR
+        </h3>
+
+
+        <div
+            class="
+                bg-white
+                p-4
+                rounded-2xl
+                mx-auto
+                w-fit
+                mb-5
+            "
+        >
+
+            <img
+                id="qr-img"
+                src=""
+                alt="QR Code"
+                class="w-52 h-52"
+            >
+
+        </div>
+
+
+        <p
+            id="qr-text"
+            class="
+                text-xs
+                text-center
+                font-mono
+                break-all
+                mb-5
+                px-3
+                py-3
+                rounded-xl
+            "
+            style="
+                color:#999;
+                background:rgba(255,255,255,.04);
+                border:1px solid rgba(255,255,255,.08);
+            "
+        ></p>
+
+
+        <button
+            onclick="closeQRModal()"
+            class="btn btn-primary w-full"
+            data-i18n="close"
+        >
+            بستن
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- TOAST -->
+
+<div
+    id="toast"
+    class="
+        fixed
+        top-8
+        left-1/2
+        -translate-x-1/2
+        px-6
+        py-3
+        rounded-full
+        font-bold
+        text-sm
+        z-50
+        transition-all
+        opacity-0
+        pointer-events-none
+    "
+>
+    Notification
+</div>
+
+
+
+<script>
+
+/* =========================================================
+   TRANSLATIONS
+========================================================= */
+
+const I18N = {
+
+    fa: {
+
+        totalUsage:'مصرف کل',
+        dailyUsage:'مصرف روزانه',
+
+        expDate:'تاریخ انقضا',
+        calendarLocal:'تاریخ میلادی',
+
+        remaining:'زمان باقی‌مانده',
+        connectionIp:'IP اتصال',
+
+        integrationTitle:'لینک‌های اتصال',
+
+        integrationDesc:
+            'لینک پیکربندی مورد نظر خود را انتخاب کنید.',
+
+        universalLink:'لینک خودکار',
+
+        universalDesc:
+            'این لینک کلاینت شما را شناسایی و بهترین فرمت را ارسال می‌کند.',
+
+        oneClickImport:'وارد کردن با یک کلیک',
+
+        copy:'کپی',
+        copyRaw:'کپی لینک خام',
+
+        qr:'QR',
+
+        parsedContent:'دریافت متن خام',
+
+        close:'بستن',
+
+        qrTitle:'اسکن کد QR',
+
+        copied:'کپی شد!',
+
+        decodedCopied:'لینک‌ها کپی شدند!',
+
+        decodedError:'خطا در دریافت اطلاعات',
+
+        active:'فعال',
+
+        paused:'متوقف',
+
+        expired:'منقضی',
+
+        limitExceeded:
+            'از حد مجاز عبور کرده',
+
+        dailyLimitExceeded:
+            'از حد روزانه عبور کرده',
+
+        availableFormats:
+            'فرمت‌های اشتراک',
+
+        formatsDesc:
+            'از این لینک‌ها برای دریافت مستقیم فرمت‌های مختلف استفاده کنید.',
+
+        supportTitle:
+            'پشتیبانی SEP NET',
+
+        supportDesc:
+            'برای دریافت راهنمایی، خرید اشتراک یا حل مشکل اتصال می‌توانید از لینک‌های زیر استفاده کنید.',
+
+        channel:
+            'کانال ما',
+
+        buyBot:
+            'ربات خرید',
+
+        supportBot:
+            'تیم پشتیبانی سپ نت',
+
+        rawDescription:
+            'کاربران حرفه‌ای می‌توانند محتوای خام کانفیگ را دریافت کنند.',
+
+        days:
+            'روز',
+
+        day:
+            'روز',
+
+        expiredTime:
+            'منقضی شده',
+
+        invalidDate:
+            'تاریخ نامعتبر'
+    },
+
+
+    en: {
+
+        totalUsage:'Total Usage',
+        dailyUsage:'Daily Usage',
+
+        expDate:'Expiration Date',
+        calendarLocal:'Gregorian Date',
+
+        remaining:'Time Remaining',
+        connectionIp:'Connection IP',
+
+        integrationTitle:
+            'Integration Connections',
+
+        integrationDesc:
+            'Choose the configuration link for your preferred format.',
+
+        universalLink:
+            'Universal Auto-Detecting Link',
+
+        universalDesc:
+            'This URL automatically detects your client and delivers the optimal format.',
+
+        oneClickImport:
+            'One-Click Import',
+
+        copy:'Copy',
+
+        copyRaw:'Copy Raw URL',
+
+        qr:'QR',
+
+        parsedContent:
+            'Retrieve Raw Content',
+
+        close:'Close',
+
+        qrTitle:
+            'Scan QR Code',
+
+        copied:
+            'Copied to clipboard!',
+
+        decodedCopied:
+            'Links copied!',
+
+        decodedError:
+            'Error fetching content',
+
+        active:'Active',
+
+        paused:'Paused',
+
+        expired:'Expired',
+
+        limitExceeded:
+            'Limit Exceeded',
+
+        dailyLimitExceeded:
+            'Daily Limit Exceeded',
+
+        availableFormats:
+            'Available Subscription Formats',
+
+        formatsDesc:
+            'Use these links to explicitly request specific configuration formats.',
+
+        supportTitle:
+            'SEP NET Support',
+
+        supportDesc:
+            'For help, subscription purchases, or connection issues, use the links below.',
+
+        channel:
+            'Our Channel',
+
+        buyBot:
+            'Purchase Bot',
+
+        supportBot:
+            'SEP NET Support Team',
+
+        rawDescription:
+            'Advanced users can retrieve the raw configuration content.',
+
+        days:
+            'Days',
+
+        day:
+            'Day',
+
+        expiredTime:
+            'Expired',
+
+        invalidDate:
+            'Invalid Date'
+    }
+
+};
+
+
+let currentLang = 'fa';
+
+
+/* =========================================================
+   LANGUAGE
+========================================================= */
+
+function applyLang() {
+
+    const t =
+        I18N[currentLang];
+
+
+    document
+        .querySelectorAll('[data-i18n]')
+        .forEach(el => {
+
+            const key =
+                el.getAttribute(
+                    'data-i18n'
+                );
+
+            if (t[key]) {
+
+                el.textContent =
+                    t[key];
+
+            }
+
+        });
+
+
+    if (currentLang === 'fa') {
+
+        document.documentElement
+            .setAttribute(
+                'dir',
+                'rtl'
+            );
+
+        document.documentElement
+            .setAttribute(
+                'lang',
+                'fa'
+            );
+
+        document.getElementById(
+            'lang-icon'
+        ).textContent = '🇬🇧';
+
+        document.getElementById(
+            'lang-label'
+        ).textContent = 'EN';
+
+    } else {
+
+        document.documentElement
+            .setAttribute(
+                'dir',
+                'ltr'
+            );
+
+        document.documentElement
+            .setAttribute(
+                'lang',
+                'en'
+            );
+
+        document.getElementById(
+            'lang-icon'
+        ).textContent = '🇮🇷';
+
+        document.getElementById(
+            'lang-label'
+        ).textContent = 'FA';
+
+    }
+
+
+    initStatusBadge();
+
+    updateExpiryCountdown();
+
+
+    try {
+
+        localStorage.setItem(
+            'sub-lang',
+            currentLang
+        );
+
+    } catch(e) {}
+
+}
+
+
+function toggleLang() {
+
+    currentLang =
+        currentLang === 'fa'
+            ? 'en'
+            : 'fa';
+
+    applyLang();
+
+}
+
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+function initStatusBadge() {
+
+    const badge =
+        document.getElementById(
+            'status-badge'
+        );
+
+    if (!badge)
+        return;
+
+
+    const t =
+        I18N[currentLang];
+
+
+    const map = {
+
+        active: {
+
+            text:t.active,
+
+            bg:'rgba(34,197,94,.12)',
+
+            border:'rgba(34,197,94,.3)',
+
+            color:'#4ade80'
+        },
+
+
+        paused: {
+
+            text:t.paused,
+
+            bg:'rgba(245,158,11,.12)',
+
+            border:'rgba(245,158,11,.3)',
+
+            color:'#fbbf24'
+        },
+
+
+        expired: {
+
+            text:t.expired,
+
+            bg:'rgba(239,68,68,.12)',
+
+            border:'rgba(239,68,68,.3)',
+
+            color:'#f87171'
+        },
+
+
+        limit: {
+
+            text:t.limitExceeded,
+
+            bg:'rgba(239,68,68,.12)',
+
+            border:'rgba(239,68,68,.3)',
+
+            color:'#f87171'
+        },
+
+
+        dailyLimit: {
+
+            text:t.dailyLimitExceeded,
+
+            bg:'rgba(239,68,68,.12)',
+
+            border:'rgba(239,68,68,.3)',
+
+            color:'#f87171'
+        }
+
+    };
+
+
+    const status =
+        map['__STATUS_CODE__']
+        || map.active;
+
+
+    badge.textContent =
+        status.text;
+
+
+    badge.style.background =
+        status.bg;
+
+
+    badge.style.border =
+        '1px solid ' +
+        status.border;
+
+
+    badge.style.color =
+        status.color;
+}
+
+
+/* =========================================================
+   DATE PARSER
+========================================================= */
+
+function parseExpiryDate(value) {
+
+    if (!value)
+        return null;
+
+
+    value =
+        String(value)
+        .trim();
+
+
+    /*
+        Supported:
+
+        2026-08-20
+        2026/08/20
+        2026-08-20 23:59
+        2026/08/20 23:59:59
+        ISO
+    */
+
+
+    const match =
+        value.match(
+            /^(\d{4})[-\/](\d{1,2})[-\/](\d{1,2})(?:[ T](\d{1,2}):(\d{2})(?::(\d{2}))?)?$/
+        );
+
+
+    if (match) {
+
+        const year =
+            Number(match[1]);
+
+        const month =
+            Number(match[2]);
+
+        const day =
+            Number(match[3]);
+
+
+        const hour =
+            match[4] !== undefined
+                ? Number(match[4])
+                : 23;
+
+
+        const minute =
+            match[5] !== undefined
+                ? Number(match[5])
+                : 59;
+
+
+        const second =
+            match[6] !== undefined
+                ? Number(match[6])
+                : 59;
+
+
+        const date =
+            new Date(
+                year,
+                month - 1,
+                day,
+                hour,
+                minute,
+                second
+            );
+
+
+        /*
+            Prevent invalid dates
+            like 2026/02/31
+        */
+
+        if (
+
+            date.getFullYear()
+                !== year
+
+            ||
+
+            date.getMonth()
+                !== month - 1
+
+            ||
+
+            date.getDate()
+                !== day
+
+        ) {
+
+            return null;
+        }
+
+
+        return date;
+    }
+
+
+    /*
+        ISO fallback
+    */
+
+    const timestamp =
+        Date.parse(value);
+
+
+    if (
+        Number.isNaN(timestamp)
+    ) {
+
+        return null;
+    }
+
+
+    const date =
+        new Date(timestamp);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return null;
+    }
+
+
+    return date;
+}
+
+
+/* =========================================================
+   FORMAT GREGORIAN DATE
+========================================================= */
+
+function formatGregorianDate(date) {
+
+    if (!date)
+        return I18N[currentLang].invalidDate;
+
+
+    const year =
+        date.getFullYear();
+
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,'0');
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2,'0');
+
+
+    const hours =
+        String(
+            date.getHours()
+        ).padStart(2,'0');
+
+
+    const minutes =
+        String(
+            date.getMinutes()
+        ).padStart(2,'0');
+
+
+    return (
+        year +
+        '/' +
+        month +
+        '/' +
+        day +
+        ' ' +
+        hours +
+        ':' +
+        minutes
+    );
+}
+
+
+/* =========================================================
+   REAL COUNTDOWN
+========================================================= */
+
+function updateExpiryCountdown() {
+
+    const expiryElement =
+        document.getElementById(
+            'expiry-date'
+        );
+
+
+    const countdownElement =
+        document.getElementById(
+            'days-left'
+        );
+
+
+    if (
+        !expiryElement ||
+        !countdownElement
+    ) {
+
+        return;
+    }
+
+
+    /*
+        READ ONLY REAL BACKEND VALUE
+    */
+
+    const rawExpiry =
+        expiryElement.dataset.expiry;
+
+
+    const expiryDate =
+        parseExpiryDate(
+            rawExpiry
+        );
+
+
+    /*
+        INVALID DATE
+    */
+
+    if (!expiryDate) {
+
+        expiryElement.textContent =
+            I18N[currentLang].invalidDate;
+
+        countdownElement.textContent =
+            '--';
+
+        return;
+    }
+
+
+    /*
+        SHOW REAL GREGORIAN DATE
+    */
+
+    expiryElement.textContent =
+        formatGregorianDate(
+            expiryDate
+        );
+
+
+    /*
+        REAL REMAINING TIME
+    */
+
+    const now =
+        new Date();
+
+
+    const difference =
+        expiryDate.getTime()
+        -
+        now.getTime();
+
+
+    /*
+        EXPIRED
+    */
+
+    if (difference <= 0) {
+
+        countdownElement.textContent =
+            I18N[currentLang].expiredTime;
+
+        return;
+    }
+
+
+    /*
+        REAL DAYS
+
+        ceil means:
+
+        1 day + 1 hour
+        = 2 days remaining
+
+        5 hours
+        = 1 day remaining
+    */
+
+    const days =
+        Math.ceil(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    /*
+        NEVER allow nonsense
+        values
+    */
+
+    if (
+        !Number.isFinite(days)
+        ||
+        days < 0
+    ) {
+
+        countdownElement.textContent =
+            '--';
+
+        return;
+    }
+
+
+    countdownElement.textContent =
+        String(days)
+        +
+        ' '
+        +
+        (
+            days === 1
+                ? I18N[currentLang].day
+                : I18N[currentLang].days
+        );
+}
+
+
+/* =========================================================
+   UPDATE COUNTDOWN EVERY MINUTE
+========================================================= */
+
+setInterval(
+    updateExpiryCountdown,
+    60000
+);
+
+
+/* =========================================================
+   COPY
+========================================================= */
+
+function copyLink(id) {
+
+    const el =
+        document.getElementById(id);
+
+
+    if (!el)
+        return;
+
+
+    const value =
+        el.value;
+
+
+    if (
+        navigator.clipboard
+    ) {
+
+        navigator.clipboard
+            .writeText(value)
+            .then(() => {
+
+                showToast(
+                    I18N[currentLang].copied
+                );
+
+            })
+            .catch(() => {
+
+                fallbackCopy(
+                    el
+                );
+
+            });
+
+    } else {
+
+        fallbackCopy(
+            el
+        );
+
+    }
+
+}
+
+
+function fallbackCopy(el) {
+
+    el.select();
+
+    el.setSelectionRange(
+        0,
+        999999
+    );
+
+    document.execCommand(
+        'copy'
+    );
+
+    showToast(
+        I18N[currentLang].copied
+    );
+}
+
+
+/* =========================================================
+   RAW CONTENT
+========================================================= */
+
+async function fetchDecodedRawContent() {
+
+    try {
+
+        const res =
+            await fetch(
+                '__SYNC_RAW__'
+            );
+
+
+        if (!res.ok)
+            throw new Error(
+                'Failed'
+            );
+
+
+        const text =
+            await res.text();
+
+
+        let decodedText =
+            text.trim();
+
+
+        /*
+            Try Base64 decoding.
+        */
+
+        try {
+
+            decodedText =
+                atob(
+                    decodedText
+                );
+
+        } catch(e) {
+
+            /*
+                If it isn't Base64,
+                use raw content itself.
+            */
+
+        }
+
+
+        if (
+            navigator.clipboard
+        ) {
+
+            await navigator.clipboard
+                .writeText(
+                    decodedText
+                );
+
+        }
+
+
+        showToast(
+            I18N[currentLang]
+                .decodedCopied
+        );
+
+
+    } catch(e) {
+
+        alert(
+            I18N[currentLang]
+                .decodedError
+            +
+            ': '
+            +
+            e.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   QR
+========================================================= */
+
+function showQRModal(url) {
+
+    if (!url)
+        return;
+
+
+    document.getElementById(
+        'qr-title'
+    ).innerText =
+        I18N[currentLang]
+            .qrTitle;
+
+
+    document.getElementById(
+        'qr-text'
+    ).innerText =
+        url;
+
+
+    document.getElementById(
+        'qr-img'
+    ).src =
+        'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
+        +
+        encodeURIComponent(
+            url
+        );
+
+
+    const modal =
+        document.getElementById(
+            'qr-modal'
+        );
+
+
+    modal.classList.remove(
+        'hidden'
+    );
+
+    modal.classList.add(
+        'flex'
+    );
+
+
+    setTimeout(() => {
+
+        modal.style.opacity =
+            '1';
+
+    },10);
+
+}
+
+
+function closeQRModal() {
+
+    const modal =
+        document.getElementById(
+            'qr-modal'
+        );
+
+
+    modal.style.opacity =
+        '0';
+
+
+    setTimeout(() => {
+
+        modal.classList.add(
+            'hidden'
+        );
+
+        modal.classList.remove(
+            'flex'
+        );
+
+    },300);
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(msg) {
+
+    const toast =
+        document.getElementById(
+            'toast'
+        );
+
+
+    toast.innerText =
+        msg;
+
+
+    toast.style.opacity =
+        '1';
+
+
+    toast.style.transform =
+        'translate(-50%,0)';
+
+
+    setTimeout(() => {
+
+        toast.style.opacity =
+            '0';
+
+
+        toast.style.transform =
+            'translate(-50%,-15px)';
+
+    },2500);
+
+}
+
+
+/* =========================================================
+   CLIENT IP
+========================================================= */
+
+fetch(
+    'https://api.ipify.org?format=json'
+)
+
+.then(
+    r => r.json()
+)
+
+.then(
+    data => {
+
+        const ip =
+            document.getElementById(
+                'client-ip'
+            );
+
+
+        if (ip) {
+
+            ip.textContent =
+                data.ip;
+
+        }
+
+    }
+)
+
+.catch(() => {
+
+    const ip =
+        document.getElementById(
+            'client-ip'
+        );
+
+
+    if (ip) {
+
+        ip.textContent =
+            'Unknown';
+
+    }
+
+});
+
+
+/* =========================================================
+   FORMAT LINKS
+========================================================= */
+
+function buildFlagLink(
+    normalLink,
+    flag
+) {
+
+    return normalLink
+        +
+        (
+            normalLink.includes('?')
+                ? '&flag='
+                : '?flag='
+        )
+        +
+        flag;
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+(function init() {
+
+
+    /*
+        LANGUAGE
+    */
+
+    try {
+
+        const savedLang =
+            localStorage.getItem(
+                'sub-lang'
+            );
+
+
+        if (
+            savedLang &&
+            I18N[savedLang]
+        ) {
+
+            currentLang =
+                savedLang;
+
+        }
+
+    } catch(e) {}
+
+
+    applyLang();
+
+
+    /*
+        NORMAL LINK
+    */
+
+    const normalLink =
+        '__SYNC_NORMAL__';
+
+
+    const rawLink =
+        buildFlagLink(
+            normalLink,
+            'raw'
+        );
+
+
+    const base64Link =
+        buildFlagLink(
+            normalLink,
+            'base64'
+        );
+
+
+    const singboxLink =
+        buildFlagLink(
+            normalLink,
+            'singbox'
+        );
+
+
+    const clashLink =
+        buildFlagLink(
+            normalLink,
+            'clash'
+        );
+
+
+    const v2raynLink =
+        buildFlagLink(
+            normalLink,
+            'vjson'
+        );
+
+
+    /*
+        FORMAT INPUTS
+    */
+
+    const rawInput =
+        document.getElementById(
+            'link-raw-fmt'
+        );
+
+
+    const base64Input =
+        document.getElementById(
+            'link-base64-fmt'
+        );
+
+
+    const singboxInput =
+        document.getElementById(
+            'link-singbox-fmt'
+        );
+
+
+    const clashInput =
+        document.getElementById(
+            'link-clash-fmt'
+        );
+
+
+    const v2raynInput =
+        document.getElementById(
+            'link-v2rayn-fmt'
+        );
+
+
+    if (rawInput)
+        rawInput.value =
+            rawLink;
+
+
+    if (base64Input)
+        base64Input.value =
+            base64Link;
+
+
+    if (singboxInput)
+        singboxInput.value =
+            singboxLink;
+
+
+    if (clashInput)
+        clashInput.value =
+            clashLink;
+
+
+    if (v2raynInput)
+        v2raynInput.value =
+            v2raynLink;
+
+
+    /*
+        V2RAYNG
+    */
+
+    const v2rayngLink =
+        document.getElementById(
+            'v2rayng-link'
+        );
+
+
+    if (v2rayngLink) {
+
+        v2rayngLink.href =
+            'v2rayng://install-sub?url='
+            +
+            encodeURIComponent(
+                base64Link
+            )
+            +
+            '&name='
+            +
+            encodeURIComponent(
+                '__USER_NAME__'
+            );
+
+    }
+
+
+    /*
+        V2RAYN
+    */
+
+    const v2raynApp =
+        document.getElementById(
+            'v2rayn-link'
+        );
+
+
+    if (v2raynApp) {
+
+        v2raynApp.href =
+            'v2rayn://install-sub?url='
+            +
+            encodeURIComponent(
+                normalLink
+            )
+            +
+            '&name='
+            +
+            encodeURIComponent(
+                '__USER_NAME__'
+            );
+
+    }
+
+
+    /*
+        SHADOWROCKET
+    */
+
+    const shadowrocket =
+        document.getElementById(
+            'shadowrocket-link'
+        );
+
+
+    if (shadowrocket) {
+
+        shadowrocket.href =
+            'shadowrocket://add/sub://'
+            +
+            btoa(
+                normalLink
+            )
+            +
+            '?title='
+            +
+            encodeURIComponent(
+                '__USER_NAME__'
+            );
+
+    }
+
+
+    /*
+        STREISAND
+    */
+
+    const streisand =
+        document.getElementById(
+            'streisand-link'
+        );
+
+
+    if (streisand) {
+
+        streisand.href =
+            'streisand://import/'
+            +
+            encodeURIComponent(
+                normalLink
+            );
+
+    }
+
+
+    /*
+        REAL EXPIRY COUNTDOWN
+    */
+
+    updateExpiryCountdown();
+
+
+})();
+</script>
+
+</body>
+</html>
