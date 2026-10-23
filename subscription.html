@@ -1904,7 +1904,7 @@
         </span>
         <span class="brand-text">
           <h1 class="brand-title" id="brand-title">SEPNET</h1>
-          <p class="brand-sub" id="brand-subtitle">پنل اشتراک</p>
+          <p class="brand-sub" id="brand-subtitle">پنل اشتراک سپ</p>
         </span>
       </div>
 
@@ -2032,12 +2032,12 @@
   };
 
   var DEFAULT_BRAND = {
-    name: "SEPNET",                 // نام برند
+    name: "SEPNET",   // ← نام برند
     subtitle: {
-      fa: "پنل اشتراک سپ",          // شعار فارسی
-      en: "Subscription panel SEP"  // English tagline
+      fa: "پنل اشتراک سپ",     // ← شعار فارسی
+      en: "Subscription panel SEP"  // ← شعار انگلیسی
     },
-    logoUrl: "https://javadxp.wuaze.com/logos/photo_2026-08-04_19-02-35.jpg"
+    logoUrl: "https://javadxp.wuaze.com/logos/photo_2026-08-04_19-02-35.jpg"         // ← URL لوگو (خالی = آیکن پیش‌فرض)
   };
 
   var BRAND = window.MRCLOCK_BRAND || window.PASARGUARD_BRAND || window.PANEL_BRAND || DEFAULT_BRAND;
@@ -2312,7 +2312,6 @@
     $("brand-subtitle").textContent = sub;
     var brandImg = $("brand-img");
     brandImg.onerror = function () {
-      brandImg.onerror = null;
       brandImg.removeAttribute("src");
       $("brand-logo").classList.remove("has-image");
     };
