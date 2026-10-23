@@ -1903,8 +1903,8 @@
           </svg>
         </span>
         <span class="brand-text">
-          <h1 class="brand-title" id="brand-title">SEPNET</h1>
-          <p class="brand-sub" id="brand-subtitle">پنل اشتراک سپ</p>
+          <h1 class="brand-title" id="brand-title">MrClock Template</h1>
+          <p class="brand-sub" id="brand-subtitle">پنل اشتراک</p>
         </span>
       </div>
 
@@ -1923,6 +1923,19 @@
       <span id="notice-text"></span>
     </div>
 
+    <!-- SEP NET template placeholders: replaced by the subscription Worker -->
+    <div id="sep-template-data" hidden
+      data-user-name="__USER_NAME__"
+      data-user-id="__USER_ID__"
+      data-status-code="__STATUS_CODE__"
+      data-expiry-date="__EXPIRY_DATE__"
+      data-total-gb="__TOTAL_GB__"
+      data-limit-total-gb="__LIMIT_TOTAL_GB__"
+      data-daily-gb="__DAILY_GB__"
+      data-limit-daily-gb="__LIMIT_DAILY_GB__"
+      data-sync-normal="__SYNC_NORMAL__"
+      data-sync-raw="__SYNC_RAW__"></div>
+
     <main>
       <section class="view" id="view-account">
         <div class="account-grid">
@@ -1940,6 +1953,19 @@
               </div>
             </div>
             <div class="metrics" id="metrics"></div>
+
+            <section class="sep-traffic-panel">
+              <div class="sep-traffic-heading">جزئیات مصرف اشتراک</div>
+              <div class="sep-traffic-item">
+                <div class="sep-traffic-label"><span>مصرف کل</span><strong>__TOTAL_GB__ / __LIMIT_TOTAL_GB__ GB</strong></div>
+                <div class="sep-template-progress">__TOTAL_PROGRESS__</div>
+              </div>
+              <div class="sep-traffic-item">
+                <div class="sep-traffic-label"><span>مصرف روزانه</span><strong>__DAILY_GB__ / __LIMIT_DAILY_GB__ GB</strong></div>
+                <div class="sep-template-progress">__DAILY_PROGRESS__</div>
+              </div>
+            </section>
+
             <div class="detail-grid" id="details"></div>
           </section>
 
@@ -2020,6 +2046,17 @@
   <div class="loading" id="loading"><div class="loader" data-i18n="loading">در حال دریافت اطلاعات</div></div>
   <div class="toast" id="toast"></div>
 
+  <style id="sepnet-placeholder-styles">
+    .sep-traffic-panel{margin-top:18px;padding:18px;border:1px solid var(--line);border-radius:20px;background:var(--panel2,rgba(18,9,3,.45))}
+    .sep-traffic-heading{font-size:12px;font-weight:900;margin-bottom:16px;color:var(--text)}
+    .sep-traffic-item+.sep-traffic-item{margin-top:16px}
+    .sep-traffic-label{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:9px;font-size:11px;color:var(--muted)}
+    .sep-traffic-label strong{font-size:11px;color:var(--text);direction:ltr}
+    .sep-template-progress{height:8px;overflow:hidden;border-radius:99px;background:rgba(255,255,255,.07)}
+    .sep-template-progress>*{height:100%;max-width:100%;border-radius:inherit;background:linear-gradient(90deg,#ff6500,#ff9f13,#ffd05a);box-shadow:0 0 18px rgba(255,124,0,.3)}
+    .brand-logo img{width:100%;height:100%;object-fit:contain;position:relative;z-index:2}
+  </style>
+
   <script>
 (function () {
   "use strict";
@@ -2032,12 +2069,12 @@
   };
 
   var DEFAULT_BRAND = {
-    name: "SEPNET",   // ← نام برند
+    name: "SEPNET",                    // SEP NET
     subtitle: {
-      fa: "پنل اشتراک سپ",     // ← شعار فارسی
-      en: "Subscription panel SEP"  // ← شعار انگلیسی
+      fa: "پنل اشتراک سپ",
+      en: "Subscription panel SEP"
     },
-    logoUrl: "https://javadxp.wuaze.com/logos/photo_2026-08-04_19-02-35.jpg"         // ← URL لوگو (خالی = آیکن پیش‌فرض)
+    logoUrl: "https://javadxp.wuaze.com/logos/photo_2026-08-04_19-02-35.jpg"
   };
 
   var BRAND = window.MRCLOCK_BRAND || window.PASARGUARD_BRAND || window.PANEL_BRAND || DEFAULT_BRAND;
@@ -2305,17 +2342,20 @@
   }
 
   function applyBrand() {
-    var name = BRAND.name || "SEPNET";
+    var name = BRAND.name || "MrClock Template";
     var sub = defaultSubtitle();
     var logo = BRAND.logoUrl || BRAND.logo || "";
     $("brand-title").textContent = name;
     $("brand-subtitle").textContent = sub;
-    var brandImg = $("brand-img");
-    brandImg.onerror = function () {
-      brandImg.removeAttribute("src");
+    $("brand-img").onerror = function () {
+      this.style.display = "none";
       $("brand-logo").classList.remove("has-image");
     };
-    brandImg.src = logo || "";
+    $("brand-img").onload = function () {
+      this.style.display = "";
+      $("brand-logo").classList.add("has-image");
+    };
+    $("brand-img").src = logo || "";
     $("brand-logo").classList.toggle("has-image", !!logo);
   }
 
@@ -2766,9 +2806,10 @@
     $("status-label").parentElement.className = "chip " + (tone === "bad" ? "status-bad" : (tone === "warn" ? "status-warn" : "status-active"));
     $("status-label").textContent = has ? (tr(status) || status) : tr("unknown");
     $("username").textContent = username;
-    $("subline").textContent = has ? "" : tr("emptyState");
+    var userId = get(user, ["user_id", "id", "uuid", "key"]) || "";
+    $("subline").textContent = userId ? "شناسه کاربر: " + userId : (has ? "اشتراک اختصاصی SEP NET" : tr("emptyState"));
     $("profile-shortcuts").classList.toggle("hidden", !(state.ctx && state.ctx.subUrl));
-    document.title = has && username !== "—" ? username : (fa() ? "پنل کاربری" : "User Panel");
+    document.title = (has && username !== "—" ? username + " | SEPNET" : "SEPNET | Subscription");
 
     $("profile-chips").innerHTML = [
       chip(num(state.links.length) + " " + tr("configTag")),
@@ -3398,6 +3439,55 @@
     if (lite) document.documentElement.setAttribute("data-perf", "lite");
   }
 
+  function initSepNetTemplate() {
+    var node = $("sep-template-data");
+    if (!node) return false;
+    var d = node.dataset || {};
+    function val(key) {
+      var value = d[key] == null ? "" : String(d[key]).trim();
+      return value.indexOf("__") === 0 && value.lastIndexOf("__") === value.length - 2 ? "" : value;
+    }
+    function gbToBytes(value) {
+      var n = Number(String(value || "").replace(",", "."));
+      return Number.isFinite(n) && n > 0 ? n * 1073741824 : 0;
+    }
+    var normal = val("syncNormal");
+    var raw = val("syncRaw");
+    var statusMap = {
+      active: "active", enabled: "active",
+      paused: "on_hold", disabled: "disabled", inactive: "disabled",
+      expired: "expired",
+      limit: "limited", limited: "limited", traffic_limit: "limited",
+      dailyLimit: "limited", dailylimit: "limited", daily_limit: "limited",
+      on_hold: "on_hold", suspended: "on_hold"
+    };
+    var rawStatus = val("statusCode").toLowerCase();
+    state.ctx = { panel: "", subUrl: normal || raw };
+    state.user = {
+      username: val("userName") || "کاربر سپ نت",
+      user_id: val("userId"),
+      status: statusMap[rawStatus] || rawStatus || "active",
+      expire: val("expiryDate"),
+      used_traffic: gbToBytes(val("totalGb")),
+      data_limit: gbToBytes(val("limitTotalGb")),
+      daily_used_traffic: gbToBytes(val("dailyGb")),
+      daily_data_limit: gbToBytes(val("limitDailyGb")),
+      lifetime_used_traffic: gbToBytes(val("totalGb"))
+    };
+    state.headers = {};
+    state.links = [normal, raw].filter(function (item, index, arr) {
+      return item && arr.indexOf(item) === index;
+    });
+    state.apps = [];
+    state.configItems = [];
+    state.usageRaw = null;
+    renderAll();
+    renderAccount();
+    renderUsage([], "1d");
+    loading(false);
+    return true;
+  }
+
   function init() {
     setupPerfMode();
     installSvg(document);
@@ -3405,6 +3495,7 @@
     applyLang();
     bindEvents();
     bindSwipeNav();
+    if (initSepNetTemplate()) return;
     requestAnimationFrame(function () {
       var auto = detectUrl();
       if (auto) return loadAll(auto);
